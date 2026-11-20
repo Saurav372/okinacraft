@@ -150,7 +150,7 @@ foreach ($images as $img) {
               <div class="bulk-main-sub-line" id="bulk-main-sub-line">
                 <span id="bulk-unit-breakdown" class="bulk-unit-breakdown" style="display:none;"></span>
                 <span id="bulk-discount-badge" class="bulk-discount-badge" style="display:none;"></span>
-                <span id="bulk-default-note" class="bulk-fee-note">No setup fee &bull; Volume discounts apply</span>
+                <span id="bulk-default-note" class="bulk-fee-note">Volume discounts apply</span>
               </div>
             </div>
           <?php else: ?>
@@ -170,7 +170,7 @@ foreach ($images as $img) {
         </div>
 
         <div class="product-info__tax-note">
-          Taxes included. <a href="<?= base_url('/policies/shipping-policy') ?>" class="link--underline">Shipping</a> calculated at checkout.
+          Tax 5% extra. <a href="<?= base_url('/policies/shipping-policy') ?>" class="link--underline">Shipping</a> calculated at checkout.
         </div>
 
         <form id="pdp-cart-form" action="<?= base_url('/cart') ?>" method="post" enctype="multipart/form-data">
