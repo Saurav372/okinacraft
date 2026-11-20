@@ -35,15 +35,22 @@ class App extends BaseConfig
     {
         parent::__construct();
 
-        // Auto-detect baseURL on live server if left as localhost
+        // Auto-detect and enforce https on live server
         if (PHP_SAPI !== 'cli' && !empty($_SERVER['HTTP_HOST'])) {
-            $isLocal = str_contains($this->baseURL, 'localhost') || str_contains($this->baseURL, '127.0.0.1');
+            $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+                || (isset($_SERVER['SERVER_PORT']) && (int)$_SERVER['SERVER_PORT'] === 443)
+                || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
+                || (isset($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on');
+
+            if ($isHttps) {
+                // Prevent Mixed Content: always serve https assets when page is loaded on https
+                $this->baseURL = preg_replace('#^http://#i', 'https://', $this->baseURL);
+            }
+
             $host = (string)$_SERVER['HTTP_HOST'];
+            $isLocal = str_contains($this->baseURL, 'localhost') || str_contains($this->baseURL, '127.0.0.1');
+
             if ($isLocal && !str_contains($host, 'localhost') && !str_contains($host, '127.0.0.1')) {
-                $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
-                    || (isset($_SERVER['SERVER_PORT']) && (int)$_SERVER['SERVER_PORT'] === 443)
-                    || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
-                    || (isset($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on');
                 $proto = $isHttps ? 'https://' : 'http://';
                 $this->baseURL = $proto . $host . '/';
             }
