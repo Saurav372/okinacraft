@@ -1,4 +1,4 @@
--- Cluster Studio E-Commerce — MySQL / MariaDB Schema
+-- Okina Craft E-Commerce — MySQL / MariaDB Schema
 -- Optional: Only needed if you switch config.php 'driver' from 'sqlite' to 'mysql'.
 -- The app also auto-creates these tables and seeds all products on first visit!
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS products (
     handle VARCHAR(220) NOT NULL UNIQUE,
     title VARCHAR(300) NOT NULL,
     body_html LONGTEXT,
-    vendor VARCHAR(120) DEFAULT 'Cluster Studio',
+    vendor VARCHAR(120) DEFAULT 'Okina Craft',
     product_type VARCHAR(120) DEFAULT '',
     tags VARCHAR(500) DEFAULT '',
     price DECIMAL(10,2) NOT NULL DEFAULT 0.00,

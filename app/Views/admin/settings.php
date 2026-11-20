@@ -52,7 +52,7 @@
                   <label class="form-label fw-semibold">Instagram Handle</label>
                   <div class="input-group">
                     <span class="input-group-text">@</span>
-                    <input type="text" class="form-control" name="instagram_handle" value="<?= e($settings['instagram_handle'] ?? 'clusterstudio1') ?>" placeholder="clusterstudio1">
+                    <input type="text" class="form-control" name="instagram_handle" value="<?= e($settings['instagram_handle'] ?? 'okina_craft') ?>" placeholder="okina_craft">
                   </div>
                 </div>
               </div>
@@ -81,7 +81,7 @@
                   <label class="form-label fw-semibold">Store UPI ID (shown at checkout)</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="ti ti-qrcode"></i></span>
-                    <input type="text" class="form-control" name="upi_id" value="<?= e($settings['upi_id'] ?? '') ?>" placeholder="clusterstudio@upi">
+                    <input type="text" class="form-control" name="upi_id" value="<?= e($settings['upi_id'] ?? '') ?>" placeholder="okinacraft@upi">
                   </div>
                 </div>
                 <div class="col-md-6">

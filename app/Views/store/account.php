@@ -14,7 +14,7 @@
         <div class="form-grid-2">
           <div class="form-row">
             <label class="form-label" for="tr-order">Order Number</label>
-            <input id="tr-order" name="order_number" type="text" class="field__input" required value="<?= e($orderNo) ?>" placeholder="e.g., CS-2026-1001">
+            <input id="tr-order" name="order_number" type="text" class="field__input" required value="<?= e($orderNo) ?>" placeholder="e.g., OC-2026/27-1001">
           </div>
           <div class="form-row">
             <label class="form-label" for="tr-contact">Email or Phone Number</label>

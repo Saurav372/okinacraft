@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Cluster Studio — Exact Dawn 16.0 Design System
+   Okina Craft — Exact Dawn 16.0 Design System
    Local Fonts + Exact Color Schemes, Typography, Masks, Cards, & Storefront UI
    ========================================================================== */
 
@@ -255,7 +255,7 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
 .flash--info    { background: #fff8e7; color: #111; border: 1px solid #f5dfa8; }
 
 /* ==========================================================================
-   Sticky Header (Exact Cluster Studio Middle-Left Layout + Reduce Logo Size)
+   Sticky Header (Exact Okina Craft Middle-Left Layout + Reduce Logo Size)
    ========================================================================== */
 .section-header {
   position: sticky;
@@ -956,7 +956,7 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
 }
 
 /* ==========================================================================
-   Exact Cluster Studio Custom "Need Help?" WhatsApp & Instagram Section
+   Exact Okina Craft Custom "Need Help?" WhatsApp & Instagram Section
    ========================================================================== */
 .cs-help-section {
   padding-top: 3rem;
@@ -1020,7 +1020,7 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
 }
 
 /* ==========================================================================
-   Exact Cluster Studio Footer
+   Exact Okina Craft Footer
    ========================================================================== */
 .footer {
   border-top: 1px solid rgba(var(--color-foreground), 0.08);
@@ -1932,7 +1932,7 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
   background: #fff8e7;
 }
 
-/* Contact Page (Exact Cluster Studio Rich Text Block) */
+/* Contact Page (Exact Okina Craft Rich Text Block) */
 .rich-text--center {
   text-align: center;
   max-width: 72rem;

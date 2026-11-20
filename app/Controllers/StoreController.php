@@ -212,7 +212,8 @@ class StoreController extends BaseController
         $db->transStart();
         try {
             $nextSeq = (int)($db->table('orders')->selectMax('id')->get()->getRowArray()['id'] ?? 0) + 1001;
-            $orderNumber = 'CS-' . date('Y') . '-' . $nextSeq;
+            $yearSpan = date('Y') . '/' . substr((string)((int)date('Y') + 1), 2);
+            $orderNumber = 'OC-' . $yearSpan . '-' . $nextSeq;
 
             $orderModel = new OrderModel();
             $orderModel->insert([

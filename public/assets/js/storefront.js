@@ -1,8 +1,8 @@
-/* Cluster Studio Storefront Interactions (Zero external JS dependencies) */
+/* Okina Craft Storefront Interactions (Zero external JS dependencies) */
 (function () {
   'use strict';
 
-  const basePath = (window.CS_BASE || '').replace(/\/$/, '');
+  const basePath = (window.OC_BASE || window.CS_BASE || '').replace(/\/$/, '');
 
   // 1. Sticky Header Reduce Logo Size on Scroll
   const stickyHeader = document.querySelector('.section-header');
@@ -108,7 +108,7 @@
     });
   }
 
-  // 4. Deferred Video Player ("How to Buy from Cluster Studio")
+  // 4. Deferred Video Player ("How to Buy from Okina Craft")
   const videoBtn = document.getElementById('deferred-video-btn');
   if (videoBtn) {
     videoBtn.addEventListener('click', () => {

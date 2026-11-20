@@ -25,7 +25,7 @@ $videoHeading = store_setting('video_heading', 'How to Buy from Okina Craft');
   </section>
 <?php endforeach; ?>
 
-<!-- Exact "How to Buy from Cluster Studio" Deferred Video Section -->
+<!-- Exact "How to Buy from Okina Craft" Deferred Video Section -->
 <section class="video-section">
   <div class="page-width">
     <div class="collection__title">

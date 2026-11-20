@@ -17,11 +17,6 @@ class StoreSeeder extends Seeder
                 'email'    => 'admin@okinacraft.com',
                 'password' => 'OkinaCraft@2026!',
             ],
-            [
-                'name'     => 'Cluster Studio Admin (Legacy)',
-                'email'    => 'admin@clusterstudio.shop',
-                'password' => 'Cluster@2026!',
-            ],
         ];
 
         foreach ($adminsToSeed as $adm) {
@@ -117,7 +112,7 @@ class StoreSeeder extends Seeder
                     'handle'              => $p['handle'],
                     'title'               => $p['title'],
                     'body_html'           => $p['body_html'] ?? '',
-                    'vendor'              => $p['vendor'] ?? 'Cluster Studio',
+                    'vendor'              => $p['vendor'] ?? 'Okina Craft',
                     'product_type'        => $p['product_type'] ?? '',
                     'tags'                => $p['tags'] ?? '',
                     'price'               => (float)($p['price'] ?? 0),

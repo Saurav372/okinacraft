@@ -18,7 +18,7 @@ $session = session();
   <link rel="icon" type="image/png" href="<?= base_url('assets/media/logo.png') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/css/mask-blobs.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/css/theme.css') ?>">
-  <script>window.CS_BASE = <?= json_encode(rtrim(base_url(), '/')) ?>;</script>
+  <script>window.OC_BASE = <?= json_encode(rtrim(base_url(), '/')) ?>; window.CS_BASE = window.OC_BASE;</script>
 </head>
 <body class="gradient">
 

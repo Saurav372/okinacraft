@@ -83,10 +83,11 @@ op_okina = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj_oki
 def t_auth_okina():
     res = op_okina.open(BASE + "/admin/login")
     html = res.read().decode('utf-8')
-    csrf = re.search(r'name="csrf_token_cluster"\s+value="([^"]+)"', html)
-    token = csrf.group(1) if csrf else ''
+    csrf = re.search(r'name="([^"]*csrf[^"]*)"\s+value="([^"]+)"', html)
+    csrf_name = csrf.group(1) if csrf else 'csrf_test_name'
+    token = csrf.group(2) if csrf else ''
     data = urllib.parse.urlencode({
-        'csrf_token_cluster': token,
+        csrf_name: token,
         'email': 'admin@okinacraft.com',
         'password': 'OkinaCraft@2026!'
     }).encode('utf-8')
@@ -104,10 +105,11 @@ op_demo = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj_demo
 def t_auth_demo():
     res = op_demo.open(BASE + "/admin/login")
     html = res.read().decode('utf-8')
-    csrf = re.search(r'name="csrf_token_cluster"\s+value="([^"]+)"', html)
-    token = csrf.group(1) if csrf else ''
+    csrf = re.search(r'name="([^"]*csrf[^"]*)"\s+value="([^"]+)"', html)
+    csrf_name = csrf.group(1) if csrf else 'csrf_test_name'
+    token = csrf.group(2) if csrf else ''
     data = urllib.parse.urlencode({
-        'csrf_token_cluster': token,
+        csrf_name: token,
         'email': 'demo@insignia.com',
         'password': 'demo@123'
     }).encode('utf-8')
@@ -148,9 +150,10 @@ check("Admin Products search filter functions properly", t_admin_search)
 def t_admin_logout():
     res = op_okina.open(BASE + "/admin")
     html = res.read().decode('utf-8')
-    csrf = re.search(r'name="csrf_token_cluster"\s+value="([^"]+)"', html)
-    token = csrf.group(1) if csrf else ''
-    data = urllib.parse.urlencode({'csrf_token_cluster': token}).encode('utf-8')
+    csrf = re.search(r'name="([^"]*csrf[^"]*)"\s+value="([^"]+)"', html)
+    csrf_name = csrf.group(1) if csrf else 'csrf_test_name'
+    token = csrf.group(2) if csrf else ''
+    data = urllib.parse.urlencode({csrf_name: token}).encode('utf-8')
     logout_res = op_okina.open(urllib.request.Request(BASE + "/admin/logout", data=data))
     assert "/admin/login" in logout_res.geturl()
     

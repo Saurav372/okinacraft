@@ -2,15 +2,15 @@
 <?= $this->section('content') ?>
 
 <?php
-$storeEmail = store_setting('store_email', 'clusterstudio2@gmail.com');
-$instagram = store_setting('instagram_handle', 'clusterstudio1');
+$storeEmail = store_setting('store_email', 'okinacraft@gmail.com');
+$instagram = store_setting('instagram_handle', 'okina_craft');
 ?>
 <section class="contact-page">
   <div class="page-width--narrow">
     <h1 class="h0" style="margin-bottom: 1.6rem;">Contact</h1>
   </div>
 
-  <!-- Exact Cluster Studio "LET'S TALK" Rich Text Section -->
+  <!-- Exact Okina Craft "LET'S TALK" Rich Text Section -->
   <div class="page-width">
     <div class="rich-text--center">
       <h2 class="h1" style="margin-bottom: 1.6rem;">LET'S TALK</h2>
