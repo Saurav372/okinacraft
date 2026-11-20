@@ -582,6 +582,176 @@
     recalculateBulkPricing();
   }
 
+  // Mixed Size Breakdown Manager (PrintMine Style)
+  function initMixedSizeSelector() {
+    const sizeCard = document.getElementById('mixed-size-card');
+    if (!sizeCard) return;
+
+    const sizeItems = sizeCard.querySelectorAll('.mixed-size-item');
+    const badge = document.getElementById('size-selected-badge');
+    const progressFill = document.getElementById('size-progress-fill');
+    const statusText = document.getElementById('size-status-text');
+    const breakdownInput = document.getElementById('pdp-size-breakdown');
+    const pdpQty = document.getElementById('pdp-qty');
+
+    const sizeCounts = {};
+    sizeItems.forEach(item => {
+      const sizeName = item.getAttribute('data-size');
+      sizeCounts[sizeName] = 0;
+    });
+
+    // Default first size to 1 if qty is 1 and all are 0
+    const firstItem = sizeItems[0];
+    if (firstItem) {
+      const firstSize = firstItem.getAttribute('data-size');
+      sizeCounts[firstSize] = 1;
+      const countEl = firstItem.querySelector('.size-count-num');
+      if (countEl) countEl.textContent = '1';
+      firstItem.classList.add('has-count');
+    }
+
+    function getTotalSelectedSizes() {
+      return Object.values(sizeCounts).reduce((sum, val) => sum + val, 0);
+    }
+
+    function updateSizeUI() {
+      const totalSelected = getTotalSelectedSizes();
+      const targetQty = pdpQty ? Math.max(1, parseInt(pdpQty.value || '1', 10)) : 1;
+
+      // Update badge: "X/Y Selected"
+      if (badge) {
+        badge.textContent = `${totalSelected}/${targetQty} Selected`;
+        if (totalSelected === targetQty && totalSelected > 0) {
+          badge.classList.add('all-selected');
+        } else {
+          badge.classList.remove('all-selected');
+        }
+      }
+
+      // Update progress bar
+      if (progressFill) {
+        const pct = Math.min(100, Math.round((totalSelected / targetQty) * 100));
+        progressFill.style.width = pct + '%';
+        if (pct >= 100) {
+          progressFill.classList.add('is-complete');
+        } else {
+          progressFill.classList.remove('is-complete');
+        }
+      }
+
+      // Update status text
+      if (statusText) {
+        if (totalSelected === targetQty) {
+          statusText.innerHTML = `✓ <strong>All ${targetQty} sizes selected!</strong>`;
+          statusText.classList.add('is-complete');
+        } else if (totalSelected < targetQty) {
+          const diff = targetQty - totalSelected;
+          statusText.innerHTML = `Choose sizes for <strong>${diff} more</strong>`;
+          statusText.classList.remove('is-complete');
+        } else {
+          statusText.innerHTML = `✓ <strong>All ${totalSelected} sizes selected!</strong>`;
+          statusText.classList.add('is-complete');
+        }
+      }
+
+      // Format size breakdown string (e.g. "2 × S, 3 × M")
+      const breakdownParts = [];
+      let primarySize = null;
+      for (const [sizeName, count] of Object.entries(sizeCounts)) {
+        if (count > 0) {
+          if (!primarySize) primarySize = sizeName;
+          breakdownParts.push(`${count} × ${sizeName}`);
+        }
+      }
+
+      const breakdownStr = breakdownParts.join(', ');
+      if (breakdownInput) {
+        breakdownInput.value = breakdownStr;
+      }
+    }
+
+    // Attach click listeners to + and - buttons
+    sizeItems.forEach(item => {
+      const sizeName = item.getAttribute('data-size');
+      const countEl = item.querySelector('.size-count-num');
+      const decBtn = item.querySelector('[data-size-dec]');
+      const incBtn = item.querySelector('[data-size-inc]');
+
+      if (decBtn) {
+        decBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (sizeCounts[sizeName] > 0) {
+            sizeCounts[sizeName]--;
+            if (countEl) countEl.textContent = String(sizeCounts[sizeName]);
+            if (sizeCounts[sizeName] === 0) {
+              item.classList.remove('has-count');
+            }
+            updateSizeUI();
+          }
+        });
+      }
+
+      if (incBtn) {
+        incBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          sizeCounts[sizeName] = (sizeCounts[sizeName] || 0) + 1;
+          if (countEl) countEl.textContent = String(sizeCounts[sizeName]);
+          item.classList.add('has-count');
+
+          // If new total exceeds target qty, automatically increment target qty!
+          const currentTotal = getTotalSelectedSizes();
+          const targetQty = pdpQty ? parseInt(pdpQty.value || '1', 10) : 1;
+          if (currentTotal > targetQty && pdpQty) {
+            pdpQty.value = currentTotal;
+            pdpQty.dispatchEvent(new Event('change'));
+          }
+
+          updateSizeUI();
+        });
+      }
+    });
+
+    if (pdpQty) {
+      pdpQty.addEventListener('change', updateSizeUI);
+      pdpQty.addEventListener('input', updateSizeUI);
+    }
+
+    // When cart form submits, append size breakdown to custom note
+    const cartForm = document.getElementById('pdp-cart-form');
+    if (cartForm) {
+      cartForm.addEventListener('submit', () => {
+        const totalSelected = getTotalSelectedSizes();
+        const targetQty = pdpQty ? parseInt(pdpQty.value || '1', 10) : 1;
+        if (totalSelected < targetQty) {
+          const firstKey = Object.keys(sizeCounts).find(k => sizeCounts[k] > 0) || Object.keys(sizeCounts)[0];
+          if (firstKey) {
+            sizeCounts[firstKey] += (targetQty - totalSelected);
+            const countEl = document.querySelector(`.mixed-size-item[data-size="${firstKey}"] .size-count-num`);
+            if (countEl) countEl.textContent = String(sizeCounts[firstKey]);
+            updateSizeUI();
+          }
+        }
+
+        const breakdownStr = breakdownInput ? breakdownInput.value : '';
+        const customNoteInput = document.getElementById('custom-note');
+        if (breakdownStr && customNoteInput) {
+          const currentNote = customNoteInput.value.trim();
+          if (currentNote) {
+            if (!currentNote.includes('Sizes:')) {
+              customNoteInput.value = `Sizes: ${breakdownStr} | Note: ${currentNote}`;
+            }
+          } else {
+            customNoteInput.value = `Sizes: ${breakdownStr}`;
+          }
+        }
+      });
+    }
+
+    updateSizeUI();
+  }
+
+  initMixedSizeSelector();
+
   // Size Chart Modal Handlers
   window.openSizeChartModal = function() {
     const m = document.getElementById('size-chart-modal');
