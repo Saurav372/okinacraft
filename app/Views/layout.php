@@ -1,8 +1,8 @@
 <?php
 $storeName = store_setting('store_name', 'Okina Craft');
-$whatsappNo = store_setting('whatsapp_number', '918380808435');
+$whatsappNo = store_setting('whatsapp_number', '7827747556');
 $whatsappPrefill = store_setting('whatsapp_prefill', 'Hi Okina Craft, I need help with a product or order.');
-$instagram = store_setting('instagram_handle', 'okinacraft');
+$instagram = store_setting('instagram_handle', 'okina_craft');
 $cartCount = (new \App\Libraries\CartService())->count();
 $activeNav = $activeNav ?? '';
 $session = session();
@@ -94,6 +94,16 @@ $session = session();
       <li><a href="<?= base_url('/pages/contact') ?>" class="menu-drawer__link <?= $activeNav === 'contact' ? 'active' : '' ?>">Contact</a></li>
       <li><a href="<?= base_url('/account') ?>" class="menu-drawer__link">Track Order</a></li>
       <li><a href="<?= base_url('/cart') ?>" class="menu-drawer__link">Cart (<?= $cartCount ?>)</a></li>
+      <li>
+        <a href="https://www.instagram.com/<?= e($instagram) ?>/" target="_blank" rel="noopener noreferrer" class="menu-drawer__link" style="display:flex;align-items:center;gap:0.8rem;color:#e1306c;">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+          <span>Instagram (@<?= e($instagram) ?>)</span>
+        </a>
+      </li>
     </ul>
   </aside>
 
@@ -168,23 +178,23 @@ $session = session();
     <?= $this->renderSection('content') ?>
   </main>
 
-  <!-- Okina Craft Custom "Need Help?" WhatsApp & Instagram Section -->
+  <!-- Okina Craft Custom WhatsApp & Instagram Help Section -->
   <section class="cs-help-section">
     <div class="cs-contact-wrap">
       <a class="cs-contact-link"
          href="https://wa.me/<?= e($whatsappNo) ?>?text=<?= rawurlencode($whatsappPrefill) ?>"
-         target="_blank" rel="noopener noreferrer">
+         target="_blank" rel="noopener noreferrer" title="Chat on WhatsApp">
         <span class="cs-contact-icon cs-whatsapp-icon">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4ZM12.1 21.7a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.3-.4a9.8 9.8 0 1 1 8.6 4.8Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-1-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.8 4.3.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.1-1.3-.1-.2-.3-.3-.6-.4Z"/>
           </svg>
         </span>
-        <span>Need Help?</span>
+        <span>WhatsApp</span>
       </a>
 
       <a class="cs-contact-link"
-         href="https://ig.me/m/<?= e($instagram) ?>"
-         target="_blank" rel="noopener noreferrer">
+         href="https://www.instagram.com/<?= e($instagram) ?>/"
+         target="_blank" rel="noopener noreferrer" title="Follow Okina Craft on Instagram (@<?= e($instagram) ?>)">
         <span class="cs-contact-icon cs-instagram-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <rect x="3" y="3" width="18" height="18" rx="5"/>
@@ -192,7 +202,7 @@ $session = session();
             <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
           </svg>
         </span>
-        <span>Need Help?</span>
+        <span>Instagram</span>
       </a>
     </div>
   </section>
@@ -200,6 +210,29 @@ $session = session();
   <!-- Okina Craft Minimal Footer -->
   <footer class="footer">
     <div class="page-width">
+      <div class="footer__content-top" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.6rem;padding-bottom:1.6rem;margin-bottom:1.6rem;border-bottom:1px solid #e2e8f0;">
+        <div class="footer__brand">
+          <a href="<?= base_url('/') ?>" style="text-decoration:none;display:inline-flex;align-items:center;gap:0.8rem;">
+            <img src="<?= base_url('assets/media/logo.png') ?>" alt="<?= e($storeName) ?>" style="max-height:42px;width:auto;display:block;">
+          </a>
+        </div>
+        <div class="footer__socials" style="display:flex;align-items:center;gap:1.6rem;flex-wrap:wrap;">
+          <a href="https://www.instagram.com/<?= e($instagram) ?>/" target="_blank" rel="noopener noreferrer" class="footer__social-link" style="display:inline-flex;align-items:center;gap:0.7rem;text-decoration:none;color:#1e293b;font-size:1.35rem;font-weight:600;" title="Follow @<?= e($instagram) ?> on Instagram">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#e1306c;">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            <span>@<?= e($instagram) ?></span>
+          </a>
+          <a href="https://wa.me/<?= e($whatsappNo) ?>?text=<?= rawurlencode($whatsappPrefill) ?>" target="_blank" rel="noopener noreferrer" class="footer__social-link" style="display:inline-flex;align-items:center;gap:0.7rem;text-decoration:none;color:#1e293b;font-size:1.35rem;font-weight:600;" title="Chat with Okina Craft on WhatsApp">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="color:#25d366;">
+              <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4ZM12.1 21.7a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.3-.4a9.8 9.8 0 1 1 8.6 4.8Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-1-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.8 4.3.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.1-1.3-.1-.2-.3-.3-.6-.4Z"/>
+            </svg>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </div>
       <div class="footer__copyright">
         <small>&copy; <?= date('Y') ?>, <a href="<?= base_url('/') ?>"><?= e($storeName) ?></a></small>
         <ul class="footer__policies" role="list">

@@ -472,11 +472,11 @@ class AdminController extends BaseController
 
         $fields = [
             'store_name'              => trim((string)$this->request->getPost('store_name') ?: 'Okina Craft'),
-            'store_email'             => trim((string)$this->request->getPost('store_email') ?: 'support@okinacraft.com'),
-            'whatsapp_number'         => preg_replace('/\D+/', '', (string)$this->request->getPost('whatsapp_number') ?: '918380808435'),
-            'instagram_handle'        => trim((string)$this->request->getPost('instagram_handle') ?: 'okinacraft', '@ '),
-            'business_address'        => trim((string)$this->request->getPost('business_address') ?: 'Hingoli, Maharashtra'),
-            'business_hours'          => trim((string)$this->request->getPost('business_hours') ?: 'Monday–Saturday, 10:00 AM–6:00 PM'),
+            'store_email'             => trim((string)$this->request->getPost('store_email') ?: 'okinacraft@gmail.com'),
+            'whatsapp_number'         => preg_replace('/\D+/', '', (string)$this->request->getPost('whatsapp_number') ?: '7827747556'),
+            'instagram_handle'        => trim((string)$this->request->getPost('instagram_handle') ?: 'okina_craft', '@ '),
+            'business_address'        => trim((string)$this->request->getPost('business_address') ?: 'Burari, Delhi'),
+            'business_hours'          => trim((string)$this->request->getPost('business_hours') ?: 'Monday–Saturday, 10:00 AM–7:00 PM'),
             'shipping_flat_rate'      => (string)max(0, (float)$this->request->getPost('shipping_flat_rate') ?: 60),
             'free_shipping_threshold' => (string)max(0, (float)$this->request->getPost('free_shipping_threshold') ?: 999),
             'upi_id'                  => trim((string)$this->request->getPost('upi_id')),
