@@ -1,6 +1,11 @@
 # Disable directory browsing
 Options -Indexes
 
+# Block all search engines and web crawlers (Temporary)
+<IfModule mod_headers.c>
+	Header set X-Robots-Tag "noindex, nofollow, noarchive, nosnippet"
+</IfModule>
+
 # ----------------------------------------------------------------------
 # Rewrite engine
 # ----------------------------------------------------------------------
