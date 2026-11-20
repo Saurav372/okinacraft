@@ -179,35 +179,39 @@ foreach ($images as $img) {
           <input type="hidden" name="product_id" value="<?= (int)$product['id'] ?>">
           <input type="hidden" id="pdp-variant-id" name="variant_id" value="<?= $firstVariant ? (int)$firstVariant['id'] : '' ?>">
 
-          <!-- Variant Options (Color Swatches, Size Selection, etc.) -->
-          <?php if (!empty($options)): ?>
-            <?php
-              // Ensure Color option comes before Size option if both exist
-              $sortedOptions = $options;
-              usort($sortedOptions, function($a, $b) {
-                $aIsColor = (stripos($a['name'] ?? '', 'color') !== false || stripos($a['name'] ?? '', 'colour') !== false);
-                $bIsColor = (stripos($b['name'] ?? '', 'color') !== false || stripos($b['name'] ?? '', 'colour') !== false);
-                if ($aIsColor && !$bIsColor) return -1;
-                if (!$aIsColor && $bIsColor) return 1;
-                return ($a['position'] ?? 1) <=> ($b['position'] ?? 1);
-              });
-            ?>
-            <?php foreach ($sortedOptions as $optIdx => $opt): ?>
-              <?php
+          <!-- Variant Options (Color Swatches, Non-Size Options) -->
+          <?php
+            $sizeOption = null;
+            $sizePos = 1;
+            $otherOptions = [];
+
+            if (!empty($options)) {
+              foreach ($options as $optIdx => $opt) {
                 $pos = (int)($opt['position'] ?? ($optIdx + 1));
+                if (stripos($opt['name'], 'size') !== false) {
+                  $sizeOption = $opt;
+                  $sizePos = $pos;
+                } else {
+                  $otherOptions[] = array_merge($opt, ['pos' => $pos]);
+                }
+              }
+            }
+          ?>
+
+          <?php if (!empty($otherOptions)): ?>
+            <?php foreach ($otherOptions as $opt): ?>
+              <?php
+                $pos = $opt['pos'];
                 $optKey = 'option' . $pos;
                 $defaultVal = $firstVariant[$optKey] ?? ($opt['values'][0] ?? '');
                 $isColor = (stripos($opt['name'], 'color') !== false || stripos($opt['name'], 'colour') !== false);
-                $isSize  = (stripos($opt['name'], 'size') !== false);
               ?>
-              <div class="variant-group" data-option-pos="<?= $pos ?>" data-option-type="<?= $isColor ? 'color' : ($isSize ? 'size' : 'other') ?>">
-                <?php if (!$isSize): ?>
-                  <div class="variant-group__header">
-                    <span class="variant-group__label">
-                      <?= e($opt['name']) ?><?= $isColor ? ': <strong class="variant-group__selected-val" id="selected-opt-' . $pos . '">' . e($defaultVal) . '</strong>' : '' ?>
-                    </span>
-                  </div>
-                <?php endif; ?>
+              <div class="variant-group" data-option-pos="<?= $pos ?>" data-option-type="<?= $isColor ? 'color' : 'other' ?>">
+                <div class="variant-group__header">
+                  <span class="variant-group__label">
+                    <?= e($opt['name']) ?><?= $isColor ? ': <strong class="variant-group__selected-val" id="selected-opt-' . $pos . '">' . e($defaultVal) . '</strong>' : '' ?>
+                  </span>
+                </div>
 
                 <?php if ($isColor): ?>
                   <!-- Visual Color Swatches (Vistaprint Style) -->
@@ -235,68 +239,8 @@ foreach ($images as $img) {
                       </button>
                     <?php endforeach; ?>
                   </div>
-                <?php elseif ($isSize): ?>
-                  <!-- PrintMine-Style Mixed Size Selector Card -->
-                  <div class="mixed-size-card" id="mixed-size-card">
-                    <div class="mixed-size-header">
-                      <div class="mixed-size-title-wrap">
-                        <span class="mixed-size-title"><?= (stripos($product['title'], 'hoodie') !== false) ? 'Hoodie sizes' : 'T-shirt sizes' ?></span>
-                        <span class="size-selected-badge" id="size-selected-badge">0/1 Selected</span>
-                      </div>
-                      <button type="button" class="size-chart-trigger-link" onclick="openSizeChartModal()" title="View Size Chart">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                          <path d="M21.3 15.3l-6.6-6.6a2 2 0 0 0-2.8 0L2.7 17.9a2 2 0 0 0 0 2.8l.6.6a2 2 0 0 0 2.8 0l9.2-9.2"></path>
-                          <path d="M14.5 10.5l-2 2"></path>
-                          <path d="M11.5 7.5l-2 2"></path>
-                          <path d="M8.5 4.5l-2 2"></path>
-                        </svg>
-                        Size chart
-                      </button>
-                    </div>
-
-                    <?php
-                      $chestMap = [
-                        'S'   => '36',
-                        'M'   => '38',
-                        'L'   => '40',
-                        'XL'  => '42',
-                        '2XL' => '44',
-                        '3XL' => '46',
-                        '4XL' => '48',
-                        '5XL' => '50',
-                      ];
-                    ?>
-                    <div class="mixed-size-grid" role="group" aria-label="Select size quantities">
-                      <?php foreach (($opt['values'] ?? []) as $val): ?>
-                        <?php
-                          $chest = $chestMap[strtoupper(trim($val))] ?? '';
-                        ?>
-                        <div class="mixed-size-item" data-size="<?= e($val) ?>" data-option-pos="<?= $pos ?>">
-                          <div class="mixed-size-label">
-                            <strong><?= e($val) ?></strong>
-                            <?php if ($chest): ?>
-                              <span class="mixed-size-chest">(<?= e($chest) ?>)</span>
-                            <?php endif; ?>
-                          </div>
-                          <div class="mixed-size-stepper">
-                            <button type="button" class="size-btn-dec" data-size-dec="<?= e($val) ?>" aria-label="Decrease <?= e($val) ?>">&minus;</button>
-                            <span class="size-count-num" data-size-count="<?= e($val) ?>">0</span>
-                            <button type="button" class="size-btn-inc" data-size-inc="<?= e($val) ?>" aria-label="Increase <?= e($val) ?>">&plus;</button>
-                          </div>
-                        </div>
-                      <?php endforeach; ?>
-                    </div>
-
-                    <div class="mixed-size-footer">
-                      <div class="size-progress-track">
-                        <div class="size-progress-fill" id="size-progress-fill" style="width: 0%;"></div>
-                      </div>
-                      <div class="size-status-text" id="size-status-text">Choose sizes for 1 more</div>
-                    </div>
-                  </div>
-                  <input type="hidden" id="pdp-size-breakdown" name="size_breakdown" value="">
                 <?php else: ?>
-                  <!-- Size & Other Option Pills -->
+                  <!-- Non-color pills (e.g. Material) -->
                   <div class="variant-pills">
                     <?php foreach (($opt['values'] ?? []) as $val): ?>
                       <button
@@ -379,7 +323,7 @@ foreach ($images as $img) {
             </details>
           <?php endif; ?>
 
-          <!-- Quantity & Volume Pricing Card (PrintMine Style) -->
+          <!-- Quantity & Volume Pricing Card (PrintMine Style) - Select Quantity First -->
           <div class="pdp-qty-card">
             <div class="pdp-qty-card__header">
               <label class="pdp-qty-card__title" for="pdp-qty">Quantity</label>
@@ -431,6 +375,71 @@ foreach ($images as $img) {
               </div>
             <?php endif; ?>
           </div>
+
+          <!-- PrintMine-Style Mixed Size Selector Card (Select Size According to Quantity) -->
+          <?php if ($sizeOption): ?>
+            <div class="variant-group variant-group--size" data-option-pos="<?= $sizePos ?>" data-option-type="size">
+              <div class="mixed-size-card" id="mixed-size-card">
+                <div class="mixed-size-header">
+                  <div class="mixed-size-title-wrap">
+                    <span class="mixed-size-title"><?= (stripos($product['title'], 'hoodie') !== false) ? 'Hoodie sizes' : 'T-shirt sizes' ?></span>
+                    <span class="size-selected-badge all-selected" id="size-selected-badge">1/1 Selected</span>
+                  </div>
+                  <button type="button" class="size-chart-trigger-link" onclick="openSizeChartModal()" title="View Size Chart">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M21.3 15.3l-6.6-6.6a2 2 0 0 0-2.8 0L2.7 17.9a2 2 0 0 0 0 2.8l.6.6a2 2 0 0 0 2.8 0l9.2-9.2"></path>
+                      <path d="M14.5 10.5l-2 2"></path>
+                      <path d="M11.5 7.5l-2 2"></path>
+                      <path d="M8.5 4.5l-2 2"></path>
+                    </svg>
+                    Size chart
+                  </button>
+                </div>
+
+                <?php
+                  $chestMap = [
+                    'S'   => '36',
+                    'M'   => '38',
+                    'L'   => '40',
+                    'XL'  => '42',
+                    '2XL' => '44',
+                    '3XL' => '46',
+                    '4XL' => '48',
+                    '5XL' => '50',
+                  ];
+                ?>
+                <div class="mixed-size-grid" role="group" aria-label="Select size quantities">
+                  <?php foreach (($sizeOption['values'] ?? []) as $vIdx => $val): ?>
+                    <?php
+                      $chest = $chestMap[strtoupper(trim($val))] ?? '';
+                      $initVal = ($vIdx === 0) ? 1 : 0;
+                    ?>
+                    <div class="mixed-size-item <?= $initVal > 0 ? 'has-count' : '' ?>" data-size="<?= e($val) ?>" data-option-pos="<?= $sizePos ?>">
+                      <div class="mixed-size-label">
+                        <strong><?= e($val) ?></strong>
+                        <?php if ($chest): ?>
+                          <span class="mixed-size-chest">(<?= e($chest) ?>)</span>
+                        <?php endif; ?>
+                      </div>
+                      <div class="mixed-size-stepper">
+                        <button type="button" class="size-btn-dec" data-size-dec="<?= e($val) ?>" aria-label="Decrease <?= e($val) ?>">&minus;</button>
+                        <span class="size-count-num" data-size-count="<?= e($val) ?>"><?= $initVal ?></span>
+                        <button type="button" class="size-btn-inc" data-size-inc="<?= e($val) ?>" aria-label="Increase <?= e($val) ?>">&plus;</button>
+                      </div>
+                    </div>
+                  <?php endforeach; ?>
+                </div>
+
+                <div class="mixed-size-footer">
+                  <div class="size-progress-track">
+                    <div class="size-progress-fill is-complete" id="size-progress-fill" style="width: 100%;"></div>
+                  </div>
+                  <div class="size-status-text is-complete" id="size-status-text">✓ <strong>All 1 sizes selected!</strong></div>
+                </div>
+              </div>
+              <input type="hidden" id="pdp-size-breakdown" name="size_breakdown" value="">
+            </div>
+          <?php endif; ?>
 
           <div id="pdp-form-error" class="flash flash--error" style="display:none;margin-bottom:1.4rem;"></div>
 

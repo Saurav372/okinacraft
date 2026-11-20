@@ -191,17 +191,27 @@
   });
 
   // Variant Selector (Color Swatches + Size Selection)
+  let variants = [];
+  let selected = {};
+  let syncVariant = () => {};
+  let syncVariantOption = (pos, val) => {
+    selected[pos] = val;
+    syncVariant();
+  };
+
   const variantsJsonEl = document.getElementById('pdp-variants-json');
   if (variantsJsonEl) {
-    const variants = JSON.parse(variantsJsonEl.textContent || '[]');
+    try {
+      variants = JSON.parse(variantsJsonEl.textContent || '[]');
+    } catch (e) {
+      variants = [];
+    }
     const variantIdInput = document.getElementById('pdp-variant-id');
     const priceDisplay = document.getElementById('pdp-price-display');
     const addBtn = document.getElementById('pdp-add-btn');
     const buyBtn = document.getElementById('pdp-buy-btn');
     const mainImg = document.getElementById('pdp-main-image');
     const galleryThumbs = document.querySelectorAll('.product-gallery__thumb');
-
-    const selected = {};
     document.querySelectorAll('.variant-group').forEach((group) => {
       const pos = group.getAttribute('data-option-pos');
       const activeEl = group.querySelector('.variant-pill.active, .color-swatch.active');
@@ -280,7 +290,7 @@
       }
     }
 
-    function syncVariant() {
+    syncVariant = function() {
       const match = variants.find((v) => {
         if (selected['1'] && v.option1 !== selected['1']) return false;
         if (selected['2'] && v.option2 !== selected['2']) return false;
@@ -583,6 +593,7 @@
   }
 
   // Mixed Size Breakdown Manager (PrintMine Style)
+  // Flow: Select Quantity First, then Select Sizes Accordingly
   function initMixedSizeSelector() {
     const sizeCard = document.getElementById('mixed-size-card');
     if (!sizeCard) return;
@@ -593,25 +604,45 @@
     const statusText = document.getElementById('size-status-text');
     const breakdownInput = document.getElementById('pdp-size-breakdown');
     const pdpQty = document.getElementById('pdp-qty');
+    const formError = document.getElementById('pdp-form-error');
 
     const sizeCounts = {};
     sizeItems.forEach(item => {
       const sizeName = item.getAttribute('data-size');
-      sizeCounts[sizeName] = 0;
+      const countEl = item.querySelector('.size-count-num');
+      const count = parseInt(countEl ? countEl.textContent.trim() : '0', 10) || 0;
+      sizeCounts[sizeName] = count;
     });
-
-    // Default first size to 1 if qty is 1 and all are 0
-    const firstItem = sizeItems[0];
-    if (firstItem) {
-      const firstSize = firstItem.getAttribute('data-size');
-      sizeCounts[firstSize] = 1;
-      const countEl = firstItem.querySelector('.size-count-num');
-      if (countEl) countEl.textContent = '1';
-      firstItem.classList.add('has-count');
-    }
 
     function getTotalSelectedSizes() {
       return Object.values(sizeCounts).reduce((sum, val) => sum + val, 0);
+    }
+
+    // Trims sizes when user decreases Quantity in the quantity card
+    function trimSizesToTarget(newTarget) {
+      let total = getTotalSelectedSizes();
+      if (total <= newTarget) return;
+
+      let excess = total - newTarget;
+      // Loop sizes from end to beginning
+      const keys = Object.keys(sizeCounts).reverse();
+      for (const key of keys) {
+        if (excess <= 0) break;
+        const cur = sizeCounts[key] || 0;
+        if (cur > 0) {
+          const reduceBy = Math.min(cur, excess);
+          sizeCounts[key] -= reduceBy;
+          excess -= reduceBy;
+
+          const itemEl = sizeCard.querySelector(`.mixed-size-item[data-size="${key}"]`);
+          const countEl = itemEl ? itemEl.querySelector('.size-count-num') : null;
+          if (countEl) countEl.textContent = String(sizeCounts[key]);
+          if (itemEl) {
+            if (sizeCounts[key] > 0) itemEl.classList.add('has-count');
+            else itemEl.classList.remove('has-count');
+          }
+        }
+      }
     }
 
     function updateSizeUI() {
@@ -632,7 +663,7 @@
       if (progressFill) {
         const pct = Math.min(100, Math.round((totalSelected / targetQty) * 100));
         progressFill.style.width = pct + '%';
-        if (pct >= 100) {
+        if (totalSelected === targetQty && totalSelected > 0) {
           progressFill.classList.add('is-complete');
         } else {
           progressFill.classList.remove('is-complete');
@@ -654,7 +685,7 @@
         }
       }
 
-      // Format size breakdown string (e.g. "2 × S, 3 × M")
+      // Format size breakdown string (e.g. "6 × S, 7 × M, 4 × L, 8 × XL")
       const breakdownParts = [];
       let primarySize = null;
       for (const [sizeName, count] of Object.entries(sizeCounts)) {
@@ -668,9 +699,41 @@
       if (breakdownInput) {
         breakdownInput.value = breakdownStr;
       }
+
+      // Sync variant option for primary size if applicable
+      const sizePos = sizeCard.closest('.variant-group--size') ? sizeCard.closest('.variant-group--size').getAttribute('data-option-pos') : null;
+      if (sizePos && primarySize && typeof syncVariantOption === 'function') {
+        syncVariantOption(sizePos, primarySize);
+      }
+
+      // Clear error state if filled
+      if (totalSelected === targetQty) {
+        sizeCard.classList.remove('has-error');
+        if (formError && formError.textContent.includes('sizes')) {
+          formError.style.display = 'none';
+        }
+      }
     }
 
-    // Attach click listeners to + and - buttons
+    // Listen to changes in Quantity input from Quantity Card
+    function handleQtyChange() {
+      const targetQty = pdpQty ? Math.max(1, parseInt(pdpQty.value || '1', 10)) : 1;
+      const totalSelected = getTotalSelectedSizes();
+
+      // If user lowered quantity below current size selection, trim sizes down!
+      if (targetQty < totalSelected) {
+        trimSizesToTarget(targetQty);
+      }
+
+      updateSizeUI();
+    }
+
+    if (pdpQty) {
+      pdpQty.addEventListener('input', handleQtyChange);
+      pdpQty.addEventListener('change', handleQtyChange);
+    }
+
+    // Attach click listeners to + and - buttons for each size
     sizeItems.forEach(item => {
       const sizeName = item.getAttribute('data-size');
       const countEl = item.querySelector('.size-count-num');
@@ -698,12 +761,14 @@
           if (countEl) countEl.textContent = String(sizeCounts[sizeName]);
           item.classList.add('has-count');
 
-          // If new total exceeds target qty, automatically increment target qty!
+          // If adding this size makes total exceed target qty, automatically increment target qty and recalculate bulk pricing!
           const currentTotal = getTotalSelectedSizes();
           const targetQty = pdpQty ? parseInt(pdpQty.value || '1', 10) : 1;
           if (currentTotal > targetQty && pdpQty) {
             pdpQty.value = currentTotal;
-            pdpQty.dispatchEvent(new Event('change'));
+            if (typeof recalculateBulkPricing === 'function') {
+              recalculateBulkPricing();
+            }
           }
 
           updateSizeUI();
@@ -711,25 +776,23 @@
       }
     });
 
-    if (pdpQty) {
-      pdpQty.addEventListener('change', updateSizeUI);
-      pdpQty.addEventListener('input', updateSizeUI);
-    }
-
-    // When cart form submits, append size breakdown to custom note
+    // Form submit validation & size breakdown serialization
     const cartForm = document.getElementById('pdp-cart-form');
     if (cartForm) {
-      cartForm.addEventListener('submit', () => {
+      cartForm.addEventListener('submit', (e) => {
         const totalSelected = getTotalSelectedSizes();
         const targetQty = pdpQty ? parseInt(pdpQty.value || '1', 10) : 1;
+
         if (totalSelected < targetQty) {
-          const firstKey = Object.keys(sizeCounts).find(k => sizeCounts[k] > 0) || Object.keys(sizeCounts)[0];
-          if (firstKey) {
-            sizeCounts[firstKey] += (targetQty - totalSelected);
-            const countEl = document.querySelector(`.mixed-size-item[data-size="${firstKey}"] .size-count-num`);
-            if (countEl) countEl.textContent = String(sizeCounts[firstKey]);
-            updateSizeUI();
+          e.preventDefault();
+          const diff = targetQty - totalSelected;
+          if (formError) {
+            formError.textContent = `Please select sizes for the remaining ${diff} piece${diff > 1 ? 's' : ''} (${totalSelected}/${targetQty} selected).`;
+            formError.style.display = 'block';
           }
+          sizeCard.classList.add('has-error');
+          sizeCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return false;
         }
 
         const breakdownStr = breakdownInput ? breakdownInput.value : '';

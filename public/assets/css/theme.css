@@ -2077,8 +2077,21 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
   border: 1px solid #e2e8f0;
   border-radius: 12px;
   padding: 1.8rem 2rem;
-  margin: 1.6rem 0 2rem;
+  margin: 0 0 2rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mixed-size-card.has-error {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
+  animation: pdpShake 0.4s ease-in-out;
+}
+
+@keyframes pdpShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
 }
 
 .mixed-size-header {
@@ -2284,7 +2297,7 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
   border: 1px solid #e2e8f0;
   border-radius: 12px;
   padding: 1.6rem 1.8rem;
-  margin: 1.8rem 0 2rem;
+  margin: 1.6rem 0 1.4rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
