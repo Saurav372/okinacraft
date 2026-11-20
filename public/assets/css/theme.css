@@ -2071,7 +2071,285 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
   color: #0a58ca;
 }
 
-/* Bulk Interval Chips */
+/* PrintMine-style Quantity & Volume Pricing Card */
+.pdp-qty-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.6rem 1.8rem;
+  margin: 1.8rem 0 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.pdp-qty-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.4rem;
+}
+
+.pdp-qty-card__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.pdp-qty-pill {
+  background: #ea580c;
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.3rem 0.9rem;
+  border-radius: 4px;
+  letter-spacing: 0.4px;
+  display: inline-block;
+  line-height: 1.4;
+}
+
+.pdp-qty-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.pdp-qty-stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  height: 4.4rem;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.pdp-qty-stepper button {
+  width: 4rem;
+  height: 100%;
+  border: none;
+  background: #f8fafc;
+  font-size: 2rem;
+  color: #1e293b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease;
+  user-select: none;
+}
+
+.pdp-qty-stepper button:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.pdp-qty-stepper input {
+  width: 5.4rem;
+  height: 100%;
+  border: none;
+  border-left: 1.5px solid #cbd5e1;
+  border-right: 1.5px solid #cbd5e1;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0f172a;
+  outline: none;
+  background: #ffffff;
+  -moz-appearance: textfield;
+}
+
+.pdp-qty-stepper input::-webkit-outer-spin-button,
+.pdp-qty-stepper input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.pdp-qty-pricing-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.pdp-qty-unit-line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.pdp-qty-unit-price {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.pdp-qty-unit-label {
+  font-size: 1.25rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.pdp-qty-total-line {
+  display: flex;
+  align-items: baseline;
+}
+
+.pdp-qty-total-price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.pdp-qty-tier-section {
+  margin-top: 1.4rem;
+  padding-top: 1.4rem;
+  border-top: 1px dashed #e2e8f0;
+}
+
+.pdp-qty-tier-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  display: block;
+}
+
+.pdp-qty-tier-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+
+.pdp-tier-chip {
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.9rem 0.6rem;
+  text-align: center;
+  cursor: pointer;
+  background: #ffffff;
+  transition: all 0.18s ease;
+  user-select: none;
+}
+
+.pdp-tier-chip:hover {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+  transform: translateY(-1px);
+}
+
+.pdp-tier-chip.active {
+  border-color: #ea580c;
+  background-color: #fff7ed;
+  box-shadow: 0 0 0 1px #ea580c;
+}
+
+.pdp-tier-chip__range {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0.3rem;
+  white-space: nowrap;
+}
+
+.pdp-tier-chip.active .pdp-tier-chip__range {
+  color: #c2410c;
+  font-weight: 700;
+}
+
+.pdp-tier-chip__price {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 0.3rem;
+  letter-spacing: -0.3px;
+}
+
+.pdp-tier-chip.active .pdp-tier-chip__price {
+  color: #9a3412;
+}
+
+.pdp-tier-chip__badge {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.pdp-tier-chip__badge--discount {
+  color: #16a34a;
+  font-weight: 700;
+}
+
+.pdp-tier-chip.active .pdp-tier-chip__badge--discount {
+  color: #15803d;
+  font-weight: 800;
+}
+
+/* Upsell Incentive Banner */
+.pdp-qty-upsell-banner {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+}
+
+.pdp-qty-upsell-text {
+  font-size: 1.3rem;
+  color: #166534;
+  font-weight: 500;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.pdp-qty-upsell-text strong {
+  font-weight: 700;
+  color: #14532d;
+}
+
+.pdp-qty-upsell-btn {
+  background: #15803d;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 1.4rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, transform 0.1s ease;
+  flex-shrink: 0;
+}
+
+.pdp-qty-upsell-btn:hover {
+  background: #166534;
+}
+
+.pdp-qty-upsell-btn:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 480px) {
+  .pdp-qty-upsell-banner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+  }
+  .pdp-qty-upsell-btn {
+    text-align: center;
+  }
+}
+
+/* Legacy Bulk Interval Chips (Fallback) */
 .bulk-interval-chips {
   display: flex;
   flex-wrap: wrap;

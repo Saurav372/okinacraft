@@ -328,31 +328,57 @@ foreach ($images as $img) {
             </details>
           <?php endif; ?>
 
-          <!-- Quantity & Bulk Interval Selector -->
-          <div class="qty-group <?= $hasBulk ? 'qty-group--bulk' : '' ?>">
-            <div class="qty-group__header">
-              <label class="variant-group__label mb-0" for="pdp-qty">Quantity</label>
+          <!-- Quantity & Volume Pricing Card (PrintMine Style) -->
+          <div class="pdp-qty-card">
+            <div class="pdp-qty-card__header">
+              <label class="pdp-qty-card__title" for="pdp-qty">Quantity</label>
+              <span class="pdp-qty-pill" id="pdp-qty-pill">1 pc</span>
             </div>
 
-            <?php if ($hasBulk): ?>
-              <!-- Quick Interval Chips (10, 50, 100, 200, 500 etc) -->
-              <div class="bulk-interval-chips" role="group" aria-label="Quantity interval presets">
-                <button type="button" class="interval-chip active" data-qty="1">1</button>
-                <button type="button" class="interval-chip" data-qty="10">10</button>
-                <button type="button" class="interval-chip" data-qty="50">50</button>
-                <button type="button" class="interval-chip" data-qty="100">100</button>
-                <button type="button" class="interval-chip" data-qty="200">200</button>
-                <button type="button" class="interval-chip" data-qty="500">500+</button>
-              </div>
-            <?php endif; ?>
-
-            <div class="qty-input-row">
-              <div class="qty-stepper">
+            <div class="pdp-qty-controls-row">
+              <div class="pdp-qty-stepper">
                 <button type="button" data-qty-dec aria-label="Decrease quantity">&minus;</button>
                 <input id="pdp-qty" type="number" name="quantity" value="1" min="1" max="10000" inputmode="numeric">
                 <button type="button" data-qty-inc aria-label="Increase quantity">&plus;</button>
               </div>
+              <div class="pdp-qty-pricing-display">
+                <div class="pdp-qty-unit-line">
+                  <span class="pdp-qty-unit-price" id="pdp-qty-unit-price"><?= e(money_format_inr($firstVariant ? $firstVariant['price'] : $product['price'])) ?></span>
+                  <span class="pdp-qty-unit-label">per piece</span>
+                </div>
+                <div class="pdp-qty-total-line">
+                  <span class="pdp-qty-total-price" id="pdp-qty-total-price"><?= e(money_format_inr($firstVariant ? $firstVariant['price'] : $product['price'])) ?> total</span>
+                </div>
+              </div>
             </div>
+
+            <?php if ($hasBulk): ?>
+              <div class="pdp-qty-tier-section">
+                <div class="pdp-qty-tier-title">QUANTITY-WISE PRICE LIST</div>
+                <div class="pdp-qty-tier-grid" id="pdp-qty-tier-grid">
+                  <?php foreach ($bulkTiers as $idx => $t): ?>
+                    <?php
+                      $minQ = (int)$t['min_qty'];
+                      $maxQ = !empty($t['max_qty']) ? (int)$t['max_qty'] : null;
+                      $rangeLabel = $maxQ ? "{$minQ}&ndash;{$maxQ} pcs" : "{$minQ}+ pcs";
+                      $disc = (float)($t['discount_percent'] ?? 0);
+                    ?>
+                    <div class="pdp-tier-chip <?= $idx === 0 ? 'active' : '' ?>" data-min="<?= $minQ ?>" data-max="<?= $maxQ ?? '999999' ?>" data-price="<?= (float)$t['unit_price'] ?>">
+                      <div class="pdp-tier-chip__range"><?= $rangeLabel ?></div>
+                      <div class="pdp-tier-chip__price">&#8377;<?= number_format((float)$t['unit_price'], 0) ?></div>
+                      <div class="pdp-tier-chip__badge <?= $disc > 0 ? 'pdp-tier-chip__badge--discount' : '' ?>">
+                        <?= $disc > 0 ? round($disc) . '% less' : 'Base' ?>
+                      </div>
+                    </div>
+                  <?php endforeach; ?>
+                </div>
+
+                <div class="pdp-qty-upsell-banner" id="pdp-qty-upsell-banner">
+                  <div class="pdp-qty-upsell-text" id="pdp-qty-upsell-text"></div>
+                  <button type="button" class="pdp-qty-upsell-btn" id="pdp-qty-upsell-btn"></button>
+                </div>
+              </div>
+            <?php endif; ?>
           </div>
 
           <div id="pdp-form-error" class="flash flash--error" style="display:none;margin-bottom:1.4rem;"></div>

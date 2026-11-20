@@ -169,7 +169,7 @@
   });
 
   // Quantity stepper
-  document.querySelectorAll('.qty-stepper').forEach((stepper) => {
+  document.querySelectorAll('.qty-stepper, .pdp-qty-stepper').forEach((stepper) => {
     const input = stepper.querySelector('input');
     const dec = stepper.querySelector('[data-qty-dec]');
     const inc = stepper.querySelector('[data-qty-inc]');
@@ -402,6 +402,13 @@
   }
 
   const pdpQty = document.getElementById('pdp-qty');
+  const pdpQtyPill = document.getElementById('pdp-qty-pill');
+  const pdpQtyUnitPrice = document.getElementById('pdp-qty-unit-price');
+  const pdpQtyTotalPrice = document.getElementById('pdp-qty-total-price');
+  const pdpQtyUpsellBanner = document.getElementById('pdp-qty-upsell-banner');
+  const pdpQtyUpsellText = document.getElementById('pdp-qty-upsell-text');
+  const pdpQtyUpsellBtn = document.getElementById('pdp-qty-upsell-btn');
+  const tierChips = document.querySelectorAll('.pdp-tier-chip');
   const pdpPriceDisplay = document.getElementById('pdp-price-display');
   const bulkUnitBreakdown = document.getElementById('bulk-unit-breakdown');
   const bulkDiscountBadge = document.getElementById('bulk-discount-badge');
@@ -423,21 +430,26 @@
   }
 
   function recalculateBulkPricing() {
-    if (!pdpQty || !bulkTiers || !bulkTiers.length) return;
+    if (!pdpQty) return;
     const qty = Math.max(1, parseInt(pdpQty.value || '1', 10));
     const basePrice = getBasePrice();
 
-    const allPrices = bulkTiers.map(t => parseFloat(t.unit_price)).filter(p => !isNaN(p) && p > 0);
-    const minPrice = allPrices.length ? Math.min(...allPrices) : basePrice;
-    const maxPrice = allPrices.length ? Math.max(...allPrices) : basePrice;
-
     let matchedTier = null;
-    for (const t of bulkTiers) {
-      const minQ = parseInt(t.min_qty, 10) || 1;
-      const maxQ = t.max_qty !== null && t.max_qty !== undefined && String(t.max_qty).trim() !== '' ? parseInt(t.max_qty, 10) : Infinity;
-      if (qty >= minQ && qty <= maxQ) {
-        matchedTier = t;
-        break;
+    let minPrice = basePrice;
+    let maxPrice = basePrice;
+
+    if (bulkTiers && bulkTiers.length) {
+      const allPrices = bulkTiers.map(t => parseFloat(t.unit_price)).filter(p => !isNaN(p) && p > 0);
+      minPrice = allPrices.length ? Math.min(...allPrices) : basePrice;
+      maxPrice = allPrices.length ? Math.max(...allPrices) : basePrice;
+
+      for (const t of bulkTiers) {
+        const minQ = parseInt(t.min_qty, 10) || 1;
+        const maxQ = t.max_qty !== null && t.max_qty !== undefined && String(t.max_qty).trim() !== '' ? parseInt(t.max_qty, 10) : Infinity;
+        if (qty >= minQ && qty <= maxQ) {
+          matchedTier = t;
+          break;
+        }
       }
     }
 
@@ -446,9 +458,22 @@
     const totalAmount = unitPrice * qty;
     const totalSavings = Math.max(0, (basePrice - unitPrice) * qty);
 
+    // Update Quantity Pill
+    if (pdpQtyPill) {
+      pdpQtyPill.textContent = qty === 1 ? '1 pc' : `${qty} pcs`;
+    }
+
+    // Update Live Stepper Pricing (PrintMine style)
+    if (pdpQtyUnitPrice) {
+      pdpQtyUnitPrice.textContent = formatInr(unitPrice);
+    }
+    if (pdpQtyTotalPrice) {
+      pdpQtyTotalPrice.textContent = `${formatInr(totalAmount)} total`;
+    }
+
     // Update Main Pricing in Place
     if (pdpPriceDisplay) {
-      if (qty === 1) {
+      if (qty === 1 && bulkTiers && bulkTiers.length) {
         pdpPriceDisplay.innerHTML = `${formatInr(minPrice)} &ndash; ${formatInr(maxPrice)} <span class="bulk-price-each">each</span>`;
         if (bulkDefaultNote) bulkDefaultNote.style.display = 'inline-block';
         if (bulkUnitBreakdown) bulkUnitBreakdown.style.display = 'none';
@@ -471,6 +496,42 @@
       }
     }
 
+    // Update Tier Grid Active State
+    tierChips.forEach(chip => {
+      const minQ = parseInt(chip.getAttribute('data-min'), 10) || 1;
+      const maxQ = parseInt(chip.getAttribute('data-max'), 10) || Infinity;
+      if (qty >= minQ && qty <= maxQ) {
+        chip.classList.add('active');
+      } else {
+        chip.classList.remove('active');
+      }
+    });
+
+    // Update Dynamic Upsell Banner
+    if (pdpQtyUpsellBanner && bulkTiers && bulkTiers.length) {
+      const nextTier = bulkTiers.find(t => parseInt(t.min_qty, 10) > qty);
+      if (nextTier) {
+        const nextMin = parseInt(nextTier.min_qty, 10);
+        const nextPrice = parseFloat(nextTier.unit_price);
+        const diff = nextMin - qty;
+        const savingPerPiece = Math.max(0, unitPrice - nextPrice);
+
+        pdpQtyUpsellBanner.style.display = 'flex';
+        pdpQtyUpsellText.innerHTML = `Add <strong>${diff} more piece${diff > 1 ? 's' : ''}</strong> &rarr; pay <strong>₹${Number(nextPrice).toFixed(0)}/pc</strong> and save <strong>₹${Number(savingPerPiece).toFixed(2)}</strong> on every piece.`;
+        if (pdpQtyUpsellBtn) {
+          pdpQtyUpsellBtn.style.display = 'inline-block';
+          pdpQtyUpsellBtn.textContent = `Make it ${nextMin}`;
+          pdpQtyUpsellBtn.setAttribute('data-target-qty', nextMin);
+        }
+      } else {
+        pdpQtyUpsellBanner.style.display = 'flex';
+        pdpQtyUpsellText.innerHTML = `🎉 <strong>Maximum wholesale tier unlocked!</strong> You are getting our best rate of <strong>₹${Number(unitPrice).toFixed(0)}/pc</strong>.`;
+        if (pdpQtyUpsellBtn) {
+          pdpQtyUpsellBtn.style.display = 'none';
+        }
+      }
+    }
+
     // Update interval chip active state if exact match
     intervalChips.forEach(chip => {
       const chipQty = parseInt(chip.getAttribute('data-qty'), 10);
@@ -487,6 +548,26 @@
     pdpQty.addEventListener('change', recalculateBulkPricing);
   }
 
+  tierChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const targetQty = parseInt(chip.getAttribute('data-min'), 10);
+      if (pdpQty && targetQty) {
+        pdpQty.value = targetQty;
+        pdpQty.dispatchEvent(new Event('change'));
+      }
+    });
+  });
+
+  if (pdpQtyUpsellBtn) {
+    pdpQtyUpsellBtn.addEventListener('click', () => {
+      const targetQty = parseInt(pdpQtyUpsellBtn.getAttribute('data-target-qty'), 10);
+      if (pdpQty && targetQty) {
+        pdpQty.value = targetQty;
+        pdpQty.dispatchEvent(new Event('change'));
+      }
+    });
+  }
+
   intervalChips.forEach(chip => {
     chip.addEventListener('click', () => {
       const targetQty = parseInt(chip.getAttribute('data-qty'), 10);
@@ -497,7 +578,7 @@
     });
   });
 
-  if (bulkTiers && bulkTiers.length) {
+  if (pdpQty) {
     recalculateBulkPricing();
   }
 
