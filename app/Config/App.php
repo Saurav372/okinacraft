@@ -29,7 +29,26 @@ class App extends BaseConfig
      *
      * @var list<string>
      */
-    public array $allowedHostnames = [];
+    public array $allowedHostnames = ['okinacraft.com', 'www.okinacraft.com', 'localhost'];
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        // Auto-detect baseURL on live server if left as localhost
+        if (PHP_SAPI !== 'cli' && !empty($_SERVER['HTTP_HOST'])) {
+            $isLocal = str_contains($this->baseURL, 'localhost') || str_contains($this->baseURL, '127.0.0.1');
+            $host = (string)$_SERVER['HTTP_HOST'];
+            if ($isLocal && !str_contains($host, 'localhost') && !str_contains($host, '127.0.0.1')) {
+                $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+                    || (isset($_SERVER['SERVER_PORT']) && (int)$_SERVER['SERVER_PORT'] === 443)
+                    || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
+                    || (isset($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on');
+                $proto = $isHttps ? 'https://' : 'http://';
+                $this->baseURL = $proto . $host . '/';
+            }
+        }
+    }
 
     /**
      * --------------------------------------------------------------------------
