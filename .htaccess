@@ -1,0 +1,14 @@
+# Shared Hosting Fallback:
+# If your host lets you set Document Root to /public, do that (recommended).
+# If you must upload into public_html/ directly, this transparently forwards
+# all requests into public/ while blocking direct access to app/, writable/, vendor/, .env!
+Options -Indexes
+ServerSignature Off
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(app|writable|vendor|tests|system)(/|$) - [F,L,NC]
+    RewriteRule ^(\.env|composer\.(json|lock)|spark|README\.md|phpunit\.xml\.dist)$ - [F,L,NC]
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

@@ -1,0 +1,234 @@
+<?php
+
+namespace App\Libraries;
+
+use Config\Database;
+
+class CartService
+{
+    private const SESSION_KEY = '_cs_cart';
+
+    private function session()
+    {
+        return \Config\Services::session();
+    }
+
+    public function rawItems(): array
+    {
+        return $this->session()->get(self::SESSION_KEY) ?? [];
+    }
+
+    public function count(): int
+    {
+        $total = 0;
+        foreach ($this->rawItems() as $item) {
+            $total += max(0, (int)($item['quantity'] ?? 0));
+        }
+        return $total;
+    }
+
+    public function add(
+        int $productId,
+        ?int $variantId = null,
+        int $quantity = 1,
+        string $customDesignPath = '',
+        string $customNote = ''
+    ): array {
+        $catalog = new CatalogService();
+        $product = $catalog->getProductById($productId);
+        if (!$product || $product['status'] !== 'active') {
+            return ['ok' => false, 'error' => 'Product not found.'];
+        }
+        if (!(int)$product['available']) {
+            return ['ok' => false, 'error' => 'This product is currently sold out.'];
+        }
+
+        $variant = null;
+        if ($variantId) {
+            foreach ($product['variants'] as $v) {
+                if ((int)$v['id'] === $variantId) {
+                    $variant = $v;
+                    break;
+                }
+            }
+        }
+        if (!$variant && !empty($product['variants'])) {
+            foreach ($product['variants'] as $v) {
+                if ((int)$v['available']) {
+                    $variant = $v;
+                    break;
+                }
+            }
+            $variant = $variant ?? $product['variants'][0];
+        }
+
+        if ($variant && !(int)$variant['available']) {
+            return ['ok' => false, 'error' => 'Selected variant is sold out.'];
+        }
+
+        $qty = max(1, min(10000, $quantity));
+        $vid = $variant ? (int)$variant['id'] : 0;
+        $key = md5($productId . '|' . $vid . '|' . $customDesignPath . '|' . trim($customNote));
+
+        $items = $this->rawItems();
+        if (isset($items[$key])) {
+            $items[$key]['quantity'] = min(10000, (int)$items[$key]['quantity'] + $qty);
+        } else {
+            $items[$key] = [
+                'key'                => $key,
+                'product_id'         => $productId,
+                'variant_id'         => $vid,
+                'quantity'           => $qty,
+                'custom_design_path' => $customDesignPath,
+                'custom_note'        => trim($customNote),
+            ];
+        }
+        $this->session()->set(self::SESSION_KEY, $items);
+
+        $summary = $this->summary();
+        $addedItem = null;
+        foreach ($summary['items'] as $it) {
+            if ($it['key'] === $key) {
+                $addedItem = $it;
+                break;
+            }
+        }
+
+        return [
+            'ok'   => true,
+            'item' => $addedItem,
+            'cart' => $summary,
+        ];
+    }
+
+    public function updateQuantity(string $key, int $quantity): array
+    {
+        $items = $this->rawItems();
+        if (!isset($items[$key])) {
+            return ['ok' => false, 'error' => 'Item not found in cart.'];
+        }
+        if ($quantity <= 0) {
+            unset($items[$key]);
+        } else {
+            $items[$key]['quantity'] = min(10000, $quantity);
+        }
+        $this->session()->set(self::SESSION_KEY, $items);
+        return ['ok' => true, 'cart' => $this->summary()];
+    }
+
+    public function remove(string $key): array
+    {
+        $items = $this->rawItems();
+        unset($items[$key]);
+        $this->session()->set(self::SESSION_KEY, $items);
+        return ['ok' => true, 'cart' => $this->summary()];
+    }
+
+    public function clear(): void
+    {
+        $this->session()->remove(self::SESSION_KEY);
+    }
+
+    public function summary(): array
+    {
+        $catalog = new CatalogService();
+        $raw = $this->rawItems();
+        $hydrated = [];
+        $subtotal = 0.0;
+        $count = 0;
+        $allFreeDelivery = true;
+
+        foreach ($raw as $key => $row) {
+            $product = $catalog->getProductById((int)$row['product_id']);
+            if (!$product) {
+                continue;
+            }
+            $variant = null;
+            foreach ($product['variants'] as $v) {
+                if ((int)$v['id'] === (int)$row['variant_id']) {
+                    $variant = $v;
+                    break;
+                }
+            }
+            if (!$variant && !empty($product['variants'])) {
+                $variant = $product['variants'][0];
+            }
+
+            $baseUnitPrice = $variant ? (float)$variant['price'] : (float)$product['price'];
+            $qty = max(1, (int)$row['quantity']);
+            $unitPrice = $baseUnitPrice;
+            $tierDiscountPercent = 0.0;
+            $appliedTier = null;
+
+            // Check Bulk Tier Pricing
+            if (!empty($product['enable_bulk_pricing']) && !empty($product['bulk_tiers'])) {
+                foreach ($product['bulk_tiers'] as $tier) {
+                    $minQ = (int)($tier['min_qty'] ?? 1);
+                    $maxQ = isset($tier['max_qty']) && $tier['max_qty'] !== null ? (int)$tier['max_qty'] : PHP_INT_MAX;
+                    if ($qty >= $minQ && $qty <= $maxQ) {
+                        $unitPrice = (float)($tier['unit_price'] ?? $baseUnitPrice);
+                        $tierDiscountPercent = (float)($tier['discount_percent'] ?? 0.0);
+                        $appliedTier = $tier;
+                        break;
+                    }
+                }
+            }
+
+            $lineTotal = $unitPrice * $qty;
+            $subtotal += $lineTotal;
+            $count += $qty;
+
+            if (!(int)$product['free_delivery']) {
+                $allFreeDelivery = false;
+            }
+
+            $variantTitle = $variant ? (string)$variant['title'] : '';
+            if ($variantTitle === 'Default Title') {
+                $variantTitle = '';
+            }
+
+            $savings = max(0, ($baseUnitPrice - $unitPrice) * $qty);
+
+            $hydrated[] = [
+                'key'                   => $key,
+                'product_id'            => (int)$product['id'],
+                'variant_id'            => $variant ? (int)$variant['id'] : null,
+                'handle'                => $product['handle'],
+                'title'                 => $product['title'],
+                'variant_title'         => $variantTitle,
+                'image'                 => $product['featured_image'],
+                'base_unit_price'       => $baseUnitPrice,
+                'unit_price'            => $unitPrice,
+                'tier_discount_percent' => $tierDiscountPercent,
+                'is_bulk_discounted'    => ($tierDiscountPercent > 0 || $unitPrice < $baseUnitPrice),
+                'savings'               => $savings,
+                'quantity'              => $qty,
+                'line_total'            => $lineTotal,
+                'free_delivery'         => (int)$product['free_delivery'],
+                'custom_design_path'    => (string)($row['custom_design_path'] ?? ''),
+                'custom_note'           => (string)($row['custom_note'] ?? ''),
+            ];
+        }
+
+        $flatShipping = (float)store_setting('shipping_flat_rate', '60');
+        $freeThreshold = (float)store_setting('free_shipping_threshold', '999');
+
+        if ($count === 0) {
+            $shipping = 0.0;
+        } elseif ($allFreeDelivery || ($freeThreshold > 0 && $subtotal >= $freeThreshold)) {
+            $shipping = 0.0;
+        } else {
+            $shipping = $flatShipping;
+        }
+
+        return [
+            'items'             => $hydrated,
+            'count'             => $count,
+            'subtotal'          => $subtotal,
+            'shipping'          => $shipping,
+            'total'             => $subtotal + $shipping,
+            'all_free_delivery' => $allFreeDelivery,
+            'free_threshold'    => $freeThreshold,
+        ];
+    }
+}

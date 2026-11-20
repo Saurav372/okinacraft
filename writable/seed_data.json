@@ -1,0 +1,1732 @@
+{
+  "settings": {
+    "store_name": "Okina Craft",
+    "store_email": "support@okinacraft.com",
+    "whatsapp_number": "918380808435",
+    "whatsapp_prefill": "Hi Okina Craft, I need help with a product or order.",
+    "instagram_handle": "okinacraft1",
+    "business_address": "Hingoli, Maharashtra",
+    "business_hours": "Monday–Saturday, 10:00 AM–6:00 PM",
+    "shipping_flat_rate": "60",
+    "free_shipping_threshold": "999",
+    "upi_id": "",
+    "video_heading": "How to Buy from Okina Craft"
+  },
+  "policies": [
+    {
+      "slug": "privacy-policy",
+      "title": "Privacy Policy",
+      "body_html": "<div class=\"policy-content\">\n  <p class=\"text-muted\"><em>Last updated: November 2026</em></p>\n\n  <p>At <strong>Okina Craft</strong> (\"we\", \"our\", or \"us\"), we are committed to protecting your privacy and personal information. This Privacy Policy outlines how your personal information is collected, used, and safeguarded when you visit or make a purchase from <strong>Okina Craft</strong> at <a href=\"/\">okinacraft.com</a>.</p>\n\n  <h3>1. Information We Collect</h3>\n  <p>When you visit the Store or place an order, we collect information necessary to fulfill your request and provide our custom merchandise services:</p>\n  <ul>\n    <li><strong>Order & Contact Details:</strong> Your full name, shipping and billing address, email address, phone number, and any special delivery instructions.</li>\n    <li><strong>Custom Design Artwork & Uploads:</strong> Digital images, logos, graphics, and custom printing notes uploaded by you for product customization (e.g. T-shirts, hoodies, mugs, mouse pads). Your artwork is stored securely and used exclusively for producing and fulfilling your specific order.</li>\n    <li><strong>Payment Information:</strong> Transaction details, UPI payment references, and payment method indicators. Note: We do not store complete debit/credit card numbers or banking passwords on our servers.</li>\n    <li><strong>Technical & Browsing Data:</strong> Device information, IP address, browser type, and anonymous session cookies to keep items in your shopping cart and enable quick checkout.</li>\n  </ul>\n\n  <h3>2. How We Use Your Information</h3>\n  <p>We use the collected information for the following business purposes:</p>\n  <ul>\n    <li><strong>Fulfilling Orders:</strong> Processing payments, preparing custom DTF/apparel prints, arranging courier shipments, and providing order tracking updates via WhatsApp, SMS, or email.</li>\n    <li><strong>Customer Support:</strong> Assisting you with size selection, custom artwork adjustments, order inquiries, and post-purchase support.</li>\n    <li><strong>Fraud Prevention & Store Security:</strong> Detecting unauthorized or abusive transactions.</li>\n    <li><strong>Store Improvement:</strong> Optimizing our catalog, search experience, and website performance.</li>\n  </ul>\n\n  <h3>3. Sharing Your Information</h3>\n  <p>We never sell, rent, or trade your personal information. We share your information solely with trusted third-party service providers essential to fulfilling your orders:</p>\n  <ul>\n    <li><strong>Courier & Logistics Partners:</strong> Delivery carriers (such as DTDC, Blue Dart, Delhivery, India Post) to deliver packages to your doorstep.</li>\n    <li><strong>Payment Gateways:</strong> Secure banking and UPI networks to authorize transactions.</li>\n    <li><strong>Legal Compliance:</strong> When required by applicable Indian laws, regulations, or valid legal processes.</li>\n  </ul>\n\n  <h3>4. Custom Artwork & Intellectual Property</h3>\n  <p>Any designs, logos, or artwork you upload remain your intellectual property. We do not re-use, resell, publish, or share your proprietary custom designs with third parties without your explicit written authorization.</p>\n\n  <h3>5. Data Security & Retention</h3>\n  <p>We maintain strict administrative, technical, and physical safeguards to protect your personal data against unauthorized access, loss, or alteration. We retain order records for accounting, warranty, and tax compliance as required by law.</p>\n\n  <h3>6. Your Rights</h3>\n  <p>You have the right to request access to the personal information we hold about you, request corrections to inaccurate data, or request the deletion of your account information by contacting our privacy team.</p>\n\n  <h3>7. Contact Us</h3>\n  <p>If you have any questions, concerns, or requests regarding this Privacy Policy, please contact us:</p>\n  <ul>\n    <li><strong>Email:</strong> <a href=\"mailto:support@okinacraft.com\">support@okinacraft.com</a></li>\n    <li><strong>WhatsApp:</strong> <a href=\"https://wa.me/918380808435\" target=\"_blank\">+91 8380808435</a></li>\n    <li><strong>Location:</strong> Hingoli, Maharashtra, India</li>\n  </ul>\n</div>"
+    },
+    {
+      "slug": "refund-policy",
+      "title": "Refund & Return Policy",
+      "body_html": "<div class=\"policy-content\">\n  <p class=\"text-muted\"><em>Last updated: November 2026</em></p>\n\n  <p>Thank you for shopping with <strong>Okina Craft</strong>. We take immense pride in crafting premium-quality apparel, oversized tees, hoodies, custom mouse pads, and merchandise. Because many of our products are individually printed and personalized on demand, please read our return and refund guidelines below.</p>\n\n  <h3>1. Custom & Personalized Merchandise</h3>\n  <p>All customized products—including items featuring custom-printed graphics, customer-uploaded logos, personalized artwork, or made-to-order sizing—are produced specifically for you based on the artwork and specifications provided during checkout.</p>\n  <ul>\n    <li><strong>Design Accuracy:</strong> Please ensure that your uploaded artwork, spelling, image resolution, and selected garment size (S, M, L, XL, XXL) are accurate before submitting your order.</li>\n    <li><strong>Change of Mind:</strong> We cannot accept returns, refunds, or exchanges for custom items due to customer change of mind, incorrect size selection, or customer-provided typographical errors once production or printing has begun.</li>\n  </ul>\n\n  <h3>2. Damaged, Defective, or Incorrect Items (Guaranteed Replacement)</h3>\n  <p>If an item arrives damaged in transit, with manufacturing defects, or if you received an incorrect product or wrong size compared to your invoice, we will provide a <strong>100% free replacement or full refund</strong>.</p>\n  <ul>\n    <li><strong>Reporting Window:</strong> Please notify us within <strong>48 to 72 hours</strong> of package delivery.</li>\n    <li><strong>How to Claim:</strong> Send an email to <a href=\"mailto:support@okinacraft.com\">support@okinacraft.com</a> or message our WhatsApp support at <a href=\"https://wa.me/918380808435\" target=\"_blank\">+91 8380808435</a> with:\n      <ol>\n        <li>Your Order Number (e.g. <code>#CS-1001</code>).</li>\n        <li>Clear photos or an unboxing video showing the damaged, misprinted, or defective area alongside the shipping label.</li>\n      </ol>\n    </li>\n    <li><strong>Resolution:</strong> Once verified, we will immediately initiate a replacement print and dispatch it with expedited shipping at zero additional cost, or issue a complete refund.</li>\n  </ul>\n\n  <h3>3. Order Cancellations</h3>\n  <ul>\n    <li>Orders may be cancelled within <strong>4 hours</strong> of placement, provided production has not commenced.</li>\n    <li>Once garment cutting, DTF printing, or packaging has begun, the order cannot be cancelled.</li>\n  </ul>\n\n  <h3>4. Refund Process & Timelines</h3>\n  <p>Approved refunds are processed back to the original method of payment:</p>\n  <ul>\n    <li><strong>UPI / Net Banking / Debit Card:</strong> Refunds reflect in your account within <strong>5–7 business days</strong> depending on your issuing bank.</li>\n    <li><strong>Cash on Delivery (COD) Orders:</strong> Refunds for verified damaged items are credited via direct UPI transfer or NEFT upon receipt of your payout details.</li>\n  </ul>\n\n  <h3>5. Contact Support</h3>\n  <p>Have an inquiry about an order or replacement? We are here to help:</p>\n  <p><strong>Email:</strong> <a href=\"mailto:support@okinacraft.com\">support@okinacraft.com</a><br>\n  <strong>WhatsApp Support:</strong> <a href=\"https://wa.me/918380808435\" target=\"_blank\">+91 8380808435</a> (Mon–Sat, 10 AM–6 PM IST)</p>\n</div>"
+    },
+    {
+      "slug": "shipping-policy",
+      "title": "Shipping & Delivery Policy",
+      "body_html": "<div class=\"policy-content\">\n  <p class=\"text-muted\"><em>Last updated: November 2026</em></p>\n\n  <p>At <strong>Okina Craft</strong>, we ensure safe and reliable doorstep shipping across all serviceable pin codes in India.</p>\n\n  <h3>1. Shipping Rates & Free Delivery</h3>\n  <ul>\n    <li><strong>FREE Delivery:</strong> All orders with a cart value of <strong>₹999 or more</strong> qualify for <strong>100% FREE Shipping</strong> nationwide.</li>\n    <li><strong>Flat Rate Shipping:</strong> For orders below ₹999, a nominal flat delivery charge of <strong>₹60</strong> is applied at checkout.</li>\n    <li><strong>Special Items:</strong> Select catalog items marked with the <strong>FREE Delivery</strong> badge ship with ₹0 shipping fee regardless of total order value.</li>\n  </ul>\n\n  <h3>2. Production & Processing Times</h3>\n  <p>Because our merchandise features high-definition Direct-to-Film (DTF) prints and custom craftsmanship:</p>\n  <ul>\n    <li><strong>Ready Stock Items:</strong> Dispatched within <strong>24 to 48 hours</strong>.</li>\n    <li><strong>Custom Printed Orders:</strong> Require <strong>1 to 2 business days</strong> for graphic preparation, fabric heat-curing, and quality inspection before dispatch.</li>\n  </ul>\n\n  <h3>3. Estimated Transit & Delivery Timelines</h3>\n  <p>After your package has been handed over to our logistics partner, delivery takes approximately:</p>\n  <ul>\n    <li><strong>Metro Cities (Mumbai, Delhi, Bengaluru, Hyderabad, Chennai, Kolkata, Pune):</strong> <strong>3 to 5 business days</strong>.</li>\n    <li><strong>Rest of India (Tier 2 & 3 Cities, Regional Districts):</strong> <strong>4 to 7 business days</strong>.</li>\n    <li><strong>Remote Areas / Special Pin Codes:</strong> <strong>7 to 10 business days</strong>.</li>\n  </ul>\n\n  <h3>4. Tracking Your Order</h3>\n  <p>As soon as your package is dispatched, we provide an Air Waybill (AWB) tracking number and courier tracking link:</p>\n  <ul>\n    <li>Tracking details are sent to your registered mobile number via SMS and WhatsApp, as well as to your email address.</li>\n    <li>You can track the live progress of your shipment anytime on our <a href=\"/account\">Order Tracking Page</a> by entering your Order Number and phone number.</li>\n  </ul>\n\n  <h3>5. Delivery Address & Undelivered Shipments</h3>\n  <p>Please double-check your shipping address and 6-digit postal pincode during checkout. In the event of a failed delivery attempt due to incorrect address, unreachable recipient, or customer refusal, our courier partner will re-attempt delivery before returning the package to our hub.</p>\n\n  <h3>6. Contact Shipping Helpdesk</h3>\n  <p>For urgent shipping status queries or address corrections before dispatch:</p>\n  <p><strong>Email:</strong> <a href=\"mailto:support@okinacraft.com\">support@okinacraft.com</a><br>\n  <strong>WhatsApp Support:</strong> <a href=\"https://wa.me/918380808435\" target=\"_blank\">+91 8380808435</a></p>\n</div>"
+    },
+    {
+      "slug": "terms-of-service",
+      "title": "Terms of Service",
+      "body_html": "<div class=\"policy-content\">\n  <p class=\"text-muted\"><em>Last updated: November 2026</em></p>\n\n  <p>Welcome to <strong>Okina Craft</strong>. By accessing our website, browsing our catalog, or making a purchase, you agree to be bound by the following Terms of Service (\"Terms\"). Please review them carefully.</p>\n\n  <h3>1. General Conditions & Eligibility</h3>\n  <p>By agreeing to these Terms, you represent that you are at least the age of majority in your state or province of residence, or that you have given consent to allow any minor dependents to use this site. We reserve the right to refuse service to anyone for any legitimate reason at any time.</p>\n\n  <h3>2. Products, Customization & Pricing</h3>\n  <ul>\n    <li><strong>Product Accuracy:</strong> We strive to display product colors, fabrics (e.g. 240 GSM French Terry Cotton, 350 GSM Fleece), and print dimensions as accurately as possible. However, actual garment colors may vary slightly due to device display settings and organic fabric dyes.</li>\n    <li><strong>Pricing:</strong> All prices listed on Okina Craft are in Indian Rupees (INR, ₹). We reserve the right to modify prices or discontinue items without prior notice.</li>\n    <li><strong>Custom Artwork Submission:</strong> You affirm that any logos, graphics, illustrations, or text you submit for custom printing are either your original creation or that you possess all necessary rights and licenses to use and reproduce them. You agree not to upload content that is defamatory, unlawful, infringing on third-party trademarks, or obscene.</li>\n  </ul>\n\n  <h3>3. Order Placement & Acceptance</h3>\n  <p>Receipt of an order confirmation does not signify our final acceptance of your order. We reserve the right to decline or cancel any order in instances of typographical errors, incorrect pricing, suspicion of fraudulent activity, or unserviceable delivery locations. In such cases, any pre-paid amount will be refunded in full.</p>\n\n  <h3>4. Payments & Billing</h3>\n  <p>We accept major payment methods including UPI (Google Pay, PhonePe, Paytm, BHIM), Net Banking, Credit/Debit cards, and Cash on Delivery (COD) where available. You agree to provide current, complete, and accurate purchase and account details for all orders.</p>\n\n  <h3>5. Intellectual Property</h3>\n  <p>All content on this website—including the Okina Craft brand name, logo emblem, website graphics, layouts, UI designs, and product descriptions—is the property of Okina Craft and protected by copyright and intellectual property laws. Unauthorized reproduction or commercial exploitation is strictly prohibited.</p>\n\n  <h3>6. Limitation of Liability</h3>\n  <p>In no event shall Okina Craft, its directors, employees, or affiliates be liable for any indirect, incidental, or consequential damages arising out of your use of our products, services, or delayed transit times beyond our reasonable control.</p>\n\n  <h3>7. Governing Law</h3>\n  <p>These Terms of Service and any separate agreements whereby we provide you services shall be governed by and construed in accordance with the laws of India, under the jurisdiction of courts in Maharashtra.</p>\n\n  <h3>8. Contact Information</h3>\n  <p>Questions about the Terms of Service should be directed to:</p>\n  <p><strong>Okina Craft</strong><br>\n  Email: <a href=\"mailto:support@okinacraft.com\">support@okinacraft.com</a><br>\n  WhatsApp: <a href=\"https://wa.me/918380808435\" target=\"_blank\">+91 8380808435</a><br>\n  Address: Hingoli, Maharashtra, India</p>\n</div>"
+    },
+    {
+      "slug": "contact-information",
+      "title": "Contact Information",
+      "body_html": "<div class=\"policy-content\">\n  <p class=\"text-muted\"><em>We're here to assist you with custom orders, sizing, shipping, and inquiries.</em></p>\n\n  <div class=\"card p-4 border rounded my-3\" style=\"background:#fdfdfd;\">\n    <h3 class=\"mb-3 text-dark\">Okina Craft — Official Helpdesk</h3>\n    <ul class=\"list-unstyled\" style=\"line-height: 2;\">\n      <li><strong>Brand / Business Name:</strong> Okina Craft</li>\n      <li><strong>Customer Support Email:</strong> <a href=\"mailto:support@okinacraft.com\">support@okinacraft.com</a></li>\n      <li><strong>WhatsApp Support & Orders:</strong> <a href=\"https://wa.me/918380808435\" target=\"_blank\">+91 8380808435</a></li>\n      <li><strong>Instagram Direct:</strong> <a href=\"https://instagram.com/okinacraft\" target=\"_blank\">@okinacraft</a></li>\n      <li><strong>Registered Business Address:</strong> Hingoli, Maharashtra, India — PIN 431513</li>\n      <li><strong>Operating Support Hours:</strong> Monday through Saturday, 10:00 AM – 6:00 PM IST (Closed Sundays & National Holidays)</li>\n    </ul>\n  </div>\n\n  <h3>How to Reach Us for Order Support</h3>\n  <p>For inquiries regarding an existing purchase, order tracking, or custom artwork adjustments, please include your <strong>Order Number</strong> (e.g. <code>#CS-1001</code>) and registered phone number. Our team typically replies within <strong>2 to 4 business hours</strong>.</p>\n</div>"
+    }
+  ],
+  "collections": [
+    {
+      "handle": "t-shirt-collection",
+      "title": "T-shirt Collection",
+      "description": "Premium 240 GSM oversized T-shirts crafted from 100% French Terry cotton with custom A3 DTF printing.",
+      "card_shape": "arch",
+      "desktop_cols": 4,
+      "show_on_home": 1,
+      "home_order": 1,
+      "is_free_delivery": 0,
+      "product_handles": [
+        "custom-design-240-gsm-premium-oversized-t-shirt-100-french-terry-cotton-1",
+        "custom-design-240-gsm-premium-oversized-t-shirt-100-french-terry-cotton",
+        "premium-240-gsm-oversized-t-shirt-100-french-terry-cotton-custom-a3-dtf-print-1",
+        "premium-240-gsm-oversized-t-shirt-100-french-terry-cotton-custom-a3-dtf-print"
+      ]
+    },
+    {
+      "handle": "hoodie-collection",
+      "title": "Hoodie Collection",
+      "description": "Custom design 350 GSM premium hoodies in 100% Rabbit Cotton Fleece.",
+      "card_shape": "blob",
+      "desktop_cols": 2,
+      "show_on_home": 1,
+      "home_order": 2,
+      "is_free_delivery": 0,
+      "product_handles": [
+        "custom-design-350-gsm-premium-hoodie-100-rabbit-cotton-fleece-1",
+        "custom-design-350-gsm-premium-hoodie-100-rabbit-cotton-fleece"
+      ]
+    },
+    {
+      "handle": "mouse-pads",
+      "title": "Mouse Pads",
+      "description": "Personalized 3mm thick custom photo and collage desk mats.",
+      "card_shape": "standard",
+      "desktop_cols": 2,
+      "show_on_home": 1,
+      "home_order": 3,
+      "is_free_delivery": 0,
+      "product_handles": [
+        "custom-photo-mouse-pad-19-23-cm-3mm-thick-personalized-mouse-mat",
+        "custom-3-photo-collage-long-mouse-pad-28-58-cm-personalized-gaming-desk-mat"
+      ]
+    },
+    {
+      "handle": "mugs",
+      "title": "Mugs",
+      "description": "AAA quality 11oz custom white ceramic mugs with your photo or artwork.",
+      "card_shape": "blob",
+      "desktop_cols": 2,
+      "show_on_home": 1,
+      "home_order": 4,
+      "is_free_delivery": 0,
+      "product_handles": [
+        "custom-white-ceramic-mug-aaa-quality-11oz-personalized-photo-design-mug"
+      ]
+    },
+    {
+      "handle": "special-free-delivery",
+      "title": "Special :) - FREE Delivery",
+      "description": "Curated desk, tech, and lifestyle favourites with FREE Delivery across India.",
+      "card_shape": "standard",
+      "desktop_cols": 4,
+      "show_on_home": 1,
+      "home_order": 5,
+      "is_free_delivery": 1,
+      "product_handles": [
+        "rgb-gaming-mouse-pad-large-soft-led-extended-desk-mat",
+        "300ml-ceramic-electric-coffee-mug-warmer-set-with-smart-heating-coaster-for-home-office-green",
+        "magnetic-bluetooth-speaker-portable-wireless-mini-speaker-with-rgb-led-lights",
+        "80-colour-sketch-pens-assorted-shades"
+      ]
+    },
+    {
+      "handle": "festive-home-decor",
+      "title": "Festive & Home Décor",
+      "description": "Decorative diyas, scented candles, and home lighting.",
+      "card_shape": "standard",
+      "desktop_cols": 4,
+      "show_on_home": 0,
+      "home_order": 6,
+      "is_free_delivery": 0,
+      "product_handles": [
+        "3d-crystal-diya-pack-of-12",
+        "tealight-candles-pack-of-50",
+        "motichoor-laddoo-scented-candles-pack-of-4",
+        "wooden-mdf-shadow-reflection-dia-pack-of-2",
+        "motion-sensor-closet-lights-led-puck-lights-pack-of-1"
+      ]
+    }
+  ],
+  "products": [
+    {
+      "handle": "custom-design-240-gsm-premium-oversized-t-shirt-100-french-terry-cotton-1",
+      "title": "Custom Design 240 GSM Premium Oversized T-Shirt | 100% French Terry Cotton",
+      "body_html": "<p><span>Create your own style with our premium 240 GSM oversized T-shirt, crafted from 100% French Terry Cotton with a soft, smooth finish.</span></p>\n<p><span>🎨 </span><strong><span>Fully Customizable:</span></strong><span> Add your own photos, artwork, graphics, names, text, or logo to create a T-shirt that's uniquely yours.</span></p>\n<p><span>✨ Premium 240 GSM Fabric</span><br><span>👕 Relaxed Oversized Fit</span><br><span>💎 Double Bio-Wash &amp; Silicone Wash</span><br><span>🖨️ Personalized Printing by Okina Craft</span></p>\n<p><strong><span>Your Design. Your Style. Your T-Shirt.</span></strong></p>",
+      "vendor": "Okina Craft",
+      "product_type": "Tshirt",
+      "tags": "",
+      "price": 549.0,
+      "compare_at_price": null,
+      "available": 1,
+      "allow_custom_upload": 1,
+      "free_delivery": 0,
+      "image_ratio": "91.3872%",
+      "options": [
+        {
+          "name": "Size",
+          "position": 1,
+          "values": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "2XL"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "title": "S",
+          "option1": "S",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 549.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        },
+        {
+          "title": "M",
+          "option1": "M",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 549.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        },
+        {
+          "title": "L",
+          "option1": "L",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 549.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        },
+        {
+          "title": "XL",
+          "option1": "XL",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 549.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        },
+        {
+          "title": "2XL",
+          "option1": "2XL",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 549.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/media/products/custom-design-240-gsm-premium-02cfe9-1.png",
+          "alt": "Custom Design 240 GSM Premium Oversized T-Shirt | 100% French Terry Cotton",
+          "width": 1312,
+          "height": 1199
+        },
+        {
+          "src": "/assets/media/products/custom-design-240-gsm-premium-02cfe9-2.png",
+          "alt": "Custom Design 240 GSM Premium Oversized T-Shirt | 100% French Terry Cotton",
+          "width": 1312,
+          "height": 1199
+        },
+        {
+          "src": "/assets/media/products/custom-design-240-gsm-premium-02cfe9-3.png",
+          "alt": "Custom Design 240 GSM Premium Oversized T-Shirt | 100% French Terry Cotton",
+          "width": 1312,
+          "height": 1199
+        },
+        {
+          "src": "/assets/media/products/custom-design-240-gsm-premium-02cfe9-4.png",
+          "alt": "Custom Design 240 GSM Premium Oversized T-Shirt | 100% French Terry Cotton",
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    },
+    {
+      "handle": "custom-design-240-gsm-premium-oversized-t-shirt-100-french-terry-cotton",
+      "title": "Custom Design 240 GSM Premium Oversized T-Shirt | 100% French Terry Cotton",
+      "body_html": "<p><span>Create your own style with our premium 240 GSM oversized T-shirt, crafted from 100% French Terry Cotton with a soft, smooth finish.</span></p>\n<p><span>🎨 </span><strong><span>Fully Customizable:</span></strong><span> Add your own photos, artwork, graphics, names, text, or logo to create a T-shirt that's uniquely yours.</span></p>\n<p><span>✨ Premium 240 GSM Fabric</span><br><span>👕 Relaxed Oversized Fit</span><br><span>💎 Double Bio-Wash &amp; Silicone Wash</span><br><span>🖨️ Personalized Printing by Okina Craft</span></p>\n<p><strong><span>Your Design. Your Style. Your T-Shirt.</span></strong></p>",
+      "vendor": "Okina Craft",
+      "product_type": "",
+      "tags": "",
+      "price": 549.0,
+      "compare_at_price": null,
+      "available": 1,
+      "allow_custom_upload": 1,
+      "free_delivery": 0,
+      "image_ratio": "91.3872%",
+      "options": [
+        {
+          "name": "Size",
+          "position": 1,
+          "values": [
+            "S",
+            "M",
+            "L",
+            "2XL",
+            "XL"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "title": "S",
+          "option1": "S",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 549.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        },
+        {
+          "title": "M",
+          "option1": "M",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 549.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        },
+        {
+          "title": "L",
+          "option1": "L",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 549.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        },
+        {
+          "title": "2XL",
+          "option1": "2XL",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 549.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        },
+        {
+          "title": "XL",
+          "option1": "XL",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 549.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/media/products/custom-design-240-gsm-premium-74d844-1.png",
+          "alt": "Custom Design 240 GSM Premium Oversized T-Shirt | 100% French Terry Cotton",
+          "width": 1312,
+          "height": 1199
+        },
+        {
+          "src": "/assets/media/products/custom-design-240-gsm-premium-74d844-2.png",
+          "alt": "Custom Design 240 GSM Premium Oversized T-Shirt | 100% French Terry Cotton",
+          "width": 1312,
+          "height": 1199
+        },
+        {
+          "src": "/assets/media/products/custom-design-240-gsm-premium-74d844-3.png",
+          "alt": "Custom Design 240 GSM Premium Oversized T-Shirt | 100% French Terry Cotton",
+          "width": 1312,
+          "height": 1199
+        },
+        {
+          "src": "/assets/media/products/custom-design-240-gsm-premium-74d844-4.png",
+          "alt": "Custom Design 240 GSM Premium Oversized T-Shirt | 100% French Terry Cotton",
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    },
+    {
+      "handle": "premium-240-gsm-oversized-t-shirt-100-french-terry-cotton-custom-a3-dtf-print-1",
+      "title": "Custom Design 240 GSM Premium Oversized T-Shirt | 100% French Terry Cotton",
+      "body_html": "<p><span>Create your own style with our premium 240 GSM oversized T-shirt, crafted from 100% French Terry Cotton with a soft, smooth finish.</span></p>\n<p><span>🎨 </span><strong><span>Fully Customizable:</span></strong><span> Add your own photos, artwork, graphics, names, text, or logo to create a T-shirt that's uniquely yours.</span></p>\n<p><span>✨ Premium 240 GSM Fabric</span><br><span>👕 Relaxed Oversized Fit</span><br><span>💎 Double Bio-Wash &amp; Silicone Wash</span><br><span>🖨️ Personalized Printing by Okina Craft</span></p>\n<p><strong><span>Your Design. Your Style. Your T-Shirt.</span></strong></p>",
+      "vendor": "Okina Craft",
+      "product_type": "Tshirt",
+      "tags": "",
+      "price": 549.0,
+      "compare_at_price": null,
+      "available": 1,
+      "allow_custom_upload": 1,
+      "free_delivery": 0,
+      "image_ratio": "91.3872%",
+      "options": [
+        {
+          "name": "Size",
+          "position": 1,
+          "values": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "2XL"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "title": "S",
+          "option1": "S",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 549.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        },
+        {
+          "title": "M",
+          "option1": "M",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 549.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        },
+        {
+          "title": "L",
+          "option1": "L",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 549.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        },
+        {
+          "title": "XL",
+          "option1": "XL",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 549.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        },
+        {
+          "title": "2XL",
+          "option1": "2XL",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 549.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/media/products/premium-240-gsm-oversized-t-sh-1a6c77-1.png",
+          "alt": "Custom Design 240 GSM Premium Oversized T-Shirt | 100% French Terry Cotton",
+          "width": 1312,
+          "height": 1199
+        },
+        {
+          "src": "/assets/media/products/premium-240-gsm-oversized-t-sh-1a6c77-2.png",
+          "alt": "Custom Design 240 GSM Premium Oversized T-Shirt | 100% French Terry Cotton",
+          "width": 1312,
+          "height": 1199
+        },
+        {
+          "src": "/assets/media/products/premium-240-gsm-oversized-t-sh-1a6c77-3.png",
+          "alt": "Custom Design 240 GSM Premium Oversized T-Shirt | 100% French Terry Cotton",
+          "width": 1312,
+          "height": 1199
+        },
+        {
+          "src": "/assets/media/products/premium-240-gsm-oversized-t-sh-1a6c77-4.png",
+          "alt": "Custom Design 240 GSM Premium Oversized T-Shirt | 100% French Terry Cotton",
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    },
+    {
+      "handle": "premium-240-gsm-oversized-t-shirt-100-french-terry-cotton-custom-a3-dtf-print",
+      "title": "Custom Design 240 GSM Premium Oversized T-Shirt | 100% French Terry Cotton",
+      "body_html": "<p><span>Create your own style with our premium 240 GSM oversized T-shirt, crafted from 100% French Terry Cotton with a soft, smooth finish.</span></p>\n<p><span>🎨 </span><strong><span>Fully Customizable:</span></strong><span> Add your own photos, artwork, graphics, names, text, or logo to create a T-shirt that's uniquely yours.</span></p>\n<p><span>✨ Premium 240 GSM Fabric</span><br><span>👕 Relaxed Oversized Fit</span><br><span>💎 Double Bio-Wash &amp; Silicone Wash</span><br><span>🖨️ Personalized Printing by Okina Craft</span></p>\n<p><strong><span>Your Design. Your Style. Your T-Shirt.</span></strong></p>",
+      "vendor": "Okina Craft",
+      "product_type": "Tshirt",
+      "tags": "",
+      "price": 549.0,
+      "compare_at_price": null,
+      "available": 1,
+      "allow_custom_upload": 1,
+      "free_delivery": 0,
+      "image_ratio": "90.303%",
+      "options": [
+        {
+          "name": "Size",
+          "position": 1,
+          "values": [
+            "2XL",
+            "XL",
+            "L",
+            "M",
+            "S"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "title": "2XL",
+          "option1": "2XL",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 549.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        },
+        {
+          "title": "XL",
+          "option1": "XL",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 549.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        },
+        {
+          "title": "L",
+          "option1": "L",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 549.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        },
+        {
+          "title": "M",
+          "option1": "M",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 549.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        },
+        {
+          "title": "S",
+          "option1": "S",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 549.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/media/products/premium-240-gsm-oversized-t-sh-c6ed92-1.png",
+          "alt": "Custom Design 240 GSM Premium Oversized T-Shirt | 100% French Terry Cotton",
+          "width": 1320,
+          "height": 1192
+        },
+        {
+          "src": "/assets/media/products/premium-240-gsm-oversized-t-sh-c6ed92-2.png",
+          "alt": "Custom Design 240 GSM Premium Oversized T-Shirt | 100% French Terry Cotton",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "/assets/media/products/premium-240-gsm-oversized-t-sh-c6ed92-3.png",
+          "alt": "Custom Design 240 GSM Premium Oversized T-Shirt | 100% French Terry Cotton",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "/assets/media/products/premium-240-gsm-oversized-t-sh-c6ed92-4.png",
+          "alt": "Custom Design 240 GSM Premium Oversized T-Shirt | 100% French Terry Cotton",
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    },
+    {
+      "handle": "custom-design-350-gsm-premium-hoodie-100-rabbit-cotton-fleece-1",
+      "title": "Custom Design 350 GSM Premium Hoodie | 100% Rabbit Cotton Fleece",
+      "body_html": "<p><span>Create your own style with our premium 350 GSM hoodie, crafted from 100% Rabbit Cotton Fleece for a luxurious, comfortable feel.</span></p>\n<p><span>🎨 </span><strong><span>Fully Customizable:</span></strong><span> Add your own photos, artwork, graphics, names, text, or logo to create a hoodie that's uniquely yours.</span></p>\n<p><span>✨ Premium 350 GSM Fabric</span><br><span>🧥 Comfortable Premium Hoodie</span><br><span>💎 Double Bio-Wash &amp; Silicone Wash</span><br><span>🌟 Premium Gold Finish</span><br><span>🖨️ Personalized Printing by Okina Craft</span></p>\n<p><strong><span>Your Design. Your Style. Your Hoodie.</span></strong></p>",
+      "vendor": "Okina Craft",
+      "product_type": "Hoodie",
+      "tags": "",
+      "price": 799.0,
+      "compare_at_price": null,
+      "available": 0,
+      "allow_custom_upload": 1,
+      "free_delivery": 0,
+      "image_ratio": "91.3872%",
+      "options": [
+        {
+          "name": "Size",
+          "position": 1,
+          "values": [
+            "2XL",
+            "XL",
+            "L",
+            "M",
+            "S"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "title": "2XL",
+          "option1": "2XL",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 799.0,
+          "compare_at_price": null,
+          "available": 0,
+          "inventory_qty": 0
+        },
+        {
+          "title": "XL",
+          "option1": "XL",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 799.0,
+          "compare_at_price": null,
+          "available": 0,
+          "inventory_qty": 0
+        },
+        {
+          "title": "L",
+          "option1": "L",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 799.0,
+          "compare_at_price": null,
+          "available": 0,
+          "inventory_qty": 0
+        },
+        {
+          "title": "M",
+          "option1": "M",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 799.0,
+          "compare_at_price": null,
+          "available": 0,
+          "inventory_qty": 0
+        },
+        {
+          "title": "S",
+          "option1": "S",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 799.0,
+          "compare_at_price": null,
+          "available": 0,
+          "inventory_qty": 0
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/media/products/custom-design-350-gsm-premium-fa716d-1.png",
+          "alt": "Custom Design 350 GSM Premium Hoodie | 100% Rabbit Cotton Fleece",
+          "width": 1312,
+          "height": 1199
+        },
+        {
+          "src": "/assets/media/products/custom-design-350-gsm-premium-fa716d-2.png",
+          "alt": "Custom Design 350 GSM Premium Hoodie | 100% Rabbit Cotton Fleece",
+          "width": 1312,
+          "height": 1199
+        },
+        {
+          "src": "/assets/media/products/custom-design-350-gsm-premium-fa716d-3.png",
+          "alt": "Custom Design 350 GSM Premium Hoodie | 100% Rabbit Cotton Fleece",
+          "width": 1312,
+          "height": 1199
+        },
+        {
+          "src": "/assets/media/products/custom-design-350-gsm-premium-fa716d-4.png",
+          "alt": "Custom Design 350 GSM Premium Hoodie | 100% Rabbit Cotton Fleece",
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    },
+    {
+      "handle": "custom-design-350-gsm-premium-hoodie-100-rabbit-cotton-fleece",
+      "title": "Custom Design 350 GSM Premium Hoodie | 100% Rabbit Cotton Fleece",
+      "body_html": "<p><span>Create your own style with our premium 350 GSM hoodie, crafted from 100% Rabbit Cotton Fleece for a luxurious, comfortable feel.</span></p>\n<p><span>🎨 </span><strong><span>Fully Customizable:</span></strong><span> Add your own photos, artwork, graphics, names, text, or logo to create a hoodie that's uniquely yours.</span></p>\n<p><span>✨ Premium 350 GSM Fabric</span><br><span>🧥 Comfortable Premium Hoodie</span><br><span>💎 Double Bio-Wash &amp; Silicone Wash</span><br><span>🌟 Premium Gold Finish</span><br><span>🖨️ Personalized Printing by Okina Craft</span></p>\n<p><strong><span>Your Design. Your Style. Your Hoodie.</span></strong></p>",
+      "vendor": "Okina Craft",
+      "product_type": "Hoodie",
+      "tags": "",
+      "price": 799.0,
+      "compare_at_price": null,
+      "available": 0,
+      "allow_custom_upload": 1,
+      "free_delivery": 0,
+      "image_ratio": "91.3872%",
+      "options": [
+        {
+          "name": "Size",
+          "position": 1,
+          "values": [
+            "2XL",
+            "XL",
+            "M",
+            "L",
+            "S"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "title": "2XL",
+          "option1": "2XL",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 799.0,
+          "compare_at_price": null,
+          "available": 0,
+          "inventory_qty": 0
+        },
+        {
+          "title": "XL",
+          "option1": "XL",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 799.0,
+          "compare_at_price": null,
+          "available": 0,
+          "inventory_qty": 0
+        },
+        {
+          "title": "M",
+          "option1": "M",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 799.0,
+          "compare_at_price": null,
+          "available": 0,
+          "inventory_qty": 0
+        },
+        {
+          "title": "L",
+          "option1": "L",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 799.0,
+          "compare_at_price": null,
+          "available": 0,
+          "inventory_qty": 0
+        },
+        {
+          "title": "S",
+          "option1": "S",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 799.0,
+          "compare_at_price": null,
+          "available": 0,
+          "inventory_qty": 0
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/media/products/custom-design-350-gsm-premium-fe889d-1.png",
+          "alt": "Custom Design 350 GSM Premium Hoodie | 100% Rabbit Cotton Fleece",
+          "width": 1312,
+          "height": 1199
+        },
+        {
+          "src": "/assets/media/products/custom-design-350-gsm-premium-fe889d-2.png",
+          "alt": "Custom Design 350 GSM Premium Hoodie | 100% Rabbit Cotton Fleece",
+          "width": 1312,
+          "height": 1199
+        },
+        {
+          "src": "/assets/media/products/custom-design-350-gsm-premium-fe889d-3.png",
+          "alt": "Custom Design 350 GSM Premium Hoodie | 100% Rabbit Cotton Fleece",
+          "width": 1312,
+          "height": 1199
+        },
+        {
+          "src": "/assets/media/products/custom-design-350-gsm-premium-fe889d-4.png",
+          "alt": "Custom Design 350 GSM Premium Hoodie | 100% Rabbit Cotton Fleece",
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    },
+    {
+      "handle": "custom-photo-mouse-pad-19-23-cm-3mm-thick-personalized-mouse-mat",
+      "title": "Custom Photo Mouse Pad 19 × 23 cm | 3mm Thick Personalized Mouse Mat",
+      "body_html": "<p><span>Make your desk unique with a personalized mouse pad from Okina Craft! Customize it with your favourite photos, artwork, names, quotes, graphics, or logos.</span></p>\n<p><span>🖼️ </span><strong><span>Fully Customizable Design</span></strong><br><span>📏 Size: 19 × 23 cm</span><br><span>📐 Thickness: 3 mm</span><br><span>🖨️ Personalized Photo &amp; Design Printing</span><br><span>🖱️ Ideal for Office, Gaming &amp; Everyday Use</span><br><span>🎁 Perfect for Gifts, Birthdays &amp; Special Occasions</span></p>\n<p><span>Create a mouse pad that reflects your personality or makes a memorable gift for someone special.</span></p>\n<p><strong><span>Your Photo. Your Design. Your Okina Craft.</span></strong></p>",
+      "vendor": "Okina Craft",
+      "product_type": "Mouse Pad",
+      "tags": "",
+      "price": 119.0,
+      "compare_at_price": null,
+      "available": 1,
+      "allow_custom_upload": 1,
+      "free_delivery": 0,
+      "image_ratio": "103.9024%",
+      "options": [],
+      "variants": [
+        {
+          "title": "Default Title",
+          "option1": "Default Title",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 119.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/media/products/custom-photo-mouse-pad-19-23-c-51c96a-1.png",
+          "alt": "Custom Photo Mouse Pad 19 × 23 cm | 3mm Thick Personalized Mouse Mat",
+          "width": 1230,
+          "height": 1278
+        },
+        {
+          "src": "/assets/media/products/custom-photo-mouse-pad-19-23-c-51c96a-2.png",
+          "alt": "Custom Photo Mouse Pad 19 × 23 cm | 3mm Thick Personalized Mouse Mat",
+          "width": 1230,
+          "height": 1278
+        },
+        {
+          "src": "/assets/media/products/custom-photo-mouse-pad-19-23-c-51c96a-3.png",
+          "alt": "Custom Photo Mouse Pad 19 × 23 cm | 3mm Thick Personalized Mouse Mat",
+          "width": 1230,
+          "height": 1278
+        },
+        {
+          "src": "/assets/media/products/custom-photo-mouse-pad-19-23-c-51c96a-4.png",
+          "alt": "Custom Photo Mouse Pad 19 × 23 cm | 3mm Thick Personalized Mouse Mat",
+          "width": 1230,
+          "height": 1278
+        },
+        {
+          "src": "/assets/media/products/custom-photo-mouse-pad-19-23-c-51c96a-5.png",
+          "alt": "Custom Photo Mouse Pad 19 × 23 cm | 3mm Thick Personalized Mouse Mat",
+          "width": 1230,
+          "height": 1278
+        }
+      ]
+    },
+    {
+      "handle": "custom-3-photo-collage-long-mouse-pad-28-58-cm-personalized-gaming-desk-mat",
+      "title": "Custom 3-Photo Collage Long Mouse Pad 28 × 58 cm - 3 mm thick | Personalized Gaming Desk Mat",
+      "body_html": "<p><span>Make your desk unique with a personalized long mouse pad from Okina Craft! Create your own </span><strong><span>3-photo collage mouse pad</span></strong><span> using your favourite memories, pictures, artwork, or designs.</span></p>\n<p><span>🖼️ </span><strong><span>Add 3 Images</span></strong><span> to create your own photo collage</span><br><span>📏 Size: 28 × 58 cm</span><br><span>🎨 Fully Customizable Design</span><br><span>🖨️ Personalized Photo &amp; Collage Printing</span><br><span>🖱️ Perfect for Gaming, Office &amp; Everyday Use</span><br><span>🎁 A Unique Gift for Friends, Couples &amp; Gamers</span></p>\n<p><span>Upload your 3 favourite images and turn them into a personalized desk mat that reflects your style.</span></p>\n<p><strong><span>Three Photos. One Custom Design. Your Okina Craft.</span></strong></p>",
+      "vendor": "Okina Craft",
+      "product_type": "Mouse Pad",
+      "tags": "",
+      "price": 249.0,
+      "compare_at_price": null,
+      "available": 1,
+      "allow_custom_upload": 1,
+      "free_delivery": 0,
+      "image_ratio": "66.6667%",
+      "options": [],
+      "variants": [
+        {
+          "title": "Default Title",
+          "option1": "Default Title",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 249.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/media/products/custom-3-photo-collage-long-mo-24dd89-1.png",
+          "alt": "Custom 3-Photo Collage Long Mouse Pad 28 × 58 cm - 3 mm thick | Personalized Gaming Desk Mat",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "/assets/media/products/custom-3-photo-collage-long-mo-24dd89-2.png",
+          "alt": "Custom 3-Photo Collage Long Mouse Pad 28 × 58 cm - 3 mm thick | Personalized Gaming Desk Mat",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "/assets/media/products/custom-3-photo-collage-long-mo-24dd89-3.png",
+          "alt": "Custom 3-Photo Collage Long Mouse Pad 28 × 58 cm - 3 mm thick | Personalized Gaming Desk Mat",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "/assets/media/products/custom-3-photo-collage-long-mo-24dd89-4.jpg",
+          "alt": "Custom 3-Photo Collage Long Mouse Pad 28 × 58 cm - 3 mm thick | Personalized Gaming Desk Mat",
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "/assets/media/products/custom-3-photo-collage-long-mo-24dd89-5.png",
+          "alt": "Custom 3-Photo Collage Long Mouse Pad 28 × 58 cm - 3 mm thick | Personalized Gaming Desk Mat",
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    },
+    {
+      "handle": "custom-white-ceramic-mug-aaa-quality-11oz-personalized-photo-design-mug",
+      "title": "Custom White Ceramic Mug AAA Quality 11oz | Personalized Photo & Design Mug",
+      "body_html": "<p><span>Turn your favourite memories into a personalized mug with Okina Craft! Our premium AAA-quality white ceramic mug is perfect for custom photos, names, quotes, artwork, or logos.</span></p>\n<p><span>☕ </span><strong><span>AAA Quality White Ceramic Mug</span></strong><br><span>📏 Capacity: 11oz (approx. 325 ml)</span><br><span>🎨 Fully Customizable Design</span><br><span>🖼️ Add Your Favourite Photo, Name, or Logo</span><br><span>🎁 Perfect for Birthdays, Anniversaries &amp; Special Gifts</span><br><span>💝 Great for Home, Office &amp; Everyday Use</span></p>\n<p><span>Create a unique mug for yourself or surprise someone special with a personalized gift made just for them.</span></p>\n<p><strong><span>Your Photo. Your Mug. Your Okina Craft.</span></strong></p>",
+      "vendor": "Okina Craft",
+      "product_type": "Mug",
+      "tags": "",
+      "price": 169.0,
+      "compare_at_price": null,
+      "available": 1,
+      "allow_custom_upload": 1,
+      "free_delivery": 0,
+      "image_ratio": "80.0285%",
+      "options": [],
+      "variants": [
+        {
+          "title": "Default Title",
+          "option1": "Default Title",
+          "option2": null,
+          "option3": null,
+          "sku": "",
+          "price": 169.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/media/products/custom-white-ceramic-mug-aaa-q-5569d6-1.png",
+          "alt": "Custom White Ceramic Mug AAA Quality 11oz | Personalized Photo & Design Mug",
+          "width": 1402,
+          "height": 1122
+        },
+        {
+          "src": "/assets/media/products/custom-white-ceramic-mug-aaa-q-5569d6-2.png",
+          "alt": "Custom White Ceramic Mug AAA Quality 11oz | Personalized Photo & Design Mug",
+          "width": 1402,
+          "height": 1122
+        },
+        {
+          "src": "/assets/media/products/custom-white-ceramic-mug-aaa-q-5569d6-3.png",
+          "alt": "Custom White Ceramic Mug AAA Quality 11oz | Personalized Photo & Design Mug",
+          "width": 1402,
+          "height": 1122
+        },
+        {
+          "src": "/assets/media/products/custom-white-ceramic-mug-aaa-q-5569d6-4.png",
+          "alt": "Custom White Ceramic Mug AAA Quality 11oz | Personalized Photo & Design Mug",
+          "width": 1402,
+          "height": 1122
+        }
+      ]
+    },
+    {
+      "handle": "rgb-gaming-mouse-pad-large-soft-led-extended-desk-mat",
+      "title": "RGB Gaming Mouse Pad – Large Soft LED Extended Desk Mat",
+      "body_html": "<p>Enhance your gaming and workspace setup with this RGB Gaming Mouse Pad. Featuring vibrant LED lighting with multiple color modes, a smooth microfiber surface for precise mouse control, and a non-slip natural rubber base for stability. The large extended design accommodates both your keyboard and mouse, while the plug-and-play USB connection and memory function provide a convenient user experience. Ideal for gaming, office work, and everyday computer use.</p>",
+      "vendor": "GA",
+      "product_type": "Electronics",
+      "tags": "",
+      "price": 799.0,
+      "compare_at_price": null,
+      "available": 1,
+      "allow_custom_upload": 0,
+      "free_delivery": 1,
+      "image_ratio": "100.0%",
+      "options": [
+        {
+          "name": "Color",
+          "position": 1,
+          "values": [
+            "Black with RGB Lighting"
+          ]
+        },
+        {
+          "name": "Size",
+          "position": 2,
+          "values": [
+            "800 × 300 mm"
+          ]
+        },
+        {
+          "name": "Material",
+          "position": 3,
+          "values": [
+            "Microfiber Cloth & Natural Rubber"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "title": "Black with RGB Lighting / 800 × 300 mm / Microfiber Cloth & Natural Rubber",
+          "option1": "Black with RGB Lighting",
+          "option2": "800 × 300 mm",
+          "option3": "Microfiber Cloth & Natural Rubber",
+          "sku": "GMP-BLK-R",
+          "price": 799.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/media/products/rgb-gaming-mouse-pad-large-sof-a7f3d4-1.webp",
+          "alt": "RGB Gaming Mouse Pad – Large Soft LED Extended Desk Mat",
+          "width": 1280,
+          "height": 1280
+        },
+        {
+          "src": "/assets/media/products/rgb-gaming-mouse-pad-large-sof-a7f3d4-2.webp",
+          "alt": "RGB Gaming Mouse Pad – Large Soft LED Extended Desk Mat",
+          "width": 320,
+          "height": 320
+        },
+        {
+          "src": "/assets/media/products/rgb-gaming-mouse-pad-large-sof-a7f3d4-3.webp",
+          "alt": "RGB Gaming Mouse Pad – Large Soft LED Extended Desk Mat",
+          "width": 320,
+          "height": 320
+        }
+      ]
+    },
+    {
+      "handle": "300ml-ceramic-electric-coffee-mug-warmer-set-with-smart-heating-coaster-for-home-office-green",
+      "title": "300ml Ceramic Electric Coffee Mug Warmer Set with Smart Heating Coaster for Home & Office | Green",
+      "body_html": "<p>Enjoy your favorite hot beverages at the perfect temperature with this 300ml Ceramic Electric Coffee Mug Warmer Set. Featuring a premium ceramic mug and a smart heating coaster, it helps maintain the warmth of coffee, tea, milk, hot chocolate, and other beverages for extended periods. The stylish design complements home and office desks, while the constant temperature heating function provides a comfortable drinking experience. Ideal for workspaces, study tables, gifting, and daily use.</p>",
+      "vendor": "BE",
+      "product_type": "Home & Kitchen",
+      "tags": "",
+      "price": 749.0,
+      "compare_at_price": null,
+      "available": 1,
+      "allow_custom_upload": 0,
+      "free_delivery": 1,
+      "image_ratio": "100.0%",
+      "options": [
+        {
+          "name": "Color",
+          "position": 1,
+          "values": [
+            "Green"
+          ]
+        },
+        {
+          "name": "Size",
+          "position": 2,
+          "values": [
+            "300ml"
+          ]
+        },
+        {
+          "name": "Material",
+          "position": 3,
+          "values": [
+            "Ceramic Mug + ABS Heating Base"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "title": "Green / 300ml / Ceramic Mug + ABS Heating Base",
+          "option1": "Green",
+          "option2": "300ml",
+          "option3": "Ceramic Mug + ABS Heating Base",
+          "sku": "ECM-300ML-GRN",
+          "price": 749.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/media/products/300ml-ceramic-electric-coffee-bfb445-1.jpg",
+          "alt": "300ml Ceramic Electric Coffee Mug Warmer Set with Smart Heating Coaster for Home & Office | Green",
+          "width": 224,
+          "height": 224
+        },
+        {
+          "src": "/assets/media/products/300ml-ceramic-electric-coffee-bfb445-2.jpg",
+          "alt": "300ml Ceramic Electric Coffee Mug Warmer Set with Smart Heating Coaster for Home & Office | Green",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "src": "/assets/media/products/300ml-ceramic-electric-coffee-bfb445-3.jpg",
+          "alt": "300ml Ceramic Electric Coffee Mug Warmer Set with Smart Heating Coaster for Home & Office | Green",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "src": "/assets/media/products/300ml-ceramic-electric-coffee-bfb445-4.jpg",
+          "alt": "300ml Ceramic Electric Coffee Mug Warmer Set with Smart Heating Coaster for Home & Office | Green",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "src": "/assets/media/products/300ml-ceramic-electric-coffee-bfb445-5.jpg",
+          "alt": "300ml Ceramic Electric Coffee Mug Warmer Set with Smart Heating Coaster for Home & Office | Green",
+          "width": 1500,
+          "height": 1498
+        },
+        {
+          "src": "/assets/media/products/300ml-ceramic-electric-coffee-bfb445-6.jpg",
+          "alt": "300ml Ceramic Electric Coffee Mug Warmer Set with Smart Heating Coaster for Home & Office | Green",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "src": "/assets/media/products/300ml-ceramic-electric-coffee-bfb445-7.jpg",
+          "alt": "300ml Ceramic Electric Coffee Mug Warmer Set with Smart Heating Coaster for Home & Office | Green",
+          "width": 1500,
+          "height": 1500
+        }
+      ]
+    },
+    {
+      "handle": "magnetic-bluetooth-speaker-portable-wireless-mini-speaker-with-rgb-led-lights",
+      "title": "Magnetic Bluetooth Speaker – Portable Wireless Mini Speaker with RGB LED Lights",
+      "body_html": "<p>Enjoy immersive sound with this Magnetic Bluetooth Speaker featuring wireless Bluetooth connectivity and vibrant RGB LED lighting. Designed with a magnetic mounting system, it easily attaches to compatible metal surfaces for convenient use. Its compact and portable design makes it perfect for home, office, travel, outdoor activities, and gaming setups. Rechargeable and easy to carry, it delivers an enjoyable audio experience wherever you go.</p>",
+      "vendor": "GA",
+      "product_type": "Electronics",
+      "tags": "",
+      "price": 699.0,
+      "compare_at_price": null,
+      "available": 1,
+      "allow_custom_upload": 0,
+      "free_delivery": 1,
+      "image_ratio": "100.0%",
+      "options": [
+        {
+          "name": "Color",
+          "position": 1,
+          "values": [
+            "Black"
+          ]
+        },
+        {
+          "name": "Size",
+          "position": 2,
+          "values": [
+            "Standard"
+          ]
+        },
+        {
+          "name": "Material",
+          "position": 3,
+          "values": [
+            "ABS Plastic & Metal"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "title": "Black / Standard / ABS Plastic & Metal",
+          "option1": "Black",
+          "option2": "Standard",
+          "option3": "ABS Plastic & Metal",
+          "sku": "MBS-BLK-S",
+          "price": 699.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/media/products/magnetic-bluetooth-speaker-por-df7600-1.jpg",
+          "alt": "Magnetic Bluetooth Speaker – Portable Wireless Mini Speaker with RGB LED Lights",
+          "width": 500,
+          "height": 500
+        },
+        {
+          "src": "/assets/media/products/magnetic-bluetooth-speaker-por-df7600-2.webp",
+          "alt": "Magnetic Bluetooth Speaker – Portable Wireless Mini Speaker with RGB LED Lights",
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "src": "/assets/media/products/magnetic-bluetooth-speaker-por-df7600-3.jpg",
+          "alt": "Magnetic Bluetooth Speaker – Portable Wireless Mini Speaker with RGB LED Lights",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "src": "/assets/media/products/magnetic-bluetooth-speaker-por-df7600-4.jpg",
+          "alt": "Magnetic Bluetooth Speaker – Portable Wireless Mini Speaker with RGB LED Lights",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "src": "/assets/media/products/magnetic-bluetooth-speaker-por-df7600-5.webp",
+          "alt": "Magnetic Bluetooth Speaker – Portable Wireless Mini Speaker with RGB LED Lights",
+          "width": 320,
+          "height": 320
+        },
+        {
+          "src": "/assets/media/products/magnetic-bluetooth-speaker-por-df7600-6.webp",
+          "alt": "Magnetic Bluetooth Speaker – Portable Wireless Mini Speaker with RGB LED Lights",
+          "width": 842,
+          "height": 800
+        },
+        {
+          "src": "/assets/media/products/magnetic-bluetooth-speaker-por-df7600-7.webp",
+          "alt": "Magnetic Bluetooth Speaker – Portable Wireless Mini Speaker with RGB LED Lights",
+          "width": 1024,
+          "height": 1024
+        }
+      ]
+    },
+    {
+      "handle": "80-colour-sketch-pens-assorted-shades",
+      "title": "80 Colour Sketch Pens – Assorted Shades",
+      "body_html": "<p>80 Colour Sketch Pens – Assorted Shades</p>",
+      "vendor": "DI",
+      "product_type": "Home - Home Improvement",
+      "tags": "",
+      "price": 749.0,
+      "compare_at_price": null,
+      "available": 1,
+      "allow_custom_upload": 0,
+      "free_delivery": 1,
+      "image_ratio": "110.1533%",
+      "options": [
+        {
+          "name": "Color",
+          "position": 1,
+          "values": [
+            "Multicolor"
+          ]
+        },
+        {
+          "name": "Size",
+          "position": 2,
+          "values": [
+            "Standard"
+          ]
+        },
+        {
+          "name": "Material",
+          "position": 3,
+          "values": [
+            "Plastic + Water-Based Ink"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "title": "Multicolor / Standard / Plastic + Water-Based Ink",
+          "option1": "Multicolor",
+          "option2": "Standard",
+          "option3": "Plastic + Water-Based Ink",
+          "sku": "CSP-080",
+          "price": 749.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/media/products/80-colour-sketch-pens-assorted-55b4fa-1.jpg",
+          "alt": "80 Colour Sketch Pens – Assorted Shades",
+          "width": 522,
+          "height": 575
+        },
+        {
+          "src": "/assets/media/products/80-colour-sketch-pens-assorted-55b4fa-2.jpg",
+          "alt": "80 Colour Sketch Pens – Assorted Shades",
+          "width": 522,
+          "height": 520
+        },
+        {
+          "src": "/assets/media/products/80-colour-sketch-pens-assorted-55b4fa-3.jpg",
+          "alt": "80 Colour Sketch Pens – Assorted Shades",
+          "width": 455,
+          "height": 735
+        },
+        {
+          "src": "/assets/media/products/80-colour-sketch-pens-assorted-55b4fa-4.jpg",
+          "alt": "80 Colour Sketch Pens – Assorted Shades",
+          "width": 522,
+          "height": 521
+        },
+        {
+          "src": "/assets/media/products/80-colour-sketch-pens-assorted-55b4fa-5.jpg",
+          "alt": "80 Colour Sketch Pens – Assorted Shades",
+          "width": 522,
+          "height": 520
+        },
+        {
+          "src": "/assets/media/products/80-colour-sketch-pens-assorted-55b4fa-6.jpg",
+          "alt": "80 Colour Sketch Pens – Assorted Shades",
+          "width": 522,
+          "height": 575
+        },
+        {
+          "src": "/assets/media/products/80-colour-sketch-pens-assorted-55b4fa-7.jpg",
+          "alt": "80 Colour Sketch Pens – Assorted Shades",
+          "width": 522,
+          "height": 521
+        }
+      ]
+    },
+    {
+      "handle": "3d-crystal-diya-pack-of-12",
+      "title": "3D Crystal Diya – Pack of 12",
+      "body_html": "<p>Add a sparkling touch to your festive décor with this Pack of 12 3D Crystal Diyas. Featuring an attractive crystal-inspired design, these decorative diyas enhance the beauty of pooja rooms, home temples, tabletops, and festive displays. Their elegant appearance makes them suitable for Diwali, religious ceremonies, weddings, and special occasions. Arrange them around your home mandir or entrance to create a beautiful festive setting, or use them as decorative additions to your celebration décor.</p>",
+      "vendor": "HL",
+      "product_type": "Home - Home Improvement",
+      "tags": "",
+      "price": 299.0,
+      "compare_at_price": null,
+      "available": 1,
+      "allow_custom_upload": 0,
+      "free_delivery": 0,
+      "image_ratio": "100.0%",
+      "options": [
+        {
+          "name": "Color",
+          "position": 1,
+          "values": [
+            "Transparent / Multicolor"
+          ]
+        },
+        {
+          "name": "Size",
+          "position": 2,
+          "values": [
+            "Standard / Decorative"
+          ]
+        },
+        {
+          "name": "Material",
+          "position": 3,
+          "values": [
+            "Crystal-Look Plastic"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "title": "Transparent / Multicolor / Standard / Decorative / Crystal-Look Plastic",
+          "option1": "Transparent / Multicolor",
+          "option2": "Standard / Decorative",
+          "option3": "Crystal-Look Plastic",
+          "sku": "3DCD-012",
+          "price": 299.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/media/products/3d-crystal-diya-pack-of-12-6388c8-1.jpg",
+          "alt": "3D Crystal Diya – Pack of 12",
+          "width": 466,
+          "height": 466
+        },
+        {
+          "src": "/assets/media/products/3d-crystal-diya-pack-of-12-6388c8-2.jpg",
+          "alt": "3D Crystal Diya – Pack of 12",
+          "width": 466,
+          "height": 354
+        },
+        {
+          "src": "/assets/media/products/3d-crystal-diya-pack-of-12-6388c8-3.jpg",
+          "alt": "3D Crystal Diya – Pack of 12",
+          "width": 466,
+          "height": 466
+        },
+        {
+          "src": "/assets/media/products/3d-crystal-diya-pack-of-12-6388c8-4.jpg",
+          "alt": "3D Crystal Diya – Pack of 12",
+          "width": 466,
+          "height": 466
+        },
+        {
+          "src": "/assets/media/products/3d-crystal-diya-pack-of-12-6388c8-5.jpg",
+          "alt": "3D Crystal Diya – Pack of 12",
+          "width": 466,
+          "height": 466
+        },
+        {
+          "src": "/assets/media/products/3d-crystal-diya-pack-of-12-6388c8-6.jpg",
+          "alt": "3D Crystal Diya – Pack of 12",
+          "width": 522,
+          "height": 522
+        },
+        {
+          "src": "/assets/media/products/3d-crystal-diya-pack-of-12-6388c8-7.jpg",
+          "alt": "3D Crystal Diya – Pack of 12",
+          "width": 425,
+          "height": 425
+        }
+      ]
+    },
+    {
+      "handle": "tealight-candles-pack-of-50",
+      "title": "Tealight Candles – Pack of 50",
+      "body_html": "<p>Brighten your home and celebrations with this Pack of 50 Tealight Candles. Made for decorative lighting, these compact candles are suitable for Diwali, pooja ceremonies, weddings, parties, festivals, and everyday home décor. Their versatile design makes them ideal for use in suitable candle holders, decorative arrangements, and festive displays. They also make a practical choice for gifting and special occasions. Always place candles on a stable, heat-resistant surface and never leave a burning candle unattended.</p>",
+      "vendor": "HL",
+      "product_type": "Home - Home Improvement",
+      "tags": "",
+      "price": 299.0,
+      "compare_at_price": null,
+      "available": 1,
+      "allow_custom_upload": 0,
+      "free_delivery": 0,
+      "image_ratio": "100.0%",
+      "options": [
+        {
+          "name": "Color",
+          "position": 1,
+          "values": [
+            "White"
+          ]
+        },
+        {
+          "name": "Size",
+          "position": 2,
+          "values": [
+            "Standard Tealight"
+          ]
+        },
+        {
+          "name": "Material",
+          "position": 3,
+          "values": [
+            "Paraffin Wax + Metal Candle Cups"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "title": "White / Standard Tealight / Paraffin Wax + Metal Candle Cups",
+          "option1": "White",
+          "option2": "Standard Tealight",
+          "option3": "Paraffin Wax + Metal Candle Cups",
+          "sku": "TLC-050",
+          "price": 299.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/media/products/tealight-candles-pack-of-50-9d9595-1.jpg",
+          "alt": "Tealight Candles – Pack of 50",
+          "width": 522,
+          "height": 522
+        },
+        {
+          "src": "/assets/media/products/tealight-candles-pack-of-50-9d9595-2.jpg",
+          "alt": "Tealight Candles – Pack of 50",
+          "width": 522,
+          "height": 523
+        },
+        {
+          "src": "/assets/media/products/tealight-candles-pack-of-50-9d9595-3.jpg",
+          "alt": "Tealight Candles – Pack of 50",
+          "width": 522,
+          "height": 499
+        },
+        {
+          "src": "/assets/media/products/tealight-candles-pack-of-50-9d9595-4.jpg",
+          "alt": "Tealight Candles – Pack of 50",
+          "width": 522,
+          "height": 529
+        },
+        {
+          "src": "/assets/media/products/tealight-candles-pack-of-50-9d9595-5.jpg",
+          "alt": "Tealight Candles – Pack of 50",
+          "width": 522,
+          "height": 521
+        },
+        {
+          "src": "/assets/media/products/tealight-candles-pack-of-50-9d9595-6.jpg",
+          "alt": "Tealight Candles – Pack of 50",
+          "width": 466,
+          "height": 528
+        }
+      ]
+    },
+    {
+      "handle": "motichoor-laddoo-scented-candles-pack-of-4",
+      "title": "Motichoor Laddoo Scented Candles – Pack of 4",
+      "body_html": "<p>Add a festive and decorative touch to your celebrations with this Pack of 4 Motichoor Laddoo Scented Candles. Inspired by the traditional Indian sweet, these unique candles feature a delightful laddoo-style design that makes them ideal for Diwali décor, pooja arrangements, festive gifting, and special occasions. Their decorative appearance adds charm to tabletops, gift hampers, and celebration displays. A creative festive accessory for homes and thoughtful gifting.</p>",
+      "vendor": "HL",
+      "product_type": "Home - Home Improvement",
+      "tags": "",
+      "price": 249.0,
+      "compare_at_price": null,
+      "available": 1,
+      "allow_custom_upload": 0,
+      "free_delivery": 0,
+      "image_ratio": "100.0%",
+      "options": [
+        {
+          "name": "Color",
+          "position": 1,
+          "values": [
+            "Orange / Saffron"
+          ]
+        },
+        {
+          "name": "Size",
+          "position": 2,
+          "values": [
+            "Small / Decorative"
+          ]
+        },
+        {
+          "name": "Material",
+          "position": 3,
+          "values": [
+            "Scented Wax + Candle Wick"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "title": "Orange / Saffron / Small / Decorative / Scented Wax + Candle Wick",
+          "option1": "Orange / Saffron",
+          "option2": "Small / Decorative",
+          "option3": "Scented Wax + Candle Wick",
+          "sku": "MLSC-004",
+          "price": 249.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/media/products/motichoor-laddoo-scented-candl-952f6c-1.jpg",
+          "alt": "Motichoor Laddoo Scented Candles – Pack of 4",
+          "width": 522,
+          "height": 522
+        },
+        {
+          "src": "/assets/media/products/motichoor-laddoo-scented-candl-952f6c-2.jpg",
+          "alt": "Motichoor Laddoo Scented Candles – Pack of 4",
+          "width": 522,
+          "height": 522
+        },
+        {
+          "src": "/assets/media/products/motichoor-laddoo-scented-candl-952f6c-3.jpg",
+          "alt": "Motichoor Laddoo Scented Candles – Pack of 4",
+          "width": 522,
+          "height": 522
+        },
+        {
+          "src": "/assets/media/products/motichoor-laddoo-scented-candl-952f6c-4.jpg",
+          "alt": "Motichoor Laddoo Scented Candles – Pack of 4",
+          "width": 522,
+          "height": 522
+        },
+        {
+          "src": "/assets/media/products/motichoor-laddoo-scented-candl-952f6c-5.jpg",
+          "alt": "Motichoor Laddoo Scented Candles – Pack of 4",
+          "width": 334,
+          "height": 500
+        }
+      ]
+    },
+    {
+      "handle": "wooden-mdf-shadow-reflection-dia-pack-of-2",
+      "title": "Wooden mdf  shadow reflection dia – Pack of 2",
+      "body_html": "<p>Enhance your festive décor with this 3D Reflective Shadow Diya Candle Holder, made from wooden MDF. Its unique reflective design creates an attractive shadow effect when the diya light is switched on or a candle is placed as intended by the manufacturer. Ideal for Diwali decorations, pooja rooms, tabletops, and festive displays, this decorative diya adds a warm traditional touch to your home. The pack of 2 is suitable for decorating shelves, entrances, and small prayer spaces.</p>",
+      "vendor": "HL",
+      "product_type": "Home - Home Improvement",
+      "tags": "",
+      "price": 249.0,
+      "compare_at_price": null,
+      "available": 1,
+      "allow_custom_upload": 0,
+      "free_delivery": 0,
+      "image_ratio": "100.0%",
+      "options": [
+        {
+          "name": "Color",
+          "position": 1,
+          "values": [
+            "Natural Wood / Multicolor Reflection"
+          ]
+        },
+        {
+          "name": "Size",
+          "position": 2,
+          "values": [
+            "Standard / Tabletop"
+          ]
+        },
+        {
+          "name": "Material",
+          "position": 3,
+          "values": [
+            "Wooden MDF"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "title": "Natural Wood / Multicolor Reflection / Standard / Tabletop / Wooden MDF",
+          "option1": "Natural Wood / Multicolor Reflection",
+          "option2": "Standard / Tabletop",
+          "option3": "Wooden MDF",
+          "sku": "3RSDH-002",
+          "price": 249.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/media/products/wooden-mdf-shadow-reflection-d-3c9fec-1.jpg",
+          "alt": "Wooden mdf  shadow reflection dia – Pack of 2",
+          "width": 569,
+          "height": 569
+        },
+        {
+          "src": "/assets/media/products/wooden-mdf-shadow-reflection-d-3c9fec-2.jpg",
+          "alt": "Wooden mdf  shadow reflection dia – Pack of 2",
+          "width": 569,
+          "height": 379
+        },
+        {
+          "src": "/assets/media/products/wooden-mdf-shadow-reflection-d-3c9fec-3.jpg",
+          "alt": "Wooden mdf  shadow reflection dia – Pack of 2",
+          "width": 569,
+          "height": 569
+        }
+      ]
+    },
+    {
+      "handle": "motion-sensor-closet-lights-led-puck-lights-pack-of-1",
+      "title": "Motion Sensor Closet Lights – LED Puck Lights (Pack of 1)",
+      "body_html": "<p>Motion Sensor Closet Lights – LED Puck Lights (Pack of 1)</p>",
+      "vendor": "OL",
+      "product_type": "Home - Home Improvement",
+      "tags": "",
+      "price": 349.0,
+      "compare_at_price": null,
+      "available": 1,
+      "allow_custom_upload": 0,
+      "free_delivery": 0,
+      "image_ratio": "122.6714%",
+      "options": [
+        {
+          "name": "Color",
+          "position": 1,
+          "values": [
+            "Warm White"
+          ]
+        },
+        {
+          "name": "Size",
+          "position": 2,
+          "values": [
+            "Universal"
+          ]
+        },
+        {
+          "name": "Material",
+          "position": 3,
+          "values": [
+            "ABS Plastic + LED"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "title": "Warm White / Universal / ABS Plastic + LED",
+          "option1": "Warm White",
+          "option2": "Universal",
+          "option3": "ABS Plastic + LED",
+          "sku": "MSCL-004",
+          "price": 349.0,
+          "compare_at_price": null,
+          "available": 1,
+          "inventory_qty": 50
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/media/products/motion-sensor-closet-lights-le-740157-1.jpg",
+          "alt": "Motion Sensor Closet Lights – LED Puck Lights (Pack of 1)",
+          "width": 569,
+          "height": 698
+        },
+        {
+          "src": "/assets/media/products/motion-sensor-closet-lights-le-740157-2.jpg",
+          "alt": "Motion Sensor Closet Lights – LED Puck Lights (Pack of 1)",
+          "width": 1200,
+          "height": 1500
+        },
+        {
+          "src": "/assets/media/products/motion-sensor-closet-lights-le-740157-3.jpg",
+          "alt": "Motion Sensor Closet Lights – LED Puck Lights (Pack of 1)",
+          "width": 569,
+          "height": 711
+        },
+        {
+          "src": "/assets/media/products/motion-sensor-closet-lights-le-740157-4.jpg",
+          "alt": "Motion Sensor Closet Lights – LED Puck Lights (Pack of 1)",
+          "width": 569,
+          "height": 711
+        }
+      ]
+    }
+  ]
+}

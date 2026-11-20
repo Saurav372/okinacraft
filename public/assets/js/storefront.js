@@ -1,0 +1,534 @@
+/* Cluster Studio Storefront Interactions (Zero external JS dependencies) */
+(function () {
+  'use strict';
+
+  const basePath = (window.CS_BASE || '').replace(/\/$/, '');
+
+  // 1. Sticky Header Reduce Logo Size on Scroll
+  const stickyHeader = document.querySelector('.section-header');
+  if (stickyHeader) {
+    const onScroll = () => {
+      if (window.scrollY > 40) {
+        stickyHeader.classList.add('scrolled-past-header');
+      } else {
+        stickyHeader.classList.remove('scrolled-past-header');
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  // 2. Mobile Menu Drawer
+  const drawer = document.getElementById('mobile-menu-drawer');
+  const drawerBackdrop = document.getElementById('mobile-drawer-backdrop');
+  const openDrawerBtn = document.getElementById('open-mobile-menu');
+  const closeDrawerBtn = document.getElementById('close-mobile-menu');
+
+  function toggleDrawer(open) {
+    if (!drawer || !drawerBackdrop) return;
+    drawer.classList.toggle('open', open);
+    drawerBackdrop.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  if (openDrawerBtn) openDrawerBtn.addEventListener('click', () => toggleDrawer(true));
+  if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', () => toggleDrawer(false));
+  if (drawerBackdrop) drawerBackdrop.addEventListener('click', () => toggleDrawer(false));
+
+  // 3. Predictive Search Modal
+  const searchModal = document.getElementById('search-modal');
+  const searchInput = document.getElementById('predictive-search-input');
+  const searchResults = document.getElementById('predictive-search-results');
+  const openSearchBtns = document.querySelectorAll('[data-open-search]');
+  const closeSearchBtns = document.querySelectorAll('[data-close-search]');
+  let searchTimer = null;
+
+  function toggleSearch(open) {
+    if (!searchModal) return;
+    searchModal.classList.toggle('open', open);
+    if (open && searchInput) {
+      setTimeout(() => searchInput.focus(), 60);
+    }
+  }
+
+  openSearchBtns.forEach((b) => b.addEventListener('click', () => toggleSearch(true)));
+  closeSearchBtns.forEach((b) => b.addEventListener('click', () => toggleSearch(false)));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      toggleSearch(false);
+      toggleDrawer(false);
+      hideCartNotification();
+    }
+  });
+
+  if (searchInput && searchResults) {
+    searchInput.addEventListener('input', () => {
+      clearTimeout(searchTimer);
+      const q = searchInput.value.trim();
+      if (q.length < 1) {
+        searchResults.classList.remove('has-results');
+        searchResults.innerHTML = '';
+        return;
+      }
+      searchTimer = setTimeout(async () => {
+        try {
+          const resp = await fetch(`${basePath}/api/search/suggest?q=${encodeURIComponent(q)}`, {
+            headers: { Accept: 'application/json' },
+          });
+          const data = await resp.json();
+          if (!data.ok) return;
+          if (!data.products || data.products.length === 0) {
+            searchResults.innerHTML = `<div class="predictive-results__heading">No results found for "${escapeHtml(q)}"</div>`;
+            searchResults.classList.add('has-results');
+            return;
+          }
+          const rows = data.products
+            .map(
+              (p) => `
+              <a class="predictive-results__item" href="${p.url}">
+                ${p.image ? `<img class="predictive-results__thumb" src="${p.image}" alt="${escapeHtml(p.title)}">` : ''}
+                <div>
+                  <div style="font-size:1.45rem;color:#000;line-height:1.3">${escapeHtml(p.title)}</div>
+                  <div style="font-size:1.35rem;color:rgba(0,0,0,0.65);margin-top:0.2rem">${escapeHtml(p.price)} ${!p.available ? '· Sold out' : ''}</div>
+                </div>
+              </a>`
+            )
+            .join('');
+          searchResults.innerHTML = `
+            <div class="predictive-results__heading">Products</div>
+            ${rows}
+            <a class="predictive-results__footer" href="${basePath}/search?q=${encodeURIComponent(q)}">Search for "${escapeHtml(q)}" →</a>
+          `;
+          searchResults.classList.add('has-results');
+        } catch (err) {
+          console.error(err);
+        }
+      }, 180);
+    });
+  }
+
+  // 4. Deferred Video Player ("How to Buy from Cluster Studio")
+  const videoBtn = document.getElementById('deferred-video-btn');
+  if (videoBtn) {
+    videoBtn.addEventListener('click', () => {
+      const container = videoBtn.closest('.video-section__media');
+      const src = videoBtn.getAttribute('data-video-src');
+      const poster = videoBtn.getAttribute('data-video-poster');
+      if (!container || !src) return;
+      container.innerHTML = `
+        <video class="video-section__player" controls autoplay playsinline poster="${poster || ''}">
+          <source src="${src}" type="video/mp4">
+          Your browser does not support video playback.
+        </video>
+      `;
+    });
+  }
+
+  // 5. Cart Notification Popup & Bubble Sync
+  const cartNotif = document.getElementById('cart-notification');
+  const cartNotifProd = document.getElementById('cart-notification-product');
+  const cartNotifClose = document.querySelectorAll('[data-close-cart-notif]');
+
+  function hideCartNotification() {
+    if (cartNotif) cartNotif.classList.remove('open');
+  }
+  cartNotifClose.forEach((b) => b.addEventListener('click', hideCartNotification));
+
+  function updateCartBubble(count) {
+    const bubble = document.getElementById('cart-count-bubble');
+    if (!bubble) return;
+    bubble.textContent = String(count);
+    bubble.classList.toggle('hidden', count <= 0);
+  }
+
+  function showCartNotification(item, totalCount) {
+    if (!cartNotif || !cartNotifProd || !item) return;
+    cartNotifProd.innerHTML = `
+      ${item.image_url ? `<img src="${item.image_url}" alt="${escapeHtml(item.title)}">` : ''}
+      <div>
+        <div style="font-size:1.45rem;color:#000;line-height:1.35">${escapeHtml(item.title)}</div>
+        ${item.variant_title ? `<div style="font-size:1.3rem;color:rgba(0,0,0,0.65);margin-top:0.2rem">${escapeHtml(item.variant_title)}</div>` : ''}
+        <div style="font-size:1.35rem;color:#000;margin-top:0.3rem">${escapeHtml(item.unit_price_formatted)} × ${item.quantity}</div>
+      </div>
+    `;
+    const viewBtn = document.getElementById('cart-notification-view-btn');
+    if (viewBtn) viewBtn.textContent = `View cart (${totalCount})`;
+    cartNotif.classList.add('open');
+  }
+
+  // 6. Product Detail Page — Gallery, Variant Pills, Qty Stepper, Custom Upload Preview, AJAX Add to Cart
+  const mainImg = document.getElementById('pdp-main-image');
+  document.querySelectorAll('.product-gallery__thumb').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const src = btn.getAttribute('data-src');
+      if (mainImg && src) mainImg.src = src;
+      document.querySelectorAll('.product-gallery__thumb').forEach((t) => t.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // Quantity stepper
+  document.querySelectorAll('.qty-stepper').forEach((stepper) => {
+    const input = stepper.querySelector('input');
+    const dec = stepper.querySelector('[data-qty-dec]');
+    const inc = stepper.querySelector('[data-qty-inc]');
+    if (!input) return;
+    if (dec) {
+      dec.addEventListener('click', () => {
+        const val = Math.max(1, parseInt(input.value || '1', 10) - 1);
+        input.value = String(val);
+        input.dispatchEvent(new Event('change'));
+      });
+    }
+    if (inc) {
+      inc.addEventListener('click', () => {
+        const val = Math.min(10000, parseInt(input.value || '1', 10) + 1);
+        input.value = String(val);
+        input.dispatchEvent(new Event('change'));
+      });
+    }
+  });
+
+  // Variant Selector (Color Swatches + Size Selection)
+  const variantsJsonEl = document.getElementById('pdp-variants-json');
+  if (variantsJsonEl) {
+    const variants = JSON.parse(variantsJsonEl.textContent || '[]');
+    const variantIdInput = document.getElementById('pdp-variant-id');
+    const priceDisplay = document.getElementById('pdp-price-display');
+    const addBtn = document.getElementById('pdp-add-btn');
+    const buyBtn = document.getElementById('pdp-buy-btn');
+    const mainImg = document.getElementById('pdp-main-image');
+    const galleryThumbs = document.querySelectorAll('.product-gallery__thumb');
+
+    const selected = {};
+    document.querySelectorAll('.variant-group').forEach((group) => {
+      const pos = group.getAttribute('data-option-pos');
+      const activeEl = group.querySelector('.variant-pill.active, .color-swatch.active');
+      if (pos && activeEl) {
+        selected[pos] = activeEl.getAttribute('data-value');
+      }
+
+      // Handle standard pills (e.g. Size, Material)
+      group.querySelectorAll('.variant-pill').forEach((pill) => {
+        pill.addEventListener('click', () => {
+          group.querySelectorAll('.variant-pill').forEach((p) => p.classList.remove('active'));
+          pill.classList.add('active');
+          selected[pos] = pill.getAttribute('data-value');
+          syncVariant();
+        });
+      });
+
+      // Handle color swatches (e.g. Color)
+      group.querySelectorAll('.color-swatch').forEach((swatch) => {
+        swatch.addEventListener('click', () => {
+          group.querySelectorAll('.color-swatch').forEach((s) => s.classList.remove('active'));
+          swatch.classList.add('active');
+          const val = swatch.getAttribute('data-value');
+          selected[pos] = val;
+
+          // Update header label text (e.g. Color: Maroon)
+          const labelVal = document.getElementById('selected-opt-' + pos);
+          if (labelVal) {
+            labelVal.textContent = val;
+          }
+
+          // Switch gallery image and filter thumbnails for this color
+          const directImg = swatch.getAttribute('data-image');
+          switchGalleryColor(val, directImg);
+
+          syncVariant();
+        });
+      });
+    });
+
+    function switchGalleryColor(colorName, directImg) {
+      if (!colorName) return;
+      const lower = colorName.toLowerCase();
+      let firstVisibleThumb = null;
+
+      if (galleryThumbs && galleryThumbs.length > 0) {
+        let hasColorThumbs = false;
+        galleryThumbs.forEach((thumb) => {
+          const tColor = (thumb.getAttribute('data-color') || '').toLowerCase();
+          if (tColor) {
+            hasColorThumbs = true;
+            if (tColor === lower) {
+              thumb.style.display = '';
+              if (!firstVisibleThumb) firstVisibleThumb = thumb;
+            } else {
+              thumb.style.display = 'none';
+              thumb.classList.remove('active');
+            }
+          }
+        });
+
+        if (hasColorThumbs && firstVisibleThumb) {
+          galleryThumbs.forEach((t) => t.classList.remove('active'));
+          firstVisibleThumb.classList.add('active');
+          const src = firstVisibleThumb.getAttribute('data-src');
+          if (mainImg && src) {
+            mainImg.src = src;
+          }
+          return;
+        }
+      }
+
+      // Fallback: direct image on swatch
+      if (mainImg && directImg) {
+        mainImg.src = directImg;
+      }
+    }
+
+    function syncVariant() {
+      const match = variants.find((v) => {
+        if (selected['1'] && v.option1 !== selected['1']) return false;
+        if (selected['2'] && v.option2 !== selected['2']) return false;
+        if (selected['3'] && v.option3 !== selected['3']) return false;
+        return true;
+      });
+      if (!match) return;
+      if (variantIdInput) variantIdInput.value = String(match.id);
+
+      // If bulk pricing is active on this product, keep bulk pricing in sync
+      if (typeof recalculateBulkPricing === 'function' && bulkTiers && bulkTiers.length) {
+        recalculateBulkPricing();
+      } else if (priceDisplay) {
+        priceDisplay.textContent = 'Rs. ' + Number(match.price).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' INR';
+      }
+
+      const isAvail = Boolean(Number(match.available));
+      if (addBtn) {
+        addBtn.disabled = !isAvail;
+        addBtn.textContent = isAvail ? 'Add to cart' : 'Sold out';
+      }
+      if (buyBtn) {
+        buyBtn.disabled = !isAvail;
+        buyBtn.style.display = isAvail ? '' : 'none';
+      }
+    }
+  }
+
+  // Custom Design Image Upload Preview & Accordion Integration
+  const customFile = document.getElementById('custom-design-file');
+  const customPreview = document.getElementById('custom-design-preview');
+  const customPreviewImg = document.getElementById('custom-design-preview-img');
+  const customPreviewName = document.getElementById('custom-design-preview-name');
+  const customAccordion = document.getElementById('customizer-accordion');
+  const customHint = document.getElementById('customizer-status-hint');
+
+  if (customFile && customPreview) {
+    customFile.addEventListener('change', () => {
+      const f = customFile.files && customFile.files[0];
+      if (!f) {
+        customPreview.classList.remove('visible');
+        if (customHint) {
+          customHint.textContent = 'Click to add photo, artwork, or print instructions';
+          customHint.style.color = '';
+          customHint.style.fontWeight = '';
+        }
+        return;
+      }
+      if (customPreviewName) customPreviewName.textContent = `${f.name} (${(f.size / 1024).toFixed(0)} KB)`;
+      if (customHint) {
+        customHint.textContent = `✓ Attached: ${f.name} (${(f.size / 1024).toFixed(0)} KB)`;
+        customHint.style.color = '#1b7f3b';
+        customHint.style.fontWeight = '600';
+      }
+      if (customAccordion && !customAccordion.open) {
+        customAccordion.open = true;
+      }
+      if (customPreviewImg) {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          customPreviewImg.src = ev.target.result;
+          customPreview.classList.add('visible');
+        };
+        reader.readAsDataURL(f);
+      }
+    });
+  }
+
+  // AJAX Add to Cart on PDP (keeps Buy It Now as normal form submit to /checkout!)
+  const pdpForm = document.getElementById('pdp-cart-form');
+  if (pdpForm) {
+    let clickedBuyNow = false;
+    const buyBtn = document.getElementById('pdp-buy-btn');
+    if (buyBtn) buyBtn.addEventListener('click', () => { clickedBuyNow = true; });
+
+    pdpForm.addEventListener('submit', async (e) => {
+      if (clickedBuyNow) {
+        clickedBuyNow = false;
+        return; // Let normal POST redirect straight to /checkout
+      }
+      e.preventDefault();
+      const addBtn = document.getElementById('pdp-add-btn');
+      const errBox = document.getElementById('pdp-form-error');
+      if (errBox) { errBox.style.display = 'none'; errBox.textContent = ''; }
+      if (addBtn) { addBtn.disabled = true; addBtn.textContent = 'Adding...'; }
+
+      try {
+        const fd = new FormData(pdpForm);
+        const resp = await fetch(`${basePath}/api/cart/add`, {
+          method: 'POST',
+          body: fd,
+          headers: { Accept: 'application/json' },
+        });
+        const data = await resp.json();
+        if (!data.ok) {
+          if (errBox) {
+            errBox.textContent = data.error || 'Could not add item to cart.';
+            errBox.style.display = 'block';
+          }
+        } else {
+          updateCartBubble(data.cart.count);
+          showCartNotification(data.item, data.cart.count);
+        }
+      } catch (err) {
+        pdpForm.submit();
+      } finally {
+        if (addBtn) { addBtn.disabled = false; addBtn.textContent = 'Add to cart'; }
+      }
+    });
+  }
+
+  // Tiered Bulk Pricing Calculator (Updates Main Pricing Directly - Vistaprint Style)
+  const bulkTiersEl = document.getElementById('pdp-bulk-tiers-json');
+  let bulkTiers = [];
+  if (bulkTiersEl) {
+    try {
+      bulkTiers = JSON.parse(bulkTiersEl.textContent || '[]');
+    } catch (e) {}
+  }
+
+  const pdpQty = document.getElementById('pdp-qty');
+  const pdpPriceDisplay = document.getElementById('pdp-price-display');
+  const bulkUnitBreakdown = document.getElementById('bulk-unit-breakdown');
+  const bulkDiscountBadge = document.getElementById('bulk-discount-badge');
+  const bulkDefaultNote = document.getElementById('bulk-default-note');
+  const intervalChips = document.querySelectorAll('.interval-chip');
+
+  function formatInr(num) {
+    return '₹' + Number(num).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function getBasePrice() {
+    const variantIdInput = document.getElementById('pdp-variant-id');
+    const curVid = variantIdInput ? parseInt(variantIdInput.value, 10) : null;
+    if (curVid && typeof variants !== 'undefined' && variants && variants.length) {
+      const found = variants.find(v => parseInt(v.id, 10) === curVid);
+      if (found && found.price) return parseFloat(found.price);
+    }
+    return 549.00;
+  }
+
+  function recalculateBulkPricing() {
+    if (!pdpQty || !bulkTiers || !bulkTiers.length) return;
+    const qty = Math.max(1, parseInt(pdpQty.value || '1', 10));
+    const basePrice = getBasePrice();
+
+    const allPrices = bulkTiers.map(t => parseFloat(t.unit_price)).filter(p => !isNaN(p) && p > 0);
+    const minPrice = allPrices.length ? Math.min(...allPrices) : basePrice;
+    const maxPrice = allPrices.length ? Math.max(...allPrices) : basePrice;
+
+    let matchedTier = null;
+    for (const t of bulkTiers) {
+      const minQ = parseInt(t.min_qty, 10) || 1;
+      const maxQ = t.max_qty !== null && t.max_qty !== undefined && String(t.max_qty).trim() !== '' ? parseInt(t.max_qty, 10) : Infinity;
+      if (qty >= minQ && qty <= maxQ) {
+        matchedTier = t;
+        break;
+      }
+    }
+
+    const unitPrice = matchedTier ? parseFloat(matchedTier.unit_price) : basePrice;
+    const discountPercent = matchedTier ? parseFloat(matchedTier.discount_percent || 0) : 0;
+    const totalAmount = unitPrice * qty;
+    const totalSavings = Math.max(0, (basePrice - unitPrice) * qty);
+
+    // Update Main Pricing in Place
+    if (pdpPriceDisplay) {
+      if (qty === 1) {
+        pdpPriceDisplay.innerHTML = `${formatInr(minPrice)} &ndash; ${formatInr(maxPrice)} <span class="bulk-price-each">each</span>`;
+        if (bulkDefaultNote) bulkDefaultNote.style.display = 'inline-block';
+        if (bulkUnitBreakdown) bulkUnitBreakdown.style.display = 'none';
+        if (bulkDiscountBadge) bulkDiscountBadge.style.display = 'none';
+      } else {
+        pdpPriceDisplay.innerHTML = `${formatInr(totalAmount)}`;
+        if (bulkDefaultNote) bulkDefaultNote.style.display = 'none';
+        if (bulkUnitBreakdown) {
+          bulkUnitBreakdown.style.display = 'inline-block';
+          bulkUnitBreakdown.textContent = `${formatInr(unitPrice)} each / ${qty} units`;
+        }
+        if (bulkDiscountBadge) {
+          if (discountPercent > 0) {
+            bulkDiscountBadge.style.display = 'inline-flex';
+            bulkDiscountBadge.textContent = `${discountPercent}% Volume Discount (Save ${formatInr(totalSavings)})`;
+          } else {
+            bulkDiscountBadge.style.display = 'none';
+          }
+        }
+      }
+    }
+
+    // Update interval chip active state if exact match
+    intervalChips.forEach(chip => {
+      const chipQty = parseInt(chip.getAttribute('data-qty'), 10);
+      if (chipQty === qty || (chipQty === 500 && qty >= 500)) {
+        chip.classList.add('active');
+      } else {
+        chip.classList.remove('active');
+      }
+    });
+  }
+
+  if (pdpQty) {
+    pdpQty.addEventListener('input', recalculateBulkPricing);
+    pdpQty.addEventListener('change', recalculateBulkPricing);
+  }
+
+  intervalChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const targetQty = parseInt(chip.getAttribute('data-qty'), 10);
+      if (pdpQty && targetQty) {
+        pdpQty.value = targetQty;
+        pdpQty.dispatchEvent(new Event('change'));
+      }
+    });
+  });
+
+  if (bulkTiers && bulkTiers.length) {
+    recalculateBulkPricing();
+  }
+
+  // Size Chart Modal Handlers
+  window.openSizeChartModal = function() {
+    const m = document.getElementById('size-chart-modal');
+    if (m) {
+      m.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
+  window.closeSizeChartModal = function() {
+    const m = document.getElementById('size-chart-modal');
+    if (m) {
+      m.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  };
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      window.closeSizeChartModal();
+    }
+  });
+
+  function escapeHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+})();
