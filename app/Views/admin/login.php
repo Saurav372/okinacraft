@@ -38,14 +38,6 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       border: 1px solid rgba(0, 0, 0, 0.06);
     }
-    .demo-chip {
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .demo-chip:hover {
-      background-color: #f1f5f9;
-      transform: translateY(-1px);
-    }
   </style>
 </head>
 <body class="d-flex flex-column">
@@ -133,19 +125,6 @@
             </button>
           </div>
         </form>
-
-        <!-- Quick 1-Click Fill Helpers -->
-        <div class="mt-4 pt-3 border-top">
-          <div class="text-secondary small fw-medium mb-2 text-center">Quick Login Credentials:</div>
-          <div class="d-flex flex-column gap-2">
-            <button type="button" class="btn btn-outline-secondary btn-sm text-start d-flex justify-content-between align-items-center demo-chip" onclick="fillCreds('admin@okinacraft.com', 'OkinaCraft@2026!')">
-              <div>
-                <strong>Okina Craft Admin:</strong> <span class="text-muted">admin@okinacraft.com</span>
-              </div>
-              <span class="badge bg-danger text-white">Click to fill</span>
-            </button>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -162,11 +141,6 @@
 <script src="<?= base_url('assets/vendor/tabler/tabler.min.js') ?>"></script>
 
 <script>
-  function fillCreds(email, pass) {
-    document.getElementById('email').value = email;
-    document.getElementById('password').value = pass;
-  }
-
   document.getElementById('toggle-password').addEventListener('click', function () {
     var passInput = document.getElementById('password');
     var icon = document.getElementById('toggle-password-icon');
