@@ -5,10 +5,14 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
   <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
   <title><?= e($pageTitle ?? 'Admin Sign In – Okina Craft') ?></title>
   <link rel="icon" type="image/png" href="<?= base_url('assets/media/okina-mark.png') ?>">
 
-  <!-- Tabler Core CSS -->
+  <!-- Tabler Core CSS (CDN + Local Fallback) -->
+  <link href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/css/tabler.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" rel="stylesheet"/>
   <link href="<?= base_url('assets/vendor/tabler/tabler.min.css') ?>" rel="stylesheet"/>
   <link href="<?= base_url('assets/vendor/tabler/tabler-icons.min.css') ?>" rel="stylesheet"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -159,7 +163,8 @@
   </div>
 </div>
 
-<!-- Tabler JS -->
+<!-- Tabler JS (CDN + Local Fallback) -->
+<script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/js/tabler.min.js"></script>
 <script src="<?= base_url('assets/vendor/tabler/tabler.min.js') ?>"></script>
 
 <script>
