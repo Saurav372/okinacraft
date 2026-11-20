@@ -5,8 +5,8 @@ $db = \Config\Database::connect();
 $unreadCount = $db->table('contact_messages')->where('status', 'unread')->countAllResults();
 $pendingOrders = $db->table('orders')->whereIn('order_status', ['pending', 'confirmed', 'printing'])->countAllResults();
 $adminUser = $admin ?? [
-    'name'  => 'Insignia Demo Admin',
-    'email' => 'demo@insignia.com',
+    'name'  => 'Okina Craft Admin',
+    'email' => 'admin@okinacraft.com',
 ];
 ?>
 <!doctype html>
@@ -287,7 +287,7 @@ $adminUser = $admin ?? [
             </span>
             <div class="flex-fill text-truncate" style="min-width: 0;">
               <div class="profile-name text-truncate"><?= e($adminUser['name'] ?? 'Admin') ?></div>
-              <div class="profile-email text-truncate"><?= e($adminUser['email'] ?? 'demo@insignia.com') ?></div>
+              <div class="profile-email text-truncate"><?= e($adminUser['email'] ?? 'admin@okinacraft.com') ?></div>
             </div>
           </div>
           <form action="<?= base_url('/admin/logout') ?>" method="post" class="px-1">
@@ -363,7 +363,7 @@ $adminUser = $admin ?? [
             <span class="avatar avatar-sm bg-dark text-white rounded-circle"><i class="ti ti-user"></i></span>
             <div class="d-none d-xl-block ps-2 text-start">
               <div class="fw-semibold text-dark text-truncate" style="max-width: 140px;"><?= e($adminUser['name'] ?? 'Admin') ?></div>
-              <div class="small text-secondary text-truncate" style="max-width: 140px;"><?= e($adminUser['email'] ?? 'demo@insignia.com') ?></div>
+              <div class="small text-secondary text-truncate" style="max-width: 140px;"><?= e($adminUser['email'] ?? 'admin@okinacraft.com') ?></div>
             </div>
           </a>
           <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow shadow">

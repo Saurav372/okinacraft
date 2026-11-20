@@ -199,7 +199,7 @@
               </div>
               <div class="list-group-item d-flex justify-content-between py-2 px-3">
                 <span class="text-secondary small">Email</span>
-                <span class="text-secondary small"><?= e($admin['email'] ?? 'demo@insignia.com') ?></span>
+                <span class="text-secondary small"><?= e($admin['email'] ?? 'admin@okinacraft.com') ?></span>
               </div>
               <div class="list-group-item d-flex justify-content-between py-2 px-3">
                 <span class="text-secondary small">Session Security</span>

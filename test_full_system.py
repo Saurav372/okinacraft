@@ -97,7 +97,7 @@ def t_auth_okina():
     assert "OKINA CRAFT" in body
 check("Login succeeds with admin@okinacraft.com / OkinaCraft@2026!", t_auth_okina)
 
-# 7. Auth with demo@insignia.com
+# 7. Demo credentials rejected
 cj_demo = http.cookiejar.CookieJar()
 op_demo = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj_demo))
 
@@ -112,8 +112,9 @@ def t_auth_demo():
         'password': 'demo@123'
     }).encode('utf-8')
     post_res = op_demo.open(urllib.request.Request(BASE + "/admin/login", data=data))
-    assert "/admin" in post_res.geturl() and "/admin/login" not in post_res.geturl()
-check("Login succeeds with demo@insignia.com / demo@123", t_auth_demo)
+    # Must fail and remain on login page
+    assert "/admin/login" in post_res.geturl()
+check("Deleted demo@insignia.com is rejected on login", t_auth_demo)
 
 # 8. Admin Protected Views
 def t_admin_views():

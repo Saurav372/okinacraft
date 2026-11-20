@@ -103,14 +103,14 @@
               <span class="input-icon-addon">
                 <i class="ti ti-mail"></i>
               </span>
-              <input type="email" class="form-control" id="email" name="email" value="<?= e(old('email', 'demo@insignia.com')) ?>" placeholder="demo@insignia.com" required autofocus autocomplete="email">
+              <input type="email" class="form-control" id="email" name="email" value="<?= e(old('email')) ?>" placeholder="admin@okinacraft.com" required autofocus autocomplete="email">
             </div>
           </div>
 
           <div class="mb-3">
             <label class="form-label fw-semibold" for="password">Password</label>
             <div class="input-group input-group-flat">
-              <input type="password" class="form-control" id="password" name="password" value="demo@123" placeholder="••••••••" required autocomplete="current-password">
+              <input type="password" class="form-control" id="password" name="password" value="" placeholder="••••••••" required autocomplete="current-password">
               <span class="input-group-text">
                 <a href="javascript:void(0)" class="link-secondary" id="toggle-password" title="Show password" tabindex="-1">
                   <i class="ti ti-eye" id="toggle-password-icon"></i>
@@ -143,12 +143,6 @@
                 <strong>Okina Craft Admin:</strong> <span class="text-muted">admin@okinacraft.com</span>
               </div>
               <span class="badge bg-danger text-white">Click to fill</span>
-            </button>
-            <button type="button" class="btn btn-outline-secondary btn-sm text-start d-flex justify-content-between align-items-center demo-chip" onclick="fillCreds('demo@insignia.com', 'demo@123')">
-              <div>
-                <strong>Insignia Demo:</strong> <span class="text-muted">demo@insignia.com</span>
-              </div>
-              <span class="badge bg-dark text-white">Click to fill</span>
             </button>
           </div>
         </div>

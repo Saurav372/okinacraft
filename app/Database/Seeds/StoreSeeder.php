@@ -18,11 +18,6 @@ class StoreSeeder extends Seeder
                 'password' => 'OkinaCraft@2026!',
             ],
             [
-                'name'     => 'Insignia Demo Admin',
-                'email'    => 'demo@insignia.com',
-                'password' => 'demo@123',
-            ],
-            [
                 'name'     => 'Cluster Studio Admin (Legacy)',
                 'email'    => 'admin@clusterstudio.shop',
                 'password' => 'Cluster@2026!',
