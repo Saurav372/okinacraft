@@ -2907,3 +2907,227 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
   line-height: 1.35;
   flex: 1;
 }
+
+/* ==========================================================================
+   Sticky Floating Add to Cart Bar (PDP)
+   ========================================================================== */
+.sticky-pdp-bar {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120%);
+  width: min(840px, calc(100vw - 32px));
+  z-index: 60;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease;
+}
+
+.sticky-pdp-bar.visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sticky-pdp-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.6rem;
+  background: rgba(255, 255, 255, 0.96);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(15, 23, 42, 0.08);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.15), 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 1rem 1.6rem;
+}
+
+.sticky-pdp-bar__product {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.sticky-pdp-bar__thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #e2e8f0;
+  flex-shrink: 0;
+  background: #f8fafc;
+}
+
+.sticky-pdp-bar__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 0.2rem;
+}
+
+.sticky-pdp-bar__title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #0f172a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 280px;
+  line-height: 1.25;
+}
+
+.sticky-pdp-bar__pricing {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.sticky-pdp-bar__price {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+
+.sticky-pdp-bar__unit {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.sticky-pdp-bar__actions {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-shrink: 0;
+}
+
+.sticky-pdp-bar__stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  height: 4.2rem;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.sticky-pdp-bar__stepper button {
+  width: 3.4rem;
+  height: 100%;
+  border: none;
+  background: #f8fafc;
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: #0f172a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease;
+  user-select: none;
+  line-height: 1;
+}
+
+.sticky-pdp-bar__stepper button:hover {
+  background: #e2e8f0;
+}
+
+.sticky-pdp-bar__stepper input {
+  width: 4.6rem;
+  height: 100%;
+  border: none;
+  border-left: 1.5px solid #cbd5e1;
+  border-right: 1.5px solid #cbd5e1;
+  text-align: center;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #0f172a;
+  outline: none;
+  background: #ffffff;
+  -moz-appearance: textfield;
+}
+
+.sticky-pdp-bar__stepper input::-webkit-outer-spin-button,
+.sticky-pdp-bar__stepper input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.sticky-pdp-bar__btn {
+  background: #0f172a;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  height: 4.2rem;
+  padding: 0 2.2rem;
+  font-family: var(--font-body-family);
+  font-size: 1.45rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  white-space: nowrap;
+  transition: background 0.18s ease, transform 0.1s ease, box-shadow 0.18s ease;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.2);
+}
+
+.sticky-pdp-bar__btn:hover:not(:disabled) {
+  background: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+}
+
+.sticky-pdp-bar__btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.sticky-pdp-bar__btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  background: #94a3b8;
+}
+
+@media (max-width: 640px) {
+  .sticky-pdp-bar {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transform: translateY(120%);
+    border-radius: 0;
+  }
+
+  .sticky-pdp-bar.visible {
+    transform: translateY(0);
+  }
+
+  .sticky-pdp-bar__inner {
+    border-radius: 14px 14px 0 0;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    padding: 0.9rem 1.2rem calc(0.9rem + env(safe-area-inset-bottom, 0px));
+    gap: 1rem;
+  }
+
+  .sticky-pdp-bar__title {
+    max-width: 130px;
+    font-size: 1.35rem;
+  }
+
+  .sticky-pdp-bar__stepper {
+    display: none;
+  }
+
+  .sticky-pdp-bar__btn {
+    height: 4rem;
+    padding: 0 1.6rem;
+    font-size: 1.35rem;
+  }
+}

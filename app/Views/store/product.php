@@ -559,4 +559,42 @@ foreach ($images as $img) {
   </div>
 </div>
 
+<!-- Sticky Floating Add to Cart Bar (Appears on Scroll) -->
+<div id="sticky-pdp-bar" class="sticky-pdp-bar" aria-hidden="true">
+  <div class="sticky-pdp-bar__inner">
+    <div class="sticky-pdp-bar__product">
+      <?php if (!empty($initialMainSrc)): ?>
+        <img id="sticky-bar-image" src="<?= base_url($initialMainSrc) ?>" alt="<?= e($product['title']) ?>" class="sticky-pdp-bar__thumb" width="48" height="48">
+      <?php endif; ?>
+      <div class="sticky-pdp-bar__info">
+        <div class="sticky-pdp-bar__title" title="<?= e($product['title']) ?>"><?= e($product['title']) ?></div>
+        <div class="sticky-pdp-bar__pricing">
+          <span class="sticky-pdp-bar__price" id="sticky-bar-price"><?= e(money_format_inr($firstVariant ? $firstVariant['price'] : $product['price'])) ?></span>
+          <span class="sticky-pdp-bar__unit">per pc</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sticky-pdp-bar__actions">
+      <div class="sticky-pdp-bar__stepper">
+        <button type="button" id="sticky-qty-dec" aria-label="Decrease quantity">&minus;</button>
+        <input type="number" id="sticky-qty-input" value="1" min="1" max="10000" inputmode="numeric" aria-label="Quantity">
+        <button type="button" id="sticky-qty-inc" aria-label="Increase quantity">&plus;</button>
+      </div>
+
+      <button
+        type="button"
+        id="sticky-pdp-add-btn"
+        class="sticky-pdp-bar__btn"
+        <?= !$isAvailable ? 'disabled' : '' ?>
+      >
+        <svg width="18" height="18" viewBox="0 0 40 40" fill="none" style="flex-shrink:0;">
+          <path fill="currentColor" fill-rule="evenodd" d="M15.75 11.8h-3.16l-.77 11.6a5 5 0 0 0 4.99 5.34h7.38a5 5 0 0 0 4.99-5.33L28.4 11.8zm0 1h-2.22l-.71 10.67a4 4 0 0 0 3.99 4.27h7.38a4 4 0 0 0 4-4.27l-.72-10.67h-2.22v.63a4.75 4.75 0 1 1-9.5 0zm8.5 0h-7.5v.63a3.75 3.75 0 1 0 7.5 0z"/>
+        </svg>
+        <span><?= $isAvailable ? 'Add to cart' : 'Sold out' ?></span>
+      </button>
+    </div>
+  </div>
+</div>
+
 <?= $this->endSection() ?>
