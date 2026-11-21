@@ -486,6 +486,7 @@ class AdminController extends BaseController
             'shipping_flat_rate'      => (string)max(0, (float)$this->request->getPost('shipping_flat_rate') ?: 60),
             'free_shipping_threshold' => (string)max(0, (float)$this->request->getPost('free_shipping_threshold') ?: 999),
             'upi_id'                  => trim((string)$this->request->getPost('upi_id')),
+            'cod_enabled'             => $this->request->getPost('cod_enabled') === '1' ? '1' : '0',
             'video_heading'           => trim((string)$this->request->getPost('video_heading') ?: 'How to Buy from Okina Craft'),
         ];
 

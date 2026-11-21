@@ -182,6 +182,11 @@ class StoreController extends BaseController
             return redirect()->to('/cart');
         }
 
+        $codEnabled = store_setting('cod_enabled', '0') === '1';
+        $allowedPaymentMethods = $codEnabled ? ['upi', 'cod'] : ['upi'];
+        $selectedPaymentMethod = (string)$this->request->getPost('payment_method');
+        $paymentMethod = in_array($selectedPaymentMethod, $allowedPaymentMethods, true) ? $selectedPaymentMethod : 'upi';
+
         $data = [
             'name'           => trim((string)$this->request->getPost('name')),
             'email'          => trim((string)$this->request->getPost('email')),
@@ -190,7 +195,7 @@ class StoreController extends BaseController
             'city'           => trim((string)$this->request->getPost('city')),
             'state'          => trim((string)$this->request->getPost('state')),
             'pincode'        => trim((string)$this->request->getPost('pincode')),
-            'payment_method' => in_array($this->request->getPost('payment_method'), ['cod', 'upi'], true) ? $this->request->getPost('payment_method') : 'cod',
+            'payment_method' => $paymentMethod,
             'note'           => trim((string)$this->request->getPost('note')),
         ];
 

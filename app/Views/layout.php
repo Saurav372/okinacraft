@@ -408,12 +408,14 @@ $session = session();
               <text x="26" y="15" fill="#ffffff" font-size="8.5" font-weight="700" font-family="sans-serif" text-anchor="middle">NET BANK</text>
             </svg>
           </span>
+          <?php if (store_setting('cod_enabled', '0') === '1'): ?>
           <span class="payment-badge" title="Cash on Delivery Available">
             <svg viewBox="0 0 38 24" width="38" height="24">
               <rect width="38" height="24" rx="3" fill="#0f172a"/>
               <text x="19" y="16" fill="#ffffff" font-size="10" font-weight="800" font-family="sans-serif" text-anchor="middle">COD</text>
             </svg>
           </span>
+          <?php endif; ?>
         </div>
       </div>
 

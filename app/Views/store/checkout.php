@@ -3,6 +3,7 @@
 
 <?php
 $upiId = store_setting('upi_id', '');
+$codEnabled = store_setting('cod_enabled', '0') === '1';
 $old = $old ?? [];
 ?>
 <section class="checkout-page">
@@ -64,15 +65,16 @@ $old = $old ?? [];
         <h2 class="h2" style="margin: 2.6rem 0 1.4rem;">Payment Method</h2>
 
         <label class="payment-option">
-          <input type="radio" name="payment_method" value="upi" <?= ($old['payment_method'] ?? 'upi') === 'upi' ? 'checked' : '' ?> style="margin-top:0.5rem;">
+          <input type="radio" name="payment_method" value="upi" checked style="margin-top:0.5rem;">
           <div>
-            <strong style="color:#000;">UPI / WhatsApp Prepaid Confirmation</strong>
+            <strong style="color:#000;">UPI / Online Payment (Prepaid)</strong>
             <div style="font-size:1.35rem;color:var(--color-muted);">
-              Place order now and pay via UPI<?= $upiId ? ' (' . e($upiId) . ')' : '' ?> or confirm on WhatsApp for faster dispatch.
+              Pay securely via UPI (PhonePe, Google Pay, Paytm, BHIM)<?= $upiId ? ' to <strong>' . e($upiId) . '</strong>' : '' ?> or confirm via WhatsApp.
             </div>
           </div>
         </label>
 
+        <?php if ($codEnabled): ?>
         <label class="payment-option">
           <input type="radio" name="payment_method" value="cod" <?= ($old['payment_method'] ?? '') === 'cod' ? 'checked' : '' ?> style="margin-top:0.5rem;">
           <div>
@@ -82,6 +84,7 @@ $old = $old ?? [];
             </div>
           </div>
         </label>
+        <?php endif; ?>
 
         <div style="margin-top: 2.4rem;">
           <button type="submit" class="button button--full-width">

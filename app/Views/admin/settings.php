@@ -78,26 +78,38 @@
 
               <div class="row g-3 mb-3">
                 <div class="col-md-6">
+                  <label class="form-label fw-semibold">Storefront Cash on Delivery (COD)</label>
+                  <select class="form-select" name="cod_enabled">
+                    <option value="0" <?= ($settings['cod_enabled'] ?? '0') === '0' ? 'selected' : '' ?>>Disabled (Prepaid UPI only)</option>
+                    <option value="1" <?= ($settings['cod_enabled'] ?? '0') === '1' ? 'selected' : '' ?>>Enabled (Allow COD at checkout)</option>
+                  </select>
+                  <small class="form-hint">Currently <strong>Disabled</strong> on storefront. Preserved here for future activation.</small>
+                </div>
+                <div class="col-md-6">
                   <label class="form-label fw-semibold">Store UPI ID (shown at checkout)</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="ti ti-qrcode"></i></span>
                     <input type="text" class="form-control" name="upi_id" value="<?= e($settings['upi_id'] ?? '') ?>" placeholder="okinacraft@upi">
                   </div>
+                  <small class="form-hint">Primary UPI ID for customer prepaid transfers.</small>
                 </div>
+              </div>
+
+              <div class="row g-3 mb-3">
                 <div class="col-md-6">
                   <label class="form-label fw-semibold">Homepage Video Section Heading</label>
                   <input type="text" class="form-control" name="video_heading" value="<?= e($settings['video_heading'] ?? 'How to Buy from Okina Craft') ?>">
                 </div>
-              </div>
-
-              <div class="row g-3 mb-4">
-                <div class="col-md-6">
-                  <label class="form-label fw-semibold">Business Physical Address</label>
-                  <input type="text" class="form-control" name="business_address" value="<?= e($settings['business_address'] ?? '') ?>">
-                </div>
                 <div class="col-md-6">
                   <label class="form-label fw-semibold">Support Hours</label>
                   <input type="text" class="form-control" name="business_hours" value="<?= e($settings['business_hours'] ?? '') ?>">
+                </div>
+              </div>
+
+              <div class="row g-3 mb-4">
+                <div class="col-12">
+                  <label class="form-label fw-semibold">Business Physical Address</label>
+                  <input type="text" class="form-control" name="business_address" value="<?= e($settings['business_address'] ?? '') ?>">
                 </div>
               </div>
 
