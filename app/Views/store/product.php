@@ -170,7 +170,7 @@ foreach ($images as $img) {
         </div>
 
         <div class="product-info__tax-note">
-          Tax calculated at checkout. <a href="<?= base_url('/policies/shipping-policy') ?>" class="link--underline">Shipping</a> calculated at checkout.
+          Tax and <a href="<?= base_url('/policies/shipping-policy') ?>" class="link--underline">shipping</a> calculated at checkout.
         </div>
 
         <form id="pdp-cart-form" action="<?= base_url('/cart') ?>" method="post" enctype="multipart/form-data">
