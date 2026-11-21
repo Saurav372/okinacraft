@@ -10,7 +10,7 @@ class OrderItemModel extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = [
         'order_id', 'product_id', 'variant_id', 'product_title', 'variant_title',
-        'product_handle', 'image_src', 'unit_price', 'quantity', 'line_total',
-        'custom_design_path', 'custom_note'
+        'product_handle', 'image_src', 'unit_price', 'quantity', 'gst_rate',
+        'tax_amount', 'line_total', 'custom_design_path', 'custom_note'
     ];
 }

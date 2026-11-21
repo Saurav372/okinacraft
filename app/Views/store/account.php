@@ -53,9 +53,25 @@
           </div>
         <?php endforeach; ?>
 
-        <div style="display:flex;justify-content:space-between;padding-top:1.4rem;border-top:1px solid rgba(0,0,0,0.12);font-size:1.7rem;font-weight:700;color:#000;">
-          <span>Total</span>
-          <span><?= e(money_format_inr($order['total'])) ?></span>
+        <div style="border-top:1px solid rgba(0,0,0,0.08);margin-top:1rem;padding-top:1rem;display:flex;flex-direction:column;gap:0.6rem;font-size:1.45rem;">
+          <div style="display:flex;justify-content:space-between;color:var(--color-muted);">
+            <span>Subtotal</span>
+            <span><?= e(money_short_inr($order['subtotal'])) ?></span>
+          </div>
+          <?php if (!empty($order['tax_amount']) && (float)$order['tax_amount'] > 0): ?>
+            <div style="display:flex;justify-content:space-between;color:var(--color-muted);">
+              <span>GST / Taxes</span>
+              <span><?= e(money_short_inr($order['tax_amount'])) ?></span>
+            </div>
+          <?php endif; ?>
+          <div style="display:flex;justify-content:space-between;color:var(--color-muted);">
+            <span>Shipping</span>
+            <span><?= (float)$order['shipping_cost'] == 0 ? '<strong style="color:#065f46;">FREE</strong>' : e(money_short_inr($order['shipping_cost'])) ?></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding-top:0.8rem;border-top:1px solid rgba(0,0,0,0.12);font-size:1.7rem;font-weight:700;color:#000;">
+            <span>Total</span>
+            <span><?= e(money_format_inr($order['total'])) ?></span>
+          </div>
         </div>
       </div>
     <?php endif; ?>

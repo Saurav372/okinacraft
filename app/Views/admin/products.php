@@ -103,6 +103,7 @@
                   </td>
                   <td>
                     <div class="fw-bold text-dark fs-3"><?= e(money_short_inr($p['price'])) ?></div>
+                    <div class="small text-muted">GST: <?= (float)($p['gst_rate'] ?? 5.0) ?>%</div>
                     <?php if (!empty($p['compare_at_price']) && (float)$p['compare_at_price'] > (float)$p['price']): ?>
                       <div class="text-decoration-line-through text-muted small">MRP: <?= e(money_short_inr($p['compare_at_price'])) ?></div>
                     <?php endif; ?>

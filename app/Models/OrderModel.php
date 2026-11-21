@@ -12,7 +12,7 @@ class OrderModel extends Model
         'order_number', 'customer_name', 'customer_email', 'customer_phone',
         'shipping_address', 'shipping_city', 'shipping_state', 'shipping_pincode',
         'payment_method', 'payment_status', 'order_status',
-        'subtotal', 'shipping_cost', 'total', 'customer_note',
+        'subtotal', 'tax_amount', 'shipping_cost', 'total', 'customer_note',
         'tracking_number', 'created_at', 'updated_at'
     ];
 }

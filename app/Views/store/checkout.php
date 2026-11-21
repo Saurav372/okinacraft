@@ -104,7 +104,12 @@ $old = $old ?? [];
                 <?php if ($item['variant_title'] !== ''): ?>
                   <div style="font-size:1.25rem;color:var(--color-muted);"><?= e($item['variant_title']) ?></div>
                 <?php endif; ?>
-                <div style="font-size:1.25rem;color:var(--color-muted);">Qty: <?= (int)$item['quantity'] ?> &times; <?= e(money_short_inr($item['unit_price'])) ?></div>
+                <div style="font-size:1.25rem;color:var(--color-muted);">
+                  Qty: <?= (int)$item['quantity'] ?> &times; <?= e(money_short_inr($item['unit_price'])) ?>
+                  <?php if (isset($item['gst_rate']) && (float)$item['gst_rate'] > 0): ?>
+                    &middot; <span style="color:#000;font-weight:600;">GST <?= (float)$item['gst_rate'] ?>% (+<?= e(money_short_inr($item['line_tax'])) ?>)</span>
+                  <?php endif; ?>
+                </div>
                 <?php if (!empty($item['is_bulk_discounted'])): ?>
                   <div style="font-size:1.15rem;color:#16a34a;font-weight:600;">
                     <?= $item['tier_discount_percent'] ?>% Volume Discount (Saved <?= e(money_short_inr($item['savings'])) ?>)
@@ -123,6 +128,16 @@ $old = $old ?? [];
             <span>Subtotal</span>
             <span><?= e(money_short_inr($cart['subtotal'])) ?></span>
           </div>
+          <?php if (!empty($cart['tax_total']) && (float)$cart['tax_total'] > 0): ?>
+            <?php
+              $allRates = array_unique(array_map(fn($it) => (float)($it['gst_rate'] ?? 5), $cart['items']));
+              $rateLabel = count($allRates) === 1 ? '(' . $allRates[0] . '%)' : '';
+            ?>
+            <div style="display:flex;justify-content:space-between;color:var(--color-muted,#555);">
+              <span>Estimated GST <?= $rateLabel ?></span>
+              <span><?= e(money_short_inr($cart['tax_total'])) ?></span>
+            </div>
+          <?php endif; ?>
           <div style="display:flex;justify-content:space-between;">
             <span>Shipping</span>
             <span><?= $cart['shipping'] == 0 ? '<strong style="color:#065f46;">FREE</strong>' : e(money_short_inr($cart['shipping'])) ?></span>

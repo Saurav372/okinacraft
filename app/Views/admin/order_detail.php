@@ -103,6 +103,9 @@ if (strlen($cleanPhone) === 10) $cleanPhone = '91' . $cleanPhone;
                     </td>
                     <td class="text-center text-secondary">
                       <?= e(money_short_inr($item['unit_price'])) ?> × <?= (int)$item['quantity'] ?>
+                      <?php if (!empty($item['gst_rate']) && (float)$item['gst_rate'] > 0): ?>
+                        <div class="small text-muted">GST <?= (float)$item['gst_rate'] ?>% (+<?= e(money_short_inr($item['tax_amount'] ?? 0)) ?>)</div>
+                      <?php endif; ?>
                     </td>
                     <td class="text-end fw-bold text-dark">
                       <?= e(money_short_inr($item['line_total'])) ?>
@@ -121,6 +124,12 @@ if (strlen($cleanPhone) === 10) $cleanPhone = '91' . $cleanPhone;
                   <span>Subtotal:</span>
                   <span class="fw-medium text-dark"><?= e(money_short_inr($order['subtotal'])) ?></span>
                 </div>
+                <?php if (!empty($order['tax_amount']) && (float)$order['tax_amount'] > 0): ?>
+                  <div class="d-flex justify-content-between mb-1 text-secondary small">
+                    <span>GST / Taxes:</span>
+                    <span class="fw-medium text-dark"><?= e(money_short_inr($order['tax_amount'])) ?></span>
+                  </div>
+                <?php endif; ?>
                 <div class="d-flex justify-content-between mb-1 text-secondary small">
                   <span>Shipping Fee:</span>
                   <span class="fw-medium text-dark"><?= (float)$order['shipping_cost'] == 0 ? '<span class="badge bg-success-lt">FREE</span>' : e(money_short_inr($order['shipping_cost'])) ?></span>

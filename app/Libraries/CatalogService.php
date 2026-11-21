@@ -19,6 +19,7 @@ class CatalogService
         try {
             $hasProducts = $db->table('products')->countAllResults();
             if ($hasProducts > 0) {
+                self::ensureSchemaUpgrades($db);
                 return;
             }
         } catch (\Throwable) {
@@ -31,8 +32,48 @@ class CatalogService
             $migrate->latest();
             $seeder = Database::seeder();
             $seeder->call('App\Database\Seeds\StoreSeeder');
+            self::ensureSchemaUpgrades($db);
         } catch (\Throwable $e) {
             log_message('error', 'Auto bootstrap error: ' . $e->getMessage());
+        }
+    }
+
+    private static function ensureSchemaUpgrades($db): void
+    {
+        try {
+            $forge = \Config\Database::forge();
+            $fields = $db->getFieldNames('products');
+            if ($fields && !in_array('gst_rate', $fields, true)) {
+                $forge->addColumn('products', [
+                    'gst_rate' => ['type' => 'DECIMAL', 'constraint' => '5,2', 'default' => 5.00],
+                ]);
+            }
+            if ($fields && !in_array('hsn_code', $fields, true)) {
+                $forge->addColumn('products', [
+                    'hsn_code' => ['type' => 'VARCHAR', 'constraint' => 30, 'default' => '6109'],
+                ]);
+            }
+
+            $orderFields = $db->getFieldNames('orders');
+            if ($orderFields && !in_array('tax_amount', $orderFields, true)) {
+                $forge->addColumn('orders', [
+                    'tax_amount' => ['type' => 'DECIMAL', 'constraint' => '10,2', 'default' => 0.00],
+                ]);
+            }
+
+            $itemFields = $db->getFieldNames('order_items');
+            if ($itemFields && !in_array('gst_rate', $itemFields, true)) {
+                $forge->addColumn('order_items', [
+                    'gst_rate' => ['type' => 'DECIMAL', 'constraint' => '5,2', 'default' => 5.00],
+                ]);
+            }
+            if ($itemFields && !in_array('tax_amount', $itemFields, true)) {
+                $forge->addColumn('order_items', [
+                    'tax_amount' => ['type' => 'DECIMAL', 'constraint' => '10,2', 'default' => 0.00],
+                ]);
+            }
+        } catch (\Throwable $e) {
+            log_message('error', 'Schema upgrade error: ' . $e->getMessage());
         }
     }
 
@@ -261,6 +302,8 @@ class CatalogService
             $p['featured_image'] = $p['images'][0]['src'] ?? '';
             $p['hover_image'] = $p['images'][1]['src'] ?? '';
             $p['bulk_tiers'] = !empty($p['bulk_tiers_json']) ? (json_decode((string)$p['bulk_tiers_json'], true) ?: []) : [];
+            $p['gst_rate'] = isset($p['gst_rate']) && $p['gst_rate'] !== null && $p['gst_rate'] !== '' ? (float)$p['gst_rate'] : 5.00;
+            $p['hsn_code'] = !empty($p['hsn_code']) ? (string)$p['hsn_code'] : '6109';
             if (!empty($p['enable_bulk_pricing']) && !empty($p['bulk_tiers'])) {
                 $bPrices = array_column($p['bulk_tiers'], 'unit_price');
                 $p['min_bulk_price'] = !empty($bPrices) ? min($bPrices) : (float)$p['price'];
@@ -283,6 +326,8 @@ class CatalogService
         $p['featured_image'] = $p['images'][0]['src'] ?? '';
         $p['hover_image'] = $p['images'][1]['src'] ?? '';
         $p['bulk_tiers'] = !empty($p['bulk_tiers_json']) ? (json_decode((string)$p['bulk_tiers_json'], true) ?: []) : [];
+        $p['gst_rate'] = isset($p['gst_rate']) && $p['gst_rate'] !== null && $p['gst_rate'] !== '' ? (float)$p['gst_rate'] : 5.00;
+        $p['hsn_code'] = !empty($p['hsn_code']) ? (string)$p['hsn_code'] : '6109';
         if (!empty($p['enable_bulk_pricing']) && !empty($p['bulk_tiers'])) {
             $bPrices = array_column($p['bulk_tiers'], 'unit_price');
             $p['min_bulk_price'] = !empty($bPrices) ? min($bPrices) : (float)$p['price'];
@@ -330,6 +375,8 @@ class CatalogService
 
         $price = (float)($data['price'] ?? 0);
         $compare = ($data['compare_at_price'] ?? '') !== '' ? (float)$data['compare_at_price'] : null;
+        $gstRate = isset($data['gst_rate']) && $data['gst_rate'] !== '' ? max(0, min(100, (float)$data['gst_rate'])) : 5.00;
+        $hsnCode = trim((string)($data['hsn_code'] ?? '6109')) ?: '6109';
         $available = !empty($data['available']) ? 1 : 0;
         $allowCustom = !empty($data['allow_custom_upload']) ? 1 : 0;
         $freeDelivery = !empty($data['free_delivery']) ? 1 : 0;
@@ -349,6 +396,8 @@ class CatalogService
             'tags'                => trim((string)($data['tags'] ?? '')),
             'price'               => $price,
             'compare_at_price'    => $compare,
+            'gst_rate'            => $gstRate,
+            'hsn_code'            => $hsnCode,
             'available'           => $available,
             'allow_custom_upload' => $allowCustom,
             'free_delivery'       => $freeDelivery,

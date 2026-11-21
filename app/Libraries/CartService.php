@@ -140,6 +140,7 @@ class CartService
         $raw = $this->rawItems();
         $hydrated = [];
         $subtotal = 0.0;
+        $taxTotal = 0.0;
         $count = 0;
         $allFreeDelivery = true;
 
@@ -183,6 +184,11 @@ class CartService
             $subtotal += $lineTotal;
             $count += $qty;
 
+            $gstRate = isset($product['gst_rate']) && $product['gst_rate'] !== null && $product['gst_rate'] !== '' ? (float)$product['gst_rate'] : 5.00;
+            $hsnCode = !empty($product['hsn_code']) ? (string)$product['hsn_code'] : '6109';
+            $lineTax = round($lineTotal * ($gstRate / 100), 2);
+            $taxTotal += $lineTax;
+
             if (!(int)$product['free_delivery']) {
                 $allFreeDelivery = false;
             }
@@ -209,6 +215,10 @@ class CartService
                 'savings'               => $savings,
                 'quantity'              => $qty,
                 'line_total'            => $lineTotal,
+                'gst_rate'              => $gstRate,
+                'hsn_code'              => $hsnCode,
+                'line_tax'              => $lineTax,
+                'tax_amount'            => $lineTax,
                 'free_delivery'         => (int)$product['free_delivery'],
                 'custom_design_path'    => (string)($row['custom_design_path'] ?? ''),
                 'custom_note'           => (string)($row['custom_note'] ?? ''),
@@ -230,8 +240,9 @@ class CartService
             'items'             => $hydrated,
             'count'             => $count,
             'subtotal'          => $subtotal,
+            'tax_total'         => $taxTotal,
             'shipping'          => $shipping,
-            'total'             => $subtotal + $shipping,
+            'total'             => $subtotal + $taxTotal + $shipping,
             'all_free_delivery' => $allFreeDelivery,
             'free_threshold'    => $freeThreshold,
         ];

@@ -319,13 +319,34 @@ $opt2Name = $options[1]['name'] ?? 'Size';
                 </div>
               </div>
 
-              <div class="mb-0">
+              <div class="mb-3">
                 <label class="form-label fw-semibold" for="compare_at_price">Compare-at Price (MRP)</label>
                 <div class="input-group">
                   <span class="input-group-text">₹</span>
                   <input type="number" step="0.01" min="0" class="form-control" id="compare_at_price" name="compare_at_price" value="<?= e((string)($product['compare_at_price'] ?? '')) ?>" placeholder="Original price">
                 </div>
                 <small class="form-hint">Displayed crossed-out to show customer savings.</small>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-semibold" for="gst_rate">GST Rate (%)</label>
+                <div class="input-group">
+                  <input type="number" step="0.01" min="0" max="100" class="form-control" id="gst_rate" name="gst_rate" value="<?= e((string)($product['gst_rate'] ?? '5.00')) ?>">
+                  <span class="input-group-text">%</span>
+                </div>
+                <div class="d-flex flex-wrap gap-1 mt-1">
+                  <button type="button" class="btn btn-sm btn-outline-secondary py-0 px-2" onclick="document.getElementById('gst_rate').value='0.00'">0%</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary py-0 px-2" onclick="document.getElementById('gst_rate').value='5.00'">5% (Apparel)</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary py-0 px-2" onclick="document.getElementById('gst_rate').value='12.00'">12%</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary py-0 px-2" onclick="document.getElementById('gst_rate').value='18.00'">18%</button>
+                </div>
+                <small class="form-hint">Decided per product in admin, calculated at checkout.</small>
+              </div>
+
+              <div class="mb-0">
+                <label class="form-label fw-semibold" for="hsn_code">HSN Code (Optional)</label>
+                <input type="text" class="form-control" id="hsn_code" name="hsn_code" value="<?= e($product['hsn_code'] ?? '6109') ?>" placeholder="e.g. 6109">
+                <small class="form-hint">HSN code for GST invoices (e.g. 6109 for T-shirts).</small>
               </div>
             </div>
           </div>

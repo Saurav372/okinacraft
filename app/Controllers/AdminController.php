@@ -233,6 +233,10 @@ class AdminController extends BaseController
             usort($bulkTiers, fn($a, $b) => $a['min_qty'] <=> $b['min_qty']);
         }
 
+        $rawGst = $request->getPost('gst_rate');
+        $gstRate = ($rawGst !== null && $rawGst !== '') ? max(0, min(100, (float)$rawGst)) : 5.00;
+        $hsnCode = trim((string)$request->getPost('hsn_code')) ?: '6109';
+
         $savedId = $this->catalog->saveProduct($id, [
             'title'               => $request->getPost('title'),
             'handle'              => $request->getPost('handle'),
@@ -242,6 +246,8 @@ class AdminController extends BaseController
             'tags'                => $request->getPost('tags'),
             'price'               => $basePrice,
             'compare_at_price'    => $request->getPost('compare_at_price'),
+            'gst_rate'            => $gstRate,
+            'hsn_code'            => $hsnCode,
             'available'           => !empty($request->getPost('available')) ? 1 : 0,
             'allow_custom_upload' => !empty($request->getPost('allow_custom_upload')) ? 1 : 0,
             'free_delivery'       => !empty($request->getPost('free_delivery')) ? 1 : 0,
