@@ -178,6 +178,7 @@ foreach ($images as $img) {
           <input type="hidden" name="action" value="add">
           <input type="hidden" name="product_id" value="<?= (int)$product['id'] ?>">
           <input type="hidden" id="pdp-variant-id" name="variant_id" value="<?= $firstVariant ? (int)$firstVariant['id'] : '' ?>">
+          <input type="hidden" id="pdp-variant-image" name="variant_image" value="<?= !empty($initialMainSrc) ? base_url($initialMainSrc) : '' ?>">
 
           <!-- Variant Options (Color Swatches, Non-Size Options) -->
           <?php

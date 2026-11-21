@@ -207,6 +207,7 @@
       variants = [];
     }
     const variantIdInput = document.getElementById('pdp-variant-id');
+    const variantImageInput = document.getElementById('pdp-variant-image');
     const priceDisplay = document.getElementById('pdp-price-display');
     const addBtn = document.getElementById('pdp-add-btn');
     const buyBtn = document.getElementById('pdp-buy-btn');
@@ -280,6 +281,9 @@
           if (mainImg && src) {
             mainImg.src = src;
           }
+          if (variantImageInput && src) {
+            variantImageInput.value = src;
+          }
           return;
         }
       }
@@ -287,6 +291,9 @@
       // Fallback: direct image on swatch
       if (mainImg && directImg) {
         mainImg.src = directImg;
+      }
+      if (variantImageInput && (directImg || (mainImg && mainImg.src))) {
+        variantImageInput.value = directImg || mainImg.src;
       }
     }
 
@@ -299,6 +306,9 @@
       });
       if (!match) return;
       if (variantIdInput) variantIdInput.value = String(match.id);
+      if (variantImageInput && mainImg && mainImg.src) {
+        variantImageInput.value = mainImg.src;
+      }
 
       // If bulk pricing is active on this product, keep bulk pricing in sync
       if (typeof recalculateBulkPricing === 'function' && bulkTiers && bulkTiers.length) {

@@ -50,6 +50,7 @@ class ApiController extends BaseController
         $variantId = $this->request->getPost('variant_id') ? (int)$this->request->getPost('variant_id') : null;
         $qty = max(1, (int)($this->request->getPost('quantity') ?: 1));
         $customNote = trim((string)$this->request->getPost('custom_note'));
+        $variantImage = trim((string)$this->request->getPost('variant_image'));
         $customDesignPath = '';
 
         $designFile = $this->request->getFile('custom_design');
@@ -61,7 +62,7 @@ class ApiController extends BaseController
             $customDesignPath = $up['path'];
         }
 
-        $res = $this->cart->add($productId, $variantId, $qty, $customDesignPath, $customNote);
+        $res = $this->cart->add($productId, $variantId, $qty, $customDesignPath, $customNote, $variantImage);
         if (!$res['ok']) {
             return $this->response->setStatusCode(422)->setJSON($res);
         }
