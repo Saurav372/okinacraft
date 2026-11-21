@@ -339,7 +339,9 @@ foreach ($images as $img) {
               <div class="pdp-qty-pricing-display">
                 <div class="pdp-qty-unit-line">
                   <span class="pdp-qty-unit-price" id="pdp-qty-unit-price"><?= e(money_format_inr($firstVariant ? $firstVariant['price'] : $product['price'])) ?></span>
+                  <span class="pdp-qty-compare-price" id="pdp-qty-compare-price" style="display:none;"></span>
                   <span class="pdp-qty-unit-label">per piece</span>
+                  <span class="pdp-qty-discount-badge" id="pdp-qty-discount-badge" style="display:none;"></span>
                 </div>
                 <div class="pdp-qty-total-line">
                   <span class="pdp-qty-total-price" id="pdp-qty-total-price"><?= e(money_format_inr($firstVariant ? $firstVariant['price'] : $product['price'])) ?> total</span>
@@ -570,7 +572,9 @@ foreach ($images as $img) {
         <div class="sticky-pdp-bar__title" title="<?= e($product['title']) ?>"><?= e($product['title']) ?></div>
         <div class="sticky-pdp-bar__pricing">
           <span class="sticky-pdp-bar__price" id="sticky-bar-price"><?= e(money_format_inr($firstVariant ? $firstVariant['price'] : $product['price'])) ?></span>
+          <span class="sticky-pdp-bar__compare-price" id="sticky-bar-compare-price" style="display:none;"></span>
           <span class="sticky-pdp-bar__unit">per pc</span>
+          <span class="sticky-pdp-bar__discount-badge" id="sticky-bar-discount" style="display:none;"></span>
         </div>
       </div>
     </div>

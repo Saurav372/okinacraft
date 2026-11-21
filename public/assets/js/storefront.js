@@ -484,7 +484,13 @@
     }
 
     const unitPrice = matchedTier ? parseFloat(matchedTier.unit_price) : basePrice;
-    const discountPercent = matchedTier ? parseFloat(matchedTier.discount_percent || 0) : 0;
+    let effDiscount = matchedTier ? parseFloat(matchedTier.discount_percent || 0) : 0;
+    if (effDiscount <= 0 && basePrice > unitPrice && basePrice > 0) {
+      effDiscount = Math.round(((basePrice - unitPrice) / basePrice) * 100);
+    } else {
+      effDiscount = Math.round(effDiscount);
+    }
+    const discountPercent = effDiscount;
     const totalAmount = unitPrice * qty;
     const totalSavings = Math.max(0, (basePrice - unitPrice) * qty);
 
@@ -497,6 +503,24 @@
     if (pdpQtyUnitPrice) {
       pdpQtyUnitPrice.textContent = formatInr(unitPrice);
     }
+    const pdpQtyComparePrice = document.getElementById('pdp-qty-compare-price');
+    if (pdpQtyComparePrice) {
+      if (effDiscount > 0 && basePrice > unitPrice) {
+        pdpQtyComparePrice.textContent = formatInr(basePrice);
+        pdpQtyComparePrice.style.display = 'inline-block';
+      } else {
+        pdpQtyComparePrice.style.display = 'none';
+      }
+    }
+    const pdpQtyDiscount = document.getElementById('pdp-qty-discount-badge');
+    if (pdpQtyDiscount) {
+      if (effDiscount > 0) {
+        pdpQtyDiscount.textContent = `${effDiscount}% OFF`;
+        pdpQtyDiscount.style.display = 'inline-flex';
+      } else {
+        pdpQtyDiscount.style.display = 'none';
+      }
+    }
     if (pdpQtyTotalPrice) {
       pdpQtyTotalPrice.textContent = `${formatInr(totalAmount)} total`;
     }
@@ -505,6 +529,24 @@
     const stickyBarPrice = document.getElementById('sticky-bar-price');
     if (stickyBarPrice) {
       stickyBarPrice.textContent = formatInr(unitPrice);
+    }
+    const stickyBarComparePrice = document.getElementById('sticky-bar-compare-price');
+    if (stickyBarComparePrice) {
+      if (effDiscount > 0 && basePrice > unitPrice) {
+        stickyBarComparePrice.textContent = formatInr(basePrice);
+        stickyBarComparePrice.style.display = 'inline-block';
+      } else {
+        stickyBarComparePrice.style.display = 'none';
+      }
+    }
+    const stickyBarDiscount = document.getElementById('sticky-bar-discount');
+    if (stickyBarDiscount) {
+      if (effDiscount > 0) {
+        stickyBarDiscount.textContent = `${effDiscount}% OFF`;
+        stickyBarDiscount.style.display = 'inline-flex';
+      } else {
+        stickyBarDiscount.style.display = 'none';
+      }
     }
     const stickyQtyInput = document.getElementById('sticky-qty-input');
     if (stickyQtyInput && parseInt(stickyQtyInput.value, 10) !== qty) {
