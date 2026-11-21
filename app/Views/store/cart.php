@@ -53,11 +53,6 @@
                     Option: <?= e($item['variant_title']) ?>
                   </div>
                 <?php endif; ?>
-                <?php if (isset($item['gst_rate']) && (float)$item['gst_rate'] > 0): ?>
-                  <div style="font-size:1.25rem;color:var(--color-muted);margin-top:0.2rem;">
-                    GST <?= (float)$item['gst_rate'] ?>%: <?= e(money_format_inr($item['line_tax'])) ?>
-                  </div>
-                <?php endif; ?>
                 <?php if (!empty($item['free_delivery'])): ?>
                   <span class="badge badge--free" style="margin-top:0.6rem;">FREE Delivery</span>
                 <?php endif; ?>
@@ -107,20 +102,8 @@
           <span style="font-size:1.5rem;">Estimated subtotal</span>
           <strong><?= e(money_format_inr($cart['subtotal'])) ?></strong>
         </div>
-        <?php if (!empty($cart['tax_total']) && (float)$cart['tax_total'] > 0): ?>
-          <div style="font-size:1.35rem;color:var(--color-muted);margin-top:0.2rem;">
-            Estimated GST: <strong><?= e(money_format_inr($cart['tax_total'])) ?></strong>
-          </div>
-        <?php endif; ?>
-        <div style="font-size:1.35rem;color:var(--color-muted);">
-          <?php if ($cart['shipping'] == 0): ?>
-            Shipping: <strong style="color:#065f46;">FREE</strong>
-          <?php else: ?>
-            Estimated shipping: <?= e(money_format_inr($cart['shipping'])) ?>
-            <?php if ($cart['free_threshold'] > 0): ?>
-              (Free delivery on orders above <?= e(money_short_inr($cart['free_threshold'])) ?>)
-            <?php endif; ?>
-          <?php endif; ?>
+        <div style="font-size:1.35rem;color:var(--color-muted);margin-top:0.4rem;">
+          Taxes and shipping calculated at checkout.
         </div>
         <div style="margin-top:1.2rem; width: min(35rem, 100%);">
           <a href="<?= base_url('/checkout') ?>" class="button button--full-width">Check out</a>
