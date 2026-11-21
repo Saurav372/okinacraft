@@ -26,7 +26,7 @@
       <?php else: ?>
         <div style="text-align:center; padding: 4rem 0;">
           <p style="margin-bottom: 1.8rem;">Check the spelling or try a different keyword.</p>
-          <a href="<?= base_url('/collections/all') ?>" class="button">Browse Catalog</a>
+          <a href="<?= base_url('/collections/all') ?>" class="button">Browse Products</a>
         </div>
       <?php endif; ?>
     <?php endif; ?>

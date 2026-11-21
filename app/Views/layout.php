@@ -51,7 +51,7 @@ $session = session();
           </li>
           <li>
             <a href="<?= base_url('/collections/all') ?>" class="header__menu-item">
-              <span class="<?= $activeNav === 'catalog' ? 'header__active-menu-item' : '' ?>">Catalog</span>
+              <span class="<?= $activeNav === 'catalog' ? 'header__active-menu-item' : '' ?>">Products</span>
             </a>
           </li>
           <li>
@@ -90,7 +90,7 @@ $session = session();
     </div>
     <ul class="menu-drawer__list">
       <li><a href="<?= base_url('/') ?>" class="menu-drawer__link <?= $activeNav === 'home' ? 'active' : '' ?>">Home</a></li>
-      <li><a href="<?= base_url('/collections/all') ?>" class="menu-drawer__link <?= $activeNav === 'catalog' ? 'active' : '' ?>">Catalog</a></li>
+      <li><a href="<?= base_url('/collections/all') ?>" class="menu-drawer__link <?= $activeNav === 'catalog' ? 'active' : '' ?>">Products</a></li>
       <li><a href="<?= base_url('/pages/contact') ?>" class="menu-drawer__link <?= $activeNav === 'contact' ? 'active' : '' ?>">Contact</a></li>
       <li><a href="<?= base_url('/account') ?>" class="menu-drawer__link">Track Order</a></li>
       <li><a href="<?= base_url('/cart') ?>" class="menu-drawer__link">Cart (<?= $cartCount ?>)</a></li>
