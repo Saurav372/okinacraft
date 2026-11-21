@@ -1,8 +1,10 @@
 <?php
 $storeName = store_setting('store_name', 'Okina Craft');
+$storeEmail = store_setting('store_email', 'support@okinacraft.com');
 $whatsappNo = store_setting('whatsapp_number', '7827747556');
 $whatsappPrefill = store_setting('whatsapp_prefill', 'Hi Okina Craft, I need help with a product or order.');
 $instagram = store_setting('instagram_handle', 'okina_craft');
+$businessAddress = store_setting('business_address', 'Hingoli, Maharashtra');
 $cartCount = (new \App\Libraries\CartService())->count();
 $activeNav = $activeNav ?? '';
 $session = session();
@@ -181,70 +183,256 @@ $session = session();
     <?= $this->renderSection('content') ?>
   </main>
 
-  <!-- Okina Craft Custom WhatsApp & Instagram Help Section -->
-  <section class="cs-help-section">
-    <div class="cs-contact-wrap">
-      <a class="cs-contact-link"
-         href="https://wa.me/<?= e($whatsappNo) ?>?text=<?= rawurlencode($whatsappPrefill) ?>"
-         target="_blank" rel="noopener noreferrer" title="Chat on WhatsApp">
-        <span class="cs-contact-icon cs-whatsapp-icon">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4ZM12.1 21.7a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.3-.4a9.8 9.8 0 1 1 8.6 4.8Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-1-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.8 4.3.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.1-1.3-.1-.2-.3-.3-.6-.4Z"/>
-          </svg>
-        </span>
-        <span>WhatsApp</span>
-      </a>
+  <!-- E-Commerce Trust & Value Props Bar -->
+  <section class="footer-trust-bar" aria-label="Store Guarantees">
+    <div class="page-width">
+      <div class="footer-trust-grid">
+        <div class="footer-trust-item">
+          <div class="footer-trust-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+          </div>
+          <div>
+            <div class="footer-trust-title">Secure Payments</div>
+            <div class="footer-trust-desc">100% Encrypted &amp; Safe Checkout</div>
+          </div>
+        </div>
 
-      <a class="cs-contact-link"
-         href="https://www.instagram.com/<?= e($instagram) ?>/"
-         target="_blank" rel="noopener noreferrer" title="Follow Okina Craft on Instagram (@<?= e($instagram) ?>)">
-        <span class="cs-contact-icon cs-instagram-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <rect x="3" y="3" width="18" height="18" rx="5"/>
-            <circle cx="12" cy="12" r="4"/>
-            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-          </svg>
-        </span>
-        <span>Instagram</span>
-      </a>
+        <div class="footer-trust-item">
+          <div class="footer-trust-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="3" width="15" height="13"/>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+              <circle cx="5.5" cy="18.5" r="2.5"/>
+              <circle cx="18.5" cy="18.5" r="2.5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="footer-trust-title">Reliable Shipping</div>
+            <div class="footer-trust-desc">All-India Fast Doorstep Delivery</div>
+          </div>
+        </div>
+
+        <div class="footer-trust-item">
+          <div class="footer-trust-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              <circle cx="9" cy="10" r="1" fill="currentColor"/>
+              <circle cx="12" cy="10" r="1" fill="currentColor"/>
+              <circle cx="15" cy="10" r="1" fill="currentColor"/>
+            </svg>
+          </div>
+          <div>
+            <div class="footer-trust-title">Customer Support</div>
+            <div class="footer-trust-desc">Quick Help on WhatsApp &amp; Email</div>
+          </div>
+        </div>
+
+        <div class="footer-trust-item">
+          <div class="footer-trust-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+              <path d="M3 3v5h5"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+          </div>
+          <div>
+            <div class="footer-trust-title">Easy Returns</div>
+            <div class="footer-trust-desc">Hassle-Free 7-Day Exchange Policy</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Okina Craft Minimal Footer -->
+  <!-- Complete 5-Column E-Commerce Footer -->
   <footer class="footer">
     <div class="page-width">
-      <div class="footer__content-top" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.6rem;padding-bottom:1.6rem;margin-bottom:1.6rem;border-bottom:1px solid #e2e8f0;">
-        <div class="footer__brand">
-          <a href="<?= base_url('/') ?>" style="text-decoration:none;display:inline-flex;align-items:center;gap:0.8rem;">
-            <img src="<?= base_url('assets/media/logo.png') ?>" alt="<?= e($storeName) ?>" style="max-height:42px;width:auto;display:block;">
+      <div class="footer-main-grid">
+        <!-- Col 1: Brand & Contact -->
+        <div class="footer-col footer-col--brand">
+          <a href="<?= base_url('/') ?>" style="text-decoration:none;display:inline-block;" aria-label="<?= e($storeName) ?>">
+            <img class="footer-brand__logo" src="<?= base_url('assets/media/logo.png') ?>" alt="<?= e($storeName) ?>">
           </a>
+          <p class="footer-brand__text">
+            Your trusted destination for quality products. Shop with confidence and enjoy a seamless shopping experience with premium streetwear, custom oversized t-shirts, and apparel.
+          </p>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4ZM12.1 21.7a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.3-.4a9.8 9.8 0 1 1 8.6 4.8Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-1-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.8 4.3.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.1-1.3-.1-.2-.3-.3-.6-.4Z"/>
+              </svg>
+              <span>WhatsApp: <a href="https://wa.me/<?= e($whatsappNo) ?>?text=<?= rawurlencode($whatsappPrefill) ?>" target="_blank" rel="noopener noreferrer">+91 <?= e($whatsappNo) ?></a></span>
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+              <span>Email: <a href="mailto:<?= e($storeEmail) ?>"><?= e($storeEmail) ?></a></span>
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              <span><?= e($businessAddress) ?>, India</span>
+            </div>
+          </div>
         </div>
-        <div class="footer__socials" style="display:flex;align-items:center;gap:1.6rem;flex-wrap:wrap;">
-          <a href="https://www.instagram.com/<?= e($instagram) ?>/" target="_blank" rel="noopener noreferrer" class="footer__social-link" style="display:inline-flex;align-items:center;gap:0.7rem;text-decoration:none;color:#1e293b;font-size:1.35rem;font-weight:600;" title="Follow @<?= e($instagram) ?> on Instagram">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#e1306c;">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-            </svg>
-            <span>@<?= e($instagram) ?></span>
-          </a>
-          <a href="https://wa.me/<?= e($whatsappNo) ?>?text=<?= rawurlencode($whatsappPrefill) ?>" target="_blank" rel="noopener noreferrer" class="footer__social-link" style="display:inline-flex;align-items:center;gap:0.7rem;text-decoration:none;color:#1e293b;font-size:1.35rem;font-weight:600;" title="Chat with Okina Craft on WhatsApp">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="color:#25d366;">
-              <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4ZM12.1 21.7a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.3-.4a9.8 9.8 0 1 1 8.6 4.8Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-1-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.8 4.3.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.1-1.3-.1-.2-.3-.3-.6-.4Z"/>
-            </svg>
-            <span>WhatsApp</span>
-          </a>
+
+        <!-- Col 2: Shop -->
+        <div class="footer-col footer-col--accordion">
+          <button type="button" class="footer-col__title-btn" aria-expanded="false">
+            <span>Shop</span>
+            <svg class="footer-col__chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <ul class="footer-links">
+            <li><a href="<?= base_url('/collections/all') ?>">All Products</a></li>
+            <li><a href="<?= base_url('/collections/all?sort_by=created-descending') ?>">New Arrivals</a></li>
+            <li><a href="<?= base_url('/collections/all?sort_by=best-selling') ?>">Best Sellers</a></li>
+            <li><a href="<?= base_url('/search?q=oversized') ?>">Oversized T-Shirts</a></li>
+            <li><a href="<?= base_url('/search?q=hoodie') ?>">Hoodies &amp; Fleece</a></li>
+            <li><a href="<?= base_url('/collections/all') ?>">Special Offers</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Customer Service -->
+        <div class="footer-col footer-col--accordion">
+          <button type="button" class="footer-col__title-btn" aria-expanded="false">
+            <span>Customer Service</span>
+            <svg class="footer-col__chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <ul class="footer-links">
+            <li><a href="<?= base_url('/contact') ?>">Contact Us</a></li>
+            <li><a href="<?= base_url('/account') ?>">Track Your Order</a></li>
+            <li><a href="<?= base_url('/policies/shipping-policy') ?>">Shipping Policy</a></li>
+            <li><a href="<?= base_url('/policies/refund-policy') ?>">Returns &amp; Refunds</a></li>
+            <li><a href="https://wa.me/<?= e($whatsappNo) ?>?text=<?= rawurlencode($whatsappPrefill) ?>" target="_blank" rel="noopener noreferrer">Live Chat Support</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Policies -->
+        <div class="footer-col footer-col--accordion">
+          <button type="button" class="footer-col__title-btn" aria-expanded="false">
+            <span>Policies</span>
+            <svg class="footer-col__chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <ul class="footer-links">
+            <li><a href="<?= base_url('/policies/privacy-policy') ?>">Privacy Policy</a></li>
+            <li><a href="<?= base_url('/policies/terms-of-service') ?>">Terms &amp; Conditions</a></li>
+            <li><a href="<?= base_url('/policies/shipping-policy') ?>">Shipping &amp; Delivery</a></li>
+            <li><a href="<?= base_url('/policies/refund-policy') ?>">Cancellation &amp; Refund</a></li>
+            <li><a href="<?= base_url('/policies/contact-information') ?>">Contact Information</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 5: Stay Connected & Newsletter -->
+        <div class="footer-col footer-col--connect">
+          <div class="footer-col__title">Stay Connected</div>
+          <p class="footer-newsletter__desc">
+            Subscribe to receive updates about new products, exclusive anime prints, and volume discounts.
+          </p>
+          <form class="footer-newsletter__form" id="footer-newsletter-form" onsubmit="event.preventDefault(); document.getElementById('footer-newsletter-success').style.display='block'; this.querySelector('input').value='';">
+            <div class="footer-newsletter__input-wrap">
+              <input type="email" class="footer-newsletter__input" placeholder="Enter your email address" required aria-label="Email address for newsletter">
+              <button type="submit" class="footer-newsletter__btn">Subscribe</button>
+            </div>
+            <div class="footer-newsletter__success" id="footer-newsletter-success">
+              &check; Thank you for subscribing!
+            </div>
+          </form>
+
+          <div style="margin-top:1.4rem;">
+            <div style="font-size:1.3rem;font-weight:600;color:#0f172a;margin-bottom:0.8rem;">Follow Us:</div>
+            <div class="footer-social-wrap">
+              <a href="https://www.instagram.com/<?= e($instagram) ?>/" target="_blank" rel="noopener noreferrer" class="footer-social-btn footer-social-btn--ig" title="Follow @<?= e($instagram) ?> on Instagram">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                <span>Instagram</span>
+              </a>
+              <a href="https://wa.me/<?= e($whatsappNo) ?>?text=<?= rawurlencode($whatsappPrefill) ?>" target="_blank" rel="noopener noreferrer" class="footer-social-btn footer-social-btn--wa" title="Chat on WhatsApp">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4ZM12.1 21.7a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.3-.4a9.8 9.8 0 1 1 8.6 4.8Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-1-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.8 4.3.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.1-1.3-.1-.2-.3-.3-.6-.4Z"/>
+                </svg>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="footer__copyright">
-        <small>&copy; <?= date('Y') ?>, <a href="<?= base_url('/') ?>"><?= e($storeName) ?></a></small>
-        <ul class="footer__policies" role="list">
-          <li><small><a href="<?= base_url('/policies/privacy-policy') ?>">Privacy policy</a></small></li>
-          <li><small><a href="<?= base_url('/policies/refund-policy') ?>">Refund policy</a></small></li>
-          <li><small><a href="<?= base_url('/policies/shipping-policy') ?>">Shipping policy</a></small></li>
-          <li><small><a href="<?= base_url('/policies/terms-of-service') ?>">Terms of service</a></small></li>
-          <li><small><a href="<?= base_url('/policies/contact-information') ?>">Contact information</a></small></li>
-        </ul>
+
+      <!-- Payment Methods Accepted Bar -->
+      <div class="footer-payment-bar">
+        <div class="footer-payment-label">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#16a34a;">
+            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span>We Accept 100% Secure Payments:</span>
+        </div>
+        <div class="footer-payment-icons" aria-label="Accepted Payment Methods">
+          <span class="payment-badge" title="UPI (PhonePe, Google Pay, Paytm, BHIM)">
+            <svg viewBox="0 0 38 24" width="38" height="24">
+              <rect width="38" height="24" rx="3" fill="#097939"/>
+              <text x="19" y="16" fill="#ffffff" font-size="11" font-weight="900" font-family="sans-serif" text-anchor="middle">UPI</text>
+            </svg>
+          </span>
+          <span class="payment-badge" title="RuPay Card">
+            <svg viewBox="0 0 42 24" width="42" height="24">
+              <rect width="42" height="24" rx="3" fill="#0f4a86"/>
+              <text x="21" y="16" fill="#ffffff" font-size="10" font-weight="800" font-family="sans-serif" text-anchor="middle">RuPay</text>
+            </svg>
+          </span>
+          <span class="payment-badge" title="Visa">
+            <svg viewBox="0 0 38 24" width="38" height="24">
+              <rect width="38" height="24" rx="3" fill="#1434cb"/>
+              <text x="19" y="17" fill="#ffffff" font-size="12" font-style="italic" font-weight="900" font-family="sans-serif" text-anchor="middle">VISA</text>
+            </svg>
+          </span>
+          <span class="payment-badge" title="Mastercard">
+            <svg viewBox="0 0 40 24" width="40" height="24">
+              <rect width="40" height="24" rx="3" fill="#222222"/>
+              <circle cx="16" cy="12" r="7" fill="#eb001b"/>
+              <circle cx="24" cy="12" r="7" fill="#f79e1b" fill-opacity="0.85"/>
+            </svg>
+          </span>
+          <span class="payment-badge" title="Net Banking">
+            <svg viewBox="0 0 52 24" width="52" height="24">
+              <rect width="52" height="24" rx="3" fill="#334155"/>
+              <text x="26" y="15" fill="#ffffff" font-size="8.5" font-weight="700" font-family="sans-serif" text-anchor="middle">NET BANK</text>
+            </svg>
+          </span>
+          <span class="payment-badge" title="Cash on Delivery Available">
+            <svg viewBox="0 0 38 24" width="38" height="24">
+              <rect width="38" height="24" rx="3" fill="#0f172a"/>
+              <text x="19" y="16" fill="#ffffff" font-size="10" font-weight="800" font-family="sans-serif" text-anchor="middle">COD</text>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- Bottom Bar: Copyright & Policies -->
+      <div class="footer-bottom">
+        <div>
+          &copy; <?= date('Y') ?> <strong><?= e($storeName) ?></strong>. All Rights Reserved.
+        </div>
+        <div class="footer-bottom-links">
+          <a href="<?= base_url('/policies/privacy-policy') ?>">Privacy Policy</a>
+          <span>&middot;</span>
+          <a href="<?= base_url('/policies/terms-of-service') ?>">Terms &amp; Conditions</a>
+          <span>&middot;</span>
+          <a href="<?= base_url('/policies/refund-policy') ?>">Refund Policy</a>
+          <span>&middot;</span>
+          <a href="<?= base_url('/policies/shipping-policy') ?>">Shipping Policy</a>
+          <span>&middot;</span>
+          <a href="<?= base_url('/policies/contact-information') ?>">Contact</a>
+        </div>
       </div>
     </div>
   </footer>

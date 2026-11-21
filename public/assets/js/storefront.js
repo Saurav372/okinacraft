@@ -1003,6 +1003,20 @@
     }
   });
 
+  // Mobile Footer Collapsible Accordion Groups
+  document.querySelectorAll('.footer-col__title-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        const col = btn.closest('.footer-col');
+        if (col) {
+          const isOpen = col.classList.contains('is-open');
+          btn.setAttribute('aria-expanded', String(!isOpen));
+          col.classList.toggle('is-open', !isOpen);
+        }
+      }
+    });
+  });
+
   function escapeHtml(str) {
     return String(str || '')
       .replace(/&/g, '&amp;')

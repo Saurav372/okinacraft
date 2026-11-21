@@ -961,122 +961,412 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
 }
 
 /* ==========================================================================
-   Exact Okina Craft Custom "Need Help?" WhatsApp & Instagram Section
+   Modern E-Commerce Trust Bar & 5-Column Footer
    ========================================================================== */
-.cs-help-section {
-  padding-top: 3rem;
-  padding-bottom: 3.9rem;
+.footer-trust-bar {
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 3rem 0;
 }
 
-@media screen and (min-width: 750px) {
-  .cs-help-section {
-    padding-top: 4rem;
-    padding-bottom: 5.2rem;
-  }
+.footer-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.4rem;
 }
 
-.cs-contact-wrap {
+.footer-trust-item {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 26px;
-  padding: 18px 10px;
+  gap: 1.4rem;
+}
+
+.footer-trust-icon {
+  width: 4.4rem;
+  height: 4.4rem;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #0f172a;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.footer-trust-icon svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.footer-trust-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.25;
+}
+
+.footer-trust-desc {
+  font-size: 1.25rem;
+  color: #64748b;
+  margin-top: 0.2rem;
+  line-height: 1.35;
+}
+
+/* Footer Main Layout */
+.footer {
+  background: #ffffff;
+  color: #334155;
+  padding: 4.8rem 0 2.4rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.footer-main-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr 1.2fr 1.6fr;
+  gap: 3.6rem;
+  padding-bottom: 3.6rem;
+}
+
+.footer-col__title {
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 1.6rem;
+  letter-spacing: -0.01em;
+}
+
+.footer-col__title-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0 0 1.6rem 0;
+  font: inherit;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  cursor: default;
+}
+
+.footer-col__chevron {
+  display: none;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-links a {
+  color: #64748b;
+  text-decoration: none;
+  font-size: 1.4rem;
+  transition: color 0.15s ease, transform 0.15s ease;
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: #0f172a;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-brand__logo {
+  max-height: 44px;
+  width: auto;
+  display: block;
+  margin-bottom: 1.4rem;
+}
+
+.footer-brand__text {
+  font-size: 1.35rem;
+  line-height: 1.6;
+  color: #64748b;
+  margin-bottom: 1.6rem;
+}
+
+.footer-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  font-size: 1.35rem;
+  color: #475569;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.footer-contact-item svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.footer-contact-item a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-contact-item a:hover {
+  color: #0f172a;
+  text-decoration: underline;
+}
+
+/* Newsletter Box */
+.footer-newsletter__desc {
+  font-size: 1.35rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin-bottom: 1.4rem;
+}
+
+.footer-newsletter__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1.6rem;
+}
+
+.footer-newsletter__input-wrap {
+  position: relative;
+  display: flex;
+  gap: 0.6rem;
+}
+
+.footer-newsletter__input {
+  flex: 1;
+  padding: 1rem 1.4rem;
+  font-size: 1.35rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.footer-newsletter__input:focus {
+  border-color: #0f172a;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1);
+}
+
+.footer-newsletter__btn {
+  padding: 1rem 1.8rem;
+  background: #0f172a;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.35rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.footer-newsletter__btn:hover {
+  background: #1e293b;
+}
+
+.footer-newsletter__success {
+  display: none;
+  font-size: 1.25rem;
+  color: #16a34a;
+  font-weight: 600;
+}
+
+/* Social Buttons */
+.footer-social-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
-.cs-contact-link {
+.footer-social-btn {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  color: inherit !important;
-  text-decoration: none !important;
-  font-size: 14px;
-  font-weight: 500;
-  transition: opacity 0.2s ease;
+  gap: 0.6rem;
+  padding: 0.7rem 1.2rem;
+  border-radius: 6px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  background: #f8fafc;
+  transition: all 0.15s ease;
 }
 
-.cs-contact-link:hover {
-  opacity: 0.75;
+.footer-social-btn:hover {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #0f172a;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.cs-contact-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
+.footer-social-btn--wa svg {
+  color: #25d366;
+}
+
+.footer-social-btn--ig svg {
+  color: #e1306c;
+}
+
+/* Payment & Trust Bar */
+.footer-payment-bar {
+  border-top: 1px solid #e2e8f0;
+  padding: 2.2rem 0;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+}
+
+.footer-payment-label {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.footer-payment-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.payment-badge {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  color: #fff;
-  flex-shrink: 0;
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.16);
+  height: 3rem;
+  padding: 0 0.9rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1e293b;
+  letter-spacing: 0.02em;
 }
 
-.cs-contact-icon svg {
-  width: 22px;
-  height: 22px;
+/* Bottom Bar */
+.footer-bottom {
+  border-top: 1px solid #f1f5f9;
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  font-size: 1.25rem;
+  color: #64748b;
 }
 
-.cs-whatsapp-icon {
-  background: #25D366;
+.footer-bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  flex-wrap: wrap;
 }
 
-.cs-instagram-icon {
-  background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+.footer-bottom-links a {
+  color: #64748b;
+  text-decoration: none;
 }
 
-/* ==========================================================================
-   Exact Okina Craft Footer
-   ========================================================================== */
-.footer {
-  border-top: 1px solid rgba(var(--color-foreground), 0.08);
-  padding: 2.7rem 0;
+.footer-bottom-links a:hover {
+  color: #0f172a;
+  text-decoration: underline;
 }
 
-@media screen and (min-width: 750px) {
-  .footer {
-    padding: 3.6rem 0;
+/* Responsive Media Queries */
+@media screen and (max-width: 1024px) {
+  .footer-trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  .footer-main-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+  .footer-main-grid .footer-col--brand {
+    grid-column: span 2;
+  }
+  .footer-main-grid .footer-col--connect {
+    grid-column: span 2;
   }
 }
 
-.footer__copyright {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 0.6rem 1.4rem;
-  font-size: 1.2rem;
-  color: rgba(var(--color-foreground), 0.75);
-}
-
-.footer__copyright a {
-  color: rgba(var(--color-foreground), 0.75);
-}
-
-.footer__copyright a:hover {
-  color: rgb(var(--color-foreground));
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
-}
-
-.footer__policies {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.6rem 1.6rem;
-}
-
-.footer__policies li::before {
-  content: '·';
-  margin-right: 1.6rem;
-  opacity: 0.5;
-}
-
-@media screen and (max-width: 600px) {
-  .footer__policies li::before {
+@media screen and (max-width: 768px) {
+  .footer-trust-grid {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+  .footer-main-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-bottom: 2rem;
+  }
+  .footer-main-grid .footer-col--brand {
+    margin-bottom: 2.4rem;
+  }
+  .footer-col--accordion {
+    border-top: 1px solid #f1f5f9;
+  }
+  .footer-col__title-btn {
+    cursor: pointer;
+    padding: 1.4rem 0;
+    margin: 0;
+  }
+  .footer-col__chevron {
+    display: inline-block;
+    transition: transform 0.25s ease;
+    color: #64748b;
+  }
+  .footer-col.is-open .footer-col__chevron {
+    transform: rotate(180deg);
+  }
+  .footer-col--accordion .footer-links {
     display: none;
+    padding-bottom: 1.4rem;
+  }
+  .footer-col.is-open .footer-links {
+    display: flex;
+  }
+  .footer-col--connect {
+    border-top: 1px solid #f1f5f9;
+    padding-top: 2rem;
+    margin-top: 0.4rem;
+  }
+  .footer-payment-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
