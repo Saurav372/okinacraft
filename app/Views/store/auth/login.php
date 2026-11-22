@@ -7,7 +7,7 @@
     <div class="checkout-card" style="padding: 3.2rem 2.8rem; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.06);">
       
       <div style="text-align: center; margin-bottom: 2.6rem;">
-        <h1 class="h2" style="margin-bottom: 0.6rem; font-weight: 700;">Customer Sign In</h1>
+        <h1 class="h2" style="margin-bottom: 0.6rem; font-weight: 700;">Sign In</h1>
         <p style="color: var(--color-muted); font-size: 1.45rem; margin: 0;">
           Access your orders, saved addresses, and wishlist.
         </p>

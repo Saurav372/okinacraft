@@ -1323,7 +1323,7 @@
       }
 
       if (this.titleEl) {
-        this.titleEl.textContent = isLogin ? 'Customer Sign In' : 'Create Account';
+        this.titleEl.textContent = isLogin ? 'Sign In' : 'Create Account';
       }
       if (this.subtitleEl) {
         this.subtitleEl.textContent = isLogin 
