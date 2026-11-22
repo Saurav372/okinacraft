@@ -83,7 +83,7 @@
 
       <div style="text-align: center; margin-top: 2.4rem; padding-top: 1.8rem; border-top: 1px solid #f1f5f9; font-size: 1.4rem; color: var(--color-muted);">
         Already have an account? 
-        <a href="<?= base_url('/account/login' . (!empty($redirect) ? '?redirect=' . rawurlencode($redirect) : '')) ?>" style="color: #000; font-weight: 700; text-decoration: underline;">
+        <a href="<?= base_url('/account/login' . (!empty($redirect) ? '?redirect=' . rawurlencode($redirect) : '')) ?>" data-open-auth-modal="login" style="color: #000; font-weight: 700; text-decoration: underline;">
           Sign in
         </a>
       </div>

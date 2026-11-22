@@ -51,6 +51,13 @@ class CustomerAuthController extends BaseController
 
         $result = $this->auth->attempt($identifier, $password, $remember);
         if (!$result['ok']) {
+            if ($this->request->isAJAX()) {
+                return $this->response->setJSON([
+                    'ok'    => false,
+                    'error' => $result['error'],
+                    'csrf'  => ['name' => csrf_token(), 'hash' => csrf_hash()],
+                ]);
+            }
             session()->setFlashdata('error', $result['error']);
             return redirect()->to('/account/login' . ($redirect !== '' ? '?redirect=' . rawurlencode($redirect) : ''));
         }
@@ -58,8 +65,24 @@ class CustomerAuthController extends BaseController
         // Link any prior guest orders made with this email to this customer
         $this->linkGuestOrders($result['customer']);
 
+        $target = $this->resolveRedirect($redirect ?: '/account');
+
+        if ($this->request->isAJAX()) {
+            return $this->response->setJSON([
+                'ok'       => true,
+                'message'  => 'Welcome back, ' . e($result['customer']['name']) . '!',
+                'redirect' => $target,
+                'customer' => [
+                    'id'    => (int)$result['customer']['id'],
+                    'name'  => $result['customer']['name'],
+                    'email' => $result['customer']['email'],
+                ],
+                'csrf'     => ['name' => csrf_token(), 'hash' => csrf_hash()],
+            ]);
+        }
+
         session()->setFlashdata('success', 'Welcome back, ' . e($result['customer']['name']) . '!');
-        return redirect()->to($this->resolveRedirect($redirect ?: '/account'));
+        return redirect()->to($target);
     }
 
     /**
@@ -99,6 +122,13 @@ class CustomerAuthController extends BaseController
 
         $result = $this->auth->register($data);
         if (!$result['ok']) {
+            if ($this->request->isAJAX()) {
+                return $this->response->setJSON([
+                    'ok'    => false,
+                    'error' => $result['error'],
+                    'csrf'  => ['name' => csrf_token(), 'hash' => csrf_hash()],
+                ]);
+            }
             session()->setFlashdata('reg_old', $data);
             session()->setFlashdata('error', $result['error']);
             return redirect()->to('/account/register' . ($redirect !== '' ? '?redirect=' . rawurlencode($redirect) : ''));
@@ -110,8 +140,24 @@ class CustomerAuthController extends BaseController
         // Send welcome email via cPanel mail / PHP mail
         $this->sendWelcomeEmail($result['customer']);
 
+        $target = $this->resolveRedirect($redirect ?: '/account');
+
+        if ($this->request->isAJAX()) {
+            return $this->response->setJSON([
+                'ok'       => true,
+                'message'  => 'Your account has been created successfully!',
+                'redirect' => $target,
+                'customer' => [
+                    'id'    => (int)$result['customer']['id'],
+                    'name'  => $result['customer']['name'],
+                    'email' => $result['customer']['email'],
+                ],
+                'csrf'     => ['name' => csrf_token(), 'hash' => csrf_hash()],
+            ]);
+        }
+
         session()->setFlashdata('success', 'Your account has been created successfully!');
-        return redirect()->to($this->resolveRedirect($redirect ?: '/account'));
+        return redirect()->to($target);
     }
 
     /**

@@ -1107,10 +1107,320 @@
         })
         .catch(() => {});
       });
+    },
+
+    syncWithServer: function () {
+      const ids = this.getIds();
+      if (!ids.length) return Promise.resolve();
+
+      const csrfTokenMeta = document.querySelector('input[name="csrf_test_name"]') || document.querySelector('meta[name="csrf-token"]');
+      const tokenName = csrfTokenMeta ? csrfTokenMeta.getAttribute('name') : 'csrf_test_name';
+      const tokenVal = csrfTokenMeta ? (csrfTokenMeta.value || csrfTokenMeta.getAttribute('content')) : '';
+
+      const fd = new FormData();
+      fd.append('product_ids', JSON.stringify(ids));
+      if (tokenVal) fd.append(tokenName, tokenVal);
+
+      return fetch(basePath + '/api/wishlist/sync', {
+        method: 'POST',
+        body: fd,
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.wishlist_ids && Array.isArray(data.wishlist_ids)) {
+          WishlistManager.saveIds(data.wishlist_ids);
+        }
+      })
+      .catch(() => {});
     }
   };
 
   WishlistManager.init();
+  window.WishlistManager = WishlistManager;
+
+  // 10. Customer Auth Popup Modal (Sign Up & Sign In)
+  const AuthModalManager = {
+    modal: null,
+    signupPane: null,
+    loginPane: null,
+    signupTabBtn: null,
+    loginTabBtn: null,
+    signupForm: null,
+    loginForm: null,
+    signupAlert: null,
+    loginAlert: null,
+
+    init() {
+      this.modal = document.getElementById('auth-modal');
+      if (!this.modal) return;
+
+      this.signupPane = document.getElementById('auth-modal-pane-signup');
+      this.loginPane = document.getElementById('auth-modal-pane-login');
+      this.signupTabBtn = document.getElementById('auth-tab-btn-signup');
+      this.loginTabBtn = document.getElementById('auth-tab-btn-login');
+      this.signupForm = document.getElementById('auth-modal-signup-form');
+      this.loginForm = document.getElementById('auth-modal-login-form');
+      this.signupAlert = document.getElementById('auth-modal-signup-alert');
+      this.loginAlert = document.getElementById('auth-modal-login-alert');
+
+      // Bind trigger clicks across the entire document
+      document.addEventListener('click', (e) => {
+        // Open modal triggers
+        const openTrigger = e.target.closest('[data-open-auth-modal], [data-open-signup-modal], [data-open-login-modal]');
+        if (openTrigger) {
+          e.preventDefault();
+          let tab = 'signup';
+          if (openTrigger.hasAttribute('data-open-login-modal')) {
+            tab = 'login';
+          } else if (openTrigger.hasAttribute('data-open-signup-modal')) {
+            tab = 'signup';
+          } else {
+            tab = openTrigger.getAttribute('data-open-auth-modal') || 'signup';
+          }
+          this.open(tab);
+          return;
+        }
+
+        // Close modal triggers
+        const closeTrigger = e.target.closest('[data-close-auth-modal]');
+        if (closeTrigger) {
+          e.preventDefault();
+          this.close();
+          return;
+        }
+
+        // Switch tab / switch mode triggers inside modal
+        const switchTrigger = e.target.closest('[data-switch-auth], [data-auth-tab]');
+        if (switchTrigger) {
+          e.preventDefault();
+          const targetTab = switchTrigger.getAttribute('data-switch-auth') || switchTrigger.getAttribute('data-auth-tab');
+          this.switchTab(targetTab);
+          return;
+        }
+
+        // Toggle password visibility
+        const pwToggle = e.target.closest('[data-toggle-pw]');
+        if (pwToggle) {
+          e.preventDefault();
+          const inputId = pwToggle.getAttribute('data-toggle-pw');
+          const input = document.getElementById(inputId);
+          if (input) {
+            const isPw = input.type === 'password';
+            input.type = isPw ? 'text' : 'password';
+            const eyeOpen = pwToggle.querySelector('.pw-eye-open');
+            const eyeClosed = pwToggle.querySelector('.pw-eye-closed');
+            if (eyeOpen) eyeOpen.style.display = isPw ? 'none' : 'block';
+            if (eyeClosed) eyeClosed.style.display = isPw ? 'block' : 'none';
+          }
+          return;
+        }
+      });
+
+      // Bind AJAX form submit for Signup
+      if (this.signupForm) {
+        this.signupForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          this.handleAjaxSubmit(this.signupForm, basePath + '/account/register', this.signupAlert, 'signup');
+        });
+      }
+
+      // Bind AJAX form submit for Login
+      if (this.loginForm) {
+        this.loginForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          this.handleAjaxSubmit(this.loginForm, basePath + '/account/login', this.loginAlert, 'login');
+        });
+      }
+
+      // Close on ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.modal.classList.contains('active')) {
+          this.close();
+        }
+      });
+
+      // Expose globally
+      window.openAuthModal = (tab = 'signup') => this.open(tab);
+      window.closeAuthModal = () => this.close();
+    },
+
+    open(tab = 'signup') {
+      if (!this.modal) return;
+      this.switchTab(tab);
+      this.clearAlerts();
+      this.modal.classList.add('active');
+      this.modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+
+      // Autofocus first input in active pane
+      setTimeout(() => {
+        const activePane = tab === 'login' ? this.loginPane : this.signupPane;
+        const firstInput = activePane ? activePane.querySelector('input:not([type="hidden"])') : null;
+        if (firstInput) firstInput.focus();
+      }, 120);
+    },
+
+    close() {
+      if (!this.modal) return;
+      this.modal.classList.remove('active');
+      this.modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      this.clearAlerts();
+    },
+
+    switchTab(tab) {
+      const isLogin = tab === 'login';
+      if (this.signupTabBtn) {
+        this.signupTabBtn.classList.toggle('active', !isLogin);
+        this.signupTabBtn.setAttribute('aria-selected', isLogin ? 'false' : 'true');
+      }
+      if (this.loginTabBtn) {
+        this.loginTabBtn.classList.toggle('active', isLogin);
+        this.loginTabBtn.setAttribute('aria-selected', isLogin ? 'true' : 'false');
+      }
+      if (this.signupPane) {
+        this.signupPane.style.display = isLogin ? 'none' : 'block';
+        this.signupPane.classList.toggle('active', !isLogin);
+      }
+      if (this.loginPane) {
+        this.loginPane.style.display = isLogin ? 'block' : 'none';
+        this.loginPane.classList.toggle('active', isLogin);
+      }
+      this.clearAlerts();
+    },
+
+    clearAlerts() {
+      if (this.signupAlert) {
+        this.signupAlert.style.display = 'none';
+        this.signupAlert.className = 'auth-modal__alert';
+        this.signupAlert.innerHTML = '';
+      }
+      if (this.loginAlert) {
+        this.loginAlert.style.display = 'none';
+        this.loginAlert.className = 'auth-modal__alert';
+        this.loginAlert.innerHTML = '';
+      }
+    },
+
+    showAlert(alertEl, message, isError = true) {
+      if (!alertEl) return;
+      alertEl.className = 'auth-modal__alert ' + (isError ? 'auth-modal__alert--error' : 'auth-modal__alert--success');
+      alertEl.textContent = message;
+      alertEl.style.display = 'block';
+    },
+
+    updateCsrf(tokenName, tokenHash) {
+      if (!tokenName || !tokenHash) return;
+      document.querySelectorAll(`input[name="${tokenName}"]`).forEach((inp) => {
+        inp.value = tokenHash;
+      });
+    },
+
+    async handleAjaxSubmit(form, url, alertEl, type) {
+      const submitBtn = form.querySelector('.auth-modal__submit-btn');
+      const btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
+      const btnSpinner = submitBtn ? submitBtn.querySelector('.btn-spinner') : null;
+
+      if (submitBtn) submitBtn.disabled = true;
+      if (btnText) btnText.style.display = 'none';
+      if (btnSpinner) btnSpinner.style.display = 'inline-flex';
+      this.clearAlerts();
+
+      try {
+        const formData = new FormData(form);
+        const resp = await fetch(url, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept': 'application/json'
+          }
+        });
+
+        const data = await resp.json();
+
+        // Update CSRF tokens across forms
+        if (data.csrf && data.csrf.name && data.csrf.hash) {
+          this.updateCsrf(data.csrf.name, data.csrf.hash);
+        }
+
+        if (data.ok) {
+          this.showAlert(alertEl, data.message || 'Success! Redirecting...', false);
+
+          // Sync local wishlist if available
+          if (WishlistManager && typeof WishlistManager.syncWithServer === 'function') {
+            await WishlistManager.syncWithServer();
+          }
+
+          setTimeout(() => {
+            if (data.redirect) {
+              window.location.href = data.redirect;
+            } else {
+              window.location.reload();
+            }
+          }, 400);
+        } else {
+          this.showAlert(alertEl, data.error || 'Authentication failed. Please check your details.', true);
+          if (submitBtn) submitBtn.disabled = false;
+          if (btnText) btnText.style.display = '';
+          if (btnSpinner) btnSpinner.style.display = 'none';
+        }
+      } catch (err) {
+        console.error(err);
+        this.showAlert(alertEl, 'Network or server error. Please try again.', true);
+        if (submitBtn) submitBtn.disabled = false;
+        if (btnText) btnText.style.display = '';
+        if (btnSpinner) btnSpinner.style.display = 'none';
+      }
+    }
+  };
+
+  AuthModalManager.init();
+
+  // Global Google Login callback handler
+  window.handleGoogleLogin = function (response) {
+    if (!response || !response.credential) return;
+    const redirectInput = document.querySelector('.auth-modal-redirect-input');
+    const redirect = redirectInput ? redirectInput.value : '';
+
+    const csrfTokenMeta = document.querySelector('input[name="csrf_test_name"]') || document.querySelector('meta[name="csrf-token"]');
+    const tokenName = csrfTokenMeta ? csrfTokenMeta.getAttribute('name') : 'csrf_test_name';
+    const tokenVal = csrfTokenMeta ? (csrfTokenMeta.value || csrfTokenMeta.getAttribute('content')) : '';
+
+    const params = new URLSearchParams({
+      'credential': response.credential,
+      'redirect': redirect
+    });
+    if (tokenVal) params.append(tokenName, tokenVal);
+
+    fetch(basePath + '/account/google', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      body: params
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.ok && data.redirect) {
+        if (WishlistManager && typeof WishlistManager.syncWithServer === 'function') {
+          WishlistManager.syncWithServer().finally(() => {
+            window.location.href = data.redirect;
+          });
+        } else {
+          window.location.href = data.redirect;
+        }
+      } else {
+        alert(data.error || 'Google login failed.');
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      alert('Failed to connect with Google login.');
+    });
+  };
 
   function escapeHtml(str) {
     return String(str || '')

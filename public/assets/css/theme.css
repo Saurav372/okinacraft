@@ -3531,3 +3531,359 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
 .pdp-wishlist-btn.active svg {
   fill: #dc2626;
 }
+
+/* ========================================================
+   OKINA CRAFT CUSTOMER AUTH POPUP MODAL (SIGNUP & SIGNIN)
+   ======================================================== */
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.6rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s ease;
+}
+
+.auth-modal.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.auth-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.auth-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 460px;
+  max-height: 92vh;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.35), 0 0 1px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 2.8rem 2.6rem;
+  transform: scale(0.95) translateY(14px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.auth-modal.active .auth-modal__dialog {
+  transform: scale(1) translateY(0);
+}
+
+.auth-modal__close {
+  position: absolute;
+  top: 1.6rem;
+  right: 1.6rem;
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 50%;
+  border: none;
+  background: #f1f5f9;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  z-index: 2;
+}
+
+.auth-modal__close:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+  transform: scale(1.05);
+}
+
+.auth-modal__brand {
+  text-align: center;
+  margin-bottom: 1.6rem;
+}
+
+.auth-modal__brand-img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  display: inline-block;
+}
+
+.auth-modal__tabs {
+  display: flex;
+  background: #f1f5f9;
+  border-radius: 10px;
+  padding: 0.4rem;
+  margin-bottom: 2rem;
+  gap: 0.4rem;
+}
+
+.auth-modal__tab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 0.9rem 1.2rem;
+  border-radius: 8px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.auth-modal__tab:hover {
+  color: #0f172a;
+}
+
+.auth-modal__tab.active {
+  background: #ffffff;
+  color: #000000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.auth-modal__pane {
+  display: none;
+}
+
+.auth-modal__pane.active {
+  display: block;
+  animation: authFadeIn 0.25s ease-out;
+}
+
+@keyframes authFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-modal__pane-header {
+  text-align: center;
+  margin-bottom: 1.8rem;
+}
+
+.auth-modal__title {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.auth-modal__subtitle {
+  font-size: 1.35rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.auth-modal__alert {
+  padding: 1rem 1.4rem;
+  border-radius: 8px;
+  font-size: 1.35rem;
+  margin-bottom: 1.6rem;
+  line-height: 1.4;
+}
+
+.auth-modal__alert--error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+}
+
+.auth-modal__alert--success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+}
+
+.auth-modal__field {
+  margin-bottom: 1.4rem;
+}
+
+.auth-modal__field-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.auth-modal__label {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.auth-modal__hint {
+  font-size: 1.2rem;
+  color: #64748b;
+  margin-top: 0.4rem;
+  display: block;
+}
+
+.auth-modal__input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.auth-modal__input-wrap .field__input {
+  padding-right: 4.2rem;
+}
+
+.auth-modal__pw-toggle {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: color 0.15s ease;
+}
+
+.auth-modal__pw-toggle:hover {
+  color: #0f172a;
+}
+
+.auth-modal__options-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1.2rem 0 1.6rem;
+}
+
+.auth-modal__checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.35rem;
+  color: #334155;
+  cursor: pointer;
+  user-select: none;
+}
+
+.auth-modal__checkbox-label input[type="checkbox"] {
+  width: 1.6rem;
+  height: 1.6rem;
+  accent-color: #000;
+  cursor: pointer;
+}
+
+.auth-modal__forgot-link {
+  font-size: 1.3rem;
+  color: #0f172a;
+  text-decoration: underline;
+}
+
+.auth-modal__submit-btn {
+  position: relative;
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 1.35rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-modal__submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.auth-modal__footer-switch {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid #f1f5f9;
+  font-size: 1.4rem;
+  color: #64748b;
+}
+
+.auth-modal__switch-link {
+  border: none;
+  background: none;
+  color: #000000;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0;
+  margin-left: 0.4rem;
+}
+
+.auth-modal__divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.6rem 0;
+  color: #94a3b8;
+  font-size: 1.25rem;
+}
+
+.auth-modal__divider::before,
+.auth-modal__divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e2e8f0;
+}
+
+.auth-modal__divider span {
+  padding: 0 1rem;
+}
+
+.auth-modal__google-wrap {
+  margin-bottom: 1.4rem;
+}
+
+.spinner-svg {
+  animation: authRotate 1s linear infinite;
+  vertical-align: middle;
+  margin-right: 0.6rem;
+}
+
+@keyframes authRotate {
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 600px) {
+  .auth-modal {
+    padding: 0;
+    align-items: flex-end;
+  }
+  .auth-modal__dialog {
+    max-height: 88vh;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 2.4rem 1.8rem;
+    transform: translateY(100%);
+  }
+  .auth-modal.active .auth-modal__dialog {
+    transform: translateY(0);
+  }
+}
+

@@ -94,7 +94,7 @@
 
       <div style="text-align: center; margin-top: 2.4rem; padding-top: 1.8rem; border-top: 1px solid #f1f5f9; font-size: 1.4rem; color: var(--color-muted);">
         Don't have an account? 
-        <a href="<?= base_url('/account/register' . (!empty($redirect) ? '?redirect=' . rawurlencode($redirect) : '')) ?>" style="color: #000; font-weight: 700; text-decoration: underline;">
+        <a href="<?= base_url('/account/register' . (!empty($redirect) ? '?redirect=' . rawurlencode($redirect) : '')) ?>" data-open-auth-modal="signup" style="color: #000; font-weight: 700; text-decoration: underline;">
           Create account
         </a>
       </div>
