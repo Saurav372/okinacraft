@@ -7,20 +7,34 @@ $googleClientId = store_setting('google_client_id', '');
 $storeName = store_setting('store_name', 'Okina Craft');
 ?>
 
-<!-- Customer Auth Popup Modal (Okina Craft - Clean Modern UI) -->
+<script>window.OC_GOOGLE_CLIENT_ID = <?= json_encode($googleClientId) ?>;</script>
+
+<?php if (!empty($googleClientId)): ?>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <div id="g_id_onload"
+       data-client_id="<?= e($googleClientId) ?>"
+       data-callback="handleGoogleLogin"
+       data-auto_prompt="false">
+  </div>
+  <div id="gsi-hidden-wrap" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;">
+    <div class="g_id_signin" data-type="standard"></div>
+  </div>
+<?php endif; ?>
+
+<!-- Customer Auth Popup Modal (Compact Modern UI - No bulky header space, dedicated Google button) -->
 <div id="auth-modal" class="auth-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="auth-modal-title">
   <div class="auth-modal__backdrop" data-close-auth-modal></div>
-  <div class="auth-modal__dialog otp-modal__dialog">
+  <div class="auth-modal__dialog auth-modal__compact">
     
-    <!-- Top Header Banner (Navy with Glowing Sunset Orb) -->
-    <div class="otp-modal__header">
-      <div class="otp-modal__header-content">
-        <h2 class="otp-modal__title" id="auth-modal-title">Customer Sign In</h2>
-        <p class="otp-modal__subtitle" id="auth-modal-subtitle">Welcome back! Access your orders &amp; wishlist.</p>
+    <!-- Modal Head (Compact Title + Close Button) -->
+    <div class="auth-modal__head">
+      <div>
+        <h2 class="auth-modal__head-title" id="auth-modal-title">Sign In</h2>
+        <p class="auth-modal__head-subtitle" id="auth-modal-subtitle">Welcome back to Okina Craft</p>
       </div>
 
-      <!-- Circular Close Button -->
-      <button type="button" class="otp-modal__close" data-close-auth-modal aria-label="Close dialog">
+      <!-- Clean Circular Close Button -->
+      <button type="button" class="auth-modal__close-btn" data-close-auth-modal aria-label="Close dialog">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -28,8 +42,8 @@ $storeName = store_setting('store_name', 'Okina Craft');
       </button>
     </div>
 
-    <!-- White Card Body -->
-    <div class="otp-modal__body">
+    <!-- Modal Body -->
+    <div class="auth-modal__body-wrap">
       
       <!-- Modern Segmented Pill Switcher -->
       <div class="auth-modal__tabs" role="tablist">
@@ -41,35 +55,29 @@ $storeName = store_setting('store_name', 'Okina Craft');
         </button>
       </div>
 
+      <!-- Prominent Google Login Button -->
+      <div class="auth-google-wrap">
+        <button type="button" class="auth-google-btn" id="auth-google-btn" aria-label="Continue with Google">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
+          <span>Continue with Google</span>
+        </button>
+      </div>
+
+      <!-- Clean Divider -->
+      <div class="auth-divider">
+        <span>or continue with email</span>
+      </div>
+
       <!-- Inline Alert Notice -->
       <div id="auth-modal-alert" class="auth-modal__alert" style="display:none;" role="alert"></div>
 
       <!-- ================= PANE 1: SIGN IN ================= -->
       <div id="auth-pane-login" class="auth-modal__pane active">
-        
-        <?php if (!empty($googleClientId)): ?>
-          <script src="https://accounts.google.com/gsi/client" async defer></script>
-          <div id="g_id_onload"
-               data-client_id="<?= e($googleClientId) ?>"
-               data-callback="handleGoogleLogin"
-               data-auto_prompt="false">
-          </div>
-          <div class="auth-modal__google-wrap">
-            <div class="g_id_signin"
-                 data-type="standard"
-                 data-shape="rectangular"
-                 data-theme="outline"
-                 data-text="signin_with"
-                 data-size="large"
-                 data-logo_alignment="left"
-                 data-width="100%">
-            </div>
-          </div>
-          <div class="auth-modal__divider">
-            <span>or sign in with credentials</span>
-          </div>
-        <?php endif; ?>
-
         <form id="auth-login-form" action="<?= base_url('/account/login') ?>" method="post" autocomplete="on">
           <?= csrf_field() ?>
           <input type="hidden" name="redirect" class="auth-modal-redirect-input" value="">
@@ -123,29 +131,10 @@ $storeName = store_setting('store_name', 'Okina Craft');
         <a href="<?= base_url('/account/track') ?>" class="auth-guest-link">
           Looking for a guest order? <span>Track with Order Number &rarr;</span>
         </a>
-
       </div>
 
       <!-- ================= PANE 2: CREATE ACCOUNT ================= -->
       <div id="auth-pane-signup" class="auth-modal__pane" style="display:none;">
-        
-        <?php if (!empty($googleClientId)): ?>
-          <div class="auth-modal__google-wrap">
-            <div class="g_id_signin"
-                 data-type="standard"
-                 data-shape="rectangular"
-                 data-theme="outline"
-                 data-text="signup_with"
-                 data-size="large"
-                 data-logo_alignment="left"
-                 data-width="100%">
-            </div>
-          </div>
-          <div class="auth-modal__divider">
-            <span>or sign up with email / mobile</span>
-          </div>
-        <?php endif; ?>
-
         <form id="auth-signup-form" action="<?= base_url('/account/register') ?>" method="post" autocomplete="on">
           <?= csrf_field() ?>
           <input type="hidden" name="redirect" class="auth-modal-redirect-input" value="">
@@ -155,7 +144,6 @@ $storeName = store_setting('store_name', 'Okina Craft');
             <input type="text" id="modal-reg-name" name="name" class="auth-input" required placeholder="Enter your full name" autocomplete="name">
           </div>
 
-          <!-- Mobile with +91 Flag Group -->
           <div class="auth-form-field">
             <label class="auth-label" for="modal-reg-phone">Mobile / WhatsApp Number *</label>
             <div class="auth-phone-group">
@@ -211,7 +199,7 @@ $storeName = store_setting('store_name', 'Okina Craft');
             </div>
           </div>
 
-          <button type="submit" class="auth-primary-btn" style="margin-top: 18px;">
+          <button type="submit" class="auth-primary-btn" style="margin-top: 14px;">
             <span class="btn-text">Create Account</span>
             <span class="btn-spinner" style="display:none;">
               <svg class="spinner-svg" viewBox="0 0 24 24" width="18" height="18">
@@ -226,14 +214,13 @@ $storeName = store_setting('store_name', 'Okina Craft');
           Already have an account? 
           <button type="button" class="auth-switch-btn" data-switch-auth="login">Sign In</button>
         </div>
-
       </div>
 
       <!-- 3-Column Okina Craft Value Props (Track Orders | Wishlist | Fast Checkout) -->
       <div class="auth-value-props">
         <div class="auth-prop-item">
           <div class="auth-prop-icon">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="m7.5 4.27 9 5.15"/>
               <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
               <path d="m3.3 7 8.7 5 8.7-5"/>
@@ -245,7 +232,7 @@ $storeName = store_setting('store_name', 'Okina Craft');
 
         <div class="auth-prop-item">
           <div class="auth-prop-icon">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
             </svg>
           </div>
@@ -254,7 +241,7 @@ $storeName = store_setting('store_name', 'Okina Craft');
 
         <div class="auth-prop-item">
           <div class="auth-prop-icon">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
             </svg>
           </div>

@@ -1223,6 +1223,33 @@
         });
       }
 
+      // Google button click handler
+      const googleBtn = document.getElementById('auth-google-btn');
+      if (googleBtn) {
+        googleBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (window.google && window.google.accounts && window.google.accounts.id && window.OC_GOOGLE_CLIENT_ID) {
+            const hiddenGsiBtn = document.querySelector('#gsi-hidden-wrap [role="button"], #gsi-hidden-wrap iframe');
+            if (hiddenGsiBtn) {
+              hiddenGsiBtn.click();
+            } else {
+              google.accounts.id.prompt();
+            }
+          } else if (window.OC_GOOGLE_CLIENT_ID) {
+            this.showAlert('Connecting to Google...', false);
+            setTimeout(() => {
+              if (window.google && window.google.accounts && window.google.accounts.id) {
+                google.accounts.id.prompt();
+              } else {
+                this.showAlert('Unable to load Google Sign-In. Please check your connection or use email/phone.', true);
+              }
+            }, 600);
+          } else {
+            this.showAlert('Google Sign-In is not configured yet in settings. Please sign in with your email or mobile.', true);
+          }
+        });
+      }
+
       // Handle Sign Up form submit
       if (this.signupForm) {
         this.signupForm.addEventListener('submit', (e) => {
@@ -1329,7 +1356,7 @@
     },
 
     async handleFormSubmit(form, url) {
-      const submitBtn = form.querySelector('.otp-modal__primary-btn, .auth-modal__submit-btn');
+      const submitBtn = form.querySelector('.auth-primary-btn, .otp-modal__primary-btn, .auth-modal__submit-btn');
       const btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
       const btnSpinner = submitBtn ? submitBtn.querySelector('.btn-spinner') : null;
 

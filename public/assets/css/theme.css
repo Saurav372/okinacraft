@@ -3563,7 +3563,9 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
   -webkit-backdrop-filter: blur(5px);
 }
 
-.auth-modal__dialog.otp-modal__dialog {
+.auth-modal__dialog,
+.auth-modal__dialog.otp-modal__dialog,
+.auth-modal__dialog.auth-modal__compact {
   position: relative;
   z-index: 1;
   width: 100%;
@@ -3571,20 +3573,87 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
   max-height: 94vh;
   background: #ffffff;
   border-radius: 20px;
-  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.38), 0 0 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.35), 0 10px 25px -5px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 2.4rem 2.6rem 2.2rem;
   transform: scale(0.95) translateY(14px);
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
 }
 
-.auth-modal.active .auth-modal__dialog.otp-modal__dialog {
+.auth-modal.active .auth-modal__dialog,
+.auth-modal.active .auth-modal__dialog.otp-modal__dialog,
+.auth-modal.active .auth-modal__dialog.auth-modal__compact {
   transform: scale(1) translateY(0);
 }
 
-/* Header Banner: Deep Navy with Sunset Glow Orb */
+/* Custom Scrollbar for Modal Dialog */
+.auth-modal__dialog::-webkit-scrollbar {
+  width: 6px;
+}
+.auth-modal__dialog::-webkit-scrollbar-track {
+  background: transparent;
+}
+.auth-modal__dialog::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+.auth-modal__dialog::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Compact Modal Head (Clean Title, Subtitle & Round Close Button) */
+.auth-modal__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.8rem;
+  position: relative;
+}
+
+.auth-modal__head-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.auth-modal__head-subtitle {
+  font-size: 1.35rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.auth-modal__close-btn {
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 50%;
+  border: none;
+  background: #f1f5f9;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+  margin-left: 1rem;
+}
+
+.auth-modal__close-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+  transform: rotate(90deg);
+}
+
+/* Legacy Header Banner (kept as fallback) */
 .otp-modal__header {
   position: relative;
   background: radial-gradient(circle at 88% 22%, rgba(251, 113, 76, 0.55) 0%, rgba(234, 88, 12, 0.25) 35%, rgba(15, 30, 60, 0) 65%), linear-gradient(135deg, #0e1e38 0%, #11284d 100%);
@@ -3650,7 +3719,7 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
   background: #f1f5f9;
   border-radius: 12px;
   padding: 0.4rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.6rem;
   gap: 0.4rem;
 }
 
@@ -3679,6 +3748,70 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   font-weight: 700;
 }
+
+
+/* Prominent Google Login Button */
+.auth-google-wrap {
+  margin-bottom: 1.4rem;
+}
+
+.auth-google-btn {
+  width: 100%;
+  height: 4.6rem;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  font-family: inherit;
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: #1e293b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.auth-google-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.auth-google-btn:active {
+  transform: translateY(0);
+}
+
+.auth-google-btn svg {
+  flex-shrink: 0;
+}
+
+/* Clean Divider */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.4rem 0 1.6rem;
+  color: #94a3b8;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e2e8f0;
+}
+
+.auth-divider span {
+  padding: 0 1.2rem;
+}
+
 
 /* Pane Animation */
 .auth-modal__pane {
@@ -4048,15 +4181,20 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
     padding: 0;
     align-items: flex-end;
   }
-  .auth-modal__dialog.otp-modal__dialog {
-    max-height: 90vh;
+  .auth-modal__dialog,
+  .auth-modal__dialog.otp-modal__dialog,
+  .auth-modal__dialog.auth-modal__compact {
+    max-height: 92vh;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     transform: translateY(100%);
+    padding: 2rem 2rem 2.2rem;
   }
-  .auth-modal.active .auth-modal__dialog.otp-modal__dialog {
+  .auth-modal.active .auth-modal__dialog,
+  .auth-modal.active .auth-modal__dialog.otp-modal__dialog,
+  .auth-modal.active .auth-modal__dialog.auth-modal__compact {
     transform: translateY(0);
   }
   .otp-modal__header {
