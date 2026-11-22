@@ -1017,15 +1017,6 @@
     });
   });
 
-  // Footer Back to Top Button
-  const bttBtn = document.getElementById('footer-back-to-top');
-  if (bttBtn) {
-    bttBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
   // 9. Storefront Wishlist Manager
   const WishlistManager = {
     getIds: function () {

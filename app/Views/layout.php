@@ -202,6 +202,33 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
     <?= $this->renderSection('content') ?>
   </main>
 
+  <!-- Dedicated Help & Support Bar (WhatsApp & Instagram) -->
+  <section class="need-help-bar" aria-label="Customer Support">
+    <div class="page-width">
+      <div class="need-help-bar__wrap">
+        <a href="https://wa.me/<?= e($whatsappNo) ?>?text=<?= rawurlencode($whatsappPrefill) ?>" target="_blank" rel="noopener noreferrer" class="need-help-item" title="Need Help? Chat with us on WhatsApp">
+          <div class="need-help-icon need-help-icon--wa">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4ZM12.1 21.7a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.3-.4a9.8 9.8 0 1 1 8.6 4.8Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-1-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.8 4.3.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.1-1.3-.1-.2-.3-.3-.6-.4Z"/>
+            </svg>
+          </div>
+          <span class="need-help-text">Need Help?</span>
+        </a>
+
+        <a href="https://www.instagram.com/<?= e($instagram) ?>/" target="_blank" rel="noopener noreferrer" class="need-help-item" title="Need Help? Message us on Instagram">
+          <div class="need-help-icon need-help-icon--ig">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </div>
+          <span class="need-help-text">Need Help?</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- Floating E-Commerce Trust Bar (Store Guarantees) -->
   <section class="footer-trust-bar" aria-label="Store Guarantees">
     <div class="page-width">
@@ -309,35 +336,6 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
               </span>
               <span><?= e($businessAddress) ?>, India</span>
             </div>
-          </div>
-
-          <!-- Social Icons Row -->
-          <div class="footer-social-row">
-            <a href="https://www.instagram.com/<?= e($instagram) ?>/" target="_blank" rel="noopener noreferrer" class="footer-social-square" title="Instagram" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
-            </a>
-            <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="footer-social-square" title="YouTube" aria-label="YouTube">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
-                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#0c1017"/>
-              </svg>
-            </a>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" class="footer-social-square" title="LinkedIn" aria-label="LinkedIn">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                <rect x="2" y="9" width="4" height="12"/>
-                <circle cx="4" cy="4" r="2"/>
-              </svg>
-            </a>
-            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="footer-social-square" title="Facebook" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-              </svg>
-            </a>
           </div>
         </div>
 
@@ -492,39 +490,6 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
               &check; Thank you for subscribing!
             </div>
           </form>
-
-          <!-- VIP Perks 3-Column Card -->
-          <div class="footer-perks-card">
-            <div class="footer-perk-item">
-              <div class="footer-perk-icon">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="19" y1="5" x2="5" y2="19"/>
-                  <circle cx="6.5" cy="6.5" r="2.5"/>
-                  <circle cx="17.5" cy="17.5" r="2.5"/>
-                </svg>
-              </div>
-              <span class="footer-perk-label">Early Access to New Drops</span>
-            </div>
-
-            <div class="footer-perk-item">
-              <div class="footer-perk-icon">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-                  <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-                </svg>
-              </div>
-              <span class="footer-perk-label">Exclusive Offers &amp; Deals</span>
-            </div>
-
-            <div class="footer-perk-item">
-              <div class="footer-perk-icon">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/>
-                </svg>
-              </div>
-              <span class="footer-perk-label">Bulk Order Updates</span>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -597,16 +562,11 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
         </div>
       </div>
 
-      <!-- Copyright & Back to Top Row -->
+      <!-- Copyright Row -->
       <div class="footer-copyright-row">
         <div class="footer-copyright-text">
           &copy; <?= date('Y') ?> <strong><?= e($storeName) ?></strong>. All Rights Reserved.
         </div>
-        <button type="button" class="footer-back-to-top" id="footer-back-to-top" aria-label="Back to top" title="Back to top">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
-          </svg>
-        </button>
       </div>
     </div>
   </footer>
