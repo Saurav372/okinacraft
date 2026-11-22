@@ -17,11 +17,22 @@ class CustomerAuthService
     public function customer(): ?array
     {
         $id = $this->session()->get('_customer_id');
+        $model = new CustomerModel();
+
         if (!$id) {
+            // Check 30-day Remember Me cookie
+            $token = $_COOKIE['oc_customer_remember'] ?? null;
+            if ($token && strlen($token) === 64) {
+                $matched = $model->where('remember_token', $token)->first();
+                if ($matched && ($matched['status'] ?? 'active') === 'active') {
+                    $id = (int)$matched['id'];
+                    $this->session()->set('_customer_id', $id);
+                    return $matched;
+                }
+            }
             return null;
         }
 
-        $model = new CustomerModel();
         $customer = $model->find((int)$id);
         if (!$customer || ($customer['status'] ?? 'active') !== 'active') {
             $this->session()->remove('_customer_id');
@@ -60,7 +71,7 @@ class CustomerAuthService
     /**
      * Authenticate via email or phone + password
      */
-    public function attempt(string $identifier, string $password): array
+    public function attempt(string $identifier, string $password, bool $remember = false): array
     {
         $identifier = trim($identifier);
 
@@ -101,6 +112,17 @@ class CustomerAuthService
 
         $this->session()->remove('_customer_login_attempts');
         $this->loginById((int)$customer['id']);
+
+        if ($remember) {
+            $token = bin2hex(random_bytes(32));
+            $model->update((int)$customer['id'], ['remember_token' => $token]);
+            setcookie('oc_customer_remember', $token, [
+                'expires'  => time() + 86400 * 30,
+                'path'     => '/',
+                'httponly' => true,
+                'samesite' => 'Lax',
+            ]);
+        }
 
         return ['ok' => true, 'customer' => $customer];
     }
@@ -217,8 +239,19 @@ class CustomerAuthService
      */
     public function logout(): void
     {
+        $id = $this->session()->get('_customer_id');
+        if ($id) {
+            $model = new CustomerModel();
+            $model->update((int)$id, ['remember_token' => null]);
+        }
         $this->session()->remove('_customer_id');
         $this->session()->regenerate(true);
+        setcookie('oc_customer_remember', '', [
+            'expires'  => time() - 3600,
+            'path'     => '/',
+            'httponly' => true,
+            'samesite' => 'Lax',
+        ]);
     }
 
     /**

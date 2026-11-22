@@ -476,6 +476,37 @@ class AdminController extends BaseController
             return redirect()->to('/admin/settings');
         }
 
+        if ($section === 'smtp') {
+            $smtpFields = [
+                'smtp_host'   => trim((string)$this->request->getPost('smtp_host')),
+                'smtp_port'   => trim((string)$this->request->getPost('smtp_port') ?: '465'),
+                'smtp_user'   => trim((string)$this->request->getPost('smtp_user')),
+                'smtp_pass'   => trim((string)$this->request->getPost('smtp_pass')),
+                'smtp_crypto' => trim((string)$this->request->getPost('smtp_crypto') ?: 'ssl'),
+            ];
+            foreach ($smtpFields as $k => $v) {
+                $settingModel->setSetting($k, $v);
+            }
+            session()->setFlashdata('success', 'cPanel SMTP settings updated successfully.');
+            return redirect()->to('/admin/settings');
+        }
+
+        if ($section === 'smtp_test') {
+            $testTo = trim((string)$this->request->getPost('test_email')) ?: ($admin['email'] ?? 'support@okinacraft.com');
+            $storeName = store_setting('store_name', 'Okina Craft');
+            $res = send_store_email(
+                $testTo,
+                "{$storeName} cPanel SMTP Test Successful",
+                "Hello!\n\nThis is a confirmation that your cPanel SMTP server is working correctly on {$storeName}.\nSent at: " . date('Y-m-d H:i:s')
+            );
+            if ($res['ok']) {
+                session()->setFlashdata('success', "Test email sent successfully to {$testTo} via cPanel SMTP!");
+            } else {
+                session()->setFlashdata('error', "SMTP sending failed: " . ($res['error'] ?? 'Check credentials'));
+            }
+            return redirect()->to('/admin/settings');
+        }
+
         $fields = [
             'store_name'              => trim((string)$this->request->getPost('store_name') ?: 'Okina Craft'),
             'store_email'             => trim((string)$this->request->getPost('store_email') ?: 'okinacraft@gmail.com'),

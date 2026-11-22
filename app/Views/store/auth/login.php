@@ -78,7 +78,14 @@
           <input id="login-pw" name="password" type="password" class="field__input" required placeholder="••••••••" style="border-radius: 8px;">
         </div>
 
-        <div style="margin-top: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin: 1.4rem 0 2rem;">
+          <label style="display: flex; align-items: center; gap: 0.8rem; cursor: pointer; font-size: 1.35rem; color: #334155; user-select: none;">
+            <input type="checkbox" name="remember" value="1" checked style="width: 1.6rem; height: 1.6rem;">
+            Remember me on this device
+          </label>
+        </div>
+
+        <div>
           <button type="submit" class="button button--full-width" style="border-radius: 8px; font-weight: 600; padding: 1.4rem;">
             Sign In
           </button>

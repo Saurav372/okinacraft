@@ -131,6 +131,76 @@
           </div>
         </div>
 
+        <!-- cPanel SMTP & Business Email Card -->
+        <div class="card border-0 shadow-sm mb-4">
+          <div class="card-header bg-transparent py-3">
+            <h3 class="card-title fw-bold mb-0">
+              <i class="ti ti-mail me-1 text-primary"></i> cPanel Business Email &amp; SMTP Configuration
+            </h3>
+          </div>
+          <div class="card-body">
+            <form action="<?= base_url('/admin/settings') ?>" method="post">
+              <?= csrf_field() ?>
+              <input type="hidden" name="section" value="smtp">
+
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">SMTP Host</label>
+                  <input type="text" class="form-control" name="smtp_host" value="<?= e($settings['smtp_host'] ?? '') ?>" placeholder="e.g. mail.okinacraft.com">
+                  <small class="form-hint">Usually <code>mail.yourdomain.com</code> in cPanel.</small>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label fw-semibold">SMTP Port</label>
+                  <input type="number" class="form-control" name="smtp_port" value="<?= e($settings['smtp_port'] ?? '465') ?>" placeholder="465">
+                  <small class="form-hint">465 (SSL) or 587 (TLS).</small>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label fw-semibold">Encryption</label>
+                  <select class="form-select" name="smtp_crypto">
+                    <option value="ssl" <?= ($settings['smtp_crypto'] ?? 'ssl') === 'ssl' ? 'selected' : '' ?>>SSL (Port 465)</option>
+                    <option value="tls" <?= ($settings['smtp_crypto'] ?? '') === 'tls' ? 'selected' : '' ?>>TLS (Port 587)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">cPanel Email Username</label>
+                  <input type="email" class="form-control" name="smtp_user" value="<?= e($settings['smtp_user'] ?? '') ?>" placeholder="orders@okinacraft.com">
+                  <small class="form-hint">Your full cPanel email address.</small>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">cPanel Email Password</label>
+                  <input type="password" class="form-control" name="smtp_pass" value="<?= e($settings['smtp_pass'] ?? '') ?>" placeholder="••••••••">
+                  <small class="form-hint">Your email account password created in cPanel.</small>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center">
+                <button type="submit" class="btn btn-dark">
+                  <i class="ti ti-check me-1"></i> Save SMTP Settings
+                </button>
+              </div>
+            </form>
+
+            <hr class="my-4">
+
+            <!-- Send Test Email Tool -->
+            <form action="<?= base_url('/admin/settings') ?>" method="post">
+              <?= csrf_field() ?>
+              <input type="hidden" name="section" value="smtp_test">
+              <label class="form-label fw-semibold">Test SMTP Connectivity</label>
+              <div class="input-group" style="max-width: 48rem;">
+                <input type="email" class="form-control" name="test_email" value="<?= e($admin['email']) ?>" placeholder="Enter recipient email">
+                <button type="submit" class="btn btn-outline-primary">
+                  <i class="ti ti-send me-1"></i> Send Test Email
+                </button>
+              </div>
+              <small class="form-hint">Sends an instant test email to verify your cPanel SMTP outgoing server.</small>
+            </form>
+          </div>
+        </div>
+
         <!-- Store Legal Policies Editor -->
         <div class="card border-0 shadow-sm">
           <div class="card-header bg-transparent py-3">

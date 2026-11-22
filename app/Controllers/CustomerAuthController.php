@@ -46,9 +46,10 @@ class CustomerAuthController extends BaseController
     {
         $identifier = (string)$this->request->getPost('identifier');
         $password = (string)$this->request->getPost('password');
+        $remember = (bool)$this->request->getPost('remember');
         $redirect = (string)$this->request->getPost('redirect');
 
-        $result = $this->auth->attempt($identifier, $password);
+        $result = $this->auth->attempt($identifier, $password, $remember);
         if (!$result['ok']) {
             session()->setFlashdata('error', $result['error']);
             return redirect()->to('/account/login' . ($redirect !== '' ? '?redirect=' . rawurlencode($redirect) : ''));
@@ -193,15 +194,7 @@ class CustomerAuthController extends BaseController
             $subject = "Reset your {$storeName} password";
             $message = "Hi,\n\nWe received a request to reset your password for {$storeName}.\n\nClick the link below to set a new password:\n{$resetUrl}\n\nThis link is valid for 2 hours. If you did not request this, you can safely ignore this email.\n\nWarm regards,\n{$storeName} Team";
 
-            try {
-                $emailService = \Config\Services::email();
-                $emailService->setTo($email);
-                $emailService->setSubject($subject);
-                $emailService->setMessage($message);
-                $emailService->send();
-            } catch (\Throwable) {
-                // If mail server not yet configured, allow safe fallback
-            }
+            send_store_email($email, $subject, $message);
         }
 
         session()->setFlashdata('success', 'If an account exists with that email address, a password reset link has been sent.');
@@ -325,14 +318,9 @@ class CustomerAuthController extends BaseController
 
         if (!$email) return;
 
-        try {
-            $emailService = \Config\Services::email();
-            $emailService->setTo($email);
-            $emailService->setSubject("Welcome to {$storeName}!");
-            $emailService->setMessage("Hi {$name},\n\nWelcome to {$storeName}! Your account is now active.\n\nYou can track your orders, save delivery addresses, and manage your wishlist anytime at:\n" . base_url('/account') . "\n\nWarm regards,\nThe {$storeName} Team");
-            $emailService->send();
-        } catch (\Throwable) {
-            // Non-blocking if mail settings not populated yet
-        }
+        $subject = "Welcome to {$storeName}!";
+        $message = "Hi {$name},\n\nWelcome to {$storeName}! Your account is now active.\n\nYou can track your orders, save delivery addresses, and manage your wishlist anytime at:\n" . base_url('/account') . "\n\nWarm regards,\nThe {$storeName} Team";
+
+        send_store_email($email, $subject, $message);
     }
 }

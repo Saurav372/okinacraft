@@ -175,3 +175,58 @@ if (!function_exists('color_hex_by_name')) {
     }
 }
 
+if (!function_exists('send_store_email')) {
+    function send_store_email(string $to, string $subject, string $body, bool $isHtml = false): array
+    {
+        $smtpHost = store_setting('smtp_host', '');
+        $smtpUser = store_setting('smtp_user', '');
+        $smtpPass = store_setting('smtp_pass', '');
+        $smtpPort = (int)store_setting('smtp_port', '465');
+        $smtpCrypto = store_setting('smtp_crypto', 'ssl');
+        $storeName = store_setting('store_name', 'Okina Craft');
+        $fromEmail = !empty($smtpUser) ? $smtpUser : store_setting('store_email', 'support@okinacraft.com');
+
+        $email = \Config\Services::email();
+
+        if ($smtpHost !== '' && $smtpUser !== '') {
+            $config = [
+                'protocol'       => 'smtp',
+                'SMTPHost'       => $smtpHost,
+                'SMTPUser'       => $smtpUser,
+                'SMTPPass'       => $smtpPass,
+                'SMTPPort'       => $smtpPort,
+                'SMTPCrypto'     => $smtpCrypto,
+                'mailType'       => $isHtml ? 'html' : 'text',
+                'charset'        => 'utf-8',
+                'newline'        => "\r\n",
+                'CRLF'           => "\r\n",
+                'SMTPTimeout'    => 10,
+            ];
+            $email->initialize($config);
+        } else {
+            $email->initialize([
+                'mailType' => $isHtml ? 'html' : 'text',
+                'charset'  => 'utf-8',
+                'newline'  => "\r\n",
+                'CRLF'     => "\r\n",
+            ]);
+        }
+
+        $email->setFrom($fromEmail, $storeName);
+        $email->setTo($to);
+        $email->setSubject($subject);
+        $email->setMessage($body);
+
+        try {
+            $sent = $email->send();
+            if ($sent) {
+                return ['ok' => true];
+            }
+            return ['ok' => false, 'error' => $email->printDebugger(['headers'])];
+        } catch (\Throwable $e) {
+            log_message('error', 'send_store_email error: ' . $e->getMessage());
+            return ['ok' => false, 'error' => $e->getMessage()];
+        }
+    }
+}
+
