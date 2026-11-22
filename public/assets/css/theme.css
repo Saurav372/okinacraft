@@ -1015,12 +1015,107 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
   line-height: 1.35;
 }
 
+/* ==========================================================================
+   Need Help Support Bar (WhatsApp & Instagram)
+   ========================================================================== */
+.need-help-bar {
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 3.4rem 0;
+}
+
+.need-help-bar__wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5.6rem;
+}
+
+.need-help-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.4rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.need-help-item:hover {
+  transform: translateY(-2px);
+}
+
+.need-help-icon {
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.need-help-item:hover .need-help-icon {
+  transform: scale(1.08);
+}
+
+.need-help-icon--wa {
+  background: #25d366;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+}
+
+.need-help-item:hover .need-help-icon--wa {
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+}
+
+.need-help-icon--ig {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  box-shadow: 0 4px 14px rgba(214, 36, 159, 0.35);
+}
+
+.need-help-item:hover .need-help-icon--ig {
+  box-shadow: 0 6px 20px rgba(214, 36, 159, 0.5);
+}
+
+.need-help-text {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #334155;
+  transition: color 0.15s ease;
+  letter-spacing: -0.01em;
+}
+
+.need-help-item:hover .need-help-text {
+  color: #0f172a;
+}
+
+@media (max-width: 600px) {
+  .need-help-bar {
+    padding: 2.8rem 1.6rem;
+  }
+  .need-help-bar__wrap {
+    gap: 3.2rem;
+  }
+  .need-help-icon {
+    width: 4.4rem;
+    height: 4.4rem;
+  }
+  .need-help-text {
+    font-size: 1.45rem;
+  }
+}
+
 /* Footer Main Layout */
 .footer {
   background: #ffffff;
   color: #334155;
   padding: 4.8rem 0 2.4rem;
   border-top: 1px solid #e2e8f0;
+}
+
+.need-help-bar + .footer {
+  border-top: none;
 }
 
 .footer-main-grid {
