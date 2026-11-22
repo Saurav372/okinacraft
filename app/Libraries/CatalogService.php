@@ -60,6 +60,61 @@ class CatalogService
                     'tax_amount' => ['type' => 'DECIMAL', 'constraint' => '10,2', 'default' => 0.00],
                 ]);
             }
+            if ($orderFields && !in_array('customer_id', $orderFields, true)) {
+                $forge->addColumn('orders', [
+                    'customer_id' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => true],
+                ]);
+            }
+
+            // Customer & Wishlist Tables
+            if (!$db->tableExists('customers')) {
+                $forge->addField([
+                    'id'               => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
+                    'name'             => ['type' => 'VARCHAR', 'constraint' => 120],
+                    'email'            => ['type' => 'VARCHAR', 'constraint' => 190, 'unique' => true],
+                    'phone'            => ['type' => 'VARCHAR', 'constraint' => 30, 'null' => true],
+                    'password_hash'    => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true],
+                    'google_id'        => ['type' => 'VARCHAR', 'constraint' => 100, 'null' => true],
+                    'avatar_url'       => ['type' => 'VARCHAR', 'constraint' => 500, 'null' => true],
+                    'remember_token'   => ['type' => 'VARCHAR', 'constraint' => 100, 'null' => true],
+                    'reset_token'      => ['type' => 'VARCHAR', 'constraint' => 100, 'null' => true],
+                    'reset_expires_at' => ['type' => 'DATETIME', 'null' => true],
+                    'status'           => ['type' => 'VARCHAR', 'constraint' => 20, 'default' => 'active'],
+                    'created_at'       => ['type' => 'DATETIME', 'null' => true],
+                    'updated_at'       => ['type' => 'DATETIME', 'null' => true],
+                ]);
+                $forge->addKey('id', true);
+                $forge->createTable('customers', true);
+            }
+
+            if (!$db->tableExists('customer_addresses')) {
+                $forge->addField([
+                    'id'           => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
+                    'customer_id'  => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
+                    'full_name'    => ['type' => 'VARCHAR', 'constraint' => 120],
+                    'phone'        => ['type' => 'VARCHAR', 'constraint' => 30],
+                    'address_line' => ['type' => 'TEXT'],
+                    'city'         => ['type' => 'VARCHAR', 'constraint' => 100],
+                    'state'        => ['type' => 'VARCHAR', 'constraint' => 100],
+                    'pincode'      => ['type' => 'VARCHAR', 'constraint' => 10],
+                    'is_default'   => ['type' => 'TINYINT', 'constraint' => 1, 'default' => 0],
+                    'created_at'   => ['type' => 'DATETIME', 'null' => true],
+                    'updated_at'   => ['type' => 'DATETIME', 'null' => true],
+                ]);
+                $forge->addKey('id', true);
+                $forge->createTable('customer_addresses', true);
+            }
+
+            if (!$db->tableExists('customer_wishlists')) {
+                $forge->addField([
+                    'id'          => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
+                    'customer_id' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
+                    'product_id'  => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
+                    'created_at'  => ['type' => 'DATETIME', 'null' => true],
+                ]);
+                $forge->addKey('id', true);
+                $forge->createTable('customer_wishlists', true);
+            }
 
             $itemFields = $db->getFieldNames('order_items');
             if ($itemFields && !in_array('gst_rate', $itemFields, true)) {

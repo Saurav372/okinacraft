@@ -94,6 +94,7 @@ CREATE TABLE IF NOT EXISTS collection_products (
 
 CREATE TABLE IF NOT EXISTS orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NULL,
     order_number VARCHAR(40) NOT NULL UNIQUE,
     customer_name VARCHAR(160) NOT NULL,
     customer_email VARCHAR(190) NOT NULL,
@@ -106,6 +107,7 @@ CREATE TABLE IF NOT EXISTS orders (
     payment_status VARCHAR(30) NOT NULL DEFAULT 'pending',
     order_status VARCHAR(30) NOT NULL DEFAULT 'pending',
     subtotal DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+    tax_amount DECIMAL(10,2) NOT NULL DEFAULT 0.00,
     shipping_cost DECIMAL(10,2) NOT NULL DEFAULT 0.00,
     total DECIMAL(10,2) NOT NULL DEFAULT 0.00,
     customer_note LONGTEXT,
@@ -140,4 +142,45 @@ CREATE TABLE IF NOT EXISTS contact_messages (
     message LONGTEXT NOT NULL,
     status VARCHAR(30) DEFAULT 'unread',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS customers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(120) NOT NULL,
+    email VARCHAR(190) NOT NULL UNIQUE,
+    phone VARCHAR(30) NULL,
+    password_hash VARCHAR(255) NULL,
+    google_id VARCHAR(100) NULL,
+    avatar_url VARCHAR(500) NULL,
+    remember_token VARCHAR(100) NULL,
+    reset_token VARCHAR(100) NULL,
+    reset_expires_at DATETIME NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'active',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS customer_addresses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    full_name VARCHAR(120) NOT NULL,
+    phone VARCHAR(30) NOT NULL,
+    address_line TEXT NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    state VARCHAR(100) NOT NULL,
+    pincode VARCHAR(10) NOT NULL,
+    is_default TINYINT(1) NOT NULL DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS customer_wishlists (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    product_id INT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uk_cust_prod (customer_id, product_id),
+    FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -9,6 +9,7 @@ class OrderModel extends Model
     protected $table = 'orders';
     protected $primaryKey = 'id';
     protected $allowedFields = [
+        'customer_id',
         'order_number', 'customer_name', 'customer_email', 'customer_phone',
         'shipping_address', 'shipping_city', 'shipping_state', 'shipping_pincode',
         'payment_method', 'payment_status', 'order_status',
