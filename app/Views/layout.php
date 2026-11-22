@@ -202,265 +202,411 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
     <?= $this->renderSection('content') ?>
   </main>
 
-  <!-- Dedicated Help & Support Bar (WhatsApp & Instagram) -->
-  <section class="need-help-bar" aria-label="Customer Support">
-    <div class="page-width">
-      <div class="need-help-bar__wrap">
-        <a href="https://wa.me/<?= e($whatsappNo) ?>?text=<?= rawurlencode($whatsappPrefill) ?>" target="_blank" rel="noopener noreferrer" class="need-help-item" title="Need Help? Chat with us on WhatsApp">
-          <div class="need-help-icon need-help-icon--wa">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-              <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4ZM12.1 21.7a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.3-.4a9.8 9.8 0 1 1 8.6 4.8Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-1-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.8 4.3.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.1-1.3-.1-.2-.3-.3-.6-.4Z"/>
-            </svg>
-          </div>
-          <span class="need-help-text">Need Help?</span>
-        </a>
-
-        <a href="https://www.instagram.com/<?= e($instagram) ?>/" target="_blank" rel="noopener noreferrer" class="need-help-item" title="Need Help? Message us on Instagram">
-          <div class="need-help-icon need-help-icon--ig">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-            </svg>
-          </div>
-          <span class="need-help-text">Need Help?</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- E-Commerce Trust & Value Props Bar -->
+  <!-- Floating E-Commerce Trust Bar (Store Guarantees) -->
   <section class="footer-trust-bar" aria-label="Store Guarantees">
     <div class="page-width">
-      <div class="footer-trust-grid">
-        <div class="footer-trust-item">
-          <div class="footer-trust-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              <path d="m9 12 2 2 4-4"/>
-            </svg>
+      <div class="footer-trust-card">
+        <div class="footer-trust-grid">
+          <div class="footer-trust-item">
+            <div class="footer-trust-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+            </div>
+            <div>
+              <div class="footer-trust-title">Secure Payments</div>
+              <div class="footer-trust-desc">100% Encrypted &amp; Safe Checkout</div>
+            </div>
           </div>
-          <div>
-            <div class="footer-trust-title">Secure Payments</div>
-            <div class="footer-trust-desc">100% Encrypted &amp; Safe Checkout</div>
-          </div>
-        </div>
 
-        <div class="footer-trust-item">
-          <div class="footer-trust-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="1" y="3" width="15" height="13"/>
-              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
-              <circle cx="5.5" cy="18.5" r="2.5"/>
-              <circle cx="18.5" cy="18.5" r="2.5"/>
-            </svg>
+          <div class="footer-trust-item">
+            <div class="footer-trust-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="3" width="15" height="13"/>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+                <circle cx="5.5" cy="18.5" r="2.5"/>
+                <circle cx="18.5" cy="18.5" r="2.5"/>
+              </svg>
+            </div>
+            <div>
+              <div class="footer-trust-title">Reliable Shipping</div>
+              <div class="footer-trust-desc">All-India Fast Doorstep Delivery</div>
+            </div>
           </div>
-          <div>
-            <div class="footer-trust-title">Reliable Shipping</div>
-            <div class="footer-trust-desc">All-India Fast Doorstep Delivery</div>
-          </div>
-        </div>
 
-        <div class="footer-trust-item">
-          <div class="footer-trust-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              <circle cx="9" cy="10" r="1" fill="currentColor"/>
-              <circle cx="12" cy="10" r="1" fill="currentColor"/>
-              <circle cx="15" cy="10" r="1" fill="currentColor"/>
-            </svg>
+          <div class="footer-trust-item">
+            <div class="footer-trust-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="footer-trust-title">Customer Support</div>
+              <div class="footer-trust-desc">Quick Help on WhatsApp &amp; Email</div>
+            </div>
           </div>
-          <div>
-            <div class="footer-trust-title">Customer Support</div>
-            <div class="footer-trust-desc">Quick Help on WhatsApp &amp; Email</div>
-          </div>
-        </div>
 
-        <div class="footer-trust-item">
-          <div class="footer-trust-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
-              <path d="M3 3v5h5"/>
-              <path d="m9 12 2 2 4-4"/>
-            </svg>
-          </div>
-          <div>
-            <div class="footer-trust-title">Easy Returns</div>
-            <div class="footer-trust-desc">Hassle-Free 7-Day Exchange Policy</div>
+          <div class="footer-trust-item">
+            <div class="footer-trust-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                <path d="M21 3v5h-5"/>
+                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                <path d="M3 21v-5h5"/>
+              </svg>
+            </div>
+            <div>
+              <div class="footer-trust-title">Easy Returns</div>
+              <div class="footer-trust-desc">Hassle-Free 7-Day Exchange Policy</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Complete 5-Column E-Commerce Footer -->
-  <footer class="footer">
+  <!-- Complete Premium Dark Modern 5-Column E-Commerce Footer -->
+  <footer class="footer footer--dark">
     <div class="page-width">
       <div class="footer-main-grid">
-        <!-- Col 1: Brand & Contact -->
+        <!-- Col 1: Brand & Contact & Socials -->
         <div class="footer-col footer-col--brand">
           <a href="<?= base_url('/') ?>" style="text-decoration:none;display:inline-block;" aria-label="<?= e($storeName) ?>">
-            <img class="footer-brand__logo" src="<?= base_url('assets/media/logo.png') ?>" alt="<?= e($storeName) ?>">
+            <img class="footer-brand__logo" src="<?= base_url('assets/media/logo-light.png') ?>" alt="<?= e($storeName) ?>">
           </a>
           <p class="footer-brand__text">
             Your trusted destination for quality products. Shop with confidence and enjoy a seamless shopping experience with premium streetwear, custom oversized t-shirts, and apparel.
           </p>
+
           <div class="footer-contact-list">
             <div class="footer-contact-item">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4ZM12.1 21.7a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.3-.4a9.8 9.8 0 1 1 8.6 4.8Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-1-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.8 4.3.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.1-1.3-.1-.2-.3-.3-.6-.4Z"/>
-              </svg>
+              <span class="footer-contact-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4ZM12.1 21.7a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.3-.4a9.8 9.8 0 1 1 8.6 4.8Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-1-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.8 4.3.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.1-1.3-.1-.2-.3-.3-.6-.4Z"/>
+                </svg>
+              </span>
               <span>WhatsApp: <a href="https://wa.me/<?= e($whatsappNo) ?>?text=<?= rawurlencode($whatsappPrefill) ?>" target="_blank" rel="noopener noreferrer">+91 <?= e($whatsappNo) ?></a></span>
             </div>
+
             <div class="footer-contact-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect width="20" height="16" x="2" y="4" rx="2"/>
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-              </svg>
+              <span class="footer-contact-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2"/>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+              </span>
               <span>Email: <a href="mailto:<?= e($storeEmail) ?>"><?= e($storeEmail) ?></a></span>
             </div>
+
             <div class="footer-contact-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
-                <circle cx="12" cy="10" r="3"/>
-              </svg>
+              <span class="footer-contact-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </span>
               <span><?= e($businessAddress) ?>, India</span>
             </div>
+          </div>
+
+          <!-- Social Icons Row -->
+          <div class="footer-social-row">
+            <a href="https://www.instagram.com/<?= e($instagram) ?>/" target="_blank" rel="noopener noreferrer" class="footer-social-square" title="Instagram" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="footer-social-square" title="YouTube" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#0c1017"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" class="footer-social-square" title="LinkedIn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                <rect x="2" y="9" width="4" height="12"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="footer-social-square" title="Facebook" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
           </div>
         </div>
 
         <!-- Col 2: Shop -->
         <div class="footer-col footer-col--accordion">
-          <button type="button" class="footer-col__title-btn" aria-expanded="false">
-            <span>Shop</span>
-            <svg class="footer-col__chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <ul class="footer-links">
-            <li><a href="<?= base_url('/collections/all') ?>">All Products</a></li>
-            <li><a href="<?= base_url('/collections/all?sort_by=created-descending') ?>">New Arrivals</a></li>
-            <li><a href="<?= base_url('/collections/all?sort_by=best-selling') ?>">Best Sellers</a></li>
-            <li><a href="<?= base_url('/search?q=oversized') ?>">Oversized T-Shirts</a></li>
-            <li><a href="<?= base_url('/search?q=hoodie') ?>">Hoodies &amp; Fleece</a></li>
-            <li><a href="<?= base_url('/collections/all') ?>">Special Offers</a></li>
+          <div class="footer-col__title">Shop</div>
+          <div class="footer-title-bar"></div>
+          <ul class="footer-icon-links">
+            <li>
+              <a href="<?= base_url('/collections/all') ?>" class="footer-icon-link">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 9-9 9-9-9 9-9Z"/><circle cx="12" cy="7" r="1.5"/></svg>
+                <span>All Products</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?= base_url('/collections/all?sort_by=created-descending') ?>" class="footer-icon-link">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span>New Arrivals</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?= base_url('/collections/all?sort_by=best-selling') ?>" class="footer-icon-link">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <span>Best Sellers</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?= base_url('/search?q=oversized') ?>" class="footer-icon-link">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+                <span>Oversized T-Shirts</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?= base_url('/search?q=hoodie') ?>" class="footer-icon-link">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3H8l-4 5v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-4-5z"/><polyline points="9 3 9 9 12 11 15 9 15 3"/></svg>
+                <span>Hoodies &amp; Fleece</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?= base_url('/collections/all') ?>" class="footer-icon-link">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+                <span>Special Offers</span>
+              </a>
+            </li>
           </ul>
         </div>
 
         <!-- Col 3: Customer Service -->
         <div class="footer-col footer-col--accordion">
-          <button type="button" class="footer-col__title-btn" aria-expanded="false">
-            <span>Customer Service</span>
-            <svg class="footer-col__chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <ul class="footer-links">
-            <li><a href="<?= base_url('/contact') ?>">Contact Us</a></li>
-            <li><a href="<?= base_url('/account') ?>">Track Your Order</a></li>
-            <li><a href="<?= base_url('/policies/shipping-policy') ?>">Shipping Policy</a></li>
-            <li><a href="<?= base_url('/policies/refund-policy') ?>">Returns &amp; Refunds</a></li>
-            <li><a href="https://wa.me/<?= e($whatsappNo) ?>?text=<?= rawurlencode($whatsappPrefill) ?>" target="_blank" rel="noopener noreferrer">Live Chat Support</a></li>
+          <div class="footer-col__title">Customer Service</div>
+          <div class="footer-title-bar"></div>
+          <ul class="footer-icon-links">
+            <li>
+              <a href="<?= base_url('/contact') ?>" class="footer-icon-link">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+                <span>Contact Us</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?= base_url('/account') ?>" class="footer-icon-link">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+                <span>Track Your Order</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?= base_url('/policies/shipping-policy') ?>" class="footer-icon-link">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                <span>Shipping Policy</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?= base_url('/policies/refund-policy') ?>" class="footer-icon-link">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
+                <span>Returns &amp; Refunds</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://wa.me/<?= e($whatsappNo) ?>?text=<?= rawurlencode($whatsappPrefill) ?>" target="_blank" rel="noopener noreferrer" class="footer-icon-link">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><circle cx="9" cy="10" r="1" fill="currentColor"/><circle cx="12" cy="10" r="1" fill="currentColor"/><circle cx="15" cy="10" r="1" fill="currentColor"/></svg>
+                <span>Live Chat Support</span>
+              </a>
+            </li>
           </ul>
         </div>
 
         <!-- Col 4: Policies -->
         <div class="footer-col footer-col--accordion">
-          <button type="button" class="footer-col__title-btn" aria-expanded="false">
-            <span>Policies</span>
-            <svg class="footer-col__chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <ul class="footer-links">
-            <li><a href="<?= base_url('/policies/privacy-policy') ?>">Privacy Policy</a></li>
-            <li><a href="<?= base_url('/policies/terms-of-service') ?>">Terms &amp; Conditions</a></li>
-            <li><a href="<?= base_url('/policies/shipping-policy') ?>">Shipping &amp; Delivery</a></li>
-            <li><a href="<?= base_url('/policies/refund-policy') ?>">Cancellation &amp; Refund</a></li>
-            <li><a href="<?= base_url('/policies/contact-information') ?>">Contact Information</a></li>
+          <div class="footer-col__title">Policies</div>
+          <div class="footer-title-bar"></div>
+          <ul class="footer-icon-links">
+            <li>
+              <a href="<?= base_url('/policies/privacy-policy') ?>" class="footer-icon-link">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Privacy Policy</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?= base_url('/policies/terms-of-service') ?>" class="footer-icon-link">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                <span>Terms &amp; Conditions</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?= base_url('/policies/shipping-policy') ?>" class="footer-icon-link">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                <span>Shipping &amp; Delivery</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?= base_url('/policies/refund-policy') ?>" class="footer-icon-link">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
+                <span>Cancellation &amp; Refund</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?= base_url('/policies/contact-information') ?>" class="footer-icon-link">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                <span>Contact Information</span>
+              </a>
+            </li>
           </ul>
         </div>
 
-        <!-- Col 5: Stay Connected & Newsletter -->
+        <!-- Col 5: Stay Connected & Newsletter & Perks -->
         <div class="footer-col footer-col--connect">
           <div class="footer-col__title">Stay Connected</div>
+          <div class="footer-title-bar"></div>
           <p class="footer-newsletter__desc">
             Subscribe to receive updates about new products, exclusive anime prints, and volume discounts.
           </p>
+
           <form class="footer-newsletter__form" id="footer-newsletter-form" onsubmit="event.preventDefault(); document.getElementById('footer-newsletter-success').style.display='block'; this.querySelector('input').value='';">
-            <div class="footer-newsletter__input-wrap">
-              <input type="email" class="footer-newsletter__input" placeholder="Enter your email address" required aria-label="Email address for newsletter">
-              <button type="submit" class="footer-newsletter__btn">Subscribe</button>
+            <div class="footer-newsletter-row">
+              <div class="footer-newsletter-input-wrap">
+                <span class="footer-newsletter-input-icon">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="16" x="2" y="4" rx="2"/>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                  </svg>
+                </span>
+                <input type="email" placeholder="Enter your email address" required aria-label="Email address for newsletter">
+              </div>
+              <button type="submit" class="footer-newsletter-submit">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+                  <path d="m22 2-7 20-4-9-9-4Z"/>
+                  <path d="M22 2 11 13"/>
+                </svg>
+                <span>Subscribe</span>
+              </button>
             </div>
-            <div class="footer-newsletter__success" id="footer-newsletter-success">
+            <div class="footer-newsletter__success" id="footer-newsletter-success" style="display:none; color:#4ade80; margin-top:0.8rem; font-size:1.25rem;">
               &check; Thank you for subscribing!
             </div>
           </form>
+
+          <!-- VIP Perks 3-Column Card -->
+          <div class="footer-perks-card">
+            <div class="footer-perk-item">
+              <div class="footer-perk-icon">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="19" y1="5" x2="5" y2="19"/>
+                  <circle cx="6.5" cy="6.5" r="2.5"/>
+                  <circle cx="17.5" cy="17.5" r="2.5"/>
+                </svg>
+              </div>
+              <span class="footer-perk-label">Early Access to New Drops</span>
+            </div>
+
+            <div class="footer-perk-item">
+              <div class="footer-perk-icon">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                </svg>
+              </div>
+              <span class="footer-perk-label">Exclusive Offers &amp; Deals</span>
+            </div>
+
+            <div class="footer-perk-item">
+              <div class="footer-perk-icon">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/>
+                </svg>
+              </div>
+              <span class="footer-perk-label">Bulk Order Updates</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Payment Methods Accepted Bar -->
-      <div class="footer-payment-bar">
-        <div class="footer-payment-label">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#16a34a;">
-            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-          </svg>
-          <span>We Accept 100% Secure Payments:</span>
-        </div>
-        <div class="footer-payment-icons" aria-label="Accepted Payment Methods">
-          <span class="payment-badge" title="UPI (PhonePe, Google Pay, Paytm, BHIM)">
-            <svg viewBox="0 0 38 24" width="38" height="24">
-              <rect width="38" height="24" rx="3" fill="#097939"/>
-              <text x="19" y="16" fill="#ffffff" font-size="11" font-weight="900" font-family="sans-serif" text-anchor="middle">UPI</text>
-            </svg>
-          </span>
-          <span class="payment-badge" title="RuPay Card">
-            <svg viewBox="0 0 42 24" width="42" height="24">
-              <rect width="42" height="24" rx="3" fill="#0f4a86"/>
-              <text x="21" y="16" fill="#ffffff" font-size="10" font-weight="800" font-family="sans-serif" text-anchor="middle">RuPay</text>
-            </svg>
-          </span>
-          <span class="payment-badge" title="Visa">
-            <svg viewBox="0 0 38 24" width="38" height="24">
-              <rect width="38" height="24" rx="3" fill="#1434cb"/>
-              <text x="19" y="17" fill="#ffffff" font-size="12" font-style="italic" font-weight="900" font-family="sans-serif" text-anchor="middle">VISA</text>
-            </svg>
-          </span>
-          <span class="payment-badge" title="Mastercard">
-            <svg viewBox="0 0 40 24" width="40" height="24">
-              <rect width="40" height="24" rx="3" fill="#222222"/>
-              <circle cx="16" cy="12" r="7" fill="#eb001b"/>
-              <circle cx="24" cy="12" r="7" fill="#f79e1b" fill-opacity="0.85"/>
-            </svg>
-          </span>
-          <span class="payment-badge" title="Net Banking">
-            <svg viewBox="0 0 52 24" width="52" height="24">
-              <rect width="52" height="24" rx="3" fill="#334155"/>
-              <text x="26" y="15" fill="#ffffff" font-size="8.5" font-weight="700" font-family="sans-serif" text-anchor="middle">NET BANK</text>
-            </svg>
-          </span>
-          <?php if (store_setting('cod_enabled', '0') === '1'): ?>
-          <span class="payment-badge" title="Cash on Delivery Available">
-            <svg viewBox="0 0 38 24" width="38" height="24">
-              <rect width="38" height="24" rx="3" fill="#0f172a"/>
-              <text x="19" y="16" fill="#ffffff" font-size="10" font-weight="800" font-family="sans-serif" text-anchor="middle">COD</text>
-            </svg>
-          </span>
-          <?php endif; ?>
-        </div>
-      </div>
+      <!-- Payment Methods & Quick Policies Row -->
+      <div class="footer-payment-row">
+        <div class="footer-payment-group">
+          <div class="footer-payment-label">
+            <span class="footer-payment-lock">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </span>
+            <span>We Accept 100% Secure Payments:</span>
+          </div>
 
-      <!-- Bottom Bar: Copyright & Policies -->
-      <div class="footer-bottom">
-        <div>
-          &copy; <?= date('Y') ?> <strong><?= e($storeName) ?></strong>. All Rights Reserved.
+          <div class="footer-payment-badges" aria-label="Accepted Payment Methods">
+            <span class="payment-badge-dark" title="UPI (PhonePe, Google Pay, Paytm, BHIM)">
+              <svg viewBox="0 0 38 22" width="38" height="22">
+                <rect width="38" height="22" rx="4" fill="#141e2c"/>
+                <text x="19" y="15" fill="#22c55e" font-size="10.5" font-weight="900" font-family="sans-serif" text-anchor="middle">UPI</text>
+              </svg>
+            </span>
+            <span class="payment-badge-dark" title="RuPay Card">
+              <svg viewBox="0 0 42 22" width="42" height="22">
+                <rect width="42" height="22" rx="4" fill="#141e2c"/>
+                <text x="21" y="15" fill="#38bdf8" font-size="9.5" font-weight="800" font-family="sans-serif" text-anchor="middle">RuPay</text>
+              </svg>
+            </span>
+            <span class="payment-badge-dark" title="Visa">
+              <svg viewBox="0 0 38 22" width="38" height="22">
+                <rect width="38" height="22" rx="4" fill="#141e2c"/>
+                <text x="19" y="15" fill="#60a5fa" font-size="11" font-style="italic" font-weight="900" font-family="sans-serif" text-anchor="middle">VISA</text>
+              </svg>
+            </span>
+            <span class="payment-badge-dark" title="Mastercard">
+              <svg viewBox="0 0 40 22" width="40" height="22">
+                <rect width="40" height="22" rx="4" fill="#141e2c"/>
+                <circle cx="16" cy="11" r="6" fill="#ef4444"/>
+                <circle cx="24" cy="11" r="6" fill="#f59e0b" fill-opacity="0.85"/>
+              </svg>
+            </span>
+            <span class="payment-badge-dark" title="Net Banking">
+              <svg viewBox="0 0 56 22" width="56" height="22">
+                <rect width="56" height="22" rx="4" fill="#141e2c"/>
+                <text x="28" y="14" fill="#cbd5e1" font-size="8" font-weight="700" font-family="sans-serif" text-anchor="middle">NET BANKING</text>
+              </svg>
+            </span>
+            <?php if (store_setting('cod_enabled', '0') === '1'): ?>
+            <span class="payment-badge-dark" title="Cash on Delivery Available">
+              <svg viewBox="0 0 38 22" width="38" height="22">
+                <rect width="38" height="22" rx="4" fill="#141e2c"/>
+                <text x="19" y="15" fill="#f87171" font-size="9.5" font-weight="800" font-family="sans-serif" text-anchor="middle">COD</text>
+              </svg>
+            </span>
+            <?php endif; ?>
+          </div>
         </div>
-        <div class="footer-bottom-links">
+
+        <div class="footer-quick-policies">
           <a href="<?= base_url('/policies/privacy-policy') ?>">Privacy Policy</a>
-          <span>&middot;</span>
+          <span>|</span>
           <a href="<?= base_url('/policies/terms-of-service') ?>">Terms &amp; Conditions</a>
-          <span>&middot;</span>
+          <span>|</span>
           <a href="<?= base_url('/policies/refund-policy') ?>">Refund Policy</a>
-          <span>&middot;</span>
+          <span>|</span>
           <a href="<?= base_url('/policies/shipping-policy') ?>">Shipping Policy</a>
-          <span>&middot;</span>
+          <span>|</span>
           <a href="<?= base_url('/policies/contact-information') ?>">Contact</a>
         </div>
+      </div>
+
+      <!-- Copyright & Back to Top Row -->
+      <div class="footer-copyright-row">
+        <div class="footer-copyright-text">
+          &copy; <?= date('Y') ?> <strong><?= e($storeName) ?></strong>. All Rights Reserved.
+        </div>
+        <button type="button" class="footer-back-to-top" id="footer-back-to-top" aria-label="Back to top" title="Back to top">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+          </svg>
+        </button>
       </div>
     </div>
   </footer>
