@@ -1139,50 +1139,43 @@
   WishlistManager.init();
   window.WishlistManager = WishlistManager;
 
-  // 10. Customer Auth Popup Modal (Sign Up & Sign In)
+  // 10. Customer Auth Popup Modal (Mobile OTP First - Matching Reference UI)
   const AuthModalManager = {
     modal: null,
-    signupPane: null,
-    loginPane: null,
-    signupTabBtn: null,
-    loginTabBtn: null,
-    signupForm: null,
-    loginForm: null,
-    signupAlert: null,
-    loginAlert: null,
+    titleEl: null,
+    subtitleEl: null,
+    alertEl: null,
+    views: {},
+    currentPhone: '',
+    resendInterval: null,
+    resendSeconds: 30,
 
     init() {
       this.modal = document.getElementById('auth-modal');
       if (!this.modal) return;
 
-      this.signupPane = document.getElementById('auth-modal-pane-signup');
-      this.loginPane = document.getElementById('auth-modal-pane-login');
-      this.signupTabBtn = document.getElementById('auth-tab-btn-signup');
-      this.loginTabBtn = document.getElementById('auth-tab-btn-login');
-      this.signupForm = document.getElementById('auth-modal-signup-form');
-      this.loginForm = document.getElementById('auth-modal-login-form');
-      this.signupAlert = document.getElementById('auth-modal-signup-alert');
-      this.loginAlert = document.getElementById('auth-modal-login-alert');
+      this.titleEl = document.getElementById('auth-modal-title');
+      this.subtitleEl = document.getElementById('auth-modal-subtitle');
+      this.alertEl = document.getElementById('auth-modal-alert');
 
-      // Bind trigger clicks across the entire document
+      this.views = {
+        phone: document.getElementById('auth-view-phone'),
+        verify: document.getElementById('auth-view-verify'),
+        newCustomer: document.getElementById('auth-view-new-customer'),
+        password: document.getElementById('auth-view-password')
+      };
+
+      // Global click delegate for open/close/switch triggers
       document.addEventListener('click', (e) => {
-        // Open modal triggers
+        // Open trigger
         const openTrigger = e.target.closest('[data-open-auth-modal], [data-open-signup-modal], [data-open-login-modal]');
         if (openTrigger) {
           e.preventDefault();
-          let tab = 'signup';
-          if (openTrigger.hasAttribute('data-open-login-modal')) {
-            tab = 'login';
-          } else if (openTrigger.hasAttribute('data-open-signup-modal')) {
-            tab = 'signup';
-          } else {
-            tab = openTrigger.getAttribute('data-open-auth-modal') || 'signup';
-          }
-          this.open(tab);
+          this.open('phone');
           return;
         }
 
-        // Close modal triggers
+        // Close trigger
         const closeTrigger = e.target.closest('[data-close-auth-modal]');
         if (closeTrigger) {
           e.preventDefault();
@@ -1190,12 +1183,12 @@
           return;
         }
 
-        // Switch tab / switch mode triggers inside modal
-        const switchTrigger = e.target.closest('[data-switch-auth], [data-auth-tab]');
-        if (switchTrigger) {
+        // Switch view triggers
+        const switchView = e.target.closest('[data-switch-auth-view]');
+        if (switchView) {
           e.preventDefault();
-          const targetTab = switchTrigger.getAttribute('data-switch-auth') || switchTrigger.getAttribute('data-auth-tab');
-          this.switchTab(targetTab);
+          const target = switchView.getAttribute('data-switch-auth-view');
+          this.showView(target);
           return;
         }
 
@@ -1217,47 +1210,106 @@
         }
       });
 
-      // Bind AJAX form submit for Signup
-      if (this.signupForm) {
-        this.signupForm.addEventListener('submit', (e) => {
+      // Bind Phone Form ("Get OTP")
+      const phoneForm = document.getElementById('auth-phone-form');
+      if (phoneForm) {
+        phoneForm.addEventListener('submit', (e) => {
           e.preventDefault();
-          this.handleAjaxSubmit(this.signupForm, basePath + '/account/register', this.signupAlert, 'signup');
+          this.handleSendOtp();
         });
       }
 
-      // Bind AJAX form submit for Login
-      if (this.loginForm) {
-        this.loginForm.addEventListener('submit', (e) => {
+      // Bind Verify OTP Form ("Verify & Continue")
+      const verifyForm = document.getElementById('auth-verify-form');
+      if (verifyForm) {
+        verifyForm.addEventListener('submit', (e) => {
           e.preventDefault();
-          this.handleAjaxSubmit(this.loginForm, basePath + '/account/login', this.loginAlert, 'login');
+          this.handleVerifyOtp();
+        });
+      }
+
+      // Bind Resend OTP Button
+      const resendBtn = document.getElementById('btn-resend-otp');
+      if (resendBtn) {
+        resendBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (resendBtn.disabled) return;
+          this.handleSendOtp(true);
+        });
+      }
+
+      // Bind Edit Number Button
+      const editPhoneBtn = document.getElementById('btn-edit-phone');
+      if (editPhoneBtn) {
+        editPhoneBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.showView('phone');
+        });
+      }
+
+      // Bind Complete Sign Up Form
+      const completeForm = document.getElementById('auth-complete-form');
+      if (completeForm) {
+        completeForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          this.handleCompleteSignup();
+        });
+      }
+
+      // Bind Password Login Form
+      const pwLoginForm = document.getElementById('auth-pw-login-form');
+      if (pwLoginForm) {
+        pwLoginForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          this.handlePasswordLogin();
+        });
+      }
+
+      // Format mobile input on typing (digits only, max 10)
+      const phoneInput = document.getElementById('otp-phone-input');
+      if (phoneInput) {
+        phoneInput.addEventListener('input', () => {
+          phoneInput.value = phoneInput.value.replace(/\D/g, '').slice(0, 10);
+        });
+      }
+
+      // Format OTP code input on typing (digits only, max 4)
+      const otpInput = document.getElementById('otp-code-input');
+      if (otpInput) {
+        otpInput.addEventListener('input', () => {
+          otpInput.value = otpInput.value.replace(/\D/g, '').slice(0, 4);
+          if (otpInput.value.length === 4) {
+            // Auto submit when 4 digits typed
+            this.handleVerifyOtp();
+          }
         });
       }
 
       // Close on ESC
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && this.modal.classList.contains('active')) {
+        if (e.key === 'Escape' && this.modal && this.modal.classList.contains('active')) {
           this.close();
         }
       });
 
       // Expose globally
-      window.openAuthModal = (tab = 'signup') => this.open(tab);
+      window.openAuthModal = (view = 'phone') => this.open(view);
       window.closeAuthModal = () => this.close();
     },
 
-    open(tab = 'signup') {
+    open(view = 'phone') {
       if (!this.modal) return;
-      this.switchTab(tab);
-      this.clearAlerts();
+      this.clearAlert();
+      this.showView(view);
       this.modal.classList.add('active');
       this.modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
 
-      // Autofocus first input in active pane
       setTimeout(() => {
-        const activePane = tab === 'login' ? this.loginPane : this.signupPane;
-        const firstInput = activePane ? activePane.querySelector('input:not([type="hidden"])') : null;
-        if (firstInput) firstInput.focus();
+        if (view === 'phone') {
+          const inp = document.getElementById('otp-phone-input');
+          if (inp) inp.focus();
+        }
       }, 120);
     },
 
@@ -1266,48 +1318,69 @@
       this.modal.classList.remove('active');
       this.modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
-      this.clearAlerts();
+      this.clearAlert();
+      clearInterval(this.resendInterval);
     },
 
-    switchTab(tab) {
-      const isLogin = tab === 'login';
-      if (this.signupTabBtn) {
-        this.signupTabBtn.classList.toggle('active', !isLogin);
-        this.signupTabBtn.setAttribute('aria-selected', isLogin ? 'false' : 'true');
-      }
-      if (this.loginTabBtn) {
-        this.loginTabBtn.classList.toggle('active', isLogin);
-        this.loginTabBtn.setAttribute('aria-selected', isLogin ? 'true' : 'false');
-      }
-      if (this.signupPane) {
-        this.signupPane.style.display = isLogin ? 'none' : 'block';
-        this.signupPane.classList.toggle('active', !isLogin);
-      }
-      if (this.loginPane) {
-        this.loginPane.style.display = isLogin ? 'block' : 'none';
-        this.loginPane.classList.toggle('active', isLogin);
-      }
-      this.clearAlerts();
-    },
+    showView(viewName) {
+      this.clearAlert();
 
-    clearAlerts() {
-      if (this.signupAlert) {
-        this.signupAlert.style.display = 'none';
-        this.signupAlert.className = 'auth-modal__alert';
-        this.signupAlert.innerHTML = '';
-      }
-      if (this.loginAlert) {
-        this.loginAlert.style.display = 'none';
-        this.loginAlert.className = 'auth-modal__alert';
-        this.loginAlert.innerHTML = '';
+      Object.keys(this.views).forEach((key) => {
+        const el = this.views[key];
+        if (el) {
+          el.style.display = (key === viewName) ? 'block' : 'none';
+          el.classList.toggle('active', key === viewName);
+        }
+      });
+
+      if (viewName === 'phone') {
+        if (this.titleEl) this.titleEl.textContent = 'Login or Sign up';
+        if (this.subtitleEl) this.subtitleEl.textContent = "Let's get started with your mobile number.";
+      } else if (viewName === 'verify') {
+        if (this.titleEl) this.titleEl.textContent = 'Verify Mobile';
+        if (this.subtitleEl) this.subtitleEl.textContent = 'Enter the 4-digit verification code.';
+      } else if (viewName === 'newCustomer') {
+        if (this.titleEl) this.titleEl.textContent = 'Almost Done!';
+        if (this.subtitleEl) this.subtitleEl.textContent = 'Create your account to unlock perks.';
+      } else if (viewName === 'password') {
+        if (this.titleEl) this.titleEl.textContent = 'Customer Sign In';
+        if (this.subtitleEl) this.subtitleEl.textContent = 'Access your orders, saved addresses & wishlist.';
       }
     },
 
-    showAlert(alertEl, message, isError = true) {
-      if (!alertEl) return;
-      alertEl.className = 'auth-modal__alert ' + (isError ? 'auth-modal__alert--error' : 'auth-modal__alert--success');
-      alertEl.textContent = message;
-      alertEl.style.display = 'block';
+    clearAlert() {
+      if (!this.alertEl) return;
+      this.alertEl.style.display = 'none';
+      this.alertEl.className = 'auth-modal__alert';
+      this.alertEl.innerHTML = '';
+    },
+
+    showAlert(message, isError = true) {
+      if (!this.alertEl) return;
+      this.alertEl.className = 'auth-modal__alert ' + (isError ? 'auth-modal__alert--error' : 'auth-modal__alert--success');
+      this.alertEl.textContent = message;
+      this.alertEl.style.display = 'block';
+    },
+
+    startResendCountdown() {
+      clearInterval(this.resendInterval);
+      const resendBtn = document.getElementById('btn-resend-otp');
+      const timerSpan = document.getElementById('otp-timer');
+      if (!resendBtn) return;
+
+      this.resendSeconds = 30;
+      resendBtn.disabled = true;
+      if (timerSpan) timerSpan.textContent = this.resendSeconds;
+
+      this.resendInterval = setInterval(() => {
+        this.resendSeconds -= 1;
+        if (timerSpan) timerSpan.textContent = this.resendSeconds;
+        if (this.resendSeconds <= 0) {
+          clearInterval(this.resendInterval);
+          resendBtn.disabled = false;
+          resendBtn.textContent = 'Resend OTP';
+        }
+      }, 1000);
     },
 
     updateCsrf(tokenName, tokenHash) {
@@ -1317,38 +1390,211 @@
       });
     },
 
-    async handleAjaxSubmit(form, url, alertEl, type) {
-      const submitBtn = form.querySelector('.auth-modal__submit-btn');
-      const btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
-      const btnSpinner = submitBtn ? submitBtn.querySelector('.btn-spinner') : null;
+    getCsrfData() {
+      const csrfInput = document.querySelector('input[name="csrf_test_name"]') || document.querySelector('meta[name="csrf-token"]');
+      const tokenName = csrfInput ? csrfInput.getAttribute('name') : 'csrf_test_name';
+      const tokenVal = csrfInput ? (csrfInput.value || csrfInput.getAttribute('content')) : '';
+      return { name: tokenName, value: tokenVal };
+    },
 
-      if (submitBtn) submitBtn.disabled = true;
+    async handleSendOtp(isResend = false) {
+      const phoneInput = document.getElementById('otp-phone-input');
+      const phone = phoneInput ? phoneInput.value.replace(/\D/g, '') : '';
+      const targetPhone = isResend ? this.currentPhone : phone;
+
+      if (!targetPhone || targetPhone.length !== 10) {
+        this.showAlert('Please enter a valid 10-digit mobile number.', true);
+        if (phoneInput) phoneInput.focus();
+        return;
+      }
+
+      this.currentPhone = targetPhone;
+      const btn = isResend ? document.getElementById('btn-resend-otp') : document.getElementById('btn-get-otp');
+      const btnText = btn ? btn.querySelector('.btn-text') : null;
+      const btnSpinner = btn ? btn.querySelector('.btn-spinner') : null;
+
+      if (btn) btn.disabled = true;
       if (btnText) btnText.style.display = 'none';
       if (btnSpinner) btnSpinner.style.display = 'inline-flex';
-      this.clearAlerts();
+      this.clearAlert();
 
       try {
-        const formData = new FormData(form);
-        const resp = await fetch(url, {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            'Accept': 'application/json'
-          }
-        });
+        const csrf = this.getCsrfData();
+        const fd = new FormData();
+        fd.append('phone', targetPhone);
+        if (csrf.value) fd.append(csrf.name, csrf.value);
 
+        const resp = await fetch(basePath + '/account/otp/send', {
+          method: 'POST',
+          body: fd,
+          headers: { 'X-Requested-With': 'XMLHttpRequest', Accept: 'application/json' }
+        });
         const data = await resp.json();
 
-        // Update CSRF tokens across forms
         if (data.csrf && data.csrf.name && data.csrf.hash) {
           this.updateCsrf(data.csrf.name, data.csrf.hash);
         }
 
         if (data.ok) {
-          this.showAlert(alertEl, data.message || 'Success! Redirecting...', false);
+          this.showView('verify');
 
-          // Sync local wishlist if available
+          // Update phone display
+          const targetEl = document.getElementById('otp-target-phone');
+          if (targetEl) targetEl.textContent = data.masked || ('+91 ' + targetPhone);
+
+          // Show demo OTP helper badge for instant testing
+          const demoBadge = document.getElementById('otp-demo-badge');
+          const demoNumber = document.getElementById('otp-demo-number');
+          if (demoBadge && demoNumber && data.otp) {
+            demoNumber.textContent = data.otp;
+            demoBadge.style.display = 'block';
+          }
+
+          this.startResendCountdown();
+
+          setTimeout(() => {
+            const codeInput = document.getElementById('otp-code-input');
+            if (codeInput) {
+              codeInput.value = '';
+              codeInput.focus();
+            }
+          }, 120);
+        } else {
+          this.showAlert(data.error || 'Failed to send OTP. Please try again.', true);
+        }
+      } catch (err) {
+        console.error(err);
+        this.showAlert('Network error. Please try again.', true);
+      } finally {
+        if (btn) btn.disabled = false;
+        if (btnText) btnText.style.display = '';
+        if (btnSpinner) btnSpinner.style.display = 'none';
+      }
+    },
+
+    async handleVerifyOtp() {
+      const codeInput = document.getElementById('otp-code-input');
+      const otp = codeInput ? codeInput.value.trim() : '';
+
+      if (!otp || otp.length < 4) {
+        this.showAlert('Please enter the 4-digit OTP.', true);
+        return;
+      }
+
+      const btn = document.getElementById('btn-verify-otp');
+      const btnText = btn ? btn.querySelector('.btn-text') : null;
+      const btnSpinner = btn ? btn.querySelector('.btn-spinner') : null;
+
+      if (btn) btn.disabled = true;
+      if (btnText) btnText.style.display = 'none';
+      if (btnSpinner) btnSpinner.style.display = 'inline-flex';
+      this.clearAlert();
+
+      try {
+        const csrf = this.getCsrfData();
+        const redirectInput = document.querySelector('.auth-modal-redirect-input');
+        const redirect = redirectInput ? redirectInput.value : '';
+
+        const fd = new FormData();
+        fd.append('phone', this.currentPhone);
+        fd.append('otp', otp);
+        fd.append('redirect', redirect);
+        if (csrf.value) fd.append(csrf.name, csrf.value);
+
+        const resp = await fetch(basePath + '/account/otp/verify', {
+          method: 'POST',
+          body: fd,
+          headers: { 'X-Requested-With': 'XMLHttpRequest', Accept: 'application/json' }
+        });
+        const data = await resp.json();
+
+        if (data.csrf && data.csrf.name && data.csrf.hash) {
+          this.updateCsrf(data.csrf.name, data.csrf.hash);
+        }
+
+        if (data.ok) {
+          if (data.is_new) {
+            // New customer -> ask name and email
+            this.showView('newCustomer');
+            setTimeout(() => {
+              const nameInput = document.getElementById('otp-customer-name');
+              if (nameInput) nameInput.focus();
+            }, 120);
+          } else {
+            // Existing customer -> logged in!
+            this.showAlert(data.message || 'Login successful! Redirecting...', false);
+
+            if (WishlistManager && typeof WishlistManager.syncWithServer === 'function') {
+              await WishlistManager.syncWithServer();
+            }
+
+            setTimeout(() => {
+              if (data.redirect) {
+                window.location.href = data.redirect;
+              } else {
+                window.location.reload();
+              }
+            }, 400);
+          }
+        } else {
+          this.showAlert(data.error || 'Invalid OTP code. Please try again.', true);
+        }
+      } catch (err) {
+        console.error(err);
+        this.showAlert('Network error. Please try again.', true);
+      } finally {
+        if (btn) btn.disabled = false;
+        if (btnText) btnText.style.display = '';
+        if (btnSpinner) btnSpinner.style.display = 'none';
+      }
+    },
+
+    async handleCompleteSignup() {
+      const nameInput = document.getElementById('otp-customer-name');
+      const emailInput = document.getElementById('otp-customer-email');
+      const name = nameInput ? nameInput.value.trim() : '';
+      const email = emailInput ? emailInput.value.trim() : '';
+
+      if (!name) {
+        this.showAlert('Please enter your full name.', true);
+        if (nameInput) nameInput.focus();
+        return;
+      }
+
+      const btn = document.getElementById('btn-complete-signup');
+      const btnText = btn ? btn.querySelector('.btn-text') : null;
+      const btnSpinner = btn ? btn.querySelector('.btn-spinner') : null;
+
+      if (btn) btn.disabled = true;
+      if (btnText) btnText.style.display = 'none';
+      if (btnSpinner) btnSpinner.style.display = 'inline-flex';
+      this.clearAlert();
+
+      try {
+        const csrf = this.getCsrfData();
+        const redirectInput = document.querySelector('.auth-modal-redirect-input');
+        const redirect = redirectInput ? redirectInput.value : '';
+
+        const fd = new FormData();
+        fd.append('name', name);
+        fd.append('email', email);
+        fd.append('redirect', redirect);
+        if (csrf.value) fd.append(csrf.name, csrf.value);
+
+        const resp = await fetch(basePath + '/account/otp/complete', {
+          method: 'POST',
+          body: fd,
+          headers: { 'X-Requested-With': 'XMLHttpRequest', Accept: 'application/json' }
+        });
+        const data = await resp.json();
+
+        if (data.csrf && data.csrf.name && data.csrf.hash) {
+          this.updateCsrf(data.csrf.name, data.csrf.hash);
+        }
+
+        if (data.ok) {
+          this.showAlert(data.message || 'Account created! Redirecting...', false);
+
           if (WishlistManager && typeof WishlistManager.syncWithServer === 'function') {
             await WishlistManager.syncWithServer();
           }
@@ -1361,15 +1607,70 @@
             }
           }, 400);
         } else {
-          this.showAlert(alertEl, data.error || 'Authentication failed. Please check your details.', true);
-          if (submitBtn) submitBtn.disabled = false;
+          this.showAlert(data.error || 'Failed to complete sign up.', true);
+          if (btn) btn.disabled = false;
           if (btnText) btnText.style.display = '';
           if (btnSpinner) btnSpinner.style.display = 'none';
         }
       } catch (err) {
         console.error(err);
-        this.showAlert(alertEl, 'Network or server error. Please try again.', true);
-        if (submitBtn) submitBtn.disabled = false;
+        this.showAlert('Network error. Please try again.', true);
+        if (btn) btn.disabled = false;
+        if (btnText) btnText.style.display = '';
+        if (btnSpinner) btnSpinner.style.display = 'none';
+      }
+    },
+
+    async handlePasswordLogin() {
+      const form = document.getElementById('auth-pw-login-form');
+      if (!form) return;
+
+      const btn = form.querySelector('.auth-modal__submit-btn');
+      const btnText = btn ? btn.querySelector('.btn-text') : null;
+      const btnSpinner = btn ? btn.querySelector('.btn-spinner') : null;
+
+      if (btn) btn.disabled = true;
+      if (btnText) btnText.style.display = 'none';
+      if (btnSpinner) btnSpinner.style.display = 'inline-flex';
+      this.clearAlert();
+
+      try {
+        const fd = new FormData(form);
+        const resp = await fetch(basePath + '/account/login', {
+          method: 'POST',
+          body: fd,
+          headers: { 'X-Requested-With': 'XMLHttpRequest', Accept: 'application/json' }
+        });
+        const data = await resp.json();
+
+        if (data.csrf && data.csrf.name && data.csrf.hash) {
+          this.updateCsrf(data.csrf.name, data.csrf.hash);
+        }
+
+        if (data.ok) {
+          this.showAlert(data.message || 'Login successful! Redirecting...', false);
+
+          if (WishlistManager && typeof WishlistManager.syncWithServer === 'function') {
+            await WishlistManager.syncWithServer();
+          }
+
+          setTimeout(() => {
+            if (data.redirect) {
+              window.location.href = data.redirect;
+            } else {
+              window.location.reload();
+            }
+          }, 400);
+        } else {
+          this.showAlert(data.error || 'Invalid email or password.', true);
+          if (btn) btn.disabled = false;
+          if (btnText) btnText.style.display = '';
+          if (btnSpinner) btnSpinner.style.display = 'none';
+        }
+      } catch (err) {
+        console.error(err);
+        this.showAlert('Network error. Please try again.', true);
+        if (btn) btn.disabled = false;
         if (btnText) btnText.style.display = '';
         if (btnSpinner) btnSpinner.style.display = 'none';
       }
