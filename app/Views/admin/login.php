@@ -8,7 +8,12 @@
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
   <title><?= e($pageTitle ?? 'Admin Sign In – Okina Craft') ?></title>
-  <link rel="icon" type="image/png" href="<?= base_url('assets/media/okina-mark.png') ?>">
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/svg+xml" href="<?= base_url('favicon.svg') ?>">
+  <link rel="icon" type="image/png" sizes="32x32" href="<?= base_url('favicon-32x32.png') ?>">
+  <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('favicon-16x16.png') ?>">
+  <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('favicon.ico') ?>">
+  <link rel="apple-touch-icon" sizes="180x180" href="<?= base_url('apple-touch-icon.png') ?>">
 
   <!-- Tabler Core CSS (CDN + Local Fallback) -->
   <link href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/css/tabler.min.css" rel="stylesheet"/>

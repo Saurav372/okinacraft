@@ -8,7 +8,7 @@ ServerSignature Off
 
     # Direct static asset requests into public folder so CSS/JS/images are served with correct MIME type
     RewriteCond %{REQUEST_URI} !^/public/
-    RewriteRule ^(assets|uploads|favicon\.ico|favicon\.svg|robots\.txt)(.*)$ public/$1$2 [L,NC]
+    RewriteRule ^(assets|uploads|favicon\.ico|favicon\.svg|apple-touch-icon\.png|favicon-32x32\.png|favicon-16x16\.png|robots\.txt)(.*)$ public/$1$2 [L,NC]
 
     # Route all other page requests through public/index.php
     RewriteCond %{REQUEST_URI} !^/public/
