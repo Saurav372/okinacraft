@@ -14,16 +14,45 @@ $routes->get('search', 'StoreController::search');
 $routes->get('cart', 'StoreController::cart');
 $routes->post('cart', 'StoreController::cartPost');
 
-$routes->get('checkout', 'StoreController::checkout');
-$routes->post('checkout', 'StoreController::checkoutPost');
+$routes->get('checkout', 'StoreController::checkout', ['filter' => 'customerauth']);
+$routes->post('checkout', 'StoreController::checkoutPost', ['filter' => 'customerauth']);
 $routes->get('order/(:segment)', 'StoreController::orderSuccess/$1');
 
 $routes->get('pages/contact', 'StoreController::contact');
 $routes->post('pages/contact', 'StoreController::contactPost');
 
 $routes->get('policies/(:segment)', 'StoreController::policy/$1');
-$routes->get('account', 'StoreController::account');
-$routes->post('account', 'StoreController::account');
+
+// ---- Customer Auth (Public) ----
+$routes->get('account/login', 'CustomerAuthController::login');
+$routes->post('account/login', 'CustomerAuthController::loginPost');
+$routes->get('account/register', 'CustomerAuthController::register');
+$routes->post('account/register', 'CustomerAuthController::registerPost');
+$routes->post('account/google', 'CustomerAuthController::googleCallback');
+$routes->get('account/forgot-password', 'CustomerAuthController::forgotPassword');
+$routes->post('account/forgot-password', 'CustomerAuthController::forgotPasswordPost');
+$routes->get('account/reset-password/(:segment)', 'CustomerAuthController::resetPassword/$1');
+$routes->post('account/reset-password/(:segment)', 'CustomerAuthController::resetPasswordPost/$1');
+$routes->get('account/logout', 'CustomerAuthController::logout');
+$routes->post('account/logout', 'CustomerAuthController::logout');
+$routes->get('account/track', 'StoreController::trackGuestOrder');
+$routes->post('account/track', 'StoreController::trackGuestOrder');
+
+// ---- Customer Portal (Protected by customerauth filter) ----
+$routes->group('account', ['filter' => 'customerauth'], static function ($routes) {
+    $routes->get('/', 'CustomerAccountController::dashboard');
+    $routes->get('orders/(:num)', 'CustomerAccountController::orderDetail/$1');
+    $routes->post('addresses', 'CustomerAccountController::addressSave');
+    $routes->post('addresses/(:num)/delete', 'CustomerAccountController::addressDelete/$1');
+    $routes->post('addresses/(:num)/default', 'CustomerAccountController::addressSetDefault/$1');
+    $routes->post('profile', 'CustomerAccountController::profileUpdate');
+});
+
+// ---- Wishlist Routes ----
+$routes->get('wishlist', 'WishlistController::index');
+$routes->post('api/wishlist/toggle', 'WishlistController::apiToggle');
+$routes->post('api/wishlist/sync', 'WishlistController::apiSync');
+$routes->get('api/wishlist/data', 'WishlistController::apiData');
 
 // ---- JSON API Routes ----
 $routes->get('api/search/suggest', 'ApiController::searchSuggest');

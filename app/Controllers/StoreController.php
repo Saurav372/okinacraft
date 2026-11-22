@@ -167,11 +167,35 @@ class StoreController extends BaseController
             return redirect()->to('/collections/all');
         }
 
+        $customerAuth = new \App\Libraries\CustomerAuthService();
+        if (!$customerAuth->check()) {
+            session()->setFlashdata('info', 'Please sign in or create an account to proceed to checkout.');
+            return redirect()->to('/account/login?redirect=' . rawurlencode('/checkout'));
+        }
+
+        $customer = $customerAuth->customer();
+        $addrModel = new \App\Models\CustomerAddressModel();
+        $defaultAddr = $addrModel->getDefault((int)$customer['id']);
+
+        $old = session()->getFlashdata('checkout_old') ?? [];
+        if (empty($old)) {
+            $old = [
+                'name'    => $customer['name'] ?? '',
+                'email'   => $customer['email'] ?? '',
+                'phone'   => $customer['phone'] ?? '',
+                'address' => $defaultAddr['address_line'] ?? '',
+                'city'    => $defaultAddr['city'] ?? '',
+                'state'   => $defaultAddr['state'] ?? '',
+                'pincode' => $defaultAddr['pincode'] ?? '',
+            ];
+        }
+
         return view('store/checkout', [
             'pageTitle' => 'Checkout – ' . store_setting('store_name', 'Okina Craft'),
             'activeNav' => '',
             'cart'      => $cartSummary,
-            'old'       => session()->getFlashdata('checkout_old') ?? [],
+            'customer'  => $customer,
+            'old'       => $old,
         ]);
     }
 
@@ -186,6 +210,9 @@ class StoreController extends BaseController
         $allowedPaymentMethods = $codEnabled ? ['upi', 'cod'] : ['upi'];
         $selectedPaymentMethod = (string)$this->request->getPost('payment_method');
         $paymentMethod = in_array($selectedPaymentMethod, $allowedPaymentMethods, true) ? $selectedPaymentMethod : 'upi';
+
+        $customerAuth = new \App\Libraries\CustomerAuthService();
+        $customerId = $customerAuth->id();
 
         $data = [
             'name'           => trim((string)$this->request->getPost('name')),
@@ -223,6 +250,7 @@ class StoreController extends BaseController
 
             $orderModel = new OrderModel();
             $orderModel->insert([
+                'customer_id'      => $customerId,
                 'order_number'     => $orderNumber,
                 'customer_name'    => $data['name'],
                 'customer_email'   => $data['email'],
@@ -356,7 +384,7 @@ class StoreController extends BaseController
         ]);
     }
 
-    public function account()
+    public function trackGuestOrder()
     {
         $order = null;
         $searched = false;
@@ -384,7 +412,7 @@ class StoreController extends BaseController
             }
         }
 
-        return view('store/account', [
+        return view('store/account/track', [
             'pageTitle' => 'Track Order – ' . store_setting('store_name', 'Okina Craft'),
             'activeNav' => '',
             'order'     => $order,

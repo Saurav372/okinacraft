@@ -19,6 +19,13 @@ $old = $old ?? [];
       <div class="checkout-card">
         <h2 class="h2" style="margin-bottom: 2rem;">Contact & Shipping Details</h2>
 
+        <?php if (!empty($customer)): ?>
+          <div style="display:flex;justify-content:space-between;align-items:center;background:#f8fafc;padding:1.2rem 1.4rem;border-radius:8px;border:1px solid #e2e8f0;margin-bottom:2rem;font-size:1.35rem;">
+            <span>Signed in as <strong><?= e($customer['name']) ?></strong> (<?= e($customer['email']) ?>)</span>
+            <a href="<?= base_url('/account/logout') ?>" style="color:#dc2626;font-weight:600;text-decoration:underline;">Switch</a>
+          </div>
+        <?php endif; ?>
+
         <div class="form-row">
           <label class="form-label" for="co-name">Full Name *</label>
           <input id="co-name" name="name" type="text" class="field__input" required value="<?= e($old['name'] ?? '') ?>" placeholder="Enter your full name">

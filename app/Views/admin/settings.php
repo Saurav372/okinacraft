@@ -106,6 +106,17 @@
                 </div>
               </div>
 
+              <div class="row g-3 mb-3">
+                <div class="col-12">
+                  <label class="form-label fw-semibold">Google OAuth Client ID (Optional for 1-Click Google Sign-In)</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="ti ti-brand-google"></i></span>
+                    <input type="text" class="form-control" name="google_client_id" value="<?= e($settings['google_client_id'] ?? '') ?>" placeholder="e.g. 1234567890-abcdefg.apps.googleusercontent.com">
+                  </div>
+                  <small class="form-hint">Obtain free from Google Cloud Console &rarr; APIs &amp; Services &rarr; Credentials. When empty, customers sign in with Email &amp; Password.</small>
+                </div>
+              </div>
+
               <div class="row g-3 mb-4">
                 <div class="col-12">
                   <label class="form-label fw-semibold">Business Physical Address</label>

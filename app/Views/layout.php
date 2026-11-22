@@ -8,6 +8,9 @@ $businessAddress = store_setting('business_address', 'Hingoli, Maharashtra');
 $cartCount = (new \App\Libraries\CartService())->count();
 $activeNav = $activeNav ?? '';
 $session = session();
+$customerAuth = new \App\Libraries\CustomerAuthService();
+$currentCustomer = $customerAuth->customer();
+$wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel())->getProductIds((int)$currentCustomer['id'])) : 0;
 ?>
 <!doctype html>
 <html lang="en">
@@ -72,7 +75,16 @@ $session = session();
           <svg fill="none" viewBox="0 0 18 19"><path fill="currentColor" fill-rule="evenodd" d="M11.03 11.68A5.784 5.784 0 1 1 2.85 3.5a5.784 5.784 0 0 1 8.18 8.18m.26 1.12a6.78 6.78 0 1 1 .72-.7l5.4 5.4a.5.5 0 1 1-.71.7z" clip-rule="evenodd"/></svg>
         </button>
 
-        <a href="<?= base_url('/account') ?>" class="header__icon" aria-label="Track Order / Account" title="Track Order">
+        <!-- Wishlist Icon with Dynamic Count Bubble -->
+        <a href="<?= base_url('/wishlist') ?>" class="header__icon" aria-label="My Wishlist" title="My Wishlist" style="position: relative;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span id="wishlist-count-bubble" class="cart-count-bubble <?= $wishlistCount <= 0 ? 'hidden' : '' ?>"><?= $wishlistCount ?></span>
+        </a>
+
+        <!-- Customer Account Icon -->
+        <a href="<?= $currentCustomer ? base_url('/account') : base_url('/account/login') ?>" class="header__icon" aria-label="<?= $currentCustomer ? 'My Account (' . e($currentCustomer['name']) . ')' : 'Customer Sign In' ?>" title="<?= $currentCustomer ? 'My Account (' . e($currentCustomer['name']) . ')' : 'Sign In' ?>">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 19"><path fill="currentColor" fill-rule="evenodd" d="M6 4.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-4a4 4 0 1 0 0 8 4 4 0 0 0 0-8m5.58 12.15c1.12.82 1.83 2.24 1.91 4.85H1.51c.08-2.6.79-4.03 1.9-4.85C4.66 11.75 6.5 11.5 9 11.5s4.35.26 5.58 1.15M9 10.5c-2.5 0-4.65.24-6.17 1.35C1.27 12.98.5 14.93.5 18v.5h17V18c0-3.07-.77-5.02-2.33-6.15-1.52-1.1-3.67-1.35-6.17-1.35" clip-rule="evenodd"/></svg>
         </a>
 
@@ -97,7 +109,14 @@ $session = session();
       <li><a href="<?= base_url('/') ?>" class="menu-drawer__link <?= $activeNav === 'home' ? 'active' : '' ?>">Home</a></li>
       <li><a href="<?= base_url('/collections/all') ?>" class="menu-drawer__link <?= $activeNav === 'catalog' ? 'active' : '' ?>">Products</a></li>
       <li><a href="<?= base_url('/pages/contact') ?>" class="menu-drawer__link <?= $activeNav === 'contact' ? 'active' : '' ?>">Contact</a></li>
-      <li><a href="<?= base_url('/account') ?>" class="menu-drawer__link">Track Order</a></li>
+      <li><a href="<?= base_url('/wishlist') ?>" class="menu-drawer__link <?= $activeNav === 'wishlist' ? 'active' : '' ?>">My Wishlist (<span id="mobile-wishlist-count"><?= $wishlistCount ?></span>)</a></li>
+      <?php if ($currentCustomer): ?>
+        <li><a href="<?= base_url('/account') ?>" class="menu-drawer__link <?= $activeNav === 'account' ? 'active' : '' ?>">My Account (<?= e($currentCustomer['name']) ?>)</a></li>
+        <li><a href="<?= base_url('/account/logout') ?>" class="menu-drawer__link" style="color: #dc2626;">Sign Out</a></li>
+      <?php else: ?>
+        <li><a href="<?= base_url('/account/login') ?>" class="menu-drawer__link <?= $activeNav === 'account' ? 'active' : '' ?>">Sign In / Register</a></li>
+        <li><a href="<?= base_url('/account/track') ?>" class="menu-drawer__link">Track Guest Order</a></li>
+      <?php endif; ?>
       <li><a href="<?= base_url('/cart') ?>" class="menu-drawer__link">Cart (<?= $cartCount ?>)</a></li>
       <li>
         <a href="https://www.instagram.com/<?= e($instagram) ?>/" target="_blank" rel="noopener noreferrer" class="menu-drawer__link" style="display:flex;align-items:center;gap:0.8rem;color:#e1306c;">

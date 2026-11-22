@@ -1017,6 +1017,101 @@
     });
   });
 
+  // 9. Storefront Wishlist Manager
+  const WishlistManager = {
+    getIds: function () {
+      try {
+        return JSON.parse(localStorage.getItem('okina_wishlist') || '[]');
+      } catch (e) {
+        return [];
+      }
+    },
+    saveIds: function (ids) {
+      try {
+        localStorage.setItem('okina_wishlist', JSON.stringify(ids));
+      } catch (e) {}
+      this.updateCounters(ids.length);
+    },
+    updateCounters: function (count) {
+      const bubble = document.getElementById('wishlist-count-bubble');
+      if (bubble) {
+        bubble.textContent = count;
+        bubble.classList.toggle('hidden', count <= 0);
+      }
+      const mobCounter = document.getElementById('mobile-wishlist-count');
+      if (mobCounter) {
+        mobCounter.textContent = count;
+      }
+    },
+    init: function () {
+      const ids = this.getIds();
+      this.updateCounters(ids.length);
+
+      // Highlight active wishlist buttons on page
+      document.querySelectorAll('[data-wishlist-btn]').forEach((btn) => {
+        const pid = parseInt(btn.getAttribute('data-product-id'), 10);
+        if (ids.includes(pid)) {
+          btn.classList.add('active');
+          const lbl = btn.querySelector('.pdp-wishlist-label');
+          if (lbl) lbl.textContent = 'Saved in Wishlist';
+        }
+      });
+
+      // Bind click handlers
+      document.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-wishlist-btn]');
+        if (!btn) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        const pid = parseInt(btn.getAttribute('data-product-id'), 10);
+        if (!pid) return;
+
+        let currentIds = this.getIds();
+        const isAdding = !btn.classList.contains('active');
+
+        if (isAdding) {
+          btn.classList.add('active');
+          if (!currentIds.includes(pid)) currentIds.push(pid);
+          const lbl = btn.querySelector('.pdp-wishlist-label');
+          if (lbl) lbl.textContent = 'Saved in Wishlist';
+        } else {
+          btn.classList.remove('active');
+          currentIds = currentIds.filter((id) => id !== pid);
+          const lbl = btn.querySelector('.pdp-wishlist-label');
+          if (lbl) lbl.textContent = 'Add to Wishlist';
+        }
+
+        this.saveIds(currentIds);
+
+        // Ping server API (syncs if customer is logged in)
+        const csrfTokenMeta = document.querySelector('input[name="csrf_test_name"]') || document.querySelector('meta[name="csrf-token"]');
+        const tokenName = csrfTokenMeta ? csrfTokenMeta.getAttribute('name') : 'csrf_test_name';
+        const tokenVal = csrfTokenMeta ? (csrfTokenMeta.value || csrfTokenMeta.getAttribute('content')) : '';
+
+        const fd = new FormData();
+        fd.append('product_id', pid);
+        if (tokenVal) fd.append(tokenName, tokenVal);
+
+        fetch(basePath + '/api/wishlist/toggle', {
+          method: 'POST',
+          body: fd,
+          headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data && data.wishlist_ids && Array.isArray(data.wishlist_ids)) {
+            WishlistManager.saveIds(data.wishlist_ids);
+          }
+        })
+        .catch(() => {});
+      });
+    }
+  };
+
+  WishlistManager.init();
+
   function escapeHtml(str) {
     return String(str || '')
       .replace(/&/g, '&amp;')
