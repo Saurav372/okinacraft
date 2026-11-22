@@ -202,6 +202,33 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
     <?= $this->renderSection('content') ?>
   </main>
 
+  <!-- Dedicated Help & Support Bar (WhatsApp & Instagram) -->
+  <section class="need-help-bar" aria-label="Customer Support">
+    <div class="page-width">
+      <div class="need-help-bar__wrap">
+        <a href="https://wa.me/<?= e($whatsappNo) ?>?text=<?= rawurlencode($whatsappPrefill) ?>" target="_blank" rel="noopener noreferrer" class="need-help-item" title="Need Help? Chat with us on WhatsApp">
+          <div class="need-help-icon need-help-icon--wa">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4ZM12.1 21.7a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.3-.4a9.8 9.8 0 1 1 8.6 4.8Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-1-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.8 4.3.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.1-1.3-.1-.2-.3-.3-.6-.4Z"/>
+            </svg>
+          </div>
+          <span class="need-help-text">Need Help?</span>
+        </a>
+
+        <a href="https://www.instagram.com/<?= e($instagram) ?>/" target="_blank" rel="noopener noreferrer" class="need-help-item" title="Need Help? Message us on Instagram">
+          <div class="need-help-icon need-help-icon--ig">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </div>
+          <span class="need-help-text">Need Help?</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- E-Commerce Trust & Value Props Bar -->
   <section class="footer-trust-bar" aria-label="Store Guarantees">
     <div class="page-width">
@@ -262,33 +289,6 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
             <div class="footer-trust-desc">Hassle-Free 7-Day Exchange Policy</div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Dedicated Help & Support Bar (WhatsApp & Instagram) -->
-  <section class="need-help-bar" aria-label="Customer Support">
-    <div class="page-width">
-      <div class="need-help-bar__wrap">
-        <a href="https://wa.me/<?= e($whatsappNo) ?>?text=<?= rawurlencode($whatsappPrefill) ?>" target="_blank" rel="noopener noreferrer" class="need-help-item" title="Need Help? Chat with us on WhatsApp">
-          <div class="need-help-icon need-help-icon--wa">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-              <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4ZM12.1 21.7a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.3-.4a9.8 9.8 0 1 1 8.6 4.8Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-1-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.8 4.3.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.1-1.3-.1-.2-.3-.3-.6-.4Z"/>
-            </svg>
-          </div>
-          <span class="need-help-text">Need Help?</span>
-        </a>
-
-        <a href="https://www.instagram.com/<?= e($instagram) ?>/" target="_blank" rel="noopener noreferrer" class="need-help-item" title="Need Help? Message us on Instagram">
-          <div class="need-help-icon need-help-icon--ig">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-            </svg>
-          </div>
-          <span class="need-help-text">Need Help?</span>
-        </a>
       </div>
     </div>
   </section>
