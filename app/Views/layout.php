@@ -11,6 +11,11 @@ $session = session();
 $customerAuth = new \App\Libraries\CustomerAuthService();
 $currentCustomer = $customerAuth->customer();
 $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel())->getProductIds((int)$currentCustomer['id'])) : 0;
+
+// Asset Cache Busting (Automatically forces mobile and desktop browsers to load fresh assets on change)
+$themeCssVer = defined('FCPATH') && file_exists(FCPATH . 'assets/css/theme.css') ? filemtime(FCPATH . 'assets/css/theme.css') : time();
+$blobsCssVer = defined('FCPATH') && file_exists(FCPATH . 'assets/css/mask-blobs.css') ? filemtime(FCPATH . 'assets/css/mask-blobs.css') : time();
+$storefrontJsVer = defined('FCPATH') && file_exists(FCPATH . 'assets/js/storefront.js') ? filemtime(FCPATH . 'assets/js/storefront.js') : time();
 ?>
 <!doctype html>
 <html lang="en">
@@ -29,8 +34,8 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="<?= base_url('assets/css/mask-blobs.css') ?>">
-  <link rel="stylesheet" href="<?= base_url('assets/css/theme.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/mask-blobs.css?v=' . $blobsCssVer) ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/theme.css?v=' . $themeCssVer) ?>">
   <script>window.OC_BASE = <?= json_encode(rtrim(base_url(), '/')) ?>; window.CS_BASE = window.OC_BASE;</script>
 </head>
 <body class="gradient">
@@ -584,6 +589,6 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
   <!-- Customer Authentication Popup Modal (Signup & Signin) -->
   <?= $this->include('store/partials/auth_modal') ?>
 
-  <script src="<?= base_url('assets/js/storefront.js') ?>" defer></script>
+  <script src="<?= base_url('assets/js/storefront.js?v=' . $storefrontJsVer) ?>" defer></script>
 </body>
 </html>
