@@ -63,6 +63,12 @@ Vagrantfile
 /writable/debugbar/*
 !/writable/debugbar/index.html
 
+# Database files (Never track live databases in version control!)
+/writable/*.sqlite
+/writable/*.sqlite3
+/writable/*.db
+/writable/database.sqlite
+
 php_errors.log
 
 #-------------------------
