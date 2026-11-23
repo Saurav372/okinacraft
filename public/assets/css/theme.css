@@ -1318,6 +1318,57 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
   letter-spacing: -0.01em;
 }
 
+/* Footer Accordion Base (Desktop Default) */
+.footer-accordion-toggle {
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: default;
+  pointer-events: none;
+  text-align: left;
+  font-family: inherit;
+}
+
+.footer-accordion-chevron {
+  display: none !important;
+}
+
+.footer-accordion-panel {
+  display: block;
+}
+
+.footer-contact-item--address {
+  align-items: flex-start !important;
+}
+
+.footer-address-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  line-height: 1.5;
+}
+
+.footer-view-map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #ef4444 !important;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s ease;
+  margin-top: 0.2rem;
+}
+
+.footer-view-map-link:hover {
+  color: #f87171 !important;
+  text-decoration: underline !important;
+}
+
 .footer-title-bar {
   width: 28px;
   height: 3px;
@@ -1604,15 +1655,235 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
     border-right: none;
     padding: 0;
   }
+}
+
+/* Mobile & Tablet Responsive Footer (< 990px) */
+@media screen and (max-width: 989px) {
+  .footer.footer--dark {
+    padding: 3.2rem 0 1.8rem;
+  }
+
   .footer--dark .footer-main-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 3.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-bottom: 1.6rem;
   }
+
   .footer--dark .footer-col--brand {
-    grid-column: span 2;
+    padding-bottom: 2rem;
   }
-  .footer--dark .footer-col--connect {
-    grid-column: span 2;
+
+  .footer--dark .footer-brand__logo {
+    max-height: 4.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .footer--dark .footer-brand__text {
+    font-size: 1.35rem;
+    line-height: 1.5;
+    color: #94a3b8;
+    margin-bottom: 1.6rem;
+    max-width: 100%;
+  }
+
+  .footer--dark .footer-contact-list {
+    gap: 1.1rem;
+    margin-bottom: 0;
+  }
+
+  .footer--dark .footer-contact-item {
+    font-size: 1.35rem;
+    gap: 1rem;
+    color: #cbd5e1;
+    align-items: flex-start;
+  }
+
+  .footer--dark .footer-contact-icon {
+    margin-top: 0.2rem;
+  }
+
+  /* Accordions on Mobile/Tablet */
+  .footer-col--accordion {
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-col--policies {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  }
+
+  .footer-accordion-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1.6rem 0;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    pointer-events: auto;
+    text-align: left;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .footer-accordion-toggle .footer-col__title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1;
+  }
+
+  .footer-title-bar {
+    display: none !important;
+  }
+
+  .footer-accordion-chevron {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    color: #94a3b8;
+    transition: transform 0.25s ease, color 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .footer-col--accordion.is-open .footer-accordion-chevron svg {
+    transform: rotate(180deg);
+    color: #ef4444;
+  }
+
+  .footer-accordion-panel {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease, padding 0.3s ease;
+  }
+
+  .footer-col--accordion.is-open .footer-accordion-panel {
+    max-height: 400px;
+    opacity: 1;
+    padding: 0.2rem 0 1.8rem;
+  }
+
+  .footer-icon-links {
+    gap: 1.15rem;
+  }
+
+  .footer-icon-link {
+    font-size: 1.4rem;
+    padding: 0.3rem 0;
+  }
+
+  /* Newsletter on Mobile/Tablet */
+  .footer-col--connect {
+    padding-top: 2.4rem;
+    margin-top: 0;
+  }
+
+  .footer-col--connect .footer-col__title {
+    margin-bottom: 0.8rem;
+  }
+
+  .footer--dark .footer-newsletter__desc {
+    font-size: 1.35rem;
+    line-height: 1.55;
+    margin-bottom: 1.4rem;
+  }
+
+  .footer-newsletter-row {
+    display: flex;
+    gap: 0.8rem;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .footer-newsletter-input-wrap {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .footer-newsletter-input-wrap input {
+    height: 4.4rem;
+    font-size: 1.35rem;
+    border-radius: 8px;
+  }
+
+  .footer-newsletter-submit {
+    height: 4.4rem;
+    padding: 0 1.8rem;
+    flex-shrink: 0;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  /* Payment & Quick Policies on Mobile/Tablet */
+  .footer-payment-row {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 2rem 0 1.6rem;
+    margin-top: 2.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.8rem;
+  }
+
+  .footer-payment-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.1rem;
+    width: 100%;
+  }
+
+  .footer-payment-label {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .footer-payment-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .footer-quick-policies {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.25rem;
+    line-height: 1.85;
+    color: #94a3b8;
+    gap: 0.8rem 1rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    flex-wrap: wrap;
+  }
+
+  .footer-copyright-row {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.6rem 0 0.8rem;
+    text-align: center;
+  }
+
+  .footer-copyright-text {
+    font-size: 1.25rem;
+    color: #64748b;
   }
 }
 
@@ -1626,19 +1897,6 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
   .footer-trust-grid {
     grid-template-columns: 1fr;
     gap: 1.8rem;
-  }
-  .footer--dark .footer-main-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-  }
-  .footer-payment-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.8rem;
-  }
-  .footer-quick-policies {
-    gap: 0.8rem;
   }
 }
 

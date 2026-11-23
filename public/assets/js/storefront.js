@@ -1003,16 +1003,16 @@
     }
   });
 
-  // Mobile Footer Collapsible Accordion Groups
-  document.querySelectorAll('.footer-col__title-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      if (window.innerWidth <= 768) {
-        const col = btn.closest('.footer-col');
-        if (col) {
-          const isOpen = col.classList.contains('is-open');
-          btn.setAttribute('aria-expanded', String(!isOpen));
-          col.classList.toggle('is-open', !isOpen);
-        }
+  // Mobile & Tablet Footer Collapsible Accordion Groups
+  document.querySelectorAll('[data-footer-accordion]').forEach((col) => {
+    const btn = col.querySelector('.footer-accordion-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', (e) => {
+      if (window.innerWidth < 990) {
+        e.preventDefault();
+        const isOpen = col.classList.contains('is-open');
+        btn.setAttribute('aria-expanded', String(!isOpen));
+        col.classList.toggle('is-open', !isOpen);
       }
     });
   });

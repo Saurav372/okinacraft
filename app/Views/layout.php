@@ -309,7 +309,8 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
             <img class="footer-brand__logo" src="<?= base_url('assets/media/logo-light.png') ?>" alt="<?= e($storeName) ?>">
           </a>
           <p class="footer-brand__text">
-            Your trusted destination for quality products. Shop with confidence and enjoy a seamless shopping experience with premium streetwear, custom oversized t-shirts, and apparel.
+            Your trusted destination for quality products.<br>
+            Premium streetwear, custom oversized t-shirts, and apparel.
           </p>
 
           <div class="footer-contact-list">
@@ -332,136 +333,166 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
               <span>Email: <a href="mailto:<?= e($storeEmail) ?>"><?= e($storeEmail) ?></a></span>
             </div>
 
-            <div class="footer-contact-item">
+            <div class="footer-contact-item footer-contact-item--address">
               <span class="footer-contact-icon">
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
                   <circle cx="12" cy="10" r="3"/>
                 </svg>
               </span>
-              <span><?= e($businessAddress) ?></span>
+              <div class="footer-address-wrap">
+                <span>Ground Floor, Property No. 3, Khasra No. 31/2, Street No. 10, Surender Colony, Jharoda Majra Part-2, New Delhi &ndash; 110084.</span>
+                <a href="https://maps.google.com/?q=Ground+Floor+Property+No+3+Khasra+No+31+2+Street+No+10+Surender+Colony+Jharoda+Majra+Part+2+New+Delhi+110084" target="_blank" rel="noopener noreferrer" class="footer-view-map-link">View on Map &nearr;</a>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Col 2: Shop -->
-        <div class="footer-col footer-col--accordion">
-          <div class="footer-col__title">Shop</div>
+        <div class="footer-col footer-col--accordion" data-footer-accordion>
+          <button type="button" class="footer-accordion-toggle" aria-expanded="false" aria-controls="footer-panel-shop">
+            <span class="footer-col__title">Shop</span>
+            <span class="footer-accordion-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </span>
+          </button>
           <div class="footer-title-bar"></div>
-          <ul class="footer-icon-links">
-            <li>
-              <a href="<?= base_url('/collections/all') ?>" class="footer-icon-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 9-9 9-9-9 9-9Z"/><circle cx="12" cy="7" r="1.5"/></svg>
-                <span>All Products</span>
-              </a>
-            </li>
-            <li>
-              <a href="<?= base_url('/collections/all?sort_by=created-descending') ?>" class="footer-icon-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                <span>New Arrivals</span>
-              </a>
-            </li>
-            <li>
-              <a href="<?= base_url('/collections/all?sort_by=best-selling') ?>" class="footer-icon-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <span>Best Sellers</span>
-              </a>
-            </li>
-            <li>
-              <a href="<?= base_url('/search?q=oversized') ?>" class="footer-icon-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
-                <span>Oversized T-Shirts</span>
-              </a>
-            </li>
-            <li>
-              <a href="<?= base_url('/search?q=hoodie') ?>" class="footer-icon-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3H8l-4 5v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-4-5z"/><polyline points="9 3 9 9 12 11 15 9 15 3"/></svg>
-                <span>Hoodies &amp; Fleece</span>
-              </a>
-            </li>
-            <li>
-              <a href="<?= base_url('/collections/all') ?>" class="footer-icon-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
-                <span>Special Offers</span>
-              </a>
-            </li>
-          </ul>
+          <div class="footer-accordion-panel" id="footer-panel-shop">
+            <ul class="footer-icon-links">
+              <li>
+                <a href="<?= base_url('/collections/all') ?>" class="footer-icon-link">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 9-9 9-9-9 9-9Z"/><circle cx="12" cy="7" r="1.5"/></svg>
+                  <span>All Products</span>
+                </a>
+              </li>
+              <li>
+                <a href="<?= base_url('/collections/all?sort_by=created-descending') ?>" class="footer-icon-link">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  <span>New Arrivals</span>
+                </a>
+              </li>
+              <li>
+                <a href="<?= base_url('/collections/all?sort_by=best-selling') ?>" class="footer-icon-link">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  <span>Best Sellers</span>
+                </a>
+              </li>
+              <li>
+                <a href="<?= base_url('/search?q=oversized') ?>" class="footer-icon-link">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+                  <span>Oversized T-Shirts</span>
+                </a>
+              </li>
+              <li>
+                <a href="<?= base_url('/search?q=hoodie') ?>" class="footer-icon-link">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3H8l-4 5v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-4-5z"/><polyline points="9 3 9 9 12 11 15 9 15 3"/></svg>
+                  <span>Hoodies &amp; Fleece</span>
+                </a>
+              </li>
+              <li>
+                <a href="<?= base_url('/collections/all') ?>" class="footer-icon-link">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+                  <span>Special Offers</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <!-- Col 3: Customer Service -->
-        <div class="footer-col footer-col--accordion">
-          <div class="footer-col__title">Customer Service</div>
+        <div class="footer-col footer-col--accordion" data-footer-accordion>
+          <button type="button" class="footer-accordion-toggle" aria-expanded="false" aria-controls="footer-panel-service">
+            <span class="footer-col__title">Customer Service</span>
+            <span class="footer-accordion-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </span>
+          </button>
           <div class="footer-title-bar"></div>
-          <ul class="footer-icon-links">
-            <li>
-              <a href="<?= base_url('/contact') ?>" class="footer-icon-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
-                <span>Contact Us</span>
-              </a>
-            </li>
-            <li>
-              <a href="<?= base_url('/account/track') ?>" class="footer-icon-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
-                <span>Track Your Order</span>
-              </a>
-            </li>
-            <li>
-              <a href="<?= base_url('/account') ?>" class="footer-icon-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                <span>My Account</span>
-              </a>
-            </li>
-            <li>
-              <a href="<?= base_url('/wishlist') ?>" class="footer-icon-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-                <span>My Wishlist</span>
-              </a>
-            </li>
-            <li>
-              <a href="https://wa.me/<?= e($whatsappNo) ?>?text=<?= rawurlencode($whatsappPrefill) ?>" target="_blank" rel="noopener noreferrer" class="footer-icon-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><circle cx="9" cy="10" r="1" fill="currentColor"/><circle cx="12" cy="10" r="1" fill="currentColor"/><circle cx="15" cy="10" r="1" fill="currentColor"/></svg>
-                <span>Live Chat Support</span>
-              </a>
-            </li>
-          </ul>
+          <div class="footer-accordion-panel" id="footer-panel-service">
+            <ul class="footer-icon-links">
+              <li>
+                <a href="<?= base_url('/contact') ?>" class="footer-icon-link">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+                  <span>Contact Us</span>
+                </a>
+              </li>
+              <li>
+                <a href="<?= base_url('/account/track') ?>" class="footer-icon-link">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+                  <span>Track Your Order</span>
+                </a>
+              </li>
+              <li>
+                <a href="<?= base_url('/account') ?>" class="footer-icon-link">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  <span>My Account</span>
+                </a>
+              </li>
+              <li>
+                <a href="<?= base_url('/wishlist') ?>" class="footer-icon-link">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                  <span>My Wishlist</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://wa.me/<?= e($whatsappNo) ?>?text=<?= rawurlencode($whatsappPrefill) ?>" target="_blank" rel="noopener noreferrer" class="footer-icon-link">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><circle cx="9" cy="10" r="1" fill="currentColor"/><circle cx="12" cy="10" r="1" fill="currentColor"/><circle cx="15" cy="10" r="1" fill="currentColor"/></svg>
+                  <span>Live Chat Support</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <!-- Col 4: Policies -->
-        <div class="footer-col footer-col--accordion">
-          <div class="footer-col__title">Policies</div>
+        <div class="footer-col footer-col--accordion footer-col--policies" data-footer-accordion>
+          <button type="button" class="footer-accordion-toggle" aria-expanded="false" aria-controls="footer-panel-policies">
+            <span class="footer-col__title">Policies</span>
+            <span class="footer-accordion-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </span>
+          </button>
           <div class="footer-title-bar"></div>
-          <ul class="footer-icon-links">
-            <li>
-              <a href="<?= base_url('/policies/privacy-policy') ?>" class="footer-icon-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                <span>Privacy Policy</span>
-              </a>
-            </li>
-            <li>
-              <a href="<?= base_url('/policies/terms-of-service') ?>" class="footer-icon-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                <span>Terms &amp; Conditions</span>
-              </a>
-            </li>
-            <li>
-              <a href="<?= base_url('/policies/shipping-policy') ?>" class="footer-icon-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-                <span>Shipping &amp; Delivery</span>
-              </a>
-            </li>
-            <li>
-              <a href="<?= base_url('/policies/refund-policy') ?>" class="footer-icon-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                <span>Cancellation &amp; Refund</span>
-              </a>
-            </li>
-            <li>
-              <a href="<?= base_url('/policies/contact-information') ?>" class="footer-icon-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-                <span>Contact Information</span>
-              </a>
-            </li>
-          </ul>
+          <div class="footer-accordion-panel" id="footer-panel-policies">
+            <ul class="footer-icon-links">
+              <li>
+                <a href="<?= base_url('/policies/privacy-policy') ?>" class="footer-icon-link">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <span>Privacy Policy</span>
+                </a>
+              </li>
+              <li>
+                <a href="<?= base_url('/policies/terms-of-service') ?>" class="footer-icon-link">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                  <span>Terms &amp; Conditions</span>
+                </a>
+              </li>
+              <li>
+                <a href="<?= base_url('/policies/shipping-policy') ?>" class="footer-icon-link">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                  <span>Shipping &amp; Delivery</span>
+                </a>
+              </li>
+              <li>
+                <a href="<?= base_url('/policies/refund-policy') ?>" class="footer-icon-link">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                  <span>Cancellation &amp; Refund</span>
+                </a>
+              </li>
+              <li>
+                <a href="<?= base_url('/policies/contact-information') ?>" class="footer-icon-link">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                  <span>Contact Information</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <!-- Col 5: Stay Connected & Newsletter & Perks -->
@@ -503,12 +534,12 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
         <div class="footer-payment-group">
           <div class="footer-payment-label">
             <span class="footer-payment-lock">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
                 <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
               </svg>
             </span>
-            <span>We Accept 100% Secure Payments:</span>
+            <span>100% Secure Payments</span>
           </div>
 
           <div class="footer-payment-badges" aria-label="Accepted Payment Methods">
@@ -519,9 +550,9 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
               </svg>
             </span>
             <span class="payment-badge-dark" title="RuPay Card">
-              <svg viewBox="0 0 42 22" width="42" height="22">
-                <rect width="42" height="22" rx="4" fill="#141e2c"/>
-                <text x="21" y="15" fill="#38bdf8" font-size="9.5" font-weight="800" font-family="sans-serif" text-anchor="middle">RuPay</text>
+              <svg viewBox="0 0 46 22" width="46" height="22">
+                <rect width="46" height="22" rx="4" fill="#141e2c"/>
+                <text x="23" y="15" fill="#38bdf8" font-size="9.5" font-weight="800" font-family="sans-serif" text-anchor="middle">RuPay&reg;</text>
               </svg>
             </span>
             <span class="payment-badge-dark" title="Visa">
@@ -538,19 +569,11 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
               </svg>
             </span>
             <span class="payment-badge-dark" title="Net Banking">
-              <svg viewBox="0 0 56 22" width="56" height="22">
-                <rect width="56" height="22" rx="4" fill="#141e2c"/>
-                <text x="28" y="14" fill="#cbd5e1" font-size="8" font-weight="700" font-family="sans-serif" text-anchor="middle">NET BANKING</text>
+              <svg viewBox="0 0 68 22" width="68" height="22">
+                <rect width="68" height="22" rx="4" fill="#141e2c"/>
+                <text x="34" y="14" fill="#cbd5e1" font-size="8" font-weight="700" font-family="sans-serif" text-anchor="middle">NET BANKING</text>
               </svg>
             </span>
-            <?php if (store_setting('cod_enabled', '0') === '1'): ?>
-            <span class="payment-badge-dark" title="Cash on Delivery Available">
-              <svg viewBox="0 0 38 22" width="38" height="22">
-                <rect width="38" height="22" rx="4" fill="#141e2c"/>
-                <text x="19" y="15" fill="#f87171" font-size="9.5" font-weight="800" font-family="sans-serif" text-anchor="middle">COD</text>
-              </svg>
-            </span>
-            <?php endif; ?>
           </div>
         </div>
 
