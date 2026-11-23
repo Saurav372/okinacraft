@@ -485,12 +485,6 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
                   <span>Cancellation &amp; Refund</span>
                 </a>
               </li>
-              <li>
-                <a href="<?= base_url('/policies/contact-information') ?>" class="footer-icon-link">
-                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-                  <span>Contact Information</span>
-                </a>
-              </li>
             </ul>
           </div>
         </div>
@@ -529,7 +523,7 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
         </div>
       </div>
 
-      <!-- Payment Methods & Quick Policies Row -->
+      <!-- Payment Methods Section -->
       <div class="footer-payment-row">
         <div class="footer-payment-group">
           <div class="footer-payment-label">
@@ -575,18 +569,6 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
               </svg>
             </span>
           </div>
-        </div>
-
-        <div class="footer-quick-policies">
-          <a href="<?= base_url('/policies/privacy-policy') ?>">Privacy Policy</a>
-          <span>|</span>
-          <a href="<?= base_url('/policies/terms-of-service') ?>">Terms &amp; Conditions</a>
-          <span>|</span>
-          <a href="<?= base_url('/policies/shipping-policy') ?>">Shipping &amp; Delivery</a>
-          <span>|</span>
-          <a href="<?= base_url('/policies/refund-policy') ?>">Cancellation &amp; Refund</a>
-          <span>|</span>
-          <a href="<?= base_url('/policies/contact-information') ?>">Contact Information</a>
         </div>
       </div>
 
