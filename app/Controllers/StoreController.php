@@ -351,7 +351,7 @@ class StoreController extends BaseController
 
         if ($name === '' || !filter_var($email, FILTER_VALIDATE_EMAIL) || $message === '') {
             session()->setFlashdata('error', 'Please provide your name, valid email, and message.');
-            return redirect()->to('/pages/contact');
+            return redirect()->to('/contact');
         }
 
         $model = new ContactMessageModel();
@@ -366,7 +366,7 @@ class StoreController extends BaseController
         ]);
 
         session()->setFlashdata('success', 'Thank you! Your message has been received. Our team will get back to you shortly.');
-        return redirect()->to('/pages/contact');
+        return redirect()->to('/contact');
     }
 
     public function policy(string $slug)

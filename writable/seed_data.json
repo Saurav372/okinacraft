@@ -1,11 +1,11 @@
 {
   "settings": {
     "store_name": "Okina Craft",
-    "store_email": "support@okinacraft.com",
-    "whatsapp_number": "918380808435",
+    "store_email": "okinacraft@gmail.com",
+    "whatsapp_number": "7827747556",
     "whatsapp_prefill": "Hi Okina Craft, I need help with a product or order.",
-    "instagram_handle": "okinacraft1",
-    "business_address": "Hingoli, Maharashtra",
+    "instagram_handle": "okina_craft",
+    "business_address": "Ground Floor, Property No. 3, Khasra No. 31/2, Street No. 10, Surender Colony, Jharoda Majra Part-2, New Delhi, North Delhi, Delhi - 110084, India.",
     "business_hours": "Monday–Saturday, 10:00 AM–6:00 PM",
     "shipping_flat_rate": "60",
     "free_shipping_threshold": "999",
@@ -16,27 +16,27 @@
     {
       "slug": "privacy-policy",
       "title": "Privacy Policy",
-      "body_html": "<div class=\"policy-content\">\n  <p class=\"text-muted\"><em>Last updated: November 2026</em></p>\n\n  <p>At <strong>Okina Craft</strong> (\"we\", \"our\", or \"us\"), we are committed to protecting your privacy and personal information. This Privacy Policy outlines how your personal information is collected, used, and safeguarded when you visit or make a purchase from <strong>Okina Craft</strong> at <a href=\"/\">okinacraft.com</a>.</p>\n\n  <h3>1. Information We Collect</h3>\n  <p>When you visit the Store or place an order, we collect information necessary to fulfill your request and provide our custom merchandise services:</p>\n  <ul>\n    <li><strong>Order & Contact Details:</strong> Your full name, shipping and billing address, email address, phone number, and any special delivery instructions.</li>\n    <li><strong>Custom Design Artwork & Uploads:</strong> Digital images, logos, graphics, and custom printing notes uploaded by you for product customization (e.g. T-shirts, hoodies, mugs, mouse pads). Your artwork is stored securely and used exclusively for producing and fulfilling your specific order.</li>\n    <li><strong>Payment Information:</strong> Transaction details, UPI payment references, and payment method indicators. Note: We do not store complete debit/credit card numbers or banking passwords on our servers.</li>\n    <li><strong>Technical & Browsing Data:</strong> Device information, IP address, browser type, and anonymous session cookies to keep items in your shopping cart and enable quick checkout.</li>\n  </ul>\n\n  <h3>2. How We Use Your Information</h3>\n  <p>We use the collected information for the following business purposes:</p>\n  <ul>\n    <li><strong>Fulfilling Orders:</strong> Processing payments, preparing custom DTF/apparel prints, arranging courier shipments, and providing order tracking updates via WhatsApp, SMS, or email.</li>\n    <li><strong>Customer Support:</strong> Assisting you with size selection, custom artwork adjustments, order inquiries, and post-purchase support.</li>\n    <li><strong>Fraud Prevention & Store Security:</strong> Detecting unauthorized or abusive transactions.</li>\n    <li><strong>Store Improvement:</strong> Optimizing our catalog, search experience, and website performance.</li>\n  </ul>\n\n  <h3>3. Sharing Your Information</h3>\n  <p>We never sell, rent, or trade your personal information. We share your information solely with trusted third-party service providers essential to fulfilling your orders:</p>\n  <ul>\n    <li><strong>Courier & Logistics Partners:</strong> Delivery carriers (such as DTDC, Blue Dart, Delhivery, India Post) to deliver packages to your doorstep.</li>\n    <li><strong>Payment Gateways:</strong> Secure banking and UPI networks to authorize transactions.</li>\n    <li><strong>Legal Compliance:</strong> When required by applicable Indian laws, regulations, or valid legal processes.</li>\n  </ul>\n\n  <h3>4. Custom Artwork & Intellectual Property</h3>\n  <p>Any designs, logos, or artwork you upload remain your intellectual property. We do not re-use, resell, publish, or share your proprietary custom designs with third parties without your explicit written authorization.</p>\n\n  <h3>5. Data Security & Retention</h3>\n  <p>We maintain strict administrative, technical, and physical safeguards to protect your personal data against unauthorized access, loss, or alteration. We retain order records for accounting, warranty, and tax compliance as required by law.</p>\n\n  <h3>6. Your Rights</h3>\n  <p>You have the right to request access to the personal information we hold about you, request corrections to inaccurate data, or request the deletion of your account information by contacting our privacy team.</p>\n\n  <h3>7. Contact Us</h3>\n  <p>If you have any questions, concerns, or requests regarding this Privacy Policy, please contact us:</p>\n  <ul>\n    <li><strong>Email:</strong> <a href=\"mailto:support@okinacraft.com\">support@okinacraft.com</a></li>\n    <li><strong>WhatsApp:</strong> <a href=\"https://wa.me/918380808435\" target=\"_blank\">+91 8380808435</a></li>\n    <li><strong>Location:</strong> Hingoli, Maharashtra, India</li>\n  </ul>\n</div>"
+      "body_html": "<div class=\"policy-content\">\n  <p class=\"text-muted\"><em>Last updated: November 2026</em></p>\n\n  <p>At <strong>Okina Craft</strong> (\"we\", \"our\", or \"us\"), we are committed to protecting your privacy and personal information. This Privacy Policy outlines how your personal information is collected, used, and safeguarded when you visit or make a purchase from <strong>Okina Craft</strong> at <a href=\"/\">okinacraft.com</a>.</p>\n\n  <h3>1. Information We Collect</h3>\n  <p>When you visit the Store or place an order, we collect information necessary to fulfill your request and provide our custom merchandise services:</p>\n  <ul>\n    <li><strong>Order & Contact Details:</strong> Your full name, shipping and billing address, email address, phone number, and any special delivery instructions.</li>\n    <li><strong>Custom Design Artwork & Uploads:</strong> Digital images, logos, graphics, and custom printing notes uploaded by you for product customization (e.g. T-shirts, hoodies, mugs, mouse pads). Your artwork is stored securely and used exclusively for producing and fulfilling your specific order.</li>\n    <li><strong>Payment Information:</strong> Transaction details, UPI payment references, and payment method indicators. Note: We do not store complete debit/credit card numbers or banking passwords on our servers.</li>\n    <li><strong>Technical & Browsing Data:</strong> Device information, IP address, browser type, and anonymous session cookies to keep items in your shopping cart and enable quick checkout.</li>\n  </ul>\n\n  <h3>2. How We Use Your Information</h3>\n  <p>We use the collected information for the following business purposes:</p>\n  <ul>\n    <li><strong>Fulfilling Orders:</strong> Processing payments, preparing custom DTF/apparel prints, arranging courier shipments, and providing order tracking updates via WhatsApp, SMS, or email.</li>\n    <li><strong>Customer Support:</strong> Assisting you with size selection, custom artwork adjustments, order inquiries, and post-purchase support.</li>\n    <li><strong>Fraud Prevention & Store Security:</strong> Detecting unauthorized or abusive transactions.</li>\n    <li><strong>Store Improvement:</strong> Optimizing our catalog, search experience, and website performance.</li>\n  </ul>\n\n  <h3>3. Sharing Your Information</h3>\n  <p>We never sell, rent, or trade your personal information. We share your information solely with trusted third-party service providers essential to fulfilling your orders:</p>\n  <ul>\n    <li><strong>Courier & Logistics Partners:</strong> Delivery carriers (such as DTDC, Blue Dart, Delhivery, India Post) to deliver packages to your doorstep.</li>\n    <li><strong>Payment Gateways:</strong> Secure banking and UPI networks to authorize transactions.</li>\n    <li><strong>Legal Compliance:</strong> When required by applicable Indian laws, regulations, or valid legal processes.</li>\n  </ul>\n\n  <h3>4. Custom Artwork & Intellectual Property</h3>\n  <p>Any designs, logos, or artwork you upload remain your intellectual property. We do not re-use, resell, publish, or share your proprietary custom designs with third parties without your explicit written authorization.</p>\n\n  <h3>5. Data Security & Retention</h3>\n  <p>We maintain strict administrative, technical, and physical safeguards to protect your personal data against unauthorized access, loss, or alteration. We retain order records for accounting, warranty, and tax compliance as required by law.</p>\n\n  <h3>6. Your Rights</h3>\n  <p>You have the right to request access to the personal information we hold about you, request corrections to inaccurate data, or request the deletion of your account information by contacting our privacy team.</p>\n\n  <h3>7. Contact Us</h3>\n  <p>If you have any questions, concerns, or requests regarding this Privacy Policy, please contact us:</p>\n  <ul>\n    <li><strong>Email:</strong> <a href=\"mailto:okinacraft@gmail.com\">okinacraft@gmail.com</a></li>\n    <li><strong>WhatsApp:</strong> <a href=\"https://wa.me/917827747556\" target=\"_blank\">+91 8380808435</a></li>\n    <li><strong>Location:</strong> Ground Floor, Property No. 3, Khasra No. 31/2, Street No. 10, Surender Colony, Jharoda Majra Part-2, New Delhi, North Delhi, Delhi - 110084, India.</li>\n  </ul>\n</div>"
     },
     {
       "slug": "refund-policy",
       "title": "Refund & Replacement Policy",
-      "body_html": "<div class=\"policy-content\">\n  <p class=\"text-muted\"><em>Last updated: November 2026</em></p>\n\n  <p>Thank you for shopping with <strong>Okina Craft</strong>. We take immense pride in crafting premium-quality apparel, oversized tees, hoodies, custom mouse pads, and merchandise. Because many of our products are individually printed and personalized on demand, please read our return and refund guidelines below.</p>\n\n  <h3>1. Custom & Personalized Merchandise</h3>\n  <p>All customized products—including items featuring custom-printed graphics, customer-uploaded logos, personalized artwork, or made-to-order sizing—are produced specifically for you based on the artwork and specifications provided during checkout.</p>\n  <ul>\n    <li><strong>Design Accuracy:</strong> Please ensure that your uploaded artwork, spelling, image resolution, and selected garment size (S, M, L, XL, XXL) are accurate before submitting your order.</li>\n    <li><strong>Change of Mind:</strong> We cannot accept returns, refunds, or exchanges for custom items due to customer change of mind, incorrect size selection, or customer-provided typographical errors once production or printing has begun.</li>\n  </ul>\n\n  <h3>2. Damaged, Defective, or Incorrect Items (Guaranteed Replacement)</h3>\n  <p>If an item arrives damaged in transit, with manufacturing defects, or if you received an incorrect product or wrong size compared to your invoice, we will provide a <strong>100% free replacement or full refund</strong>.</p>\n  <ul>\n    <li><strong>Reporting Window:</strong> Please notify us within <strong>48 to 72 hours</strong> of package delivery.</li>\n    <li><strong>How to Claim:</strong> Send an email to <a href=\"mailto:support@okinacraft.com\">support@okinacraft.com</a> or message our WhatsApp support at <a href=\"https://wa.me/918380808435\" target=\"_blank\">+91 8380808435</a> with:\n      <ol>\n        <li>Your Order Number (e.g. <code>#CS-1001</code>).</li>\n        <li>Clear photos or an unboxing video showing the damaged, misprinted, or defective area alongside the shipping label.</li>\n      </ol>\n    </li>\n    <li><strong>Resolution:</strong> Once verified, we will immediately initiate a replacement print and dispatch it with expedited shipping at zero additional cost, or issue a complete refund.</li>\n  </ul>\n\n  <h3>3. Order Cancellations</h3>\n  <ul>\n    <li>Orders may be cancelled within <strong>4 hours</strong> of placement, provided production has not commenced.</li>\n    <li>Once garment cutting, DTF printing, or packaging has begun, the order cannot be cancelled.</li>\n  </ul>\n\n  <h3>4. Refund Process & Timelines</h3>\n  <p>Approved refunds are processed back to the original method of payment:</p>\n  <ul>\n    <li><strong>UPI / Net Banking / Debit Card:</strong> Refunds reflect in your account within <strong>5–7 business days</strong> depending on your issuing bank.</li>\n    <li><strong>Cash on Delivery (COD) Orders:</strong> Refunds for verified damaged items are credited via direct UPI transfer or NEFT upon receipt of your payout details.</li>\n  </ul>\n\n  <h3>5. Contact Support</h3>\n  <p>Have an inquiry about an order or replacement? We are here to help:</p>\n  <p><strong>Email:</strong> <a href=\"mailto:support@okinacraft.com\">support@okinacraft.com</a><br>\n  <strong>WhatsApp Support:</strong> <a href=\"https://wa.me/918380808435\" target=\"_blank\">+91 8380808435</a> (Mon–Sat, 10 AM–6 PM IST)</p>\n</div>"
+      "body_html": "<div class=\"policy-content\">\n  <p class=\"text-muted\"><em>Last updated: November 2026</em></p>\n\n  <p>Thank you for shopping with <strong>Okina Craft</strong>. We take immense pride in crafting premium-quality apparel, oversized tees, hoodies, custom mouse pads, and merchandise. Because many of our products are individually printed and personalized on demand, please read our return and refund guidelines below.</p>\n\n  <h3>1. Custom & Personalized Merchandise</h3>\n  <p>All customized products—including items featuring custom-printed graphics, customer-uploaded logos, personalized artwork, or made-to-order sizing—are produced specifically for you based on the artwork and specifications provided during checkout.</p>\n  <ul>\n    <li><strong>Design Accuracy:</strong> Please ensure that your uploaded artwork, spelling, image resolution, and selected garment size (S, M, L, XL, XXL) are accurate before submitting your order.</li>\n    <li><strong>Change of Mind:</strong> We cannot accept returns, refunds, or exchanges for custom items due to customer change of mind, incorrect size selection, or customer-provided typographical errors once production or printing has begun.</li>\n  </ul>\n\n  <h3>2. Damaged, Defective, or Incorrect Items (Guaranteed Replacement)</h3>\n  <p>If an item arrives damaged in transit, with manufacturing defects, or if you received an incorrect product or wrong size compared to your invoice, we will provide a <strong>100% free replacement or full refund</strong>.</p>\n  <ul>\n    <li><strong>Reporting Window:</strong> Please notify us within <strong>48 to 72 hours</strong> of package delivery.</li>\n    <li><strong>How to Claim:</strong> Send an email to <a href=\"mailto:okinacraft@gmail.com\">okinacraft@gmail.com</a> or message our WhatsApp support at <a href=\"https://wa.me/917827747556\" target=\"_blank\">+91 8380808435</a> with:\n      <ol>\n        <li>Your Order Number (e.g. <code>#CS-1001</code>).</li>\n        <li>Clear photos or an unboxing video showing the damaged, misprinted, or defective area alongside the shipping label.</li>\n      </ol>\n    </li>\n    <li><strong>Resolution:</strong> Once verified, we will immediately initiate a replacement print and dispatch it with expedited shipping at zero additional cost, or issue a complete refund.</li>\n  </ul>\n\n  <h3>3. Order Cancellations</h3>\n  <ul>\n    <li>Orders may be cancelled within <strong>4 hours</strong> of placement, provided production has not commenced.</li>\n    <li>Once garment cutting, DTF printing, or packaging has begun, the order cannot be cancelled.</li>\n  </ul>\n\n  <h3>4. Refund Process & Timelines</h3>\n  <p>Approved refunds are processed back to the original method of payment:</p>\n  <ul>\n    <li><strong>UPI / Net Banking / Debit Card:</strong> Refunds reflect in your account within <strong>5–7 business days</strong> depending on your issuing bank.</li>\n    <li><strong>Cash on Delivery (COD) Orders:</strong> Refunds for verified damaged items are credited via direct UPI transfer or NEFT upon receipt of your payout details.</li>\n  </ul>\n\n  <h3>5. Contact Support</h3>\n  <p>Have an inquiry about an order or replacement? We are here to help:</p>\n  <p><strong>Email:</strong> <a href=\"mailto:okinacraft@gmail.com\">okinacraft@gmail.com</a><br>\n  <strong>WhatsApp Support:</strong> <a href=\"https://wa.me/917827747556\" target=\"_blank\">+91 8380808435</a> (Mon–Sat, 10 AM–6 PM IST)</p>\n</div>"
     },
     {
       "slug": "shipping-policy",
       "title": "Shipping & Delivery Policy",
-      "body_html": "<div class=\"policy-content\">\n  <p class=\"text-muted\"><em>Last updated: November 2026</em></p>\n\n  <p>At <strong>Okina Craft</strong>, we ensure safe and reliable doorstep shipping across all serviceable pin codes in India.</p>\n\n  <h3>1. Shipping Rates & Free Delivery</h3>\n  <ul>\n    <li><strong>FREE Delivery:</strong> All orders with a cart value of <strong>₹999 or more</strong> qualify for <strong>100% FREE Shipping</strong> nationwide.</li>\n    <li><strong>Flat Rate Shipping:</strong> For orders below ₹999, a nominal flat delivery charge of <strong>₹60</strong> is applied at checkout.</li>\n    <li><strong>Special Items:</strong> Select catalog items marked with the <strong>FREE Delivery</strong> badge ship with ₹0 shipping fee regardless of total order value.</li>\n  </ul>\n\n  <h3>2. Production & Processing Times</h3>\n  <p>Because our merchandise features high-definition Direct-to-Film (DTF) prints and custom craftsmanship:</p>\n  <ul>\n    <li><strong>Ready Stock Items:</strong> Dispatched within <strong>24 to 48 hours</strong>.</li>\n    <li><strong>Custom Printed Orders:</strong> Require <strong>1 to 2 business days</strong> for graphic preparation, fabric heat-curing, and quality inspection before dispatch.</li>\n  </ul>\n\n  <h3>3. Estimated Transit & Delivery Timelines</h3>\n  <p>After your package has been handed over to our logistics partner, delivery takes approximately:</p>\n  <ul>\n    <li><strong>Metro Cities (Mumbai, Delhi, Bengaluru, Hyderabad, Chennai, Kolkata, Pune):</strong> <strong>3 to 5 business days</strong>.</li>\n    <li><strong>Rest of India (Tier 2 & 3 Cities, Regional Districts):</strong> <strong>4 to 7 business days</strong>.</li>\n    <li><strong>Remote Areas / Special Pin Codes:</strong> <strong>7 to 10 business days</strong>.</li>\n  </ul>\n\n  <h3>4. Tracking Your Order</h3>\n  <p>As soon as your package is dispatched, we provide an Air Waybill (AWB) tracking number and courier tracking link:</p>\n  <ul>\n    <li>Tracking details are sent to your registered mobile number via SMS and WhatsApp, as well as to your email address.</li>\n    <li>You can track the live progress of your shipment anytime on our <a href=\"/account\">Order Tracking Page</a> by entering your Order Number and phone number.</li>\n  </ul>\n\n  <h3>5. Delivery Address & Undelivered Shipments</h3>\n  <p>Please double-check your shipping address and 6-digit postal pincode during checkout. In the event of a failed delivery attempt due to incorrect address, unreachable recipient, or customer refusal, our courier partner will re-attempt delivery before returning the package to our hub.</p>\n\n  <h3>6. Contact Shipping Helpdesk</h3>\n  <p>For urgent shipping status queries or address corrections before dispatch:</p>\n  <p><strong>Email:</strong> <a href=\"mailto:support@okinacraft.com\">support@okinacraft.com</a><br>\n  <strong>WhatsApp Support:</strong> <a href=\"https://wa.me/918380808435\" target=\"_blank\">+91 8380808435</a></p>\n</div>"
+      "body_html": "<div class=\"policy-content\">\n  <p class=\"text-muted\"><em>Last updated: November 2026</em></p>\n\n  <p>At <strong>Okina Craft</strong>, we ensure safe and reliable doorstep shipping across all serviceable pin codes in India.</p>\n\n  <h3>1. Shipping Rates & Free Delivery</h3>\n  <ul>\n    <li><strong>FREE Delivery:</strong> All orders with a cart value of <strong>₹999 or more</strong> qualify for <strong>100% FREE Shipping</strong> nationwide.</li>\n    <li><strong>Flat Rate Shipping:</strong> For orders below ₹999, a nominal flat delivery charge of <strong>₹60</strong> is applied at checkout.</li>\n    <li><strong>Special Items:</strong> Select catalog items marked with the <strong>FREE Delivery</strong> badge ship with ₹0 shipping fee regardless of total order value.</li>\n  </ul>\n\n  <h3>2. Production & Processing Times</h3>\n  <p>Because our merchandise features high-definition Direct-to-Film (DTF) prints and custom craftsmanship:</p>\n  <ul>\n    <li><strong>Ready Stock Items:</strong> Dispatched within <strong>24 to 48 hours</strong>.</li>\n    <li><strong>Custom Printed Orders:</strong> Require <strong>1 to 2 business days</strong> for graphic preparation, fabric heat-curing, and quality inspection before dispatch.</li>\n  </ul>\n\n  <h3>3. Estimated Transit & Delivery Timelines</h3>\n  <p>After your package has been handed over to our logistics partner, delivery takes approximately:</p>\n  <ul>\n    <li><strong>Metro Cities (Mumbai, Delhi, Bengaluru, Hyderabad, Chennai, Kolkata, Pune):</strong> <strong>3 to 5 business days</strong>.</li>\n    <li><strong>Rest of India (Tier 2 & 3 Cities, Regional Districts):</strong> <strong>4 to 7 business days</strong>.</li>\n    <li><strong>Remote Areas / Special Pin Codes:</strong> <strong>7 to 10 business days</strong>.</li>\n  </ul>\n\n  <h3>4. Tracking Your Order</h3>\n  <p>As soon as your package is dispatched, we provide an Air Waybill (AWB) tracking number and courier tracking link:</p>\n  <ul>\n    <li>Tracking details are sent to your registered mobile number via SMS and WhatsApp, as well as to your email address.</li>\n    <li>You can track the live progress of your shipment anytime on our <a href=\"/account\">Order Tracking Page</a> by entering your Order Number and phone number.</li>\n  </ul>\n\n  <h3>5. Delivery Address & Undelivered Shipments</h3>\n  <p>Please double-check your shipping address and 6-digit postal pincode during checkout. In the event of a failed delivery attempt due to incorrect address, unreachable recipient, or customer refusal, our courier partner will re-attempt delivery before returning the package to our hub.</p>\n\n  <h3>6. Contact Shipping Helpdesk</h3>\n  <p>For urgent shipping status queries or address corrections before dispatch:</p>\n  <p><strong>Email:</strong> <a href=\"mailto:okinacraft@gmail.com\">okinacraft@gmail.com</a><br>\n  <strong>WhatsApp Support:</strong> <a href=\"https://wa.me/917827747556\" target=\"_blank\">+91 8380808435</a></p>\n</div>"
     },
     {
       "slug": "terms-of-service",
       "title": "Terms of Service",
-      "body_html": "<div class=\"policy-content\">\n  <p class=\"text-muted\"><em>Last updated: November 2026</em></p>\n\n  <p>Welcome to <strong>Okina Craft</strong>. By accessing our website, browsing our catalog, or making a purchase, you agree to be bound by the following Terms of Service (\"Terms\"). Please review them carefully.</p>\n\n  <h3>1. General Conditions & Eligibility</h3>\n  <p>By agreeing to these Terms, you represent that you are at least the age of majority in your state or province of residence, or that you have given consent to allow any minor dependents to use this site. We reserve the right to refuse service to anyone for any legitimate reason at any time.</p>\n\n  <h3>2. Products, Customization & Pricing</h3>\n  <ul>\n    <li><strong>Product Accuracy:</strong> We strive to display product colors, fabrics (e.g. 240 GSM French Terry Cotton, 350 GSM Fleece), and print dimensions as accurately as possible. However, actual garment colors may vary slightly due to device display settings and organic fabric dyes.</li>\n    <li><strong>Pricing:</strong> All prices listed on Okina Craft are in Indian Rupees (INR, ₹). We reserve the right to modify prices or discontinue items without prior notice.</li>\n    <li><strong>Custom Artwork Submission:</strong> You affirm that any logos, graphics, illustrations, or text you submit for custom printing are either your original creation or that you possess all necessary rights and licenses to use and reproduce them. You agree not to upload content that is defamatory, unlawful, infringing on third-party trademarks, or obscene.</li>\n  </ul>\n\n  <h3>3. Order Placement & Acceptance</h3>\n  <p>Receipt of an order confirmation does not signify our final acceptance of your order. We reserve the right to decline or cancel any order in instances of typographical errors, incorrect pricing, suspicion of fraudulent activity, or unserviceable delivery locations. In such cases, any pre-paid amount will be refunded in full.</p>\n\n  <h3>4. Payments & Billing</h3>\n  <p>We accept major payment methods including UPI (Google Pay, PhonePe, Paytm, BHIM), Net Banking, Credit/Debit cards, and Cash on Delivery (COD) where available. You agree to provide current, complete, and accurate purchase and account details for all orders.</p>\n\n  <h3>5. Intellectual Property</h3>\n  <p>All content on this website—including the Okina Craft brand name, logo emblem, website graphics, layouts, UI designs, and product descriptions—is the property of Okina Craft and protected by copyright and intellectual property laws. Unauthorized reproduction or commercial exploitation is strictly prohibited.</p>\n\n  <h3>6. Limitation of Liability</h3>\n  <p>In no event shall Okina Craft, its directors, employees, or affiliates be liable for any indirect, incidental, or consequential damages arising out of your use of our products, services, or delayed transit times beyond our reasonable control.</p>\n\n  <h3>7. Governing Law</h3>\n  <p>These Terms of Service and any separate agreements whereby we provide you services shall be governed by and construed in accordance with the laws of India, under the jurisdiction of courts in Maharashtra.</p>\n\n  <h3>8. Contact Information</h3>\n  <p>Questions about the Terms of Service should be directed to:</p>\n  <p><strong>Okina Craft</strong><br>\n  Email: <a href=\"mailto:support@okinacraft.com\">support@okinacraft.com</a><br>\n  WhatsApp: <a href=\"https://wa.me/918380808435\" target=\"_blank\">+91 8380808435</a><br>\n  Address: Hingoli, Maharashtra, India</p>\n</div>"
+      "body_html": "<div class=\"policy-content\">\n  <p class=\"text-muted\"><em>Last updated: November 2026</em></p>\n\n  <p>Welcome to <strong>Okina Craft</strong>. By accessing our website, browsing our catalog, or making a purchase, you agree to be bound by the following Terms of Service (\"Terms\"). Please review them carefully.</p>\n\n  <h3>1. General Conditions & Eligibility</h3>\n  <p>By agreeing to these Terms, you represent that you are at least the age of majority in your state or province of residence, or that you have given consent to allow any minor dependents to use this site. We reserve the right to refuse service to anyone for any legitimate reason at any time.</p>\n\n  <h3>2. Products, Customization & Pricing</h3>\n  <ul>\n    <li><strong>Product Accuracy:</strong> We strive to display product colors, fabrics (e.g. 240 GSM French Terry Cotton, 350 GSM Fleece), and print dimensions as accurately as possible. However, actual garment colors may vary slightly due to device display settings and organic fabric dyes.</li>\n    <li><strong>Pricing:</strong> All prices listed on Okina Craft are in Indian Rupees (INR, ₹). We reserve the right to modify prices or discontinue items without prior notice.</li>\n    <li><strong>Custom Artwork Submission:</strong> You affirm that any logos, graphics, illustrations, or text you submit for custom printing are either your original creation or that you possess all necessary rights and licenses to use and reproduce them. You agree not to upload content that is defamatory, unlawful, infringing on third-party trademarks, or obscene.</li>\n  </ul>\n\n  <h3>3. Order Placement & Acceptance</h3>\n  <p>Receipt of an order confirmation does not signify our final acceptance of your order. We reserve the right to decline or cancel any order in instances of typographical errors, incorrect pricing, suspicion of fraudulent activity, or unserviceable delivery locations. In such cases, any pre-paid amount will be refunded in full.</p>\n\n  <h3>4. Payments & Billing</h3>\n  <p>We accept major payment methods including UPI (Google Pay, PhonePe, Paytm, BHIM), Net Banking, Credit/Debit cards, and Cash on Delivery (COD) where available. You agree to provide current, complete, and accurate purchase and account details for all orders.</p>\n\n  <h3>5. Intellectual Property</h3>\n  <p>All content on this website—including the Okina Craft brand name, logo emblem, website graphics, layouts, UI designs, and product descriptions—is the property of Okina Craft and protected by copyright and intellectual property laws. Unauthorized reproduction or commercial exploitation is strictly prohibited.</p>\n\n  <h3>6. Limitation of Liability</h3>\n  <p>In no event shall Okina Craft, its directors, employees, or affiliates be liable for any indirect, incidental, or consequential damages arising out of your use of our products, services, or delayed transit times beyond our reasonable control.</p>\n\n  <h3>7. Governing Law</h3>\n  <p>These Terms of Service and any separate agreements whereby we provide you services shall be governed by and construed in accordance with the laws of India, under the jurisdiction of courts in Delhi.</p>\n\n  <h3>8. Contact Information</h3>\n  <p>Questions about the Terms of Service should be directed to:</p>\n  <p><strong>Okina Craft</strong><br>\n  Email: <a href=\"mailto:okinacraft@gmail.com\">okinacraft@gmail.com</a><br>\n  WhatsApp: <a href=\"https://wa.me/917827747556\" target=\"_blank\">+91 8380808435</a><br>\n  Address: Ground Floor, Property No. 3, Khasra No. 31/2, Street No. 10, Surender Colony, Jharoda Majra Part-2, New Delhi, North Delhi, Delhi - 110084, India.</p>\n</div>"
     },
     {
       "slug": "contact-information",
       "title": "Contact Information",
-      "body_html": "<div class=\"policy-content\">\n  <p class=\"text-muted\"><em>We're here to assist you with custom orders, sizing, shipping, and inquiries.</em></p>\n\n  <div class=\"card p-4 border rounded my-3\" style=\"background:#fdfdfd;\">\n    <h3 class=\"mb-3 text-dark\">Okina Craft — Official Helpdesk</h3>\n    <ul class=\"list-unstyled\" style=\"line-height: 2;\">\n      <li><strong>Brand / Business Name:</strong> Okina Craft</li>\n      <li><strong>Customer Support Email:</strong> <a href=\"mailto:support@okinacraft.com\">support@okinacraft.com</a></li>\n      <li><strong>WhatsApp Support & Orders:</strong> <a href=\"https://wa.me/918380808435\" target=\"_blank\">+91 8380808435</a></li>\n      <li><strong>Instagram Direct:</strong> <a href=\"https://instagram.com/okinacraft\" target=\"_blank\">@okinacraft</a></li>\n      <li><strong>Registered Business Address:</strong> Hingoli, Maharashtra, India — PIN 431513</li>\n      <li><strong>Operating Support Hours:</strong> Monday through Saturday, 10:00 AM – 6:00 PM IST (Closed Sundays & National Holidays)</li>\n    </ul>\n  </div>\n\n  <h3>How to Reach Us for Order Support</h3>\n  <p>For inquiries regarding an existing purchase, order tracking, or custom artwork adjustments, please include your <strong>Order Number</strong> (e.g. <code>#CS-1001</code>) and registered phone number. Our team typically replies within <strong>2 to 4 business hours</strong>.</p>\n</div>"
+      "body_html": "<div class=\"policy-content\">\n  <p class=\"text-muted\"><em>We're here to assist you with custom orders, sizing, shipping, and inquiries.</em></p>\n\n  <div class=\"card p-4 border rounded my-3\" style=\"background:#fdfdfd;\">\n    <h3 class=\"mb-3 text-dark\">Okina Craft — Official Helpdesk</h3>\n    <ul class=\"list-unstyled\" style=\"line-height: 2;\">\n      <li><strong>Brand / Business Name:</strong> Okina Craft</li>\n      <li><strong>Customer Support Email:</strong> <a href=\"mailto:okinacraft@gmail.com\">okinacraft@gmail.com</a></li>\n      <li><strong>WhatsApp Support & Orders:</strong> <a href=\"https://wa.me/917827747556\" target=\"_blank\">+91 8380808435</a></li>\n      <li><strong>Instagram Direct:</strong> <a href=\"https://instagram.com/okina_craft\" target=\"_blank\">@okina_craft</a></li>\n      <li><strong>Registered Business Address:</strong> Ground Floor, Property No. 3, Khasra No. 31/2, Street No. 10, Surender Colony, Jharoda Majra Part-2, New Delhi, North Delhi, Delhi - 110084, India.</li>\n      <li><strong>Operating Support Hours:</strong> Monday through Saturday, 10:00 AM – 6:00 PM IST (Closed Sundays & National Holidays)</li>\n    </ul>\n  </div>\n\n  <h3>How to Reach Us for Order Support</h3>\n  <p>For inquiries regarding an existing purchase, order tracking, or custom artwork adjustments, please include your <strong>Order Number</strong> (e.g. <code>#CS-1001</code>) and registered phone number. Our team typically replies within <strong>2 to 4 business hours</strong>.</p>\n</div>"
     }
   ],
   "collections": [
@@ -139,7 +139,7 @@
       "vendor": "Okina Craft",
       "product_type": "Tshirt",
       "tags": "",
-      "price": 549.0,
+      "price": 549,
       "compare_at_price": null,
       "available": 1,
       "allow_custom_upload": 1,
@@ -165,7 +165,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 549.0,
+          "price": 549,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -176,7 +176,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 549.0,
+          "price": 549,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -187,7 +187,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 549.0,
+          "price": 549,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -198,7 +198,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 549.0,
+          "price": 549,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -209,7 +209,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 549.0,
+          "price": 549,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -249,7 +249,7 @@
       "vendor": "Okina Craft",
       "product_type": "",
       "tags": "",
-      "price": 549.0,
+      "price": 549,
       "compare_at_price": null,
       "available": 1,
       "allow_custom_upload": 1,
@@ -275,7 +275,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 549.0,
+          "price": 549,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -286,7 +286,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 549.0,
+          "price": 549,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -297,7 +297,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 549.0,
+          "price": 549,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -308,7 +308,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 549.0,
+          "price": 549,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -319,7 +319,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 549.0,
+          "price": 549,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -359,7 +359,7 @@
       "vendor": "Okina Craft",
       "product_type": "Tshirt",
       "tags": "",
-      "price": 549.0,
+      "price": 549,
       "compare_at_price": null,
       "available": 1,
       "allow_custom_upload": 1,
@@ -385,7 +385,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 549.0,
+          "price": 549,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -396,7 +396,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 549.0,
+          "price": 549,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -407,7 +407,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 549.0,
+          "price": 549,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -418,7 +418,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 549.0,
+          "price": 549,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -429,7 +429,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 549.0,
+          "price": 549,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -469,7 +469,7 @@
       "vendor": "Okina Craft",
       "product_type": "Tshirt",
       "tags": "",
-      "price": 549.0,
+      "price": 549,
       "compare_at_price": null,
       "available": 1,
       "allow_custom_upload": 1,
@@ -495,7 +495,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 549.0,
+          "price": 549,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -506,7 +506,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 549.0,
+          "price": 549,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -517,7 +517,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 549.0,
+          "price": 549,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -528,7 +528,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 549.0,
+          "price": 549,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -539,7 +539,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 549.0,
+          "price": 549,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -579,7 +579,7 @@
       "vendor": "Okina Craft",
       "product_type": "Hoodie",
       "tags": "",
-      "price": 799.0,
+      "price": 799,
       "compare_at_price": null,
       "available": 0,
       "allow_custom_upload": 1,
@@ -605,7 +605,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 799.0,
+          "price": 799,
           "compare_at_price": null,
           "available": 0,
           "inventory_qty": 0
@@ -616,7 +616,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 799.0,
+          "price": 799,
           "compare_at_price": null,
           "available": 0,
           "inventory_qty": 0
@@ -627,7 +627,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 799.0,
+          "price": 799,
           "compare_at_price": null,
           "available": 0,
           "inventory_qty": 0
@@ -638,7 +638,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 799.0,
+          "price": 799,
           "compare_at_price": null,
           "available": 0,
           "inventory_qty": 0
@@ -649,7 +649,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 799.0,
+          "price": 799,
           "compare_at_price": null,
           "available": 0,
           "inventory_qty": 0
@@ -689,7 +689,7 @@
       "vendor": "Okina Craft",
       "product_type": "Hoodie",
       "tags": "",
-      "price": 799.0,
+      "price": 799,
       "compare_at_price": null,
       "available": 0,
       "allow_custom_upload": 1,
@@ -715,7 +715,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 799.0,
+          "price": 799,
           "compare_at_price": null,
           "available": 0,
           "inventory_qty": 0
@@ -726,7 +726,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 799.0,
+          "price": 799,
           "compare_at_price": null,
           "available": 0,
           "inventory_qty": 0
@@ -737,7 +737,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 799.0,
+          "price": 799,
           "compare_at_price": null,
           "available": 0,
           "inventory_qty": 0
@@ -748,7 +748,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 799.0,
+          "price": 799,
           "compare_at_price": null,
           "available": 0,
           "inventory_qty": 0
@@ -759,7 +759,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 799.0,
+          "price": 799,
           "compare_at_price": null,
           "available": 0,
           "inventory_qty": 0
@@ -799,7 +799,7 @@
       "vendor": "Okina Craft",
       "product_type": "Mouse Pad",
       "tags": "",
-      "price": 119.0,
+      "price": 119,
       "compare_at_price": null,
       "available": 1,
       "allow_custom_upload": 1,
@@ -813,7 +813,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 119.0,
+          "price": 119,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -859,7 +859,7 @@
       "vendor": "Okina Craft",
       "product_type": "Mouse Pad",
       "tags": "",
-      "price": 249.0,
+      "price": 249,
       "compare_at_price": null,
       "available": 1,
       "allow_custom_upload": 1,
@@ -873,7 +873,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 249.0,
+          "price": 249,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -919,7 +919,7 @@
       "vendor": "Okina Craft",
       "product_type": "Mug",
       "tags": "",
-      "price": 169.0,
+      "price": 169,
       "compare_at_price": null,
       "available": 1,
       "allow_custom_upload": 1,
@@ -933,7 +933,7 @@
           "option2": null,
           "option3": null,
           "sku": "",
-          "price": 169.0,
+          "price": 169,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -973,7 +973,7 @@
       "vendor": "GA",
       "product_type": "Electronics",
       "tags": "",
-      "price": 799.0,
+      "price": 799,
       "compare_at_price": null,
       "available": 1,
       "allow_custom_upload": 0,
@@ -1009,7 +1009,7 @@
           "option2": "800 × 300 mm",
           "option3": "Microfiber Cloth & Natural Rubber",
           "sku": "GMP-BLK-R",
-          "price": 799.0,
+          "price": 799,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -1043,7 +1043,7 @@
       "vendor": "BE",
       "product_type": "Home & Kitchen",
       "tags": "",
-      "price": 749.0,
+      "price": 749,
       "compare_at_price": null,
       "available": 1,
       "allow_custom_upload": 0,
@@ -1079,7 +1079,7 @@
           "option2": "300ml",
           "option3": "Ceramic Mug + ABS Heating Base",
           "sku": "ECM-300ML-GRN",
-          "price": 749.0,
+          "price": 749,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -1137,7 +1137,7 @@
       "vendor": "GA",
       "product_type": "Electronics",
       "tags": "",
-      "price": 699.0,
+      "price": 699,
       "compare_at_price": null,
       "available": 1,
       "allow_custom_upload": 0,
@@ -1173,7 +1173,7 @@
           "option2": "Standard",
           "option3": "ABS Plastic & Metal",
           "sku": "MBS-BLK-S",
-          "price": 699.0,
+          "price": 699,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -1231,7 +1231,7 @@
       "vendor": "DI",
       "product_type": "Home - Home Improvement",
       "tags": "",
-      "price": 749.0,
+      "price": 749,
       "compare_at_price": null,
       "available": 1,
       "allow_custom_upload": 0,
@@ -1267,7 +1267,7 @@
           "option2": "Standard",
           "option3": "Plastic + Water-Based Ink",
           "sku": "CSP-080",
-          "price": 749.0,
+          "price": 749,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -1325,7 +1325,7 @@
       "vendor": "HL",
       "product_type": "Home - Home Improvement",
       "tags": "",
-      "price": 299.0,
+      "price": 299,
       "compare_at_price": null,
       "available": 1,
       "allow_custom_upload": 0,
@@ -1361,7 +1361,7 @@
           "option2": "Standard / Decorative",
           "option3": "Crystal-Look Plastic",
           "sku": "3DCD-012",
-          "price": 299.0,
+          "price": 299,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -1419,7 +1419,7 @@
       "vendor": "HL",
       "product_type": "Home - Home Improvement",
       "tags": "",
-      "price": 299.0,
+      "price": 299,
       "compare_at_price": null,
       "available": 1,
       "allow_custom_upload": 0,
@@ -1455,7 +1455,7 @@
           "option2": "Standard Tealight",
           "option3": "Paraffin Wax + Metal Candle Cups",
           "sku": "TLC-050",
-          "price": 299.0,
+          "price": 299,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -1507,7 +1507,7 @@
       "vendor": "HL",
       "product_type": "Home - Home Improvement",
       "tags": "",
-      "price": 249.0,
+      "price": 249,
       "compare_at_price": null,
       "available": 1,
       "allow_custom_upload": 0,
@@ -1543,7 +1543,7 @@
           "option2": "Small / Decorative",
           "option3": "Scented Wax + Candle Wick",
           "sku": "MLSC-004",
-          "price": 249.0,
+          "price": 249,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -1589,7 +1589,7 @@
       "vendor": "HL",
       "product_type": "Home - Home Improvement",
       "tags": "",
-      "price": 249.0,
+      "price": 249,
       "compare_at_price": null,
       "available": 1,
       "allow_custom_upload": 0,
@@ -1625,7 +1625,7 @@
           "option2": "Standard / Tabletop",
           "option3": "Wooden MDF",
           "sku": "3RSDH-002",
-          "price": 249.0,
+          "price": 249,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50
@@ -1659,7 +1659,7 @@
       "vendor": "OL",
       "product_type": "Home - Home Improvement",
       "tags": "",
-      "price": 349.0,
+      "price": 349,
       "compare_at_price": null,
       "available": 1,
       "allow_custom_upload": 0,
@@ -1695,7 +1695,7 @@
           "option2": "Universal",
           "option3": "ABS Plastic + LED",
           "sku": "MSCL-004",
-          "price": 349.0,
+          "price": 349,
           "compare_at_price": null,
           "available": 1,
           "inventory_qty": 50

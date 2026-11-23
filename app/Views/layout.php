@@ -4,7 +4,7 @@ $storeEmail = store_setting('store_email', 'support@okinacraft.com');
 $whatsappNo = store_setting('whatsapp_number', '7827747556');
 $whatsappPrefill = store_setting('whatsapp_prefill', 'Hi Okina Craft, I need help with a product or order.');
 $instagram = store_setting('instagram_handle', 'okina_craft');
-$businessAddress = store_setting('business_address', 'Hingoli, Maharashtra');
+$businessAddress = store_setting('business_address', 'Ground Floor, Property No. 3, Khasra No. 31/2, Street No. 10, Surender Colony, Jharoda Majra Part-2, New Delhi, North Delhi, Delhi - 110084, India.');
 $cartCount = (new \App\Libraries\CartService())->count();
 $activeNav = $activeNav ?? '';
 $session = session();
@@ -70,7 +70,7 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
             </a>
           </li>
           <li>
-            <a href="<?= base_url('/pages/contact') ?>" class="header__menu-item">
+            <a href="<?= base_url('/contact') ?>" class="header__menu-item">
               <span class="<?= $activeNav === 'contact' ? 'header__active-menu-item' : '' ?>">Contact</span>
             </a>
           </li>
@@ -115,14 +115,14 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
     <ul class="menu-drawer__list">
       <li><a href="<?= base_url('/') ?>" class="menu-drawer__link <?= $activeNav === 'home' ? 'active' : '' ?>">Home</a></li>
       <li><a href="<?= base_url('/collections/all') ?>" class="menu-drawer__link <?= $activeNav === 'catalog' ? 'active' : '' ?>">Products</a></li>
-      <li><a href="<?= base_url('/pages/contact') ?>" class="menu-drawer__link <?= $activeNav === 'contact' ? 'active' : '' ?>">Contact</a></li>
+      <li><a href="<?= base_url('/contact') ?>" class="menu-drawer__link <?= $activeNav === 'contact' ? 'active' : '' ?>">Contact</a></li>
       <li><a href="<?= base_url('/wishlist') ?>" class="menu-drawer__link <?= $activeNav === 'wishlist' ? 'active' : '' ?>">My Wishlist (<span id="mobile-wishlist-count"><?= $wishlistCount ?></span>)</a></li>
       <?php if ($currentCustomer): ?>
         <li><a href="<?= base_url('/account') ?>" class="menu-drawer__link <?= $activeNav === 'account' ? 'active' : '' ?>">My Account (<?= e($currentCustomer['name']) ?>)</a></li>
         <li><a href="<?= base_url('/account/logout') ?>" class="menu-drawer__link" style="color: #dc2626;">Sign Out</a></li>
       <?php else: ?>
         <li><a href="<?= base_url('/account/login') ?>" class="menu-drawer__link <?= $activeNav === 'account' ? 'active' : '' ?>" data-open-auth-modal="login">Sign In / Register</a></li>
-        <li><a href="<?= base_url('/account/track') ?>" class="menu-drawer__link">Track Guest Order</a></li>
+        <li><a href="<?= base_url('/account/track') ?>" class="menu-drawer__link">Track Order</a></li>
       <?php endif; ?>
       <li><a href="<?= base_url('/cart') ?>" class="menu-drawer__link">Cart (<?= $cartCount ?>)</a></li>
       <li>
@@ -339,7 +339,7 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
                   <circle cx="12" cy="10" r="3"/>
                 </svg>
               </span>
-              <span><?= e($businessAddress) ?>, India</span>
+              <span><?= e($businessAddress) ?></span>
             </div>
           </div>
         </div>
@@ -400,21 +400,21 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
               </a>
             </li>
             <li>
-              <a href="<?= base_url('/account') ?>" class="footer-icon-link">
+              <a href="<?= base_url('/account/track') ?>" class="footer-icon-link">
                 <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
                 <span>Track Your Order</span>
               </a>
             </li>
             <li>
-              <a href="<?= base_url('/policies/shipping-policy') ?>" class="footer-icon-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-                <span>Shipping Policy</span>
+              <a href="<?= base_url('/account') ?>" class="footer-icon-link">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span>My Account</span>
               </a>
             </li>
             <li>
-              <a href="<?= base_url('/policies/refund-policy') ?>" class="footer-icon-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                <span>Refund Policy</span>
+              <a href="<?= base_url('/wishlist') ?>" class="footer-icon-link">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                <span>My Wishlist</span>
               </a>
             </li>
             <li>
@@ -451,7 +451,7 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
             </li>
             <li>
               <a href="<?= base_url('/policies/refund-policy') ?>" class="footer-icon-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
                 <span>Cancellation &amp; Refund</span>
               </a>
             </li>
@@ -559,11 +559,11 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
           <span>|</span>
           <a href="<?= base_url('/policies/terms-of-service') ?>">Terms &amp; Conditions</a>
           <span>|</span>
-          <a href="<?= base_url('/policies/refund-policy') ?>">Refund Policy</a>
+          <a href="<?= base_url('/policies/shipping-policy') ?>">Shipping &amp; Delivery</a>
           <span>|</span>
-          <a href="<?= base_url('/policies/shipping-policy') ?>">Shipping Policy</a>
+          <a href="<?= base_url('/policies/refund-policy') ?>">Cancellation &amp; Refund</a>
           <span>|</span>
-          <a href="<?= base_url('/policies/contact-information') ?>">Contact</a>
+          <a href="<?= base_url('/policies/contact-information') ?>">Contact Information</a>
         </div>
       </div>
 

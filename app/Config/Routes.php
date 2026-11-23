@@ -18,6 +18,8 @@ $routes->get('checkout', 'StoreController::checkout', ['filter' => 'customerauth
 $routes->post('checkout', 'StoreController::checkoutPost', ['filter' => 'customerauth']);
 $routes->get('order/(:segment)', 'StoreController::orderSuccess/$1');
 
+$routes->get('contact', 'StoreController::contact');
+$routes->post('contact', 'StoreController::contactPost');
 $routes->get('pages/contact', 'StoreController::contact');
 $routes->post('pages/contact', 'StoreController::contactPost');
 
