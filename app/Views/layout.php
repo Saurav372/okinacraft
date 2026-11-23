@@ -45,15 +45,17 @@ $wishlistCount = $currentCustomer ? count((new \App\Models\CustomerWishlistModel
   <!-- Sticky Header (Okina Craft Navigation) -->
   <div class="section-header">
     <header class="header page-width">
-      <button type="button" id="open-mobile-menu" class="header__icon header__mobile-toggle" aria-label="Menu">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16"><path fill="currentColor" d="M1 .5a.5.5 0 1 0 0 1h15.71a.5.5 0 0 0 0-1zM.5 8a.5.5 0 0 1 .5-.5h15.71a.5.5 0 0 1 0 1H1A.5.5 0 0 1 .5 8m0 7a.5.5 0 0 1 .5-.5h15.71a.5.5 0 0 1 0 1H1a.5.5 0 0 1-.5-.5"/></svg>
-      </button>
+      <div class="header__left">
+        <button type="button" id="open-mobile-menu" class="header__icon header__mobile-toggle" aria-label="Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16"><path fill="currentColor" d="M1 .5a.5.5 0 1 0 0 1h15.71a.5.5 0 0 0 0-1zM.5 8a.5.5 0 0 1 .5-.5h15.71a.5.5 0 0 1 0 1H1A.5.5 0 0 1 .5 8m0 7a.5.5 0 0 1 .5-.5h15.71a.5.5 0 0 1 0 1H1a.5.5 0 0 1-.5-.5"/></svg>
+        </button>
 
-      <a href="<?= base_url('/') ?>" class="header__heading-link" aria-label="<?= e($storeName) ?>">
-        <div class="header__heading-logo-wrapper">
-          <img src="<?= base_url('assets/media/logo.png') ?>" alt="<?= e($storeName) ?>" width="145" height="52" class="header__heading-logo" style="max-height:54px;width:100%;height:auto;object-fit:contain;display:block;">
-        </div>
-      </a>
+        <a href="<?= base_url('/') ?>" class="header__heading-link" aria-label="<?= e($storeName) ?>">
+          <div class="header__heading-logo-wrapper">
+            <img src="<?= base_url('assets/media/logo.png') ?>" alt="<?= e($storeName) ?>" width="145" height="52" class="header__heading-logo">
+          </div>
+        </a>
+      </div>
 
       <nav class="header__inline-menu" aria-label="Main navigation">
         <ul class="list-menu--inline" role="list">

@@ -267,56 +267,78 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
 }
 
 .header {
-  display: grid;
-  grid-template-areas: 'left-icons heading icons';
-  grid-template-columns: 1fr 2fr 1fr;
+  display: flex;
   align-items: center;
-  padding-top: 0.6rem;
-  padding-bottom: 0.6rem;
-  min-height: 6.4rem;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  min-height: 5.6rem;
+  gap: 0.8rem;
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+  flex-shrink: 0;
 }
 
 @media screen and (min-width: 990px) {
   .header {
+    display: grid;
     grid-template-areas: 'heading navigation icons';
     grid-template-columns: auto 1fr auto;
     column-gap: 2.4rem;
     padding-top: 0.4rem;
     padding-bottom: 0.4rem;
+    min-height: 6.4rem;
+  }
+
+  .header__left {
+    grid-area: heading;
   }
 }
 
 .header__heading-link {
-  grid-area: heading;
   display: inline-flex;
   align-items: center;
-  justify-self: center;
-  padding: 0.6rem 0;
-}
-
-@media screen and (min-width: 990px) {
-  .header__heading-link {
-    justify-self: start;
-  }
+  padding: 0.2rem 0;
 }
 
 .header__heading-logo-wrapper {
-  width: 145px;
-  max-width: 160px;
+  width: 125px;
+  max-width: 135px;
   transition: width 0.25s ease;
   display: flex;
   align-items: center;
 }
 
 .scrolled-past-header .header__heading-logo-wrapper {
-  width: 115px;
+  width: 110px;
 }
 
 .header__heading-logo {
   display: block;
   width: 100%;
+  max-height: 44px;
   height: auto;
   object-fit: contain;
+}
+
+@media screen and (min-width: 990px) {
+  .header__heading-logo-wrapper {
+    width: 145px;
+    max-width: 160px;
+  }
+
+  .scrolled-past-header .header__heading-logo-wrapper {
+    width: 115px;
+  }
+
+  .header__heading-logo {
+    max-height: 54px;
+  }
 }
 
 .header__inline-menu {
@@ -363,11 +385,19 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
 }
 
 .header__icons {
-  grid-area: icons;
   display: flex;
   align-items: center;
-  justify-self: end;
-  gap: 0.4rem;
+  justify-content: flex-end;
+  gap: 0.2rem;
+  flex-shrink: 0;
+}
+
+@media screen and (min-width: 990px) {
+  .header__icons {
+    grid-area: icons;
+    justify-self: end;
+    gap: 0.4rem;
+  }
 }
 
 .header__icon {
@@ -375,24 +405,42 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 4.4rem;
-  height: 4.4rem;
+  width: 3.8rem;
+  height: 3.8rem;
   padding: 0;
   border: 0;
   background: transparent;
   color: rgb(var(--color-foreground));
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .header__icon svg {
-  width: 2rem;
-  height: 2rem;
+  width: 1.9rem;
+  height: 1.9rem;
   transition: transform var(--duration-short) ease;
 }
 
 .header__icon--cart svg {
-  width: 4rem;
-  height: 4rem;
+  width: 3.6rem;
+  height: 3.6rem;
+}
+
+@media screen and (min-width: 990px) {
+  .header__icon {
+    width: 4.4rem;
+    height: 4.4rem;
+  }
+
+  .header__icon svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .header__icon--cart svg {
+    width: 4rem;
+    height: 4rem;
+  }
 }
 
 .header__icon:hover svg {
@@ -401,21 +449,32 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
 
 .cart-count-bubble {
   position: absolute;
-  bottom: 0.7rem;
-  left: 2.2rem;
-  min-width: 1.7rem;
-  height: 1.7rem;
+  bottom: 0.5rem;
+  left: 2rem;
+  min-width: 1.6rem;
+  height: 1.6rem;
   padding: 0 0.4rem;
   border-radius: 999px;
   background-color: rgb(var(--color-button));
   color: rgb(var(--color-button-text));
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  line-height: 1.7rem;
+  line-height: 1.6rem;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media screen and (min-width: 990px) {
+  .cart-count-bubble {
+    bottom: 0.7rem;
+    left: 2.2rem;
+    min-width: 1.7rem;
+    height: 1.7rem;
+    font-size: 1rem;
+    line-height: 1.7rem;
+  }
 }
 
 .cart-count-bubble.hidden {
@@ -424,13 +483,34 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
 
 /* Mobile Menu Button & Drawer */
 .header__mobile-toggle {
-  grid-area: left-icons;
-  justify-self: start;
+  width: 3.8rem;
+  height: 3.8rem;
+  flex-shrink: 0;
 }
 
 @media screen and (min-width: 990px) {
   .header__mobile-toggle {
-    display: none;
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .header__heading-logo-wrapper {
+    width: 110px;
+    max-width: 118px;
+  }
+
+  .header__heading-logo {
+    max-height: 38px;
+  }
+
+  .header__icon {
+    width: 3.4rem;
+    height: 3.4rem;
+  }
+
+  .header__icons {
+    gap: 0;
   }
 }
 
