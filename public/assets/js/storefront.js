@@ -314,7 +314,7 @@
       if (typeof recalculateBulkPricing === 'function' && bulkTiers && bulkTiers.length) {
         recalculateBulkPricing();
       } else if (priceDisplay) {
-        priceDisplay.textContent = 'Rs. ' + Number(match.price).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' INR';
+        priceDisplay.textContent = '₹' + Math.round(Number(match.price)).toLocaleString('en-IN');
       }
 
       const isAvail = Boolean(Number(match.available));
@@ -335,7 +335,7 @@
       if (!bulkTiers || !bulkTiers.length) {
         const stickyBarPrice = document.getElementById('sticky-bar-price');
         if (stickyBarPrice) {
-          stickyBarPrice.textContent = 'Rs. ' + Number(match.price).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+          stickyBarPrice.textContent = '₹' + Math.round(Number(match.price)).toLocaleString('en-IN');
         }
       }
       if (buyBtn) {
@@ -455,8 +455,11 @@
   const bulkDefaultNote = document.getElementById('bulk-default-note');
   const intervalChips = document.querySelectorAll('.interval-chip');
 
-  function formatInr(num) {
-    return '₹' + Number(num).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  function formatInr(num, showDecimals = false) {
+    if (showDecimals) {
+      return '₹' + Number(num).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+    return '₹' + Math.round(Number(num)).toLocaleString('en-IN');
   }
 
   function getBasePrice() {
@@ -609,7 +612,7 @@
         const savingPerPiece = Math.max(0, unitPrice - nextPrice);
 
         pdpQtyUpsellBanner.style.display = 'flex';
-        pdpQtyUpsellText.innerHTML = `Add <strong>${diff} more piece${diff > 1 ? 's' : ''}</strong> &rarr; pay <strong>₹${Number(nextPrice).toFixed(0)}/pc</strong> and save <strong>₹${Number(savingPerPiece).toFixed(2)}</strong> on every piece.`;
+        pdpQtyUpsellText.innerHTML = `Add <strong>${diff} more piece${diff > 1 ? 's' : ''}</strong> &rarr; pay <strong>₹${Math.round(nextPrice).toLocaleString('en-IN')}/pc</strong> and save <strong>₹${Math.round(savingPerPiece).toLocaleString('en-IN')}</strong> on every piece.`;
         if (pdpQtyUpsellBtn) {
           pdpQtyUpsellBtn.style.display = 'inline-block';
           pdpQtyUpsellBtn.textContent = `Make it ${nextMin}`;
@@ -617,7 +620,7 @@
         }
       } else {
         pdpQtyUpsellBanner.style.display = 'flex';
-        pdpQtyUpsellText.innerHTML = `🎉 <strong>Maximum wholesale tier unlocked!</strong> You are getting our best rate of <strong>₹${Number(unitPrice).toFixed(0)}/pc</strong>.`;
+        pdpQtyUpsellText.innerHTML = `🎉 <strong>Maximum wholesale tier unlocked!</strong> You are getting our best rate of <strong>₹${Math.round(unitPrice).toLocaleString('en-IN')}/pc</strong>.`;
         if (pdpQtyUpsellBtn) {
           pdpQtyUpsellBtn.style.display = 'none';
         }

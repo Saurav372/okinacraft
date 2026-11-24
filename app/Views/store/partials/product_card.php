@@ -55,12 +55,12 @@ $productUrl = base_url('/products/' . $product['handle']);
       </h3>
       <div class="price">
         <?php if (!empty($product['compare_at_price']) && (float)$product['compare_at_price'] > (float)$product['price']): ?>
-          <span class="price--compare"><?= e(money_format_inr($product['compare_at_price'])) ?></span>
+          <span class="price--compare"><?= e(money_clean_inr($product['compare_at_price'])) ?></span>
         <?php endif; ?>
         <?php if (!empty($product['enable_bulk_pricing']) && !empty($product['min_bulk_price']) && (float)$product['min_bulk_price'] < (float)$product['max_bulk_price']): ?>
-          <span><?= e(money_format_inr($product['min_bulk_price'])) ?> &ndash; <?= e(money_format_inr($product['max_bulk_price'])) ?></span>
+          <span><?= e(money_clean_inr($product['min_bulk_price'])) ?> &ndash; <?= e(money_clean_inr($product['max_bulk_price'])) ?></span>
         <?php else: ?>
-          <span><?= e(money_format_inr($product['price'])) ?></span>
+          <span><?= e(money_clean_inr($product['price'])) ?></span>
         <?php endif; ?>
       </div>
     </div>

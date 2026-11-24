@@ -26,6 +26,13 @@ if (!function_exists('money_short_inr')) {
     }
 }
 
+if (!function_exists('money_clean_inr')) {
+    function money_clean_inr(float|int|string $amount): string
+    {
+        return '₹' . number_format(round((float)$amount), 0, '.', ',');
+    }
+}
+
 if (!function_exists('slugify')) {
     function slugify(string $text): string
     {

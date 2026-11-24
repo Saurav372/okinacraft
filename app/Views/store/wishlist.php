@@ -47,11 +47,11 @@
 
               <div style="display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 1.6rem; margin-top: auto;">
                 <span style="font-size: 1.7rem; font-weight: 700; color: #000;">
-                  <?= e(money_short_inr($prod['price'])) ?>
+                  <?= e(money_clean_inr($prod['price'])) ?>
                 </span>
                 <?php if (!empty($prod['compare_at_price']) && (float)$prod['compare_at_price'] > (float)$prod['price']): ?>
                   <span style="font-size: 1.35rem; color: var(--color-muted); text-decoration: line-through;">
-                    <?= e(money_short_inr($prod['compare_at_price'])) ?>
+                    <?= e(money_clean_inr($prod['compare_at_price'])) ?>
                   </span>
                 <?php endif; ?>
               </div>

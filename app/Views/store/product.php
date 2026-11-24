@@ -141,10 +141,10 @@ foreach ($images as $img) {
             <div class="bulk-main-price-box" id="bulk-main-price-box">
               <div class="bulk-main-price-line">
                 <span id="pdp-price-display" class="product-info__price bulk-price-amount">
-                  <?= e(money_format_inr($minBulkPrice)) ?> &ndash; <?= e(money_format_inr($maxBulkPrice)) ?> <span class="bulk-price-each">each</span>
+                  <?= e(money_clean_inr($minBulkPrice)) ?> &ndash; <?= e(money_clean_inr($maxBulkPrice)) ?> <span class="bulk-price-each">each</span>
                 </span>
                 <?php if (!empty($product['compare_at_price']) && (float)$product['compare_at_price'] > (float)$product['price']): ?>
-                  <span id="pdp-compare-price" class="price--compare"><?= e(money_format_inr($product['compare_at_price'])) ?></span>
+                  <span id="pdp-compare-price" class="price--compare"><?= e(money_clean_inr($product['compare_at_price'])) ?></span>
                 <?php endif; ?>
               </div>
               <div class="bulk-main-sub-line" id="bulk-main-sub-line">
@@ -155,10 +155,10 @@ foreach ($images as $img) {
             </div>
           <?php else: ?>
             <span id="pdp-price-display" class="product-info__price">
-              <?= e(money_format_inr($firstVariant ? $firstVariant['price'] : $product['price'])) ?>
+              <?= e(money_clean_inr($firstVariant ? $firstVariant['price'] : $product['price'])) ?>
             </span>
             <?php if (!empty($product['compare_at_price']) && (float)$product['compare_at_price'] > (float)$product['price']): ?>
-              <span class="price--compare"><?= e(money_format_inr($product['compare_at_price'])) ?></span>
+              <span class="price--compare"><?= e(money_clean_inr($product['compare_at_price'])) ?></span>
             <?php endif; ?>
           <?php endif; ?>
 
@@ -339,13 +339,13 @@ foreach ($images as $img) {
               </div>
               <div class="pdp-qty-pricing-display">
                 <div class="pdp-qty-unit-line">
-                  <span class="pdp-qty-unit-price" id="pdp-qty-unit-price"><?= e(money_format_inr($firstVariant ? $firstVariant['price'] : $product['price'])) ?></span>
+                  <span class="pdp-qty-unit-price" id="pdp-qty-unit-price"><?= e(money_clean_inr($firstVariant ? $firstVariant['price'] : $product['price'])) ?></span>
                   <span class="pdp-qty-compare-price" id="pdp-qty-compare-price" style="display:none;"></span>
                   <span class="pdp-qty-unit-label">per piece</span>
                   <span class="pdp-qty-discount-badge" id="pdp-qty-discount-badge" style="display:none;"></span>
                 </div>
                 <div class="pdp-qty-total-line">
-                  <span class="pdp-qty-total-price" id="pdp-qty-total-price"><?= e(money_format_inr($firstVariant ? $firstVariant['price'] : $product['price'])) ?> total</span>
+                  <span class="pdp-qty-total-price" id="pdp-qty-total-price"><?= e(money_clean_inr($firstVariant ? $firstVariant['price'] : $product['price'])) ?> total</span>
                 </div>
               </div>
             </div>
@@ -584,7 +584,7 @@ foreach ($images as $img) {
       <div class="sticky-pdp-bar__info">
         <div class="sticky-pdp-bar__title" title="<?= e($product['title']) ?>"><?= e($product['title']) ?></div>
         <div class="sticky-pdp-bar__pricing">
-          <span class="sticky-pdp-bar__price" id="sticky-bar-price"><?= e(money_format_inr($firstVariant ? $firstVariant['price'] : $product['price'])) ?></span>
+          <span class="sticky-pdp-bar__price" id="sticky-bar-price"><?= e(money_clean_inr($firstVariant ? $firstVariant['price'] : $product['price'])) ?></span>
           <span class="sticky-pdp-bar__compare-price" id="sticky-bar-compare-price" style="display:none;"></span>
           <span class="sticky-pdp-bar__unit">per pc</span>
           <span class="sticky-pdp-bar__discount-badge" id="sticky-bar-discount" style="display:none;"></span>
