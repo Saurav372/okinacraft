@@ -158,7 +158,6 @@ foreach ($images as $img) {
               </div>
               <div class="bulk-main-sub-line" id="bulk-main-sub-line">
                 <span id="bulk-unit-breakdown" class="bulk-unit-breakdown" style="display:none;"></span>
-                <span id="bulk-discount-badge" class="bulk-discount-badge" style="display:none;"></span>
                 <span id="bulk-default-note" class="bulk-fee-note">Volume discounts apply</span>
               </div>
             </div>

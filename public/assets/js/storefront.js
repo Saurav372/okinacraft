@@ -510,7 +510,6 @@
   const tierChips = document.querySelectorAll('.pdp-tier-chip');
   const pdpPriceDisplay = document.getElementById('pdp-price-display');
   const bulkUnitBreakdown = document.getElementById('bulk-unit-breakdown');
-  const bulkDiscountBadge = document.getElementById('bulk-discount-badge');
   const bulkDefaultNote = document.getElementById('bulk-default-note');
   const intervalChips = document.querySelectorAll('.interval-chip');
 
@@ -639,7 +638,6 @@
         }
         if (bulkDefaultNote) bulkDefaultNote.style.display = 'inline-block';
         if (bulkUnitBreakdown) bulkUnitBreakdown.style.display = 'none';
-        if (bulkDiscountBadge) bulkDiscountBadge.style.display = 'none';
       } else {
         pdpPriceDisplay.innerHTML = `${formatInr(totalAmount)}`;
         if (pdpComparePrice) {
@@ -662,14 +660,6 @@
         if (bulkUnitBreakdown) {
           bulkUnitBreakdown.style.display = 'inline-block';
           bulkUnitBreakdown.textContent = `${formatInr(unitPrice)} each / ${qty} units`;
-        }
-        if (bulkDiscountBadge) {
-          if (mrpSavings > 0) {
-            bulkDiscountBadge.style.display = 'inline-flex';
-            bulkDiscountBadge.textContent = `Save ${formatInr(mrpSavings)}`;
-          } else {
-            bulkDiscountBadge.style.display = 'none';
-          }
         }
       }
     }
