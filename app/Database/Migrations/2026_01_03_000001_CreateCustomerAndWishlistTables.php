@@ -26,7 +26,6 @@ class CreateCustomerAndWishlistTables extends Migration
                 'updated_at' => ['type' => 'DATETIME', 'null' => true],
             ]);
             $this->forge->addKey('id', true);
-            $this->forge->addKey('email');
             $this->forge->addKey('google_id');
             $this->forge->createTable('customers', true);
         }
