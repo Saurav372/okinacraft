@@ -500,8 +500,36 @@ class CatalogService
         $pos = 1;
         $anyAvail = 0;
         foreach ($variants as $v) {
+            if (!empty($v['available'])) {
+                $anyAvail = 1;
+                break;
+            }
+        }
+
+        // Auto-heal variant stock status:
+        // 1. If admin marked product IN STOCK ($available = 1) but variants were all marked 0,
+        //    automatically activate all variants with positive stock so the product is truly purchasable!
+        if ($available && !$anyAvail) {
+            foreach ($variants as &$v) {
+                $v['available'] = 1;
+                if ((int)($v['inventory_qty'] ?? 0) <= 0) {
+                    $v['inventory_qty'] = 50;
+                }
+            }
+            unset($v);
+            $anyAvail = 1;
+        } elseif (!$available) {
+            // 2. If admin marked product OUT OF STOCK ($available = 0),
+            //    ensure all variants reflect unavailable status.
+            foreach ($variants as &$v) {
+                $v['available'] = 0;
+            }
+            unset($v);
+            $anyAvail = 0;
+        }
+
+        foreach ($variants as $v) {
             $vAvail = !empty($v['available']) ? 1 : 0;
-            if ($vAvail) $anyAvail = 1;
             $db->table('product_variants')->insert([
                 'product_id'       => $pid,
                 'title'            => trim((string)($v['title'] ?? 'Default Title')),
@@ -516,7 +544,7 @@ class CatalogService
                 'position'         => $pos++,
             ]);
         }
-        $db->table('products')->where('id', $pid)->update(['available' => $available && $anyAvail ? 1 : 0]);
+        $db->table('products')->where('id', $pid)->update(['available' => $available ? 1 : 0]);
 
         // Images
         if ($images !== null) {

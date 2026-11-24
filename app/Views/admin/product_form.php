@@ -174,7 +174,8 @@ $opt2Name = $options[1]['name'] ?? 'Size';
                       </td>
                       <td>
                         <label class="form-check form-switch m-0">
-                          <input type="checkbox" name="variant_available[<?= $idx ?>]" value="1" class="form-check-input" <?= !empty($v['available']) ? 'checked' : '' ?>>
+                          <input type="hidden" name="variant_available[]" class="variant-available-val" value="<?= !empty($v['available']) ? '1' : '0' ?>">
+                          <input type="checkbox" class="form-check-input variant-available-toggle" <?= !empty($v['available']) ? 'checked' : '' ?> onchange="this.previousElementSibling.value = this.checked ? '1' : '0';">
                         </label>
                       </td>
                       <td>
@@ -367,7 +368,7 @@ $opt2Name = $options[1]['name'] ?? 'Size';
 
               <div class="mb-3">
                 <label class="form-check form-switch">
-                  <input type="checkbox" class="form-check-input" name="available" value="1" <?= ($product['available'] ?? 1) ? 'checked' : '' ?>>
+                  <input type="checkbox" class="form-check-input" name="available" id="available-toggle" value="1" <?= ($product['available'] ?? 1) ? 'checked' : '' ?>>
                   <span class="form-check-label fw-semibold">In Stock</span>
                 </label>
                 <small class="text-secondary d-block ps-4">When toggled off, shows "Sold Out" button on storefront.</small>
@@ -457,7 +458,8 @@ $opt2Name = $options[1]['name'] ?? 'Size';
       <td><input type="number" min="0" name="variant_qty[]" value="50" class="form-control form-control-sm"></td>
       <td>
         <label class="form-check form-switch m-0">
-          <input type="checkbox" name="variant_available[${idx}]" value="1" class="form-check-input" checked>
+          <input type="hidden" name="variant_available[]" class="variant-available-val" value="1">
+          <input type="checkbox" class="form-check-input variant-available-toggle" checked onchange="this.previousElementSibling.value = this.checked ? '1' : '0';">
         </label>
       </td>
       <td>
@@ -584,6 +586,42 @@ $opt2Name = $options[1]['name'] ?? 'Size';
 
   document.addEventListener('DOMContentLoaded', function() {
     calcTierDiscounts();
+
+    // Two-way synchronization between Master "In Stock" switch and Variant switches
+    var masterAvail = document.getElementById('available-toggle');
+    if (masterAvail) {
+      masterAvail.addEventListener('change', function () {
+        var isChecked = this.checked;
+        document.querySelectorAll('.variant-available-toggle').forEach(function (toggle) {
+          toggle.checked = isChecked;
+          if (toggle.previousElementSibling) {
+            toggle.previousElementSibling.value = isChecked ? '1' : '0';
+          }
+        });
+        // If master is toggled ON, ensure variants have positive stock if they were 0
+        if (isChecked) {
+          document.querySelectorAll('input[name="variant_qty[]"]').forEach(function (input) {
+            if (!input.value || parseInt(input.value) <= 0) {
+              input.value = 50;
+            }
+          });
+        }
+      });
+    }
+
+    // When an individual variant toggle changes
+    document.addEventListener('change', function (e) {
+      if (e.target && e.target.classList.contains('variant-available-toggle')) {
+        if (e.target.previousElementSibling) {
+          e.target.previousElementSibling.value = e.target.checked ? '1' : '0';
+        }
+        var allToggles = document.querySelectorAll('.variant-available-toggle');
+        if (allToggles.length > 0 && masterAvail) {
+          var anyChecked = Array.from(allToggles).some(function (t) { return t.checked; });
+          masterAvail.checked = anyChecked;
+        }
+      }
+    });
   });
 </script>
 
