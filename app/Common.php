@@ -213,6 +213,10 @@ if (!function_exists('send_store_email')) {
         }
 
         $email->setFrom($fromEmail, $storeName);
+        $replyTo = store_setting('store_email', '');
+        if (!empty($replyTo) && strtolower($replyTo) !== strtolower($fromEmail)) {
+            $email->setReplyTo($replyTo, $storeName);
+        }
         $email->setTo($to);
         $email->setSubject($subject);
         $email->setMessage($body);
