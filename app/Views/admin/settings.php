@@ -231,8 +231,8 @@
                         </div>
 
                         <div class="mb-3">
-                          <label class="form-label fw-semibold">HTML Content</label>
-                          <textarea class="form-control font-monospace" name="policy_body" rows="8"><?= e($pol['body_html']) ?></textarea>
+                          <label class="form-label fw-semibold">Policy Content (Visual Rich Text Editor)</label>
+                          <textarea class="form-control tinymce-editor" id="policy_body_<?= $idx ?>" name="policy_body" rows="10"><?= e($pol['body_html']) ?></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-sm btn-dark">

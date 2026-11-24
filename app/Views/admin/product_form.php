@@ -85,8 +85,8 @@ $opt2Name = $options[1]['name'] ?? 'Size';
               </div>
 
               <div class="mb-0">
-                <label class="form-label fw-semibold" for="body_html">Description (HTML supported)</label>
-                <textarea class="form-control font-monospace" id="body_html" name="body_html" rows="7" placeholder="Detailed product specifications, fabric, care instructions..."><?= e($product['body_html'] ?? '') ?></textarea>
+                <label class="form-label fw-semibold" for="body_html">Product Description (Visual Rich Text Editor)</label>
+                <textarea class="form-control tinymce-editor" id="body_html" name="body_html" rows="10" placeholder="Type your product description, bullet points, fabric details..."><?= e($product['body_html'] ?? '') ?></textarea>
               </div>
             </div>
           </div>

@@ -463,6 +463,82 @@ $adminUser = $admin ?? [
 <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/js/tabler.min.js"></script>
 <script src="<?= base_url('assets/vendor/tabler/tabler.min.js') ?>"></script>
 
+<!-- TinyMCE Rich Text Editor (Official Tabler Integration) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.2/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof tinymce === 'undefined') return;
+
+    function initTinyMCE() {
+      var isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark' || localStorage.getItem('tablerTheme') === 'dark';
+
+      tinymce.init({
+        selector: '.tinymce-editor',
+        height: 380,
+        menubar: false,
+        branding: false,
+        promotion: false,
+        skin: isDark ? 'oxide-dark' : 'oxide',
+        content_css: isDark ? 'dark' : 'default',
+        plugins: 'advlist autolink lists link charmap preview searchreplace visualblocks code fullscreen table wordcount',
+        toolbar: 'undo redo | blocks | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table link | removeformat code fullscreen',
+        content_style: "body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.65; } p { margin-bottom: 0.75rem; }",
+        setup: function (editor) {
+          editor.on('change keyup NodeChange blur', function () {
+            editor.save();
+          });
+        }
+      });
+    }
+
+    initTinyMCE();
+
+    // Re-init on Bootstrap accordion open (for store policies tab)
+    document.querySelectorAll('.accordion').forEach(function (acc) {
+      acc.addEventListener('shown.bs.collapse', function (e) {
+        var el = e.target.querySelector('.tinymce-editor');
+        if (el && !tinymce.get(el.id)) {
+          tinymce.init({
+            selector: '#' + el.id,
+            height: 340,
+            menubar: false,
+            branding: false,
+            promotion: false,
+            skin: (document.documentElement.getAttribute('data-bs-theme') === 'dark') ? 'oxide-dark' : 'oxide',
+            content_css: (document.documentElement.getAttribute('data-bs-theme') === 'dark') ? 'dark' : 'default',
+            plugins: 'advlist autolink lists link charmap preview searchreplace visualblocks code fullscreen table wordcount',
+            toolbar: 'undo redo | blocks | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table link | removeformat code fullscreen',
+            content_style: "body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.65; } p { margin-bottom: 0.75rem; }",
+            setup: function (ed) {
+              ed.on('change keyup NodeChange blur', function () {
+                ed.save();
+              });
+            }
+          });
+        }
+      });
+    });
+
+    // Auto-save all TinyMCE editors before any form submission
+    document.addEventListener('submit', function () {
+      if (typeof tinymce !== 'undefined') {
+        tinymce.triggerSave();
+      }
+    });
+
+    // Theme toggle re-skinning
+    var toggleBtn = document.getElementById('theme-toggle');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function () {
+        setTimeout(function () {
+          tinymce.remove('.tinymce-editor');
+          initTinyMCE();
+        }, 120);
+      });
+    }
+  });
+</script>
+
 <script>
   // Theme Toggle Handler
   document.addEventListener('DOMContentLoaded', function () {
