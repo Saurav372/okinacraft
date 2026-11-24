@@ -237,28 +237,34 @@ class AdminController extends BaseController
         $gstRate = ($rawGst !== null && $rawGst !== '') ? max(0, min(100, (float)$rawGst)) : 5.00;
         $hsnCode = trim((string)$request->getPost('hsn_code')) ?: '6109';
 
-        $savedId = $this->catalog->saveProduct($id, [
-            'title'               => $request->getPost('title'),
-            'handle'              => $request->getPost('handle'),
-            'body_html'           => $request->getPost('body_html'),
-            'vendor'              => $request->getPost('vendor') ?: 'Okina Craft',
-            'product_type'        => $request->getPost('product_type'),
-            'tags'                => $request->getPost('tags'),
-            'price'               => $basePrice,
-            'compare_at_price'    => $request->getPost('compare_at_price'),
-            'gst_rate'            => $gstRate,
-            'hsn_code'            => $hsnCode,
-            'available'           => !empty($request->getPost('available')) ? 1 : 0,
-            'allow_custom_upload' => !empty($request->getPost('allow_custom_upload')) ? 1 : 0,
-            'free_delivery'       => !empty($request->getPost('free_delivery')) ? 1 : 0,
-            'enable_bulk_pricing' => $enableBulk,
-            'bulk_tiers_json'     => !empty($bulkTiers) ? $bulkTiers : null,
-            'status'              => in_array($request->getPost('status'), ['active', 'draft'], true) ? $request->getPost('status') : 'active',
-            'options'             => $options,
-        ], $variants, $images, $collectionIds);
+        try {
+            $savedId = $this->catalog->saveProduct($id, [
+                'title'               => $request->getPost('title'),
+                'handle'              => $request->getPost('handle'),
+                'body_html'           => $request->getPost('body_html'),
+                'vendor'              => $request->getPost('vendor') ?: 'Okina Craft',
+                'product_type'        => $request->getPost('product_type'),
+                'tags'                => $request->getPost('tags'),
+                'price'               => $basePrice,
+                'compare_at_price'    => $request->getPost('compare_at_price'),
+                'gst_rate'            => $gstRate,
+                'hsn_code'            => $hsnCode,
+                'available'           => !empty($request->getPost('available')) ? 1 : 0,
+                'allow_custom_upload' => !empty($request->getPost('allow_custom_upload')) ? 1 : 0,
+                'free_delivery'       => !empty($request->getPost('free_delivery')) ? 1 : 0,
+                'enable_bulk_pricing' => $enableBulk,
+                'bulk_tiers_json'     => !empty($bulkTiers) ? $bulkTiers : null,
+                'status'              => in_array($request->getPost('status'), ['active', 'draft'], true) ? $request->getPost('status') : 'active',
+                'options'             => $options,
+            ], $variants, $images, $collectionIds);
 
-        session()->setFlashdata('success', $id ? 'Product updated successfully.' : 'Product created successfully.');
-        return redirect()->to('/admin/products/' . $savedId . '/edit');
+            session()->setFlashdata('success', $id ? 'Product updated successfully.' : 'Product created successfully.');
+            return redirect()->to('/admin/products/' . $savedId . '/edit');
+        } catch (\Throwable $e) {
+            log_message('error', 'productSave error: ' . $e->getMessage());
+            session()->setFlashdata('error', 'Could not save product: ' . $e->getMessage());
+            return redirect()->back()->withInput();
+        }
     }
 
     public function productDelete(int $id)

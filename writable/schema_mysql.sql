@@ -50,6 +50,8 @@ CREATE TABLE IF NOT EXISTS products (
     available TINYINT DEFAULT 1,
     allow_custom_upload TINYINT DEFAULT 0,
     free_delivery TINYINT DEFAULT 0,
+    enable_bulk_pricing TINYINT DEFAULT 0,
+    bulk_tiers_json LONGTEXT NULL,
     image_ratio VARCHAR(40) DEFAULT '100%',
     options_json LONGTEXT,
     status VARCHAR(30) DEFAULT 'active',

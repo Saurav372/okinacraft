@@ -43,6 +43,16 @@ class CatalogService
         try {
             $forge = \Config\Database::forge();
             $fields = $db->getFieldNames('products');
+            if ($fields && !in_array('enable_bulk_pricing', $fields, true)) {
+                $forge->addColumn('products', [
+                    'enable_bulk_pricing' => ['type' => 'TINYINT', 'constraint' => 1, 'default' => 0],
+                ]);
+            }
+            if ($fields && !in_array('bulk_tiers_json', $fields, true)) {
+                $forge->addColumn('products', [
+                    'bulk_tiers_json' => ['type' => 'TEXT', 'null' => true],
+                ]);
+            }
             if ($fields && !in_array('gst_rate', $fields, true)) {
                 $forge->addColumn('products', [
                     'gst_rate' => ['type' => 'DECIMAL', 'constraint' => '5,2', 'default' => 5.00],
@@ -415,7 +425,7 @@ class CatalogService
     {
         self::ensureBootstrapped();
         $db = Database::connect();
-        $db->transStart();
+        $db->transBegin();
 
         $title = trim((string)($data['title'] ?? 'Untitled Product'));
         $handle = trim((string)($data['handle'] ?? '')) ?: slugify($title);
@@ -539,7 +549,14 @@ class CatalogService
             }
         }
 
-        $db->transComplete();
+        if ($db->transStatus() === false) {
+            $err = $db->error();
+            $db->transRollback();
+            log_message('error', 'saveProduct transaction failed: ' . json_encode($err));
+            throw new \RuntimeException('Database error: ' . ($err['message'] ?? 'Transaction failed'));
+        }
+
+        $db->transCommit();
         return $pid;
     }
 

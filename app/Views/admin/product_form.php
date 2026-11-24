@@ -31,7 +31,7 @@ $opt2Name = $options[1]['name'] ?? 'Size';
           <a href="<?= base_url('/admin/products') ?>" class="btn btn-outline-secondary">
             <i class="ti ti-arrow-left me-1"></i> Back to Products
           </a>
-          <button type="submit" form="product-form" class="btn btn-dark">
+          <button type="submit" form="product-form" class="btn btn-dark" onclick="if(typeof tinymce!=='undefined')tinymce.triggerSave();">
             <i class="ti ti-check me-1"></i> <?= $isEdit ? 'Save Changes' : 'Create Product' ?>
           </button>
         </div>
@@ -42,7 +42,7 @@ $opt2Name = $options[1]['name'] ?? 'Size';
 
 <div class="page-body">
   <div class="container-xl">
-    <form id="product-form" action="<?= $actionUrl ?>" method="post" enctype="multipart/form-data">
+    <form id="product-form" action="<?= $actionUrl ?>" method="post" enctype="multipart/form-data" onsubmit="if(typeof tinymce!=='undefined')tinymce.triggerSave();">
       <?= csrf_field() ?>
 
       <div class="row row-cards">
@@ -412,7 +412,7 @@ $opt2Name = $options[1]['name'] ?? 'Size';
           <!-- Save Actions Card -->
           <div class="card border-0 shadow-sm">
             <div class="card-body">
-              <button type="submit" class="btn btn-dark w-100 py-2 fw-semibold mb-2">
+              <button type="submit" class="btn btn-dark w-100 py-2 fw-semibold mb-2" onclick="if(typeof tinymce!=='undefined')tinymce.triggerSave();">
                 <i class="ti ti-check me-1"></i> <?= $isEdit ? 'Save Changes' : 'Publish Product' ?>
               </button>
               <?php if ($isEdit): ?>
