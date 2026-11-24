@@ -318,29 +318,88 @@
       }
 
       const isAvail = Boolean(Number(match.available));
-      if (addBtn) {
-        addBtn.disabled = !isAvail;
-        addBtn.textContent = isAvail ? 'Add to cart' : 'Sold out';
+      const formattedPrice = '₹' + Math.round(Number(match.price)).toLocaleString('en-IN');
+
+      if (!bulkTiers || !bulkTiers.length) {
+        const vPrice = parseFloat(match.price);
+        const vCmp = match.compare_at_price && parseFloat(match.compare_at_price) > vPrice ? parseFloat(match.compare_at_price) : 0;
+        const cmpEl = document.getElementById('pdp-compare-price');
+        const badgeEl = document.getElementById('pdp-save-badge');
+        if (cmpEl) {
+          if (vCmp > vPrice) {
+            cmpEl.textContent = '₹' + Math.round(vCmp).toLocaleString('en-IN');
+            cmpEl.style.display = 'inline-block';
+          } else {
+            cmpEl.style.display = 'none';
+          }
+        }
+        if (badgeEl) {
+          if (vCmp > vPrice) {
+            const pct = Math.round(((vCmp - vPrice) / vCmp) * 100);
+            badgeEl.textContent = 'SAVE ' + pct + '%';
+            badgeEl.style.display = 'inline-flex';
+          } else {
+            badgeEl.style.display = 'none';
+          }
+        }
+        const stickyCmpEl = document.getElementById('sticky-bar-compare-price');
+        const stickyBadgeEl = document.getElementById('sticky-bar-discount');
+        if (stickyCmpEl) {
+          if (vCmp > vPrice) {
+            stickyCmpEl.textContent = '₹' + Math.round(vCmp).toLocaleString('en-IN');
+            stickyCmpEl.style.display = 'inline-block';
+          } else {
+            stickyCmpEl.style.display = 'none';
+          }
+        }
+        if (stickyBadgeEl) {
+          if (vCmp > vPrice) {
+            const pct = Math.round(((vCmp - vPrice) / vCmp) * 100);
+            stickyBadgeEl.textContent = 'SAVE ' + pct + '%';
+            stickyBadgeEl.style.display = 'inline-flex';
+          } else {
+            stickyBadgeEl.style.display = 'none';
+          }
+        }
+        const stickyBarPrice = document.getElementById('sticky-bar-price');
+        if (stickyBarPrice) {
+          stickyBarPrice.textContent = formattedPrice;
+        }
+        if (addBtn) {
+          addBtn.disabled = !isAvail;
+          addBtn.textContent = isAvail ? 'Add to cart · ' + formattedPrice : 'Sold out';
+        }
+        const stickyAddBtn = document.getElementById('sticky-pdp-add-btn');
+        if (stickyAddBtn) {
+          stickyAddBtn.disabled = !isAvail;
+          const sSpan = stickyAddBtn.querySelector('span');
+          if (sSpan) sSpan.textContent = isAvail ? 'Add to cart · ' + formattedPrice : 'Sold out';
+        }
+        if (buyBtn) {
+          buyBtn.disabled = !isAvail;
+          buyBtn.textContent = isAvail ? 'Buy it now · ' + formattedPrice : 'Sold out';
+          buyBtn.style.display = isAvail ? '' : 'none';
+        }
+      } else {
+        if (addBtn) {
+          addBtn.disabled = !isAvail;
+          addBtn.textContent = isAvail ? 'Add to cart' : 'Sold out';
+        }
+        const stickyAddBtn = document.getElementById('sticky-pdp-add-btn');
+        if (stickyAddBtn) {
+          stickyAddBtn.disabled = !isAvail;
+          const sSpan = stickyAddBtn.querySelector('span');
+          if (sSpan) sSpan.textContent = isAvail ? 'Add to cart' : 'Sold out';
+        }
+        if (buyBtn) {
+          buyBtn.disabled = !isAvail;
+          buyBtn.style.display = isAvail ? '' : 'none';
+        }
       }
-      const stickyAddBtn = document.getElementById('sticky-pdp-add-btn');
-      if (stickyAddBtn) {
-        stickyAddBtn.disabled = !isAvail;
-        const sSpan = stickyAddBtn.querySelector('span');
-        if (sSpan) sSpan.textContent = isAvail ? 'Add to cart' : 'Sold out';
-      }
+
       const stickyBarImg = document.getElementById('sticky-bar-image');
       if (stickyBarImg && mainImg) {
         stickyBarImg.src = mainImg.src;
-      }
-      if (!bulkTiers || !bulkTiers.length) {
-        const stickyBarPrice = document.getElementById('sticky-bar-price');
-        if (stickyBarPrice) {
-          stickyBarPrice.textContent = '₹' + Math.round(Number(match.price)).toLocaleString('en-IN');
-        }
-      }
-      if (buyBtn) {
-        buyBtn.disabled = !isAvail;
-        buyBtn.style.display = isAvail ? '' : 'none';
       }
     }
   }
@@ -472,6 +531,23 @@
     return 549.00;
   }
 
+  function getComparePrice() {
+    const variantIdInput = document.getElementById('pdp-variant-id');
+    const curVid = variantIdInput ? parseInt(variantIdInput.value, 10) : null;
+    if (curVid && typeof variants !== 'undefined' && variants && variants.length) {
+      const found = variants.find(v => parseInt(v.id, 10) === curVid);
+      if (found && found.compare_at_price && parseFloat(found.compare_at_price) > 0) {
+        return parseFloat(found.compare_at_price);
+      }
+    }
+    const cmpEl = document.getElementById('pdp-compare-price');
+    if (cmpEl) {
+      const dataMrp = parseFloat(cmpEl.getAttribute('data-unit-mrp') || '0');
+      if (dataMrp > 0) return dataMrp;
+    }
+    return 0;
+  }
+
   function recalculateBulkPricing() {
     if (!pdpQty) return;
     const qty = Math.max(1, parseInt(pdpQty.value || '1', 10));
@@ -497,15 +573,14 @@
     }
 
     const unitPrice = matchedTier ? parseFloat(matchedTier.unit_price) : basePrice;
-    let effDiscount = matchedTier ? parseFloat(matchedTier.discount_percent || 0) : 0;
-    if (effDiscount <= 0 && basePrice > unitPrice && basePrice > 0) {
-      effDiscount = Math.round(((basePrice - unitPrice) / basePrice) * 100);
-    } else {
-      effDiscount = Math.round(effDiscount);
-    }
-    const discountPercent = effDiscount;
     const totalAmount = unitPrice * qty;
-    const totalSavings = Math.max(0, (basePrice - unitPrice) * qty);
+
+    // MRP-based calculations (Point 1, 2, 3)
+    const unitMrp = getComparePrice();
+    const effectiveUnitMrp = (unitMrp > 0 && unitMrp > unitPrice) ? unitMrp : (basePrice > unitPrice ? basePrice : 0);
+    const totalMrp = effectiveUnitMrp > 0 ? (effectiveUnitMrp * qty) : 0;
+    const mrpSavings = Math.max(0, totalMrp - totalAmount);
+    const mrpPercent = totalMrp > 0 ? Math.round((mrpSavings / totalMrp) * 100) : 0;
 
     // Update Quantity Pill
     if (pdpQtyPill) {
@@ -518,8 +593,8 @@
     }
     const pdpQtyComparePrice = document.getElementById('pdp-qty-compare-price');
     if (pdpQtyComparePrice) {
-      if (effDiscount > 0 && basePrice > unitPrice) {
-        pdpQtyComparePrice.textContent = formatInr(basePrice);
+      if (effectiveUnitMrp > unitPrice) {
+        pdpQtyComparePrice.textContent = formatInr(effectiveUnitMrp);
         pdpQtyComparePrice.style.display = 'inline-block';
       } else {
         pdpQtyComparePrice.style.display = 'none';
@@ -527,8 +602,8 @@
     }
     const pdpQtyDiscount = document.getElementById('pdp-qty-discount-badge');
     if (pdpQtyDiscount) {
-      if (effDiscount > 0) {
-        pdpQtyDiscount.textContent = `${effDiscount}% OFF`;
+      if (mrpPercent > 0) {
+        pdpQtyDiscount.textContent = `${mrpPercent}% OFF`;
         pdpQtyDiscount.style.display = 'inline-flex';
       } else {
         pdpQtyDiscount.style.display = 'none';
@@ -538,15 +613,76 @@
       pdpQtyTotalPrice.textContent = `${formatInr(totalAmount)} total`;
     }
 
-    // Keep Sticky PDP Bar in sync
+    // Update Main Pricing in Place
+    const pdpComparePrice = document.getElementById('pdp-compare-price');
+    const pdpSaveBadge = document.getElementById('pdp-save-badge');
+
+    if (pdpPriceDisplay) {
+      if (qty === 1 && bulkTiers && bulkTiers.length) {
+        pdpPriceDisplay.innerHTML = `${formatInr(minPrice)} &ndash; ${formatInr(maxPrice)} <span class="bulk-price-each">each</span>`;
+        if (pdpComparePrice) {
+          if (effectiveUnitMrp > maxPrice) {
+            pdpComparePrice.textContent = formatInr(effectiveUnitMrp);
+            pdpComparePrice.style.display = 'inline-block';
+          } else {
+            pdpComparePrice.style.display = 'none';
+          }
+        }
+        if (pdpSaveBadge) {
+          if (effectiveUnitMrp > minPrice) {
+            const minSavePct = Math.round(((effectiveUnitMrp - minPrice) / effectiveUnitMrp) * 100);
+            pdpSaveBadge.textContent = `UP TO ${minSavePct}% OFF`;
+            pdpSaveBadge.style.display = 'inline-flex';
+          } else {
+            pdpSaveBadge.style.display = 'none';
+          }
+        }
+        if (bulkDefaultNote) bulkDefaultNote.style.display = 'inline-block';
+        if (bulkUnitBreakdown) bulkUnitBreakdown.style.display = 'none';
+        if (bulkDiscountBadge) bulkDiscountBadge.style.display = 'none';
+      } else {
+        pdpPriceDisplay.innerHTML = `${formatInr(totalAmount)}`;
+        if (pdpComparePrice) {
+          if (totalMrp > totalAmount) {
+            pdpComparePrice.textContent = formatInr(totalMrp);
+            pdpComparePrice.style.display = 'inline-block';
+          } else {
+            pdpComparePrice.style.display = 'none';
+          }
+        }
+        if (pdpSaveBadge) {
+          if (mrpPercent > 0) {
+            pdpSaveBadge.textContent = `SAVE ${mrpPercent}%`;
+            pdpSaveBadge.style.display = 'inline-flex';
+          } else {
+            pdpSaveBadge.style.display = 'none';
+          }
+        }
+        if (bulkDefaultNote) bulkDefaultNote.style.display = 'none';
+        if (bulkUnitBreakdown) {
+          bulkUnitBreakdown.style.display = 'inline-block';
+          bulkUnitBreakdown.textContent = `${formatInr(unitPrice)} each / ${qty} units`;
+        }
+        if (bulkDiscountBadge) {
+          if (mrpSavings > 0) {
+            bulkDiscountBadge.style.display = 'inline-flex';
+            bulkDiscountBadge.textContent = `Save ${formatInr(mrpSavings)}`;
+          } else {
+            bulkDiscountBadge.style.display = 'none';
+          }
+        }
+      }
+    }
+
+    // Keep Sticky PDP Bar in sync (Point 4)
     const stickyBarPrice = document.getElementById('sticky-bar-price');
     if (stickyBarPrice) {
-      stickyBarPrice.textContent = formatInr(unitPrice);
+      stickyBarPrice.textContent = formatInr(totalAmount);
     }
     const stickyBarComparePrice = document.getElementById('sticky-bar-compare-price');
     if (stickyBarComparePrice) {
-      if (effDiscount > 0 && basePrice > unitPrice) {
-        stickyBarComparePrice.textContent = formatInr(basePrice);
+      if (totalMrp > totalAmount) {
+        stickyBarComparePrice.textContent = formatInr(totalMrp);
         stickyBarComparePrice.style.display = 'inline-block';
       } else {
         stickyBarComparePrice.style.display = 'none';
@@ -554,41 +690,32 @@
     }
     const stickyBarDiscount = document.getElementById('sticky-bar-discount');
     if (stickyBarDiscount) {
-      if (effDiscount > 0) {
-        stickyBarDiscount.textContent = `${effDiscount}% OFF`;
+      if (mrpPercent > 0) {
+        stickyBarDiscount.textContent = `SAVE ${mrpPercent}%`;
         stickyBarDiscount.style.display = 'inline-flex';
       } else {
         stickyBarDiscount.style.display = 'none';
       }
     }
+    const stickyBarUnit = document.getElementById('sticky-bar-unit');
+    if (stickyBarUnit) {
+      stickyBarUnit.textContent = qty > 1 ? `${qty} pcs (${formatInr(unitPrice)}/pc)` : 'per pc';
+    }
     const stickyQtyInput = document.getElementById('sticky-qty-input');
     if (stickyQtyInput && parseInt(stickyQtyInput.value, 10) !== qty) {
       stickyQtyInput.value = qty;
     }
-
-    // Update Main Pricing in Place
-    if (pdpPriceDisplay) {
-      if (qty === 1 && bulkTiers && bulkTiers.length) {
-        pdpPriceDisplay.innerHTML = `${formatInr(minPrice)} &ndash; ${formatInr(maxPrice)} <span class="bulk-price-each">each</span>`;
-        if (bulkDefaultNote) bulkDefaultNote.style.display = 'inline-block';
-        if (bulkUnitBreakdown) bulkUnitBreakdown.style.display = 'none';
-        if (bulkDiscountBadge) bulkDiscountBadge.style.display = 'none';
-      } else {
-        pdpPriceDisplay.innerHTML = `${formatInr(totalAmount)}`;
-        if (bulkDefaultNote) bulkDefaultNote.style.display = 'none';
-        if (bulkUnitBreakdown) {
-          bulkUnitBreakdown.style.display = 'inline-block';
-          bulkUnitBreakdown.textContent = `${formatInr(unitPrice)} each / ${qty} units`;
-        }
-        if (bulkDiscountBadge) {
-          if (discountPercent > 0) {
-            bulkDiscountBadge.style.display = 'inline-flex';
-            bulkDiscountBadge.textContent = `${discountPercent}% Volume Discount (Save ${formatInr(totalSavings)})`;
-          } else {
-            bulkDiscountBadge.style.display = 'none';
-          }
-        }
-      }
+    const stickyBtnText = document.getElementById('sticky-btn-text');
+    if (stickyBtnText) {
+      stickyBtnText.textContent = `Add to cart · ${formatInr(totalAmount)}`;
+    }
+    const mainAddBtn = document.getElementById('pdp-add-btn');
+    if (mainAddBtn && !mainAddBtn.disabled) {
+      mainAddBtn.textContent = `Add to cart · ${formatInr(totalAmount)}`;
+    }
+    const mainBuyBtn = document.getElementById('pdp-buy-btn');
+    if (mainBuyBtn) {
+      mainBuyBtn.textContent = `Buy it now · ${formatInr(totalAmount)}`;
     }
 
     // Update Tier Grid Active State

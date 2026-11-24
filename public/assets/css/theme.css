@@ -3115,6 +3115,22 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
   flex-wrap: wrap;
 }
 
+.pdp-save-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ff471a;
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 800;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  box-shadow: 0 1px 3px rgba(255, 71, 26, 0.25);
+}
+
 .bulk-price-amount {
   font-size: 2.8rem !important;
   font-weight: 800 !important;
@@ -4140,13 +4156,14 @@ h1, h2, h3, h4, .h0, .h1, .h2, .h3 {
 }
 
 .sticky-pdp-bar__discount-badge {
-  background: #dcfce7;
-  color: #15803d;
+  background: #ff471a;
+  color: #ffffff;
   font-size: 1.15rem;
-  font-weight: 700;
+  font-weight: 800;
   padding: 0.2rem 0.6rem;
   border-radius: 4px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   display: inline-flex;
   align-items: center;
   line-height: 1.2;

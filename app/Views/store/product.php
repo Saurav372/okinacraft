@@ -137,15 +137,24 @@ foreach ($images as $img) {
         <h1 class="product-info__title"><?= e($product['title']) ?></h1>
 
         <div class="product-info__price-row <?= $hasBulk ? 'product-info__price-row--bulk' : '' ?>">
+          <?php 
+            $prodPrice = (float)($firstVariant ? $firstVariant['price'] : $product['price']);
+            $cmpAt = !empty($product['compare_at_price']) ? (float)$product['compare_at_price'] : 0;
+            $hasCmp = ($cmpAt > $prodPrice);
+            $initSavePct = $hasCmp ? round((($cmpAt - $prodPrice) / $cmpAt) * 100) : 0;
+          ?>
           <?php if ($hasBulk && $minBulkPrice < $maxBulkPrice): ?>
             <div class="bulk-main-price-box" id="bulk-main-price-box">
               <div class="bulk-main-price-line">
                 <span id="pdp-price-display" class="product-info__price bulk-price-amount">
                   <?= e(money_clean_inr($minBulkPrice)) ?> &ndash; <?= e(money_clean_inr($maxBulkPrice)) ?> <span class="bulk-price-each">each</span>
                 </span>
-                <?php if (!empty($product['compare_at_price']) && (float)$product['compare_at_price'] > (float)$product['price']): ?>
-                  <span id="pdp-compare-price" class="price--compare"><?= e(money_clean_inr($product['compare_at_price'])) ?></span>
-                <?php endif; ?>
+                <span id="pdp-compare-price" class="price--compare" data-unit-mrp="<?= $cmpAt ?>" style="<?= $hasCmp ? '' : 'display:none;' ?>">
+                  <?= e(money_clean_inr($cmpAt)) ?>
+                </span>
+                <span id="pdp-save-badge" class="pdp-save-badge" style="<?= ($hasCmp && $initSavePct > 0) ? '' : 'display:none;' ?>">
+                  <?= $initSavePct > 0 ? 'SAVE ' . $initSavePct . '%' : '' ?>
+                </span>
               </div>
               <div class="bulk-main-sub-line" id="bulk-main-sub-line">
                 <span id="bulk-unit-breakdown" class="bulk-unit-breakdown" style="display:none;"></span>
@@ -154,12 +163,17 @@ foreach ($images as $img) {
               </div>
             </div>
           <?php else: ?>
-            <span id="pdp-price-display" class="product-info__price">
-              <?= e(money_clean_inr($firstVariant ? $firstVariant['price'] : $product['price'])) ?>
-            </span>
-            <?php if (!empty($product['compare_at_price']) && (float)$product['compare_at_price'] > (float)$product['price']): ?>
-              <span class="price--compare"><?= e(money_clean_inr($product['compare_at_price'])) ?></span>
-            <?php endif; ?>
+            <div class="bulk-main-price-line">
+              <span id="pdp-price-display" class="product-info__price">
+                <?= e(money_clean_inr($prodPrice)) ?>
+              </span>
+              <span id="pdp-compare-price" class="price--compare" data-unit-mrp="<?= $cmpAt ?>" style="<?= $hasCmp ? '' : 'display:none;' ?>">
+                <?= e(money_clean_inr($cmpAt)) ?>
+              </span>
+              <span id="pdp-save-badge" class="pdp-save-badge" style="<?= ($hasCmp && $initSavePct > 0) ? '' : 'display:none;' ?>">
+                <?= $initSavePct > 0 ? 'SAVE ' . $initSavePct . '%' : '' ?>
+              </span>
+            </div>
           <?php endif; ?>
 
           <?php if (!$isAvailable): ?>
@@ -584,10 +598,10 @@ foreach ($images as $img) {
       <div class="sticky-pdp-bar__info">
         <div class="sticky-pdp-bar__title" title="<?= e($product['title']) ?>"><?= e($product['title']) ?></div>
         <div class="sticky-pdp-bar__pricing">
-          <span class="sticky-pdp-bar__price" id="sticky-bar-price"><?= e(money_clean_inr($firstVariant ? $firstVariant['price'] : $product['price'])) ?></span>
-          <span class="sticky-pdp-bar__compare-price" id="sticky-bar-compare-price" style="display:none;"></span>
-          <span class="sticky-pdp-bar__unit">per pc</span>
-          <span class="sticky-pdp-bar__discount-badge" id="sticky-bar-discount" style="display:none;"></span>
+          <span class="sticky-pdp-bar__price" id="sticky-bar-price"><?= e(money_clean_inr($prodPrice)) ?></span>
+          <span class="sticky-pdp-bar__compare-price" id="sticky-bar-compare-price" style="<?= $hasCmp ? '' : 'display:none;' ?>"><?= e(money_clean_inr($cmpAt)) ?></span>
+          <span class="sticky-pdp-bar__discount-badge" id="sticky-bar-discount" style="<?= ($hasCmp && $initSavePct > 0) ? '' : 'display:none;' ?>"><?= $initSavePct > 0 ? 'SAVE ' . $initSavePct . '%' : '' ?></span>
+          <span class="sticky-pdp-bar__unit" id="sticky-bar-unit">per pc</span>
         </div>
       </div>
     </div>
@@ -608,7 +622,7 @@ foreach ($images as $img) {
         <svg width="18" height="18" viewBox="0 0 40 40" fill="none" style="flex-shrink:0;">
           <path fill="currentColor" fill-rule="evenodd" d="M15.75 11.8h-3.16l-.77 11.6a5 5 0 0 0 4.99 5.34h7.38a5 5 0 0 0 4.99-5.33L28.4 11.8zm0 1h-2.22l-.71 10.67a4 4 0 0 0 3.99 4.27h7.38a4 4 0 0 0 4-4.27l-.72-10.67h-2.22v.63a4.75 4.75 0 1 1-9.5 0zm8.5 0h-7.5v.63a3.75 3.75 0 1 0 7.5 0z"/>
         </svg>
-        <span><?= $isAvailable ? 'Add to cart' : 'Sold out' ?></span>
+        <span id="sticky-btn-text"><?= $isAvailable ? 'Add to cart' : 'Sold out' ?></span>
       </button>
     </div>
   </div>
