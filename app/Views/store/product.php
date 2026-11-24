@@ -425,8 +425,22 @@ foreach ($images as $img) {
                   ];
                 ?>
                 <div class="mixed-size-grid" role="group" aria-label="Select size quantities">
+                  <?php
+                    $knownColors = ['pink', 'maroon', 'beige', 'black', 'white', 'off-white', 'navy', 'green', 'red', 'yellow', 'blue'];
+                    $hasStandardSizes = false;
+                    foreach (($sizeOption['values'] ?? []) as $sv) {
+                      if (in_array(strtoupper(trim($sv)), ['S', 'M', 'L', 'XL', '2XL', '3XL', '4XL', '5XL'], true)) {
+                        $hasStandardSizes = true;
+                        break;
+                      }
+                    }
+                  ?>
                   <?php foreach (($sizeOption['values'] ?? []) as $vIdx => $val): ?>
                     <?php
+                      $valClean = strtolower(trim($val));
+                      if ($hasStandardSizes && in_array($valClean, $knownColors, true)) {
+                        continue;
+                      }
                       $chest = $chestMap[strtoupper(trim($val))] ?? '';
                       $initVal = ($vIdx === 0) ? 1 : 0;
                     ?>

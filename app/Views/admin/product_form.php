@@ -8,8 +8,32 @@ $variants = $product['variants'] ?? [['title' => 'Default Title', 'price' => $pr
 $images = $product['images'] ?? [];
 $selectedCols = $product['collection_ids'] ?? [];
 $options = $product['options'] ?? [];
-$opt1Name = $options[0]['name'] ?? 'Color';
-$opt2Name = $options[1]['name'] ?? 'Size';
+$opt1Name = 'Color';
+$opt2Name = 'Size';
+if (!empty($options)) {
+    $hasColor = false;
+    $hasSize = false;
+    foreach ($options as $opt) {
+        if (stripos($opt['name'], 'color') !== false || stripos($opt['name'], 'colour') !== false) {
+            $opt1Name = $opt['name'];
+            $hasColor = true;
+        } elseif (stripos($opt['name'], 'size') !== false) {
+            $opt2Name = $opt['name'];
+            $hasSize = true;
+        }
+    }
+    if (!$hasColor && !$hasSize) {
+        $opt1Name = $options[0]['name'] ?? 'Color';
+        $opt2Name = $options[1]['name'] ?? 'Size';
+    } elseif (!$hasColor && $hasSize && count($options) > 1) {
+        foreach ($options as $opt) {
+            if (stripos($opt['name'], 'size') === false) {
+                $opt1Name = $opt['name'];
+                break;
+            }
+        }
+    }
+}
 ?>
 
 <div class="page-header d-print-none">
@@ -153,12 +177,21 @@ $opt2Name = $options[1]['name'] ?? 'Size';
                 </thead>
                 <tbody id="variants-tbody">
                   <?php foreach ($variants as $idx => $v): ?>
+                    <?php
+                      $rawOpt1 = (string)($v['option1'] ?? $v['title'] ?? '');
+                      $rawOpt2 = (string)($v['option2'] ?? '');
+                      $knownSizes = ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL', '5XL', 'FREE SIZE', 'STANDARD'];
+                      if ($rawOpt2 === '' && in_array(strtoupper(trim($rawOpt1)), $knownSizes, true)) {
+                          $rawOpt2 = $rawOpt1;
+                          $rawOpt1 = '';
+                      }
+                    ?>
                     <tr class="variant-row">
                       <td>
-                        <input type="text" name="variant_opt1[]" value="<?= e($v['option1'] ?? $v['title'] ?? '') ?>" class="form-control form-control-sm" placeholder="e.g. Beige, Maroon, Black">
+                        <input type="text" name="variant_opt1[]" value="<?= e($rawOpt1) ?>" class="form-control form-control-sm" placeholder="e.g. Beige, Maroon, Black">
                       </td>
                       <td>
-                        <input type="text" name="variant_opt2[]" value="<?= e($v['option2'] ?? '') ?>" class="form-control form-control-sm" placeholder="e.g. S, M, L, XL (optional)">
+                        <input type="text" name="variant_opt2[]" value="<?= e($rawOpt2) ?>" class="form-control form-control-sm" placeholder="e.g. S, M, L, XL (optional)">
                       </td>
                       <td>
                         <div class="input-group input-group-sm">
