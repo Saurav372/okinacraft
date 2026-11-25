@@ -3,14 +3,30 @@ ServerSignature Off
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
+
+    # 1. Strip /public/index.php or /public/ or /index.php from visible browser URL
+    RewriteCond %{THE_REQUEST} \s/public/index\.php(?:/([^\s?]*))? [NC]
+    RewriteRule ^ /%1 [R=301,L,NE]
+
+    RewriteCond %{THE_REQUEST} \s/public/([^\s?]*) [NC]
+    RewriteRule ^ /%1 [R=301,L,NE]
+
+    RewriteCond %{THE_REQUEST} \s/index\.php(?:/([^\s?]*))? [NC]
+    RewriteRule ^ /%1 [R=301,L,NE]
+
+    # 2. Block direct access to protected directories and files
     RewriteRule ^(app|writable|vendor|tests|system)(/|$) - [F,L,NC]
     RewriteRule ^(\.env|composer\.(json|lock)|spark|README\.md|phpunit\.xml\.dist)$ - [F,L,NC]
 
-    # Direct static asset requests into public folder so CSS/JS/images are served with correct MIME type
+    # 3. Direct static assets into public folder transparently
     RewriteCond %{REQUEST_URI} !^/public/
     RewriteRule ^(assets|uploads|favicon\.ico|favicon\.svg|apple-touch-icon\.png|favicon-32x32\.png|favicon-16x16\.png|robots\.txt)(.*)$ public/$1$2 [L,NC]
 
-    # Route all other page requests through public/index.php
+    # 4. Route root request transparently to public/index.php (without trailing slash)
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^$ public/index.php [L,QSA]
+
+    # 5. Route all other page requests through public/index.php
     RewriteCond %{REQUEST_URI} !^/public/
     RewriteRule ^(.*)$ public/index.php/$1 [L,QSA]
 </IfModule>
