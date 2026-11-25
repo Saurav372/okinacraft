@@ -385,7 +385,8 @@ class CustomerAuthController extends BaseController
         // Verify token with Google API endpoint
         $ch = curl_init('https://oauth2.googleapis.com/tokeninfo?id_token=' . urlencode($credential));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 8);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
         $res = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
@@ -397,6 +398,12 @@ class CustomerAuthController extends BaseController
         $payload = json_decode($res, true);
         if (empty($payload['email']) || empty($payload['sub'])) {
             return $this->response->setJSON(['ok' => false, 'error' => 'Invalid Google token payload.']);
+        }
+
+        // Verify token audience matches store configured client ID
+        $configuredClientId = store_setting('google_client_id', '');
+        if ($configuredClientId !== '' && !empty($payload['aud']) && $payload['aud'] !== $configuredClientId) {
+            return $this->response->setJSON(['ok' => false, 'error' => 'Google client verification mismatch.']);
         }
 
         $result = $this->auth->loginWithGoogle($payload);
