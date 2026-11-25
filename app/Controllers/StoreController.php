@@ -26,7 +26,7 @@ class StoreController extends BaseController
         $collections = $this->catalog->getHomeCollections();
 
         return view('store/home', [
-            'pageTitle'   => store_setting('store_name', 'Okina Craft'),
+            'pageTitle'   => store_setting('store_name', 'Okina Craft') . ' – Custom Apparel, T-Shirts & Personalized Gifts',
             'activeNav'   => 'home',
             'collections' => $collections,
         ]);

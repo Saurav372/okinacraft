@@ -22,8 +22,8 @@ $storefrontJsVer = defined('FCPATH') && file_exists(FCPATH . 'assets/js/storefro
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="Okina Craft – Custom printing, premium oversized t-shirts, hoodies, personalized mouse pads, mugs, and custom gifts.">
   <title><?= e($pageTitle ?? $storeName) ?></title>
   <!-- Favicon & Touch Icons -->
   <link rel="icon" type="image/svg+xml" href="<?= base_url('favicon.svg') ?>">
